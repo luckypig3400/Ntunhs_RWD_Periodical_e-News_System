@@ -13,6 +13,7 @@ require("./partials/head.php");
     <main id="main">
         <?php
         require("./partials/sections/breadcrumbs.php");
+        breadcrumbs("空白測試頁面");
         ?>
     </main>
 
