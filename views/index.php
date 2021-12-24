@@ -61,22 +61,14 @@ require("./partials/head.php");
 
     <main id="main">
 
-        <!-- ======= 首頁各區塊標題 ======= -->
-        <section class="features">
-            <div class="container">
-                <div class="section-title">
-                    <h2>最新消息</h2>
-                </div>
-            </div>
-        </section><!-- 首頁各區塊標題 -->
-
         <!-- ======= 首頁橫幅大區塊 ======= -->
         <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
             <div class="container">
-
                 <div class="row">
                     <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
-                        <h2>109學年度線上畢業典禮</h2><br>
+                        <h2>最新消息</h2><br>
+
+                        <h3>109學年度線上畢業典禮</h3>
 
                         <p class="description">109學年度線上畢業典禮 時間110年6月12日 上午10時開始<br>祝福所有畢業生 一帆風順
                             鵬程萬里<br>一顆星劃過，心跳快了兩下，因爲雀躍，一片雪飄落，左眼跳了兩下，因爲欣喜；而今，左眼沒有跳，心卻痛著，因爲我們從此別過
