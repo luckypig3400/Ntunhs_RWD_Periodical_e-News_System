@@ -99,10 +99,10 @@ require("./partials/head.php");
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="headline1">
                         <div class="card">
                             <div class="card-img">
-                                <img src="../components_Moderna/assets/img/service-details-1.jpg" alt="...">
+                                <img src="../public/assets/img/service-details-1.jpg" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="#">北護74榮耀雙喜 學思爾雅二樓啟用</a></h5>
@@ -116,10 +116,10 @@ require("./partials/head.php");
                         </div>
                     </div>
 
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="headline2">
                         <div class="card">
                             <div class="card-img">
-                                <img src="../components_Moderna/assets/img/service-details-2.jpg" alt="...">
+                                <img src="../public/assets/img/service-details-2.jpg" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="#">高教深耕成果分享會暨成果海報展</a></h5>
@@ -135,10 +135,10 @@ require("./partials/head.php");
 
                     </div>
 
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="headline3">
                         <div class="card">
                             <div class="card-img">
-                                <img src="../components_Moderna/assets/img/service-details-3.jpg" alt="...">
+                                <img src="../public/assets/img/service-details-3.jpg" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="#">教育部委員蒞校訪視 北護大招生選才作業獲肯定</a></h5>
@@ -155,7 +155,7 @@ require("./partials/head.php");
                     <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
                         <div class="card">
                             <div class="card-img">
-                                <img src="../components_Moderna/assets/img/service-details-4.jpg" alt="...">
+                                <img src="../public/assets/img/service-details-4.jpg" alt="...">
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title"><a href="#">頭條新聞4標題</a></h5>

@@ -10,7 +10,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
         <div class="logo">
             <h1 class="text-light"><a href="index.php"><span>北護校訊電子期刊</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
-            <!-- <a href="index.php"><img src="../components_Moderna/assets/img/logo.png" alt="" class="img-fluid"></a>-->
+            <!-- <a href="index.php"><img src="../public/assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
 
         <nav id="navbar" class="navbar">

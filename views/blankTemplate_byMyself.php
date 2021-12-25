@@ -37,7 +37,7 @@ require("partials/head.php");
             <article class="entry">
 
               <div class="entry-img">
-                <img src="../components_Moderna/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
+                <img src="../public/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">

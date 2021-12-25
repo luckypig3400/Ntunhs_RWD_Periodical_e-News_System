@@ -44,7 +44,7 @@ require("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../components_Moderna/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+                <img src="../public/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -76,7 +76,7 @@ require("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../components_Moderna/assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
+                <img src="../public/assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -108,7 +108,7 @@ require("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../components_Moderna/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
+                <img src="../public/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -140,7 +140,7 @@ require("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../components_Moderna/assets/img/blog/blog-4.jpg" alt="" class="img-fluid">
+                <img src="../public/assets/img/blog/blog-4.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
