@@ -7,4 +7,4 @@ Ntunhs_RWD_Periodical_e-News_System
  
 ## Frontend Admin
 前端後台管理頁面
-拜託嘉祥哥了 Orz
+拜託嘉翔哥了 Orz
