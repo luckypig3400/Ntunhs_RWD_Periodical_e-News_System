@@ -21,7 +21,7 @@ const Menu=()=>{
                     </Link>
                 </li>
                 <li>
-                    <Link to="#">
+                    <Link to="/SetupNews/page=1">
                         <span className="icon"><div className="icons"><FiCopy/></div></span>
                         <span className="title">期刊管理</span>
                     </Link>
@@ -39,7 +39,7 @@ const Menu=()=>{
                     </Link>
                 </li>
                 <li>
-                    <Link to="#">
+                    <Link to="/User">
                         <span className="icon"><div className="icons"><AiOutlineUsergroupAdd/></div></span>
                         <span className="title">成員管理</span>
                     </Link>
