@@ -21,4 +21,14 @@ router.route('/register').post((req, res) => {
     res.json({ message: 'register response', username, password, name });
 });
 
-module.exports = router;
+const verifyToken = (req, res, next) => {
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null;
+    if (token) {
+        jwt.verify(token, process.env.JWTSECRECTKEY, (err, authData) => {
+            err ? res.status(403).json({ message: 'Invalid token' }) : next();
+        });
+    } else {
+        res.status(403).json({ message: 'Invalid token' });
+    }
+};
+module.exports = { router, verifyToken };
