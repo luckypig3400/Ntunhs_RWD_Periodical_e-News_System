@@ -25,10 +25,17 @@ router.route('/login').post((req, res) => {
     const { username, password, name } = req.body;
     const user = users.find((user) => user.username === username && user.password === password);
     if (user) {
-        const accessToken = jwt.sign({ id: user.id, username: user.username }, process.env.JWTSECRECTKEY, {
+        const accessToken = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRECT_KEY, {
             expiresIn: 60 * 60 * 24,
         });
-        res.status(200).json({ message: 'login successed', user, accessToken });
+
+        res.cookie('accessTokens', accessToken, {
+            maxAge: 60 * 60 * 24,
+            secure: false, //set true if using https
+            httpOnly: true,
+        })
+            .status(200)
+            .json({ message: 'login successful', user, token: accessToken });
     } else {
         res.status(400).json({ message: 'login failed' });
     }
