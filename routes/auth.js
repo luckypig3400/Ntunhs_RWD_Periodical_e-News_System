@@ -5,16 +5,15 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const USER = require('../models/user/userQuery');
 
-const users = [{ id: '1', username: 'admin', password: '1234', name: 'admin' }];
-
 const verifyToken = (req, res, next) => {
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null;
-    if (token) {
-        jwt.verify(token, process.env.JWTSECRECTKEY, (err, tokenData) => {
+    const { accessToken } = req.cookies;
+    // const token = req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null;
+    if (accessToken) {
+        jwt.verify(accessToken, process.env.JWTSECRECTKEY, (err, token) => {
             if (err) {
                 return res.status(403).json({ message: 'Invalid token' });
             } else {
-                req.tokenData = tokenData;
+                req.token = token;
                 next();
             }
         });
