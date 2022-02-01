@@ -12,34 +12,38 @@ const verifyToken = (req, res, next) => {
     if (token) {
         jwt.verify(token, process.env.JWTSECRECTKEY, (err, tokenData) => {
             if (err) {
-                res.status(403).json({ message: 'Invalid token' });
+                return res.status(403).json({ message: 'Invalid token' });
             } else {
                 req.tokenData = tokenData;
                 next();
             }
         });
     } else {
-        res.status(403).json({ message: 'Invalid token' });
+        return res.status(403).json({ message: 'Invalid token' });
     }
 };
 
-router.route('/login').post((req, res) => {
+router.route('/login').post(async (req, res) => {
     const { username, password, name } = req.body;
-    const user = users.find((user) => user.username === username && user.password === password);
-    if (user) {
+    let user = await USER.login({ name, username, password });
+
+    if (!user) return res.status(400).json({ message: 'user not found' });
+
+    if (await bcrypt.compare(password, user.password)) {
         const accessToken = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRECT_KEY, {
             expiresIn: 60 * 60 * 24,
         });
-
-        res.cookie('accessTokens', accessToken, {
-            maxAge: 60 * 60 * 24,
-            secure: false, //set true if using https
-            httpOnly: true, //can't access from javascript
-        })
+        delete user.password;
+        return res
+            .cookie('accessTokens', accessToken, {
+                maxAge: 60 * 60 * 24,
+                secure: false, //set true if using https
+                httpOnly: true, //can't access from javascript
+            })
             .status(200)
             .json({ message: 'login successful', user, token: accessToken });
     } else {
-        res.status(400).json({ message: 'login failed' });
+        return res.status(400).json({ message: 'password incorrect' });
     }
 });
 
@@ -48,10 +52,13 @@ router.route('/register').post(async (req, res) => {
         let { username, password, name } = req.body;
         if (!name || !username || !password) return res.status(400).json({ message: 'missing required field' });
         password = await bcrypt.hash(password, 10);
-        const result = await USER.register({ name, username, password });
-        res.status(200).json({ message: 'register successful', id: result.insertId, name, username });
+
+        const exist = await USER.register({ name, username, password });
+        if (exist) return res.status(400).json({ message: 'username was used' });
+
+        return res.status(200).json({ message: 'register successful', name, username });
     } catch (e) {
-        console.log(e);
+        return res.status(500).json({ message: 'something go wrong' });
     }
 });
 
