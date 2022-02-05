@@ -26,3 +26,11 @@ This branch is for backend code & DB files
 ## Frontend News Pages
 前端新聞顯示頁面
 由在下來編寫與維護
+
+## Notes
+
++ [資料庫ER model繪製工具](https://dbdiagram.io/d/61f2248e7cf3fc0e7c6f2e6a)
++ https://segmentfault.com/a/1190000011811117
++ 酷東西 https://marmelab.com/react-admin/
++ https://marmelab.com/react-admin/Readme.html
++ https://github.com/bradtraversy/react-admin-example
