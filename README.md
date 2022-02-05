@@ -8,3 +8,13 @@ Ntunhs_RWD_Periodical_e-News_System
 ## Frontend Admin
 前端後台管理頁面
 拜託嘉翔哥了 Orz
+
+
+## 測試json server
+$npm i 
+$npm run server
+
+
+## Admin葉面啟動
+$npm i 
+$npm start

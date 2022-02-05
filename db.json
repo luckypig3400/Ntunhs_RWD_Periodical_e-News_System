@@ -1,0 +1,12 @@
+{
+  "posts": [
+    {
+      "title": "測試標題1",
+      "topic": "焦點新聞",
+      "publishedAt": "2022-12-31",
+      "newsquill": "<p><strong>今天</strong>好開<span style=\"background-color: rgb(255, 255, 0);\">心</span></p>",
+      "id": 1
+    }
+  ],
+  "users": []
+}
