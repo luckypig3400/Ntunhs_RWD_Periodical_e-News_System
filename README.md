@@ -6,15 +6,15 @@ Ntunhs_RWD_Periodical_e-News_System
  另外放置於其他沒有git的資料夾內即可運行
  
 ## Frontend Admin
-前端後台管理頁面
-拜託嘉翔哥了 Orz
+ 前端後台管理頁面
+ 拜託嘉翔哥了 Orz
 
 
 ## 測試json server
-$npm i 
-$npm run server
+ $npm i <br>
+ $npm run server
 
 
-## Admin葉面啟動
-$npm i 
-$npm start
+## Admin介面啟動
+ $npm i <br>
+ $npm start
