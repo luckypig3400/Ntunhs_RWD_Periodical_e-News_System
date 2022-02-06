@@ -8,5 +8,12 @@
       "id": 1
     }
   ],
-  "users": []
+  "users": [
+    {
+      "name": "Admin",
+      "email": "yang900412@gmail.com",
+      "password": "everyone806",
+      "id": 1
+    }
+  ]
 }
