@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const { router: authRouter } = require('./auth');
-const postRouter = require('./post');
 
-router.use('/auth', authRouter);
+const { verifyToken } = require('./auth');
+
+const postRouter = require('./post');
+const categoryRouter = require('./category');
+
+router.use(verifyToken);
+
 router.use('/post', postRouter);
+router.use('/category', categoryRouter);
 
 module.exports = router;

@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const { verifyToken } = require('./auth');
 const POST = require('../models/post/postQuery');
-
-router.use(verifyToken);
 
 router
     .route('/')
@@ -22,7 +19,7 @@ router
             const { periodNumber, noYear, noMonth, categoryID, subject, writer, content } = req.body;
             if (!periodNumber || !noYear || !noMonth || !categoryID || !subject || !writer || !content)
                 return res.status(400).json({ message: 'Required field is missing' });
-            await POST.createPosts({
+            await POST.createPost({
                 periodNumber,
                 noYear,
                 noMonth,
@@ -31,7 +28,7 @@ router
                 writer,
                 content,
             });
-            return res.json({ periodNumber, noYear, noMonth, categoryID, subject, writer, content });
+            return res.status(200).json({ periodNumber, noYear, noMonth, categoryID, subject, writer, content });
         } catch (e) {
             return res.status(500).json({ error: e });
         }

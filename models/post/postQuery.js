@@ -7,7 +7,7 @@ module.exports = {
         const result = await query(selectSQL);
         return result;
     },
-    createPosts: async ({ periodNumber, noYear, noMonth, categoryID, subject, writer, content }) => {
+    createPost: async ({ periodNumber, noYear, noMonth, categoryID, subject, writer, content }) => {
         let insertSQL = `insert into periodical (periodNumber,noYear,noMonth,categoryID,subject,writer,content) values ('${periodNumber}','${noYear}','${noMonth}','${categoryID}','${subject}','${writer}','${content}') `;
         const result = await query(insertSQL);
         return result;
