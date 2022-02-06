@@ -1,8 +1,6 @@
 import React from 'react'
 import { Admin, Resource } from 'react-admin'
 
-import MyLoginPage from './MyLoginPage';
-import MyLogoutButton from './MyLogoutButton';
 import authProvider from './authProvider';
 
 import restProvider from 'ra-data-simple-rest'
