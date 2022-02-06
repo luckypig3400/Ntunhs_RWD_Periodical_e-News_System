@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: process.env.WEB_ORIGIN_URL }));
 app.use(cookieParser());
 
-app.use('/periodical', Router);
+app.use('/periodical/api', Router);
 
 app.listen(port, () => {
     console.log(`Server is running at port ${port}`);
