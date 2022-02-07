@@ -41,8 +41,8 @@ require("partials/head.php");
             <article class="entry entry-single">
 
               <div class="entry-img text-center">
-                <br><img src="../periodial_data/217/headline1-1.png" alt="" class="img-fluid">
-                <img src="../periodial_data/217/headline1-2.png" alt="" class="img-fluid">
+                <br><img src="../periodical_data/217/headline1-1.png" alt="" class="img-fluid">
+                <img src="../periodical_data/217/headline1-2.png" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -74,7 +74,7 @@ require("partials/head.php");
                   </blockquote> -->
 
                 <div class="entry-img text-center">
-                  <br><img src="../periodial_data/217/headline1-3.png" alt="" class="img-fluid"><br>
+                  <br><img src="../periodical_data/217/headline1-3.png" alt="" class="img-fluid"><br>
                   ▲ 圖左：74週年校慶吳淑芳校長致辭 ▲ 圖右：前任校長謝楠楨教授致辭
                 </div>
 
@@ -88,7 +88,7 @@ require("partials/head.php");
                 </p>
 
                 <div class="entry-img text-center">
-                  <br><img src="../periodial_data/217/headline1-4.png" alt="" class="img-fluid"><br>
+                  <br><img src="../periodical_data/217/headline1-4.png" alt="" class="img-fluid"><br>
                   ▲ 圖左：74週年校慶大會貴賓合影<br>▲ 圖右：學思樓爾雅樓落成啟用典禮中臺北市立大學醒獅團「祥獅獻瑞」的演出
                 </div>
 

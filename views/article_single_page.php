@@ -41,8 +41,8 @@ require("partials/head.php");
             <article class="entry entry-single">
 
               <div class="entry-img text-center">
-                <br><img src="../periodial_data/217/headline1-1.png" alt="" class="img-fluid">
-                <img src="../periodial_data/217/headline1-2.png" alt="" class="img-fluid">
+                <br><img src="../periodical_data/217/headline1-1.png" alt="" class="img-fluid">
+                <img src="../periodical_data/217/headline1-2.png" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">

@@ -182,7 +182,7 @@ require("./partials/head.php");
                 <div class="testimonials-carousel swiper">
                     <div class="swiper-wrapper">
                         <div class="testimonial-item swiper-slide">
-                            <img src="../periodial_data/217/headline1-2.png" class="img-fluid" alt="">
+                            <img src="../periodical_data/217/headline1-2.png" class="img-fluid" alt="">
                             <h3>輪播區塊標題</h3>
                             <h4>輪播區塊副標題</h4>
                             <p>

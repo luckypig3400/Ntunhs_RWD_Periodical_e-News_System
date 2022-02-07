@@ -19,6 +19,12 @@ require("./partials/head.php");
 
         <!-- Include stylesheet -->
         <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+        <style>
+            #editor {
+                border: none;
+                font-size: larger;
+            }
+        </style>
 
         <section class="blog">
             <div class="container" data-aos="fade-up">
@@ -103,10 +109,10 @@ require("./partials/head.php");
             ];
 
             var quillOptions = {
-                // readOnly: true,
+                readOnly: true,
                 theme: 'snow',
                 modules: {
-                    toolbar: toolbarOptions
+                    toolbar: false //toolbarOptions
                 },
                 // https://stackoverflow.com/questions/39456273/how-do-i-create-a-quill-editor-without-a-toolbar
                 // border: none
