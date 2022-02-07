@@ -15,15 +15,24 @@ try {
 
     foreach ($result as $row) {
         $outputQuillText = "";
-
         $serial = $row['Serial'];
         $photo1 = $row['Photo1'];
         $photo2 = $row['Photo2'];
         $photo3 = $row['Photo3'];
         $content1 = str_replace("'", "\'", nl2br($row['Content1']));
         // ID:105 found ' cause SQL syntax error
+        $content1 = str_replace(" ", "&nbsp;&nbsp;", $content1);
+        $content1 = str_replace("　", "&nbsp;&nbsp;&nbsp;&nbsp;", $content1);
+        // https://stackoverflow.com/questions/5210287/how-replace-all-spaces-inside-html-elements-with-nbsp-using-preg-replace
+
         $content2 = str_replace("'", "\'", nl2br($row['Content2']));
+        $content2 = str_replace(" ", "&nbsp;&nbsp;", $content2);
+        $content2 = str_replace("　", "&nbsp;&nbsp;&nbsp;&nbsp;", $content2);
+
         $content3 = str_replace("'", "\'", nl2br($row['Content3']));
+        $content3 = str_replace(" ", "&nbsp;&nbsp;", $content3);
+        $content3 = str_replace("　", "&nbsp;&nbsp;&nbsp;&nbsp;", $content3);
+
         $img1Alt = $row['Alt1'];
         $img2Alt = $row['Alt2'];
         $img3Alt = $row['Alt3'];

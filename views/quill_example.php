@@ -23,10 +23,10 @@ require("./partials/head.php");
                 <!-- Create the editor container -->
                 <div id="editor">
                     <h1 class="ql-align-center"><strong><em>改朝換代--第二屆學生會幹部改選</em></strong></h1><br>
-                    
+
                     <?php
                     require("../model/fetchDB.php");
-                    echo fetchQuillContent_WithID(70);
+                    echo fetchQuillContent_WithID(1069);
                     ?>
                 </div>
 
