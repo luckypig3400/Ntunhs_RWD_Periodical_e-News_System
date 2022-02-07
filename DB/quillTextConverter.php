@@ -5,7 +5,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql_selectCommand = "SELECT * FROM content limit 3";
+    $sql_selectCommand = "SELECT * FROM content";
 
     $stmt = $conn->prepare($sql_selectCommand);
     $stmt->execute();
@@ -20,9 +20,9 @@ try {
         $photo1 = $row['Photo1'];
         $photo2 = $row['Photo2'];
         $photo3 = $row['Photo3'];
-        $content1 = nl2br($row['Content1']);
-        $content2 = nl2br($row['Content2']);
-        $content3 = nl2br($row['Content3']);
+        $content1 = str_replace("'", "\'", nl2br($row['Content1']));
+        $content2 = str_replace("'", "\'", nl2br($row['Content2']));
+        $content3 = str_replace("'", "\'", nl2br($row['Content3']));
         $img1Alt = $row['Alt1'];
         $img2Alt = $row['Alt2'];
         $img3Alt = $row['Alt3'];
@@ -58,8 +58,19 @@ try {
             $outputQuillText .= "<p>$content3</p><p><br></p>";
         }
 
+        if ($outputQuillText != "") {
+            $sql_updateCommand = "UPDATE periodical SET newsquill = '$outputQuillText' WHERE id = $serial";
 
+            // https://www.w3schools.com/php/php_mysql_update.asp
+            $stmt = $conn->prepare($sql_updateCommand);
 
+            $stmt->execute();
+
+            echo "ID:$serial converted & update Database successed! More Info:";
+            echo $stmt->rowCount() . " records UPDATED successfully<br>";
+        } else {
+            echo "ID:$serial <b>Error</b> converted failed! empty string<br>";
+        }
     }
 } catch (PDOException $e) {
     echo "Error occured while accessing MySQL DB:" . $e->getMessage();
@@ -85,10 +96,11 @@ try {
 </head>
 
 <body>
-    <?php
-    echo "<div id=\"editor\">";
-    // echo $outputQuillText . "</div>";
-    ?>
+    <div id="editor">
+        <?php
+        // echo $outputQuillText;
+        ?>
+    </div>
 
     <!-- Include the Quill library -->
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
