@@ -1,11 +1,11 @@
 <?php
-require("../config/config.php");
+require("../model/config.php");
 
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql_selectCommand = "SELECT * FROM content WHERE `Serial` = '369'";
+    $sql_selectCommand = "SELECT * FROM content WHERE `Serial` = '357'";
 
     $stmt = $conn->prepare($sql_selectCommand);
     $stmt->execute();
@@ -28,19 +28,31 @@ try {
         $img3Alt = $row['Alt3'];
 
         if ($photo1 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo1\" alt=\"$img1Alt\"></p><p><br></p>";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo1\" alt=\"$img1Alt\">";
+            if ($img1Alt != null) {
+                $outputQuillText .= "<br>▲ $img1Alt";
+            }
+            $outputQuillText .= "</p><p><br></p>";
         }
         if ($content1 != null) {
             $outputQuillText .= "<p>$content1</p><p><br></p>";
         }
         if ($photo2 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo2\" alt=\"$img2Alt\"></p><p><br></p>";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo2\" alt=\"$img2Alt\">";
+            if ($img2Alt != null) {
+                $outputQuillText .= "<br>▲ $img2Alt";
+            }
+            $outputQuillText .= "</p><p><br></p>";
         }
         if ($content2 != null) {
             $outputQuillText .= "<p>$content2</p><p><br></p>";
         }
         if ($photo3 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo3\" alt=\"$img3Alt\"></p><p><br></p>";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo3\" alt=\"$img3Alt\">";
+            if ($img3Alt != null) {
+                $outputQuillText .= "<br>▲ $img3Alt";
+            }
+            $outputQuillText .= "</p><p><br></p>";
         }
         if ($content3 != null) {
             $outputQuillText .= "<p>$content3</p><p><br></p>";
