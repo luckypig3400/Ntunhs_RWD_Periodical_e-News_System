@@ -73,3 +73,7 @@
 
 <!-- Template Main JS File -->
 <script src="../public/assets/js/main.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- Initialize Quill editor -->
+<script src="../public/assets/js/initialQuill.js"></script>

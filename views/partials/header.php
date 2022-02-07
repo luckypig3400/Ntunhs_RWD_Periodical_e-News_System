@@ -38,7 +38,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                     <ul>
                         <li><a href="index.php?period=217">第217期校訊</a></li>
                         <li><a href="index.php?period=216">第216期校訊</a></li>
-                        <li><a href="index.php?period=217">第215期校訊</a></li>
+                        <li><a href="index.php?period=215">第215期校訊</a></li>
                     </ul>
                 </li>
                 <li><a href="#footer" class="scrollto">我要投稿</a></li>

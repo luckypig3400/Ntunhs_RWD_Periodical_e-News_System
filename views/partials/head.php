@@ -25,6 +25,9 @@
     <!-- Template Main CSS File -->
     <link href="../public/assets/css/style.css" rel="stylesheet">
 
+    <!-- Include Quillstylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+
     <!-- =======================================================
   * Template Name: Moderna - v4.8.0
   * Template URL: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/
