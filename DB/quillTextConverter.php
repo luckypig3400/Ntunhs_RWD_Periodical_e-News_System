@@ -21,6 +21,7 @@ try {
         $photo2 = $row['Photo2'];
         $photo3 = $row['Photo3'];
         $content1 = str_replace("'", "\'", nl2br($row['Content1']));
+        // ID:105 found ' cause SQL syntax error
         $content2 = str_replace("'", "\'", nl2br($row['Content2']));
         $content3 = str_replace("'", "\'", nl2br($row['Content3']));
         $img1Alt = $row['Alt1'];
@@ -59,7 +60,7 @@ try {
         }
 
         if ($outputQuillText != "") {
-            $sql_updateCommand = "UPDATE periodical SET newsquill = '$outputQuillText' WHERE id = $serial";
+            $sql_updateCommand = "UPDATE periodical SET quillcontent = '$outputQuillText' WHERE id = $serial";
 
             // https://www.w3schools.com/php/php_mysql_update.asp
             $stmt = $conn->prepare($sql_updateCommand);
