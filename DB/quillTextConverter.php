@@ -5,7 +5,7 @@ try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    $sql_selectCommand = "SELECT * FROM content WHERE `Serial` = '357'";
+    $sql_selectCommand = "SELECT * FROM content limit 3";
 
     $stmt = $conn->prepare($sql_selectCommand);
     $stmt->execute();
@@ -13,9 +13,9 @@ try {
 
     $result = $stmt->fetchAll();
 
-    $outputQuillText = "";
-
     foreach ($result as $row) {
+        $outputQuillText = "";
+
         $serial = $row['Serial'];
         $photo1 = $row['Photo1'];
         $photo2 = $row['Photo2'];
@@ -57,6 +57,9 @@ try {
         if ($content3 != null) {
             $outputQuillText .= "<p>$content3</p><p><br></p>";
         }
+
+
+
     }
 } catch (PDOException $e) {
     echo "Error occured while accessing MySQL DB:" . $e->getMessage();
@@ -84,7 +87,7 @@ try {
 <body>
     <?php
     echo "<div id=\"editor\">";
-    echo $outputQuillText . "</div>";
+    // echo $outputQuillText . "</div>";
     ?>
 
     <!-- Include the Quill library -->
