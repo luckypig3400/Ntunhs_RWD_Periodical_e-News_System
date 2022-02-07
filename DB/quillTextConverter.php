@@ -57,7 +57,6 @@ try {
         if ($content3 != null) {
             $outputQuillText .= "<p>$content3</p><p><br></p>";
         }
-        echo $outputQuillText;
     }
 } catch (PDOException $e) {
     echo "Error occured while accessing MySQL DB:" . $e->getMessage();
@@ -72,10 +71,34 @@ try {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>舊資料庫文章2Quill轉換器</title>
+    <!-- Include stylesheet -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        #editor {
+            border: none;
+            font-size: larger;
+        }
+    </style>
 </head>
 
 <body>
+    <?php
+    echo "<div id=\"editor\">";
+    echo $outputQuillText . "</div>";
+    ?>
 
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script>
+        var quillOptions = {
+            readOnly: true,
+            theme: 'snow',
+            modules: {
+                toolbar: false
+            }
+        }
+        var quill = new Quill('#editor', quillOptions);
+    </script>
 </body>
 
 </html>
