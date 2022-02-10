@@ -1,5 +1,5 @@
 import React from 'react'
-import { Create, SimpleForm, TextInput, DateInput} from 'react-admin'
+import { Create, SimpleForm, TextInput, DateInput,SelectInput, ReferenceInput,required} from 'react-admin'
 import RichTextInput from 'ra-input-rich-text';
 import 'react-quill/dist/quill.snow.css';
 
@@ -7,9 +7,11 @@ const PostCreate = (props) => {
   return (
     <Create title='Create a Post' {...props}>
       <SimpleForm>
-        <TextInput source='title' />
-        <TextInput source='topic' />
-        <DateInput label='Published' source='publishedAt' />
+        <TextInput source='title'  validate={[required()]}/>
+        <ReferenceInput label="Topic" source="Topic" reference="topics" validate={[required()]} >
+            <SelectInput optionText="id" />
+        </ReferenceInput>
+        <DateInput label='Published' source='publishedAt'  validate={[required()]}/>
         <RichTextInput 
         source="newsquill" 
         toolbar={[
@@ -26,8 +28,11 @@ const PostCreate = (props) => {
           [{ 'font': [] }],
           [{ 'align': [] }],
           ['clean'],  
-          ['image']                                       // remove formatting button
-        ]}/>
+          ['image'],
+          ['video'],
+          ['link']                                       // remove formatting button
+        ]}
+        />
       </SimpleForm>
     </Create>
     

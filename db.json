@@ -1,10 +1,9 @@
 {
   "posts": [
     {
-      "title": "測試標題1",
-      "topic": "焦點新聞",
-      "publishedAt": "2022-12-31",
-      "newsquill": "<p><strong>今天</strong>好開<span style=\"background-color: rgb(255, 255, 0);\">心</span></p>",
+      "title": "新增資料1",
+      "Topic": "特別報導",
+      "publishedAt": "2022-02-09",
       "id": 1
     }
   ],
@@ -14,6 +13,20 @@
       "email": "yang900412@gmail.com",
       "password": "everyone806",
       "id": 1
+    },
+    {
+      "name": "楊嘉翔",
+      "email": "yang900413@gmail.com",
+      "password": "1234",
+      "id": 2
+    }
+  ],
+  "topics": [
+    {
+      "id": "反霸凌"
+    },
+    {
+      "id": "特別報導"
     }
   ]
 }

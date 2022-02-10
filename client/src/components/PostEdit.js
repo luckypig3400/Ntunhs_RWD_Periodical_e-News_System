@@ -1,5 +1,5 @@
 import React from 'react'
-import { Edit, SimpleForm, TextInput, DateInput } from 'react-admin'
+import {SimpleForm, TextInput, DateInput,SelectInput,ReferenceInput,required,Edit} from 'react-admin'
 import RichTextInput from 'ra-input-rich-text';
 import 'react-quill/dist/quill.snow.css';
 
@@ -7,9 +7,10 @@ const PostEdit = (props) => {
   return (
     <Edit title='Edit Post' {...props}>
       <SimpleForm>
-        <TextInput disabled source='id' />
         <TextInput source='title' />
-        <TextInput source='topic' />
+        <ReferenceInput label="Topic" source="Topic" reference="topics" validate={[required()]}>
+            <SelectInput optionText="id" />
+        </ReferenceInput>
         <DateInput label='Published' source='publishedAt' />
         <RichTextInput 
         source="newsquill" 
@@ -27,7 +28,9 @@ const PostEdit = (props) => {
           [{ 'font': [] }],
           [{ 'align': [] }],
           ['clean'],  
-          ['image']                                       // remove formatting button
+          ['image'],
+          ['video'],
+          ['link']                                       // remove formatting button
         ]}/>
       </SimpleForm>
     </Edit>

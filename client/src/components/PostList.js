@@ -8,13 +8,14 @@ import {
   DeleteButton,
 } from 'react-admin'
 
+
 const PostList = (props) => {
   console.log(props)
   return (
     <List {...props}>
       <Datagrid>
         <TextField source='title' />
-        <TextField source='topic' />
+        <TextField source='Topic' />
         <DateField source='publishedAt' />
         <EditButton basePath='/posts' />
         <DeleteButton basePath='/posts' />

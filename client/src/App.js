@@ -10,6 +10,9 @@ import PostEdit from './components/PostEdit'
 import UserList from './components/UserList'
 import UserCreate from './components/UserCreate'
 import UserEdit from './components/UserEdit'
+import TopicList from './components/TopicList';
+import TopicEdit from './components/TopicEdit'
+import TopicCreate from './components/TopicCreate';
 
 function App() {
 
@@ -26,6 +29,12 @@ function App() {
         list={UserList}
         create={UserCreate}
         edit={UserEdit}
+      />
+      <Resource
+        name='topics'
+        list={TopicList}
+        create={TopicCreate}
+        edit={TopicEdit}
       />
     </Admin>
   )
