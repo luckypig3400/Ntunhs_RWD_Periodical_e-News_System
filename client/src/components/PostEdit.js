@@ -8,8 +8,8 @@ const PostEdit = (props) => {
     <Edit title='Edit Post' {...props}>
       <SimpleForm>
         <TextInput source='title' />
-        <ReferenceInput label="Topic" source="Topic" reference="topics" validate={[required()]}>
-            <SelectInput optionText="id" />
+        <ReferenceInput label="Category_name" source="Category_name" reference="Categorys" validate={[required()]}>
+            <SelectInput optionText="Category_name" />
         </ReferenceInput>
         <DateInput label='Published' source='publishedAt' />
         <RichTextInput 

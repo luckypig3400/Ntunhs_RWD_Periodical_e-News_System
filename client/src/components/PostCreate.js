@@ -8,8 +8,8 @@ const PostCreate = (props) => {
     <Create title='Create a Post' {...props}>
       <SimpleForm>
         <TextInput source='title'  validate={[required()]}/>
-        <ReferenceInput label="Topic" source="Topic" reference="topics" validate={[required()]} >
-            <SelectInput optionText="id" />
+        <ReferenceInput label="Category_name" source="Category_name" reference="Categorys" validate={[required()]} >
+            <SelectInput optionText="Category_name" />
         </ReferenceInput>
         <DateInput label='Published' source='publishedAt'  validate={[required()]}/>
         <RichTextInput 

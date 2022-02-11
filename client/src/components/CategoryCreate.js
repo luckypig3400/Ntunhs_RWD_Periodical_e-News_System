@@ -1,14 +1,15 @@
 import React from 'react'
 import { Create, SimpleForm, TextInput } from 'react-admin'
 
-const TopicCreate = (props) => {
+const CategoryCreate = (props) => {
   return (
-    <Create title='Create a Topic' {...props}>
+    <Create title='Create a Category' {...props}>
       <SimpleForm>
         <TextInput source='id' />
+        <TextInput source='Category_name' />
       </SimpleForm>
     </Create>
   )
 }
 
-export default TopicCreate
+export default CategoryCreate

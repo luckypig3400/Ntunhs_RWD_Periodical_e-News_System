@@ -7,17 +7,17 @@ import {
   DeleteButton,
 } from 'react-admin'
 
-const topicList = (props) => {
+const CategoryList = (props) => {
   console.log(props)
   return (
     <List {...props}>
       <Datagrid>
-        <TextField source='id' />
-        <EditButton basePath='/topics' />
-        <DeleteButton basePath='/topics' />
+        <TextField source='Category_name' />
+        <EditButton basePath='/Categorys' />
+        <DeleteButton basePath='/Categorys' />
       </Datagrid>
     </List>
   )
 }
 
-export default topicList
+export default CategoryList
