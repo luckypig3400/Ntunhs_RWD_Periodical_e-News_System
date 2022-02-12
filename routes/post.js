@@ -8,15 +8,16 @@ router
   .get(async (req, res) => {
     try {
       const { page = 1, sort_by = "id", order_by = "DESC", category_id = null } = req.query;
-      const results = await POST.getPosts({
+      const { results, totalCount } = await POST.getPosts({
         page,
         sort_by,
         order_by,
         category_id,
       });
-      return res.status(200).json({ page, results });
-    } catch (e) {
-      return res.status(500).json({ error: e });
+
+      return res.status(200).json({ totalCount, results });
+    } catch (error) {
+      return res.status(500).json({ error });
     }
   })
   .post(async (req, res) => {
@@ -42,8 +43,8 @@ router
         writer,
         content,
       });
-    } catch (e) {
-      return res.status(500).json({ error: e });
+    } catch (error) {
+      return res.status(500).json({ error });
     }
   });
 
@@ -52,8 +53,8 @@ router.route("/:postID").get(async (req, res) => {
     const { postID } = req.params;
     const result = await POST.getPostByID({ postID });
     return res.status(200).json(result);
-  } catch (e) {
-    return res.status(500).json({ error: e });
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 });
 

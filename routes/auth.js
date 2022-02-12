@@ -45,8 +45,8 @@ router.route("/login").post(async (req, res) => {
     } else {
       return res.status(400).json({ message: "password incorrect" });
     }
-  } catch (e) {
-    return res.status(500).json({ error: e });
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 });
 
@@ -60,8 +60,8 @@ router.route("/register").post(async (req, res) => {
     if (exist) return res.status(400).json({ message: "username was used" });
 
     return res.status(200).json({ message: "register successful", name, username });
-  } catch (e) {
-    return res.status(500).json({ error: e });
+  } catch (error) {
+    return res.status(500).json({ error });
   }
 });
 
