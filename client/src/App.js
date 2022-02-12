@@ -1,43 +1,23 @@
-import React from 'react'
-import { Admin, Resource } from 'react-admin'
-
+import * as React from "react";
+import { Admin, Resource } from 'react-admin';
+import { UserList,UserEdit,UserCreate } from './component/users';
+import { PostList, PostEdit, PostCreate } from './component/posts';
+import {CategorysList,CategorysEdit,CategorysCreate} from './component/categorys'
 import authProvider from './authProvider';
+import jsonServerProvider from 'ra-data-json-server';
+import PostIcon from '@material-ui/icons/Book';
+import UserIcon from '@material-ui/icons/Group';
+import CategoryIcon from '@material-ui/icons/Category';
 
-import restProvider from 'ra-data-simple-rest'
-import PostList from './components/PostList'
-import PostCreate from './components/PostCreate'
-import PostEdit from './components/PostEdit'
-import UserList from './components/UserList'
-import UserCreate from './components/UserCreate'
-import UserEdit from './components/UserEdit'
-import CategoryList from './components/CategoryList';
-import CategoryEdit from './components/CategoryEdit'
-import CategoryCreate from './components/CategoryCreate';
+// http://localhost:5000
+// https://jsonplaceholder.typicode.com
+const dataProvider = jsonServerProvider('http://localhost:5000');
+const App = () => (
+  <Admin authProvider={authProvider} dataProvider={dataProvider}>
+    <Resource name="posts" list={PostList} edit={PostEdit} create={PostCreate} icon={PostIcon} />
+    <Resource name="categorys" list={CategorysList} create={CategorysCreate} edit={CategorysEdit} icon={CategoryIcon} />
+    <Resource name="users" list={UserList} create={UserCreate} edit={UserEdit} icon={UserIcon} />   
+  </Admin>
+)
 
-function App() {
-
-  return (
-    <Admin authProvider={authProvider} dataProvider={restProvider('http://localhost:3000')}>
-      <Resource
-        name='posts'
-        list={PostList}
-        create={PostCreate}
-        edit={PostEdit}
-      />
-      <Resource
-        name='users'
-        list={UserList}
-        create={UserCreate}
-        edit={UserEdit}
-      />
-      <Resource
-        name='Categorys'
-        list={CategoryList}
-        create={CategoryCreate}
-        edit={CategoryEdit}
-      />
-    </Admin>
-  )
-}
-
-export default App
+export default App;

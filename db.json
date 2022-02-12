@@ -1,70 +1,78 @@
 {
   "posts": [
     {
-      "Category": "C01",
+      "CategoryID": "C01",
       "title": "測試1",
       "publishedAt": "2022-02-12",
+      "newsquill": "<p>北護大學思樓及爾雅樓獲公共工程金質獎優等<img src=\"http://140.131.87.222/periodical/html/image/main_26.gif\" height=\"32\" width=\"13\"><span style=\"color: rgb(63, 85, 157);\"><img src=\"http://140.131.87.222/periodical/html/image/print.gif\" alt=\"友善列印\" height=\"32\" width=\"54\"></span>&nbsp;<img src=\"http://140.131.87.222/periodical/html/image/spacer.gif\" height=\"22\" width=\"1\">&nbsp;&nbsp;撰文＼總務處&nbsp;<img src=\"http://140.131.87.222/periodical/html/upload/218jj.jpg\"><img src=\"http://140.131.87.222/periodical/html/image/s2.gif\" alt=\"圖片說明\" height=\"12\" width=\"11\">▲ 本校學思樓為教學研究大樓，緊鄰綠草如蔭的操場及校園</p><p><br></p><p>國立臺北護理健康大學學思樓、爾雅樓二新建大樓，於110年10校慶當日舉行啟用儀式，增添新穎的教學研究空間、學生住宿空間、生活廣場及醫療保健空間，為校園生活帶來多元活力。同時二棟大樓新建工程規劃與興建品質嚴謹，於110年度獲教育部推薦參加公共工程委員會主辦第21屆金質獎，經全國性評比榮獲優等之殊榮。</p><p><br></p><p>北護大因教學卓越，學生人數逐年遞增，並配合城區部三系所教職生遷回校本部計畫，105年奉行政院及教育部核可籌建計畫及補助經費後，即以最有利標評選方式，甄選出專案營建管理廠商(亞新工程顧問股份有限公司)、設計監造單位(華興聯合建築師事務所)及承攬廠商(潤弘精密工程事業股份有限公司)等優質團隊，工程於108年2月18日開工，歷經863日即於110年6月30日取得使用執照，如質如實完成總樓地板面積達4.3萬平方公尺兩棟大樓，並於110年第一學期先行進駐使用，較原籌建計畫期程提早1年。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;<img src=\"http://140.131.87.222/periodical/html/upload/218jj2.jpg\"></p><p><img src=\"http://140.131.87.222/periodical/html/image/s2.gif\" alt=\"圖片說明\" height=\"12\" width=\"11\"> 本工程於籌建計畫期間，校方除委由上開專業團隊積極辦理外，並定期召開各層級會議，協商解決各工程界面問題，更敦聘各專業技師或專家學者，協助審查設計書圖，確實調查使用需求，在有限經費中做最有效規劃，設計儲冰式中央空調系統及中央監控等系統，達節能減碳目標；退縮建築線留設寬廣人行空間、保留臨石牌路二段老樹友善周邊環境、公共藝術融入地景風貌；施工時對加強施工管理、設計生態廊道、達到降噪防塵目標、遠端監控確保校園安全、節能減碳降低對環境衝擊、升級隔音窗等級及外牆防污確保立面美觀等積極作為，於110年度獲教育部推薦參加公共工程委員會主辦第21屆金質獎，經全國性評比獲優等殊榮。</p><p><br></p><p>新建大樓低樓層生活美食廣場、醫療保健空間及地下停車場等委外經營空間，已如期甄選出優質廠商進駐，除滿足全校教職員生及周邊居民生活需求外，亦可為北護大創造收益，為國立大學新建大樓樹立標竿及優良典範，北護大也將因為這兩棟大樓，奠定教學研究基礎，讓教育加值創新，擴散北護大的國際影響力。</p><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▲ 本校爾雅樓爾雅樓為第三學生宿舍大樓，</p><p>一、二樓委外美食廣場&nbsp;&nbsp;</p>",
       "id": 1
     },
     {
       "title": "hk4g4",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-16",
       "id": 2
     },
     {
       "title": "asdasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-02",
       "id": 3
     },
     {
       "title": "dasdasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-01",
       "id": 4
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 5
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 6
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 7
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 8
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C03",
       "publishedAt": "2022-02-09",
       "id": 9
     },
     {
       "title": "dasd",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 10
     },
     {
       "title": "dasada",
-      "Category_name": "C01",
+      "CategoryID": "C01",
       "publishedAt": "2022-02-09",
       "id": 11
+    },
+    {
+      "title": "新測試",
+      "CategoryID": "C03",
+      "publishedAt": "2022-02-12",
+      "newsquill": "<p>新測試</p>",
+      "id": 12
     }
   ],
   "users": [
@@ -79,12 +87,22 @@
       "email": "yang900413@gmail.com",
       "password": "1234",
       "id": 2
+    },
+    {
+      "name": "管理員",
+      "email": "admin@gmail.com",
+      "password": "1234",
+      "id": 3
     }
   ],
   "Categorys": [
     {
       "id": "C01",
-      "Category_name": "特殊報導"
+      "Category_name": "新特殊報導"
+    },
+    {
+      "id": "C03",
+      "Category_name": "反霸凌"
     }
   ]
 }
