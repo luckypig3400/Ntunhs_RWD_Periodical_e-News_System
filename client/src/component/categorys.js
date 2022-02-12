@@ -3,15 +3,12 @@ import {
     List,
     Datagrid,
     TextField,
-    ReferenceField,
     EditButton,
     Create,
     Edit,
     SimpleForm,
-    ReferenceInput,
     SelectInput,
     TextInput,
-    SimpleList ,
     DeleteButton,
 } from 'react-admin';
 
