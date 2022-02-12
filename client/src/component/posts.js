@@ -21,9 +21,8 @@ import {
     ShowButton
 } from 'react-admin';
 import RichTextInput from 'ra-input-rich-text';
-import ImageResize from 'quill-image-resize-module-react'
-Quill.register('modules/imageResize', ImageResize)
-
+import ResizeModule from "@botom/quill-resize-module";
+Quill.register("modules/resize", ResizeModule);
 
 const PostTitle = ({ record }) => {
         return <span>Post {record ? `"${record.title}"` : ''}</span>;
@@ -75,8 +74,15 @@ export const PostEdit = props => (
                 source="newsquill"
                 options={{
                     modules:{
-                        imageResize: {
-                            modules: [ 'Resize', 'DisplaySize' ]
+                        resize: {
+                            locale: {
+                              // change them depending on your language
+                              altTip: "Hold down the alt key to zoom",
+                              floatLeft: "Left",
+                              floatRight: "Right",
+                              center: "Center",
+                              restore: "Restore",
+                            },
                           },
                           toolbar:[
                             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -116,8 +122,15 @@ export const PostCreate = props => (
                 source="newsquill"
                 options={{
                     modules:{
-                        imageResize: {
-                            modules: [ 'Resize', 'DisplaySize' ]
+                        resize: {
+                            locale: {
+                              // change them depending on your language
+                              altTip: "Hold down the alt key to zoom",
+                              floatLeft: "Left",
+                              floatRight: "Right",
+                              center: "Center",
+                              restore: "Restore",
+                            },
                           },
                           toolbar:[
                             ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
