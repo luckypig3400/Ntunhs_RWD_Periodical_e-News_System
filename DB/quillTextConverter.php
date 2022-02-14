@@ -68,6 +68,8 @@ try {
             $outputQuillText .= "<p>$content3</p><p><br></p>";
         }
 
+        $outputQuillText = str_replace("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", "<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;", $outputQuillText);
+
         if ($outputQuillText != "") {
             $sql_updateCommand = "UPDATE periodical SET quillcontent = '$outputQuillText' WHERE id = $serial";
 

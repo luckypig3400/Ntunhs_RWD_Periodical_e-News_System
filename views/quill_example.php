@@ -26,7 +26,7 @@ require("./partials/head.php");
 
                     <?php
                     require("../model/fetchDB.php");
-                    echo fetchQuillContent_WithID(1069);
+                    echo fetchQuillContent_WithID(969);
                     ?>
                 </div>
 

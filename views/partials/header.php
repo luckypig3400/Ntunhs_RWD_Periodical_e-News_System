@@ -24,6 +24,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         <li><a href="classificationsMain.php?classification=campus&period=217">校園尚青</a></li>
                         <li><a href="classificationsMain.php?classification=soul&period=217">心靈立可白</a></li>
                         <li><a href="classificationsMain.php?classification=business&period=217">業務報導</a></li>
+                        <li><a href="./quill_example.php">Quill測試頁面</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>字體調整</span> <i class="bi bi-chevron-down"></i></a>
