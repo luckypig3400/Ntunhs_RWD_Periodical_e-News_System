@@ -67,6 +67,32 @@
       "publishedAt": "2022-02-12",
       "newsquill": "<p>新測試</p>",
       "id": 12
+    },
+    {
+      "attachment": {
+        "rawFile": {
+          "path": "證照補助.pdf"
+        },
+        "src": "blob:http://localhost:3000/236e9923-ae23-476d-97f5-64d463306a51",
+        "title": "證照補助.pdf"
+      },
+      "title": "FileInput",
+      "CategoryID": "C01",
+      "publishedAt": "2022-02-02",
+      "id": 13
+    },
+    {
+      "files": {
+        "rawFile": {
+          "path": "證照補助.pdf"
+        },
+        "src": "blob:http://localhost:3000/f88ec3bb-f753-4844-bead-2845d805dc8b",
+        "title": "證照補助.pdf"
+      },
+      "title": "a",
+      "CategoryID": "C01",
+      "publishedAt": "2022-02-14",
+      "id": 14
     }
   ],
   "users": [
