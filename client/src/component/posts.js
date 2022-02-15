@@ -22,7 +22,7 @@ import {
     DeleteButton,
     FileField,
     FileInput,
-    ShowButton
+    ShowButton,
 } from 'react-admin';
 
 //提供Quill套件image、video改變大小用
@@ -55,7 +55,7 @@ export const PostList = (props) => {
                 />
             ) : (
                 <Datagrid>
-                    <TextField source="id" />
+                    <TextField source="id" sortBy="title"/>
                     {/*Posts.CaregoryID關聯categorys.Category_name*/}
                     <ReferenceField label="Category" source="CategoryID" reference="categorys">
                         <TextField source="Category_name" />
@@ -174,5 +174,3 @@ export const PostCreate = props => (
             </SimpleForm>
         </Create>
     );
-
-    
