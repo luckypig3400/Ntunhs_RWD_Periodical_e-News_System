@@ -4,6 +4,15 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+let articleDiv = document.getElementById('articleInfoDiv');
+let articleTitle = document.getElementById('articleInfoTitle');
+
+if (articleDiv != null) {
+  articleTitle.innerHTML = articleDiv.innerHTML;
+}
+
+
 (function () {
   "use strict";
 

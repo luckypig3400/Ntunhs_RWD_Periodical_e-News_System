@@ -49,6 +49,12 @@ require("./partials/head.php");
     </main>
 
     <?php
+    if (gettype($dataRow) == "array") {
+        echo "<div id=\"articleInfoDiv\" hidden>
+            北護校訊電子期刊 第" . $dataRow[0]["periodNumber"] . "期 "
+            . $dataRow[0]["noYear"] . " 年 "
+            . $dataRow[0]["noMonth"] . " 月</div>";
+    }
     require("./partials/footer.php");
     ?>
 
