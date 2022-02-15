@@ -78,5 +78,7 @@
 <script src="../public/assets/js/main.js"></script>
 <!-- Include the Quill library -->
 <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- https://www.npmjs.com/package/quill-better-table -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.min.js" type="text/javascript"></script>
 <!-- Initialize Quill editor -->
 <script src="../public/assets/js/initialQuill.js"></script>

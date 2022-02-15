@@ -26,7 +26,7 @@ require("./partials/head.php");
                     require("../model/fetchDB.php");
                     $randID = random_int(67, 1910);
 
-                    $dataRow = fetchQuillContent_WithID($randID);
+                    $dataRow = fetchQuillContent_WithID(795);
 
                     if (gettype($dataRow) == "array") {
                         echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";

@@ -37,6 +37,21 @@ try {
         $img2Alt = $row['Alt2'];
         $img3Alt = $row['Alt3'];
 
+        // 檢查原始欄位是否包含表格語法
+        if (str_contains($row["Content1"], "TABLE")) {
+            echo "ID:$serial <b>發現表格!</b><br>";
+            echo "Original Content:<br>" . $row["Content1"] . "<br>";
+            $content1 = str_replace("'", "\'", $row['Content1']);
+        } elseif (str_contains($row["Content2"], "TABLE")) {
+            echo "ID:$serial <b>發現表格!</b><br>";
+            echo "Original Content:<br>" . $row["Content2"] . "<br>";
+            $content2 = str_replace("'", "\'", $row['Content2']);
+        } elseif (str_contains($row["Content3"], "TABLE")) {
+            echo "ID:$serial <b>發現表格!</b><br>";
+            echo "Original Content:<br>" . $row["Content3"] . "<br>";
+            $content3 = str_replace("'", "\'", $row['Content3']);
+        }
+
         if ($photo1 != null) {
             $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo1\" alt=\"$img1Alt\">";
             if ($img1Alt != null) {
@@ -87,6 +102,8 @@ try {
 } catch (PDOException $e) {
     echo "Error occured while accessing MySQL DB:" . $e->getMessage();
 }
+
+echo "<h1>Total Table: $totalTable</h1>";
 ?>
 
 <!DOCTYPE html>
