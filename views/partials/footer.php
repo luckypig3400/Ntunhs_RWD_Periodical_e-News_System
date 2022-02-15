@@ -4,9 +4,8 @@
     <div class="footer-newsletter">
         <div class="container">
             <div class="row" style="text-align: center;">
-                <h4 id="articleInfoTitle"> 北護校訊電子期刊 第 period 期 year 年 month 月</h4>
-            </div><br>
-            <hr>
+                <h4 id="articleInfoTitle" hidden> 北護校訊電子期刊 第 period 期 year 年 month 月<br><br><hr></h4>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h4>訂閱校訊</h4>

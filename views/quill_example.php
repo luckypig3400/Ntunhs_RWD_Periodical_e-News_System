@@ -53,7 +53,7 @@ require("./partials/head.php");
         echo "<div id=\"articleInfoDiv\" hidden>
             北護校訊電子期刊 第" . $dataRow[0]["periodNumber"] . "期 "
             . $dataRow[0]["noYear"] . " 年 "
-            . $dataRow[0]["noMonth"] . " 月</div>";
+            . $dataRow[0]["noMonth"] . " 月<br><br><hr></div>";
     }
     require("./partials/footer.php");
     ?>

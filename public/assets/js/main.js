@@ -10,6 +10,7 @@ let articleTitle = document.getElementById('articleInfoTitle');
 
 if (articleDiv != null) {
   articleTitle.innerHTML = articleDiv.innerHTML;
+  articleTitle.removeAttribute('hidden');
 }
 
 
