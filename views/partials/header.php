@@ -16,15 +16,17 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
         <nav id="navbar" class="navbar">
             <ul>
                 <li><a class="active " href="index.php">首頁</a></li>
-                <li><a href="headlines.php">頭條新聞</a></li>
-                <!-- 之後頭條連結可以改成這個"classificationsMain.php?classification=headlines&period=217" -->
-                <li><a href="classificationsMain.php?classification=special&period=217">特別報導</a></li>
+                <li><a href="categoriesSummary.php">頭條新聞</a></li>
+                <!-- 之後頭條連結可以改成這個"categoriesSummary.php?category=headlines&period=217" -->
+                <li><a href="categoriesSummary.php?category=special&period=217">特別報導</a></li>
                 <li class="dropdown"><a href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="classificationsMain.php?classification=campus&period=217">校園尚青</a></li>
-                        <li><a href="classificationsMain.php?classification=soul&period=217">心靈立可白</a></li>
-                        <li><a href="classificationsMain.php?classification=business&period=217">業務報導</a></li>
+                        <li><a href="categoriesSummary.php?category=campus&period=217">校園尚青</a></li>
+                        <li><a href="categoriesSummary.php?category=soul&period=217">心靈立可白</a></li>
+                        <li><a href="categoriesSummary.php?category=business&period=217">業務報導</a></li>
                         <li><a href="./quill_example.php">Quill測試頁面</a></li>
+                        <li><a href="./blankTemplate_byMyself.php">空白內文測試頁面</a></li>
+                        <li><a href="./blank.php">完全空白頁面</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>字體調整</span> <i class="bi bi-chevron-down"></i></a>

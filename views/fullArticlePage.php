@@ -23,10 +23,11 @@ require("./partials/head.php");
                 <!-- Create the editor container -->
                 <div id="editor">
                     <?php
-                    require("../model/fetchDB.php");
+                    require("../model/fetchArticle.php");
                     $randID = random_int(67, 1910);
 
-                    $dataRow = fetchQuillContent_WithID(795);
+                    $dataRow = fetchQuillContent_WithID($randID);
+                    echo "randID: " . $randID . "<br>";
 
                     if (gettype($dataRow) == "array") {
                         echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";

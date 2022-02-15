@@ -48,7 +48,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="headlines_single.php?classification=headlines&period=217&number=1">北護74榮耀雙喜 學思爾雅二樓啟用</a>
+                <a href="fullArticlePage.php?category=headlines&period=217&number=1">北護74榮耀雙喜 學思爾雅二樓啟用</a>
               </h2>
 
               <div class="entry-meta">
@@ -65,7 +65,7 @@ require("partials/head.php");
                   <br><br>校慶大會於當天上午在明倫館大禮堂舉行，同時開放線上直播；首先校旗進場正式揭開大會序幕，隨後唱校歌並播映「北護大校務簡介-創新風華與典範」。
                 </p>
                 <div class="read-more">
-                  <a href="headlines_single.php?classification=headlines&period=217&number=1">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category=headlines&period=217&number=1">瀏覽全文</a>
                 </div>
               </div>
 
@@ -80,7 +80,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="headlines_single.php?classification=headlines&period=217&number=2">高教深耕成果分享會暨成果海報展</a>
+                <a href="fullArticlePage.php?category=headlines&period=217&number=2">高教深耕成果分享會暨成果海報展</a>
               </h2>
 
               <div class="entry-meta">
@@ -98,7 +98,7 @@ require("partials/head.php");
                   <br><br>本校在教育部高等教育深耕計畫補助下，110學年度的補助款為8千600萬元，各單位皆積極執行、創新計畫，並於計畫執行期間，舉辦高等教育深耕計畫成果分享會，由本校同仁分享與討論計畫成果。
                 </p>
                 <div class="read-more">
-                  <a href="headlines_single.php?classification=headlines&period=217&number=2">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category=headlines&period=217&number=2">瀏覽全文</a>
                 </div>
               </div>
 
@@ -113,7 +113,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="headlines_single.php?classification=headlines&period=217&number=3">教育部委員蒞校訪視
+                <a href="fullArticlePage.php?category=headlines&period=217&number=3">教育部委員蒞校訪視
                   北護大招生選才作業獲肯定</a>
               </h2>
 
@@ -131,7 +131,7 @@ require("partials/head.php");
                   <br><br>在簡良翰執行長和吳淑芳校長致辭並介紹雙方出席人員後，由王采芷教務長簡報北護大執行成果；隨後分別由高照系蔡君明主任、健管系李佩珍主任、資管系徐建業主任及陳彥宏老師、生諮系李佩怡主任上台簡報分享執行經驗。
                 </p>
                 <div class="read-more">
-                  <a href="headlines_single.php?classification=headlines&period=217&number=3">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category=headlines&period=217&number=3">瀏覽全文</a>
                 </div>
               </div>
 

@@ -41,14 +41,14 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="blog-single.php">文章標題</a>
+                <a href="fullArticlePage.php">文章標題</a>
               </h2>
 
               <div class="entry-meta">
                 <ul>
-                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.php">Editor</a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.php"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.php">12
+                  <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="fullArticlePage.php">Editor</a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="fullArticlePage.php"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
+                  <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="fullArticlePage.php">12
                       Comments</a></li>
                 </ul>
               </div>
@@ -58,7 +58,7 @@ require("partials/head.php");
                   內文OwO lkodkdlfekgritrjtiewutirw
                 </p>
                 <div class="read-more">
-                  <a href="blog-single.php">瀏覽全文</a>
+                  <a href="fullArticlePage.php">瀏覽全文</a>
                 </div>
               </div>
 

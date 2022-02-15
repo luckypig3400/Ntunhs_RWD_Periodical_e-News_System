@@ -110,7 +110,7 @@ require("./partials/head.php");
                                     國立臺北護理健康大學創校邁進74週年，今年校慶主題為「北護74．榮耀雙喜」，110年10月23日在石牌校區明倫館舉辦慶祝大會及運動賽事，當日上午於校慶大會後舉行學思樓及爾雅樓落成啟用典禮，貴賓雲集、醒獅賀慶，順利圓滿；現場參與貴賓有傑出校友與醫護界、產業界、教育領域、工程建築團隊等貴賓出席，共同見證與慶賀本校74歲生日。
                                     <br><br>校慶大會於當天上午在明倫館大禮堂舉行，同時開放線上直播；首先校旗進場正式揭開大會序幕，隨後唱校歌並播映「北護大校務簡介-創新風華與典範」。
                                 </p>
-                                <div class="read-more"><a href="headlines_single.php?classification=headlines&period=217&number=1"><i class="bi bi-arrow-right"></i> Read More</a>
+                                <div class="read-more"><a href="fullArticlePage.php?category=headlines&period=217&number=1"><i class="bi bi-arrow-right"></i> Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -128,7 +128,7 @@ require("./partials/head.php");
                                     HUB育成種子計畫。
                                     <br><br>本校在教育部高等教育深耕計畫補助下，110學年度的補助款為8千600萬元，各單位皆積極執行、創新計畫，並於計畫執行期間，舉辦高等教育深耕計畫成果分享會，由本校同仁分享與討論計畫成果。
                                 </p>
-                                <div class="read-more"><a href="headlines_single.php?classification=headlines&period=217&number=2"><i class="bi bi-arrow-right"></i> Read More</a>
+                                <div class="read-more"><a href="fullArticlePage.php?category=headlines&period=217&number=2"><i class="bi bi-arrow-right"></i> Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -146,7 +146,7 @@ require("./partials/head.php");
                                     教育部委員於110年11月16日蒞臨國立臺北護理健康大校訪視招生選才計畫執行情形，由簡良翰執行長、李傳房教授、張嘉育教授等一行5人蒞校訪視，本校由吳淑芳校長代表接待，黃俊清副校長、計劃執行單位王采芷教務長、蘇義泰主秘及推動9系所主任及計畫人員出席協同接待；在開幕式中進行執行成果報告、系所經驗分享後，下午進行書面資料檢視及計劃人員個別訪談後，委員於綜和座談中給予建議，並對本校推動成果予以肯定。
                                     <br><br>在簡良翰執行長和吳淑芳校長致辭並介紹雙方出席人員後，由王采芷教務長簡報北護大執行成果；隨後分別由高照系蔡君明主任、健管系李佩珍主任、資管系徐建業主任及陳彥宏老師、生諮系李佩怡主任上台簡報分享執行經驗。
                                 </p>
-                                <div class="read-more"><a href="headlines_single.php?classification=headlines&period=217&number=3"><i class="bi bi-arrow-right"></i> Read More</a>
+                                <div class="read-more"><a href="fullArticlePage.php?category=headlines&period=217&number=3"><i class="bi bi-arrow-right"></i> Read More</a>
                                 </div>
                             </div>
                         </div>
@@ -160,7 +160,7 @@ require("./partials/head.php");
                             <div class="card-body">
                                 <h5 class="card-title"><a href="#">頭條新聞4標題</a></h5>
                                 <p class="card-text">內文OwO ~fldsfdksgkfdjklfsdgjfkdlgjdf</p>
-                                <div class="read-more"><a href="headlines_single.php?classification=headlines&period=217&number=4"><i class="bi bi-arrow-right"></i> Read More</a>
+                                <div class="read-more"><a href="fullArticlePage.php?category=headlines&period=217&number=4"><i class="bi bi-arrow-right"></i> Read More</a>
                                 </div>
                             </div>
                         </div>

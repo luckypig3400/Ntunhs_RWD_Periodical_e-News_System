@@ -48,7 +48,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=1">當期該分類文章一標題</a>
+                <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=1">當期該分類文章一標題</a>
               </h2>
 
               <div class="entry-meta">
@@ -65,7 +65,7 @@ require("partials/head.php");
                   廣瀨淡窗講過一句值得人反覆尋思的話，詩如禪機，在於參悟。這句話改變了我的人生。既然，要想清楚，當期該分類文章內文摘要，到底是一種怎麼樣的存在。培根曾經提過，金錢是個好僕人，但在某些場合也會變成惡主人。這段話讓我所有的疑惑頓時豁然開朗。總結來說，張九齡說過一句著名的話，相知無遠近，萬里尚為鄰。希望大家能從這段話中有所收穫。老子講過，天下難事，必作於易; 天下大事，必作於細。這把視野帶到了全新的高度。
                 </p>
                 <div class="read-more">
-                  <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=1">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=1">瀏覽全文</a>
                 </div>
               </div>
 
@@ -80,7 +80,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=2">當期該分類文章二標題</a>
+                <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=2">當期該分類文章二標題</a>
               </h2>
 
               <div class="entry-meta">
@@ -97,7 +97,7 @@ require("partials/head.php");
                   廣瀨淡窗講過一句值得人反覆尋思的話，詩如禪機，在於參悟。這句話改變了我的人生。既然，要想清楚，當期該分類文章內文摘要，到底是一種怎麼樣的存在。培根曾經提過，金錢是個好僕人，但在某些場合也會變成惡主人。這段話讓我所有的疑惑頓時豁然開朗。總結來說，張九齡說過一句著名的話，相知無遠近，萬里尚為鄰。希望大家能從這段話中有所收穫。老子講過，天下難事，必作於易; 天下大事，必作於細。這把視野帶到了全新的高度。
                 </p>
                 <div class="read-more">
-                  <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=2">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=2">瀏覽全文</a>
                 </div>
               </div>
 
@@ -112,7 +112,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=3">當期該分類文章三標題</a>
+                <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=3">當期該分類文章三標題</a>
               </h2>
 
               <div class="entry-meta">
@@ -129,7 +129,7 @@ require("partials/head.php");
                   廣瀨淡窗講過一句值得人反覆尋思的話，詩如禪機，在於參悟。這句話改變了我的人生。既然，要想清楚，當期該分類文章內文摘要，到底是一種怎麼樣的存在。培根曾經提過，金錢是個好僕人，但在某些場合也會變成惡主人。這段話讓我所有的疑惑頓時豁然開朗。總結來說，張九齡說過一句著名的話，相知無遠近，萬里尚為鄰。希望大家能從這段話中有所收穫。老子講過，天下難事，必作於易; 天下大事，必作於細。這把視野帶到了全新的高度。
                 </p>
                 <div class="read-more">
-                  <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=3">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=3">瀏覽全文</a>
                 </div>
               </div>
 
@@ -144,7 +144,7 @@ require("partials/head.php");
               </div>
 
               <h2 class="entry-title">
-                <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=4">當期該分類文章四標題</a>
+                <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=4">當期該分類文章四標題</a>
               </h2>
 
               <div class="entry-meta">
@@ -161,7 +161,7 @@ require("partials/head.php");
                   廣瀨淡窗講過一句值得人反覆尋思的話，詩如禪機，在於參悟。這句話改變了我的人生。既然，要想清楚，當期該分類文章內文摘要，到底是一種怎麼樣的存在。培根曾經提過，金錢是個好僕人，但在某些場合也會變成惡主人。這段話讓我所有的疑惑頓時豁然開朗。總結來說，張九齡說過一句著名的話，相知無遠近，萬里尚為鄰。希望大家能從這段話中有所收穫。老子講過，天下難事，必作於易; 天下大事，必作於細。這把視野帶到了全新的高度。
                 </p>
                 <div class="read-more">
-                  <a href="article_single_page.php?classification={thisArticleCategory}&period=217&number=4">瀏覽全文</a>
+                  <a href="fullArticlePage.php?category={thisArticleCategory}&period=217&number=4">瀏覽全文</a>
                 </div>
               </div>
             </article><!-- 文章4區塊 -->
