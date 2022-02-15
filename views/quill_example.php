@@ -22,14 +22,27 @@ require("./partials/head.php");
 
                 <!-- Create the editor container -->
                 <div id="editor">
-                    <h1 class="ql-align-center"><strong><em>改朝換代--第二屆學生會幹部改選</em></strong></h1><br>
-
                     <?php
                     require("../model/fetchDB.php");
-                    echo fetchQuillContent_WithID(969);
+                    $randID = random_int(67, 1910);
+
+                    $dataRow = fetchQuillContent_WithID($randID);
+
+                    if (gettype($dataRow) == "array") {
+                        echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";
+
+                        echo $dataRow[0]["writer"] . "<br><br>";
+                        echo $dataRow[0]["quillcontent"];
+
+                        echo "<br>更新日期:" . $dataRow[0]["updateTime"];
+
+                        echo "<br>點閱次數:" . $dataRow[0]["clicked"];
+                    } else {
+                        echo $dataRow;
+                    }
+                    // print_r($dataRow);
                     ?>
                 </div>
-
             </div>
         </section>
 
