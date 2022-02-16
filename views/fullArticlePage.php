@@ -15,6 +15,8 @@ require("./partials/head.php");
         <?php
         require("./partials/sections/breadcrumbs.php");
         breadcrumbs("Quill測試頁面");
+
+        require("../controller/parseGETparams.php");
         ?>
 
         <section class="blog">
