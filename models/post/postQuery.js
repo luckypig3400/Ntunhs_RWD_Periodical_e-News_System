@@ -1,3 +1,4 @@
+const mysql = require('mysql');
 const query = require('../../mysql/connetion');
 
 module.exports = {
@@ -28,17 +29,16 @@ module.exports = {
             }
         });
         const total = await query(`select count(*) as count from (${searchSQL}) final`);
-        searchSQL += ` limit ${page},20 `;
-        const results = await query(searchSQL);
+        const results = await query(`${searchSQL} limit ${page},20 `);
         return { results, totalCount: total[0].count };
     },
     getPostByID: async ({ postID }) => {
-        let selectSQL = `select * from periodical where id = ${postID} `;
+        let selectSQL = mysql.format('select * from periodical where id = ?', [postID]);
         const result = await query(selectSQL);
         return result[0];
     },
-    createPost: async ({ periodNumber, noYear, noMonth, categoryID, subject, writer, content }) => {
-        let insertSQL = `insert into periodical (periodNumber,noYear,noMonth,categoryID,subject,writer,content) values ('${periodNumber}','${noYear}','${noMonth}','${categoryID}','${subject}','${writer}','${content}') `;
+    createPost: async (data) => {
+        let insertSQL = mysql.format('insert into periodical set ?', data);
         const result = await query(insertSQL);
         return result;
     },

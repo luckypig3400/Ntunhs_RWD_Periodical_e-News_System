@@ -31,7 +31,7 @@ router
                 categoryID,
                 subject,
                 writer,
-                content,
+                quillcontent: content,
             });
             return res.status(200).json({
                 periodNumber,
