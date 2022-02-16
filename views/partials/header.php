@@ -32,9 +32,9 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 <li class="dropdown"><a href="#"><span>字體調整</span> <i class="bi bi-chevron-down"></i></a>
                     <!-- 字體放大與縮小還與更換背景主題可以參考此網站:https://kenming.gitlab.io/software-requirement-analysis/ch1/functional-vs-nonfunctional-requirement.php -->
                     <ul>
-                        <li><a href="#main" id="incFontSize" class="scrollto"><span><i class="bi bi-fonts"></i>+</span></a></li>
-                        <li><a href="#main" id="decFontSize" class="scrollto"><span><i class="bi bi-fonts"></i>-</span></a></li>
-                        <li><a href="#main" id="resetFont" class="scrollto">重設字體</a></li>
+                        <li><a href="#" id="incFontSize" class="scrollto" onclick="increaseAllfontSize()"><span><i class="bi bi-fonts"></i>+</span></a></li>
+                        <li><a href="#" id="decFontSize" class="scrollto" onclick="decreaseAllfontSize()"><span><i class="bi bi-fonts"></i>-</span></a></li>
+                        <li><a href="#" id="resetFont" class="scrollto" onclick="resetAllfontSize()">重設字體</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#dontReload"><span>選擇期別</span> <i class="bi bi-chevron-down"></i></a>

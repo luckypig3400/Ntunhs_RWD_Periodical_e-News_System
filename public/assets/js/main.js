@@ -13,6 +13,42 @@ if (articleDiv != null) {
   articleTitle.removeAttribute('hidden');
 }
 
+let currentFontLevel = 0;
+function increaseAllfontSize() {
+  if (currentFontLevel < 6) {
+    let allelements = document.getElementsByTagName('*');
+
+    for (var i = 0; i < allelements.length; i++) {
+      // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
+      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+      var fontSize = parseFloat(style);
+      allelements[i].style.fontSize = (fontSize + 1) + 'px';
+    }
+    currentFontLevel++;
+  }
+}
+
+function decreaseAllfontSize() {
+  if (currentFontLevel > -6) {
+    let allelements = document.getElementsByTagName('*');
+
+    for (var i = 0; i < allelements.length; i++) {
+      // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
+      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+      var fontSize = parseFloat(style);
+      allelements[i].style.fontSize = (fontSize - 1) + 'px';
+    }
+  }
+  currentFontLevel--;
+}
+
+function resetAllfontSize() {
+  let allelements = document.getElementsByTagName('*');
+  for (var i = 0; i < allelements.length; i++) {
+    allelements[i].style.fontSize = '';
+  }
+  currentFontLevel = 0;
+}
 
 (function () {
   "use strict";
