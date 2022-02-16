@@ -81,7 +81,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   height: 60px;
 }
 #header .logo h1 {
-  font-size: 28px;
+  font-size: 30px;
   margin: 0;
   padding: 4px 0;
   line-height: 1;
@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   white-space: nowrap;
   transition: 0.3s;
@@ -160,7 +160,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 .navbar .dropdown ul a {
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 18px;
   text-transform: none;
   color: #1c3745;
 }
@@ -200,7 +200,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 */
 .mobile-nav-toggle {
   color: #fff;
-  font-size: 28px;
+  font-size: 36px;
   cursor: pointer;
   display: none;
   line-height: 0;
@@ -245,7 +245,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 .navbar-mobile a, .navbar-mobile a:focus {
   padding: 10px 20px;
-  font-size: 15px;
+  font-size: 18px;
   color: #1e4356;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
