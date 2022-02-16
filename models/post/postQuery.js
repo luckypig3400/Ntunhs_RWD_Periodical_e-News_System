@@ -10,7 +10,7 @@ module.exports = {
         return { results, totalCount: total[0].count };
     },
     getPostByQuery: async ({ content, writer, category_id, subject, page }) => {
-        let searchSQL = `select *  from periodical where 1 `;
+        let searchSQL = `select * from periodical where 1 `;
         [content, writer, category_id, subject].forEach((item) => {
             if (!item) return;
             switch (item) {
