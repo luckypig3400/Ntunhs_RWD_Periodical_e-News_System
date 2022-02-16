@@ -1,6 +1,7 @@
 import * as React from "react";
 import { Quill } from 'react-quill'
 import 'react-quill/dist/quill.snow.css';
+import { ImageHandler, VideoHandler, AttachmentHandler } from "quill-upload";
 import RichTextInput from 'ra-input-rich-text';
 import ResizeModule from "@botom/quill-resize-module";
 import { useMediaQuery } from '@material-ui/core';
@@ -27,6 +28,9 @@ import {
 
 //提供Quill套件image、video改變大小用
 Quill.register("modules/resize", ResizeModule);
+Quill.register("modules/imageHandler", ImageHandler);
+Quill.register("modules/videoHandler", VideoHandler);
+Quill.register("modules/attachmentHandler", AttachmentHandler);
 
 //判斷ListTitle
 const PostTitle = ({ record }) => {
@@ -40,7 +44,6 @@ const postFilters = [
         <SelectInput optionText="Category_name" />
     </ReferenceInput>,
 ];
-
 
 export const PostList = (props) => {
     //RWD排版判斷
@@ -71,8 +74,6 @@ export const PostList = (props) => {
     );
 }
 
-
-
 export const PostEdit = props => (
     <Edit title={<PostTitle />} {...props}>
         <SimpleForm>
@@ -81,9 +82,9 @@ export const PostEdit = props => (
                     <SelectInput optionText="Category_name" />
                 </ReferenceInput>
                 <DateInput label='Published' source='publishedAt'  validate={[required()]}/>
-                <FileInput source="files" label="Related files" accept="application/pdf"multiple={true}  placeholder={<p>Drop your file here</p>}>
+                {/* <FileInput source="files" label="Related files" accept="application/pdf"multiple={true}  placeholder={<p>Drop your file here</p>}>
                     <FileField source="src" title="title" />
-                </FileInput>
+                </FileInput> */}
                 <RichTextInput 
                 source="newsquill"
                 options={{
@@ -115,7 +116,19 @@ export const PostEdit = props => (
                             ['image'],
                             ['video'],
                             ['link'],                                     // remove formatting button
-                            ]
+                            ],
+                            videoHandler: {
+                                upload: (file) => {
+                                    // return a Promise that resolves in a link to the uploaded image
+                                    return new Promise((resolve) => {
+                                      const fd = new FormData();
+                                      fd.append("file", file);
+                                      fd.append("fileName", file.name);
+                            
+                                      _onUpload(fd, resolve);
+                                    });
+                                  },
+                              },
                     }
                 }}
                 />
@@ -132,9 +145,9 @@ export const PostCreate = props => (
                     <SelectInput optionText="Category_name" />
                 </ReferenceInput>
                 <DateInput label='Published' source='publishedAt'  validate={[required()]}/>
-                <FileInput source="files" label="Related files" accept="application/pdf" multiple={true} placeholder={<p>Drop your file here</p>}>
+                {/* <FileInput source="files" label="Related files" accept="application/pdf" multiple={true} placeholder={<p>Drop your file here</p>}>
                     <FileField source="src" title="title"/>
-                </FileInput>
+                </FileInput> */}
                 {/*Quill套件，React-Admin套件提供*/}
                 <RichTextInput 
                     source="newsquill"
@@ -168,9 +181,40 @@ export const PostCreate = props => (
                                 ['video'],
                                 ['link'],                                     // remove formatting button
                             ],
+                            videoHandler: {
+                                upload: (file) => {
+                                    // return a Promise that resolves in a link to the uploaded image
+                                    return new Promise((resolve) => {
+                                      const fd = new FormData();
+                                      fd.append("file", file);
+                                      fd.append("fileName", file.name);
+                            
+                                      _onUpload(fd, resolve);
+                                    });
+                                  },
+                              },
                         }
                     }}
                 />
             </SimpleForm>
         </Create>
     );
+
+const _onUpload = function (fd, resolve) {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://upload.imagekit.io/api/v1/files/upload");
+    xhr.setRequestHeader(
+        "Authorization",
+        "Basic cHJpdmF0ZV9LKzNFRGJnMXRQOXBsejlvOGhkd1J0bkZ0bjQ9Og=="
+    );
+    xhr.onload = () => {
+        if (xhr.status === 200) {
+        const response = JSON.parse(xhr.responseText);
+    
+        resolve(response.url); // Must resolve as a link to the image
+        }
+    };
+    
+    xhr.send(fd);
+    };
+      
