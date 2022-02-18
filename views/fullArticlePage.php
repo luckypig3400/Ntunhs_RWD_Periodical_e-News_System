@@ -16,13 +16,12 @@ require("./partials/head.php");
         require("./partials/sections/breadcrumbs.php");
         breadcrumbs("Quill測試頁面");
 
-        require("../controller/parseGETparams.php");
         $linkString = parseGETparamsToString();
         echo $linkString . "<br>";
 
         $parsedGETparams = parseGETparams();
         foreach($parsedGETparams as $key => $value) {
-            echo "GET: $key=$value<br>";
+            // echo "GET: $key=$value<br>";
         }
         ?>
 

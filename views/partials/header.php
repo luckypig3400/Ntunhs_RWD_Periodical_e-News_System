@@ -14,11 +14,24 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
         </div>
 
         <nav id="navbar" class="navbar">
+            <?php
+            require("../controller/parseGETparams.php");
+            $parsedGETparams = parseGETparams();
+            ?>
+
             <ul>
                 <li><a class="active " href="index.php">首頁</a></li>
-                <li><a href="categoriesSummary.php?category=C01">頭條新聞</a></li>
-                <!-- 之後頭條連結可以改成這個"categoriesSummary.php?category=headlines&period=217" -->
-                <li><a href="categoriesSummary.php?category=C02">特別報導</a></li>
+                <?php
+                if (isset($parsedGETparams["period"])) {
+                    if ($parsedGETparams["period"] != "") {
+                        echo "<li><a href=\"categoriesSummary.php?category=C01&period=" . $parsedGETparams["period"] . "\">頭條新聞</a></li>";
+                        echo "<li><a href=\"categoriesSummary.php?category=C02&period=" . $parsedGETparams["period"] . "\">特別報導</a></li>";
+                    }
+                } else {
+                    echo "<li><a href=\"categoriesSummary.php?category=C01\">頭條新聞</a></li>";
+                    echo "<li><a href=\"categoriesSummary.php?category=C02\">特別報導</a></li>";
+                }
+                ?>
                 <li class="dropdown"><a href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <?php
@@ -28,7 +41,13 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         // print_r($categories);
                         foreach ($categories as $row) {
                             if ($row["id"] != "C01" && $row["id"] != "C02") {
-                                echo "<li><a href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
+                                if (isset($parsedGETparams["period"])) {
+                                    if ($parsedGETparams["period"] != "") {
+                                        echo "<li><a href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $parsedGETparams["period"] . "\">" . $row["name"] . "</a></li>";
+                                    }
+                                } else {
+                                    echo "<li><a href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
+                                }
                             }
                         }
                         ?>
