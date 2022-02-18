@@ -47,9 +47,22 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 </li>
                 <li class="dropdown"><a href="#dontReload"><span>選擇期別</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
-                        <li><a href="index.php?period=217">第217期校訊</a></li>
-                        <li><a href="index.php?period=216">第216期校訊</a></li>
-                        <li><a href="index.php?period=215">第215期校訊</a></li>
+                        <?php
+                        require("../model/fetchPeriodNumbers.php");
+
+                        $periods = fetchPeriodNumbers();
+                        $periodsNumbers = array();
+                        foreach ($periods as $row) {
+                            array_push($periodsNumbers, (int)$row["periodNumber"]);
+                        }
+
+                        arsort($periodsNumbers); // sort array in descending order
+                        // https://www.php.net/manual/en/array.sorting.php
+
+                        foreach ($periodsNumbers as $periodNumber) {
+                            echo "<li><a href=\"index.php?period=" . $periodNumber . "\">第" . $periodNumber . "期校訊</a></li>";
+                        }
+                        ?>
                     </ul>
                 </li>
                 <li><a href="#footer" class="scrollto">我要投稿</a></li>
