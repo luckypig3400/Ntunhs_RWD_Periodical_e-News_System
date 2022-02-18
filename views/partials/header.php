@@ -22,11 +22,10 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
             <ul>
                 <li><a class="active " href="index.php">首頁</a></li>
                 <?php
-                if (isset($parsedGETparams["period"])) {
-                    if ($parsedGETparams["period"] != "") {
-                        echo "<li><a href=\"categoriesSummary.php?category=C01&period=" . $parsedGETparams["period"] . "\">頭條新聞</a></li>";
-                        echo "<li><a href=\"categoriesSummary.php?category=C02&period=" . $parsedGETparams["period"] . "\">特別報導</a></li>";
-                    }
+                $period_GET = getPeriodParam();
+                if ($period_GET != "") {
+                    echo "<li><a href=\"categoriesSummary.php?category=C01&period=" . $period_GET . "\">頭條新聞</a></li>";
+                    echo "<li><a href=\"categoriesSummary.php?category=C02&period=" . $period_GET . "\">特別報導</a></li>";
                 } else {
                     echo "<li><a href=\"categoriesSummary.php?category=C01\">頭條新聞</a></li>";
                     echo "<li><a href=\"categoriesSummary.php?category=C02\">特別報導</a></li>";
@@ -41,10 +40,8 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         // print_r($categories);
                         foreach ($categories as $row) {
                             if ($row["id"] != "C01" && $row["id"] != "C02") {
-                                if (isset($parsedGETparams["period"])) {
-                                    if ($parsedGETparams["period"] != "") {
-                                        echo "<li><a href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $parsedGETparams["period"] . "\">" . $row["name"] . "</a></li>";
-                                    }
+                                if ($period_GET != "") {
+                                    echo "<li><a href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $period_GET . "\">" . $row["name"] . "</a></li>";
                                 } else {
                                     echo "<li><a href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
                                 }

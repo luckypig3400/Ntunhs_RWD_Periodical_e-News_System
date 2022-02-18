@@ -39,3 +39,33 @@ function parseGETparams()
 
     return $parsedGETparams;
 }
+
+function getPeriodParam()
+{
+    $parsedGETArray = parseGETparams();
+    if (array_key_exists("period", $parsedGETArray)) {
+        return $parsedGETArray["period"];
+    } else {
+        return "";
+    }
+}
+
+function getCategoryParam()
+{
+    $parsedGETArray = parseGETparams();
+    if (array_key_exists("category", $parsedGETArray)) {
+        return $parsedGETArray["category"];
+    } else {
+        return "";
+    }
+}
+
+function getIDparam()
+{
+    $parsedGETArray = parseGETparams();
+    if (array_key_exists("id", $parsedGETArray)) {
+        return $parsedGETArray["id"];
+    } else {
+        return "";
+    }
+}
