@@ -27,14 +27,35 @@ function fetchFullArticle_WithID($in_id)
     return $result;
 }
 
-function fetchArtitcleList()
-{
-    // default for index page
-
-}
-
 function fetchArticleList($in_period, $in_category)
 {
-    $period = $in_category;
-    $category = $in_category;
+    $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
+    $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
+
+    if ($period != "" && $category != "") {
+        $sql = "SELECT * FROM periodical WHERE period = $period AND category = '$category'";
+    } else if ($period != "") {
+        $sql = "SELECT * FROM periodical WHERE period = $period";
+    } else if ($category != "") {
+        // 同一分類的文章太多，因此只提供該分類全部文章的摘要
+        $sql = "SELECT id,subject,photo FROM periodical WHERE category = '$category'";
+    } else {
+        // default select the latest period articles
+        // https://stackoverflow.com/questions/11754781/how-to-declare-a-variable-in-mysql
+        $sql = "SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1); SELECT * FROM periodical WHERE periodNumber = @newestPeriod;";
+    }
+
+    try {
+        require("config.php");
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
 }
