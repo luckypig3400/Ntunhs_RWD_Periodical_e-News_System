@@ -34,7 +34,7 @@ require("./partials/head.php");
                     require("../model/fetchArticle.php");
                     $randID = random_int(67, 1910);
 
-                    $dataRow = fetchQuillContent_WithID($randID);
+                    $dataRow = fetchFullArticle_WithID($randID);
                     echo "randID: " . $randID . "<br>";
 
                     if (gettype($dataRow) == "array") {

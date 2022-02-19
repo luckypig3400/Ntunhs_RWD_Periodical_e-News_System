@@ -1,5 +1,5 @@
 <?php
-function fetchQuillContent_WithID($in_id)
+function fetchFullArticle_WithID($in_id)
 {
     // https://stackoverflow.com/questions/14114411/remove-all-special-characters-from-a-string
     $id = str_replace('/[^A-Za-z0-9\-]/', '', $in_id); // Removes all special chars.
@@ -25,4 +25,16 @@ function fetchQuillContent_WithID($in_id)
     }
 
     return $result;
+}
+
+function fetchArtitcleList()
+{
+    // default for index page
+
+}
+
+function fetchArticleList($in_period, $in_category)
+{
+    $period = $in_category;
+    $category = $in_category;
 }
