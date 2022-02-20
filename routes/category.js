@@ -17,7 +17,7 @@ router
     .get(async (req, res) => {
         try {
             const { categoryID } = req.params;
-            const result = await CATEGORY.getCategroy(categoryID);
+            const result = await CATEGORY.get(categoryID);
             return res.status(200).json(result);
         } catch (e) {
             return res.status(500).json({ error: e });
@@ -27,8 +27,17 @@ router
         try {
             const { categoryID } = req.params;
             const { value } = req.body;
-            const results = await CATEGORY.updateCategroy({ categoryID, value });
-            return res.status(200).json({ categoryID });
+            const result = await CATEGORY.update({ categoryID, value });
+            if (result) return res.status(200).json({ message: result.message || 'inserted successfully' });
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    })
+    .delete(async (req, res) => {
+        try {
+            const { categoryID } = req.params;
+            const result = await CATEGORY.delete({ categoryID });
+            return res.status(200).json({ message: 'delete successfully' });
         } catch (error) {
             return res.status(500).json({ error });
         }

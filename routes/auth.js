@@ -22,7 +22,7 @@ const verifyToken = (req, res, next) => {
             }
         });
     } else {
-        return res.status(403).json({ message: 'Invalid token' });
+        return res.status(403).json({ message: 'Need a token' });
     }
 };
 
@@ -39,10 +39,11 @@ router.route('/login').post(async (req, res) => {
             });
             delete user.password;
             return res
-                .cookie('accessTokens', accessToken, {
+                .cookie('accessToken', accessToken, {
                     maxAge: 60 * 60 * 24,
                     secure: false, //set true if using https
                     httpOnly: true, //can't access from javascript
+                    sameSite: true,
                 })
                 .status(200)
                 .json({ message: 'login successful', user, token: accessToken });
@@ -52,6 +53,10 @@ router.route('/login').post(async (req, res) => {
     } catch (error) {
         return res.status(500).json({ error });
     }
+});
+
+router.route('/logout').post((req, res, next) => {
+    return res.clearCookie('accessToken').status(200).json({ message: 'logout successful' });
 });
 
 router.route('/register').post(async (req, res) => {
