@@ -21,7 +21,10 @@ require("partials/head.php");
 
           <ol>
             <li><a href="index.php">首頁</a></li>
-            <li>特別報導、校園尚青或是其他分類的首頁...</li>
+            <?php
+            $currentCategory = fetchCategoryWithID(getCategoryParam());
+            echo "<li>$currentCategory</li>";
+            ?>
           </ol>
         </div>
 
@@ -36,7 +39,9 @@ require("partials/head.php");
           <div class="col-lg-12 entries">
 
             <div class="section-title">
-              <h2>當期{該分類區塊}報導摘要</h2>
+              <?php
+              echo "<h2>$currentCategory</h2>";
+              ?>
             </div>
 
             <!-- 文章1區塊 -->
