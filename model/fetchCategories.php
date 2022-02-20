@@ -29,7 +29,7 @@ function fetchCategories()
 function fetchCategoryWithID($in_id)
 {
     $id = str_replace('/[^A-Za-z0-9\-]/', '', $in_id); // Removes all special chars.
-    $sql = "SELECT * FROM category WHERE id = $id";
+    $sql = "SELECT * FROM category WHERE id = '$id'";
 
     require("config.php");
     try {
