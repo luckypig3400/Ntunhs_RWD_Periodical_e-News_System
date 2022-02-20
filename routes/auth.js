@@ -74,4 +74,26 @@ router.route('/register').post(async (req, res) => {
     }
 });
 
+router.route('/verify').post(async (req, res) => {
+    try {
+        const accessToken =
+            req.cookies.accessToken ||
+            (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null);
+
+        if (accessToken) {
+            jwt.verify(accessToken, process.env.JWT_SECRECT_KEY, (err, token) => {
+                if (err) {
+                    return res.status(403).json({ message: 'Invalid token' });
+                } else {
+                    return res.status(200).json({ message: 'Valid token' });
+                }
+            });
+        } else {
+            return res.status(403).json({ message: 'Need a token' });
+        }
+    } catch (error) {
+        return res.status(500).json({ error });
+    }
+});
+
 module.exports = { router, verifyToken };
