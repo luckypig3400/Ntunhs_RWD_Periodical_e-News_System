@@ -29,9 +29,17 @@ function fetchFullArticle_WithID($in_id)
 
 function fetchArticleList($in_period, $in_category)
 {
+    require("config.php");
     $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
     $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
     $getAllCategories = isset($_GET['getAllCategories']) ? $_GET['getAllCategories'] : "";
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
 
     if ($period != "" && $category != "") {
         $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = '$category'";
@@ -40,19 +48,31 @@ function fetchArticleList($in_period, $in_category)
     } else if ($category != "" && $getAllCategories == "true") {
         // 同一分類的文章太多，因此只提供該分類全部文章的摘要
         $sql = "SELECT id,subject,photo FROM periodical WHERE categoryID = '$category'";
-    } else if ($category != "") {
-        $sql = "SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1); SELECT * FROM periodical WHERE categoryID = '$category' AND periodNumber = @newestPeriod;";
+    } else if ($category != "") {   
+        try {
+            // 利用SQL取得最新文章期別
+            $stmt = $conn->prepare("SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1);");
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+        } catch (PDOException $e) {
+            return "Error occured while fetching latest periodNumber:" . $e->getMessage();
+        }
+        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' AND periodNumber = @newestPeriod;";
     } else {
+        try {
+            // 利用SQL取得最新文章期別
+            // https://stackoverflow.com/questions/11754781/how-to-declare-a-variable-in-mysql
+            $stmt = $conn->prepare("SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1);");
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+        } catch (PDOException $e) {
+            return "Error occured while fetching latest periodNumber:" . $e->getMessage();
+        }
         // default select the latest period articles
-        // https://stackoverflow.com/questions/11754781/how-to-declare-a-variable-in-mysql
-        $sql = "SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1); SELECT * FROM periodical WHERE periodNumber = @newestPeriod;";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = @newestPeriod;";
     }
 
     try {
-        require("config.php");
-        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
         $stmt = $conn->prepare($sql);
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
