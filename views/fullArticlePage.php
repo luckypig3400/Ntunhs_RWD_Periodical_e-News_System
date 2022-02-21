@@ -17,12 +17,9 @@ require("./partials/head.php");
         breadcrumbs("Quill測試頁面");
 
         $linkString = parseGETparamsToString();
-        echo $linkString . "<br>";
+        // echo $linkString . "<br>";
 
-        $parsedGETparams = parseGETparams();
-        foreach($parsedGETparams as $key => $value) {
-            // echo "GET: $key=$value<br>";
-        }
+        $articleID = getIDParam();
         ?>
 
         <section class="blog">
@@ -32,10 +29,8 @@ require("./partials/head.php");
                 <div id="editor">
                     <?php
                     require("../model/fetchArticle.php");
-                    $randID = random_int(67, 1910);
 
-                    $dataRow = fetchFullArticle_WithID($randID);
-                    echo "randID: " . $randID . "<br>";
+                    $dataRow = fetchFullArticle_WithID($articleID);
 
                     if (gettype($dataRow) == "array") {
                         echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";
