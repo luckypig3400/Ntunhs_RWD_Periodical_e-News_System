@@ -12,10 +12,21 @@ require("./partials/head.php");
     ?>
     <!-- https://quilljs.com/docs/quickstart/ -->
     <main id="main">
-        <?php
-        require("./partials/sections/breadcrumbs.php");
-        breadcrumbs("Quill測試頁面");
+        <!-- 麵包屑區塊 -->
+        <section class="breadcrumbs">
+            <div class="container">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h2>完整文章內容</h2>
+                    <ol>
+                        <li><a href="index.php">首頁</a></li>
+                        <li>文章分類與連結</li>
+                        <li>此篇文章標題</li>
+                    </ol>
+                </div>
+            </div>
+        </section><!-- 麵包屑區塊 -->
 
+        <?php
         $linkString = parseGETparamsToString();
         // echo $linkString . "<br>";
 

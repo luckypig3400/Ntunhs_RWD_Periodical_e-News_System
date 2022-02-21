@@ -48,9 +48,6 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                             }
                         }
                         ?>
-                        <li><a href="./fullArticlePage.php">Quill測試頁面</a></li>
-                        <li><a href="./blankTemplate_byMyself.php">空白內文測試頁面</a></li>
-                        <li><a href="./blank.php">完全空白頁面</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>字體調整</span> <i class="bi bi-chevron-down"></i></a>
