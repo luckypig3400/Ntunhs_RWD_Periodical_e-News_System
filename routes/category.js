@@ -5,7 +5,7 @@ const CATEGORY = require('../models/category/categoryQuery');
 
 router.route('/').get(async (req, res) => {
     try {
-        const results = await CATEGORY.getCategroy();
+        const results = await CATEGORY.get();
         return res.status(200).json({ results });
     } catch (error) {
         return res.status(500).json({ error });
