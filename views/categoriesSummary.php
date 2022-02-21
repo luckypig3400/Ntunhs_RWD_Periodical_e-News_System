@@ -44,6 +44,17 @@ require("partials/head.php");
               ?>
             </div>
 
+            <?php
+            require("../model/fetchArticle.php");
+
+            $currentPeriod = getPeriodParam();
+            $currentCategoryID = getCategoryParam();
+            $articles = fetchArticleList($currentPeriod, $currentCategoryID);
+
+            echo sizeof($articles) == 0 ? "沒有文章" : "";
+            print_r($articles);
+            ?>
+
             <!-- 文章1區塊 -->
             <article class="entry">
 

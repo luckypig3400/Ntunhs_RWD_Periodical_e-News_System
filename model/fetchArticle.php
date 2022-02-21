@@ -33,12 +33,12 @@ function fetchArticleList($in_period, $in_category)
     $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
 
     if ($period != "" && $category != "") {
-        $sql = "SELECT * FROM periodical WHERE period = $period AND category = '$category'";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = '$category'";
     } else if ($period != "") {
-        $sql = "SELECT * FROM periodical WHERE period = $period";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period'";
     } else if ($category != "") {
         // 同一分類的文章太多，因此只提供該分類全部文章的摘要
-        $sql = "SELECT id,subject,photo FROM periodical WHERE category = '$category'";
+        $sql = "SELECT id,subject,photo FROM periodical WHERE categoryID = '$category'";
     } else {
         // default select the latest period articles
         // https://stackoverflow.com/questions/11754781/how-to-declare-a-variable-in-mysql
@@ -55,7 +55,9 @@ function fetchArticleList($in_period, $in_category)
         $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
 
         $result = $stmt->fetchAll();
+
+        return $result;
     } catch (PDOException $e) {
-        echo "Error Occured while Fetching Article List:" . $e->getMessage();
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
     }
 }
