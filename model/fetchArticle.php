@@ -21,7 +21,7 @@ function fetchFullArticle_WithID($in_id)
     }
 
     if (sizeof($result) == 0) {
-        return "(っ °Д °;)っ您所尋訪的文章不存在喔`(*>﹏<*)′<br>Sorry＞﹏＜! Content not found. OAO";
+        return "(っ °Д °;)っ<br>您所尋訪的文章不存在喔<br>`(*>﹏<*)′<br>Sorry＞﹏＜!<br>Content not found. OAO";
     }
 
     return $result;
@@ -48,7 +48,7 @@ function fetchArticleList($in_period, $in_category)
     } else if ($category != "" && $getAllCategories == "true") {
         // 同一分類的文章太多，因此只提供該分類全部文章的摘要
         $sql = "SELECT id,subject,photo FROM periodical WHERE categoryID = '$category'";
-    } else if ($category != "") {   
+    } else if ($category != "") {
         try {
             // 利用SQL取得最新文章期別
             $stmt = $conn->prepare("SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1);");
@@ -83,7 +83,7 @@ function fetchArticleList($in_period, $in_category)
     }
 
     if (sizeof($result) == 0) {
-        return "很抱歉`(*>﹏<*)′本期該分類尚未有文章(っ °Д °;)っ<br>Sorry＞﹏＜! Current period doesn't have any atrticle for this category. OAO";
+        return "很抱歉`(*>﹏<*)′<br>本期該分類尚未有文章<br>(っ °Д °;)っ<br>Sorry ＞﹏＜!<br>Current period doesn't have any atrticle for this category !";
     } else {
         return $result;
     }

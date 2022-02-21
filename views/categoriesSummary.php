@@ -17,12 +17,14 @@ require("partials/head.php");
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2>頭條新聞</h2>
+          <?php
+          $currentCategory = fetchCategoryWithID(getCategoryParam());
+          echo "<h2>$currentCategory</h2>";
+          ?>
 
           <ol>
             <li><a href="index.php">首頁</a></li>
             <?php
-            $currentCategory = fetchCategoryWithID(getCategoryParam());
             echo "<li>$currentCategory</li>";
             ?>
           </ol>
