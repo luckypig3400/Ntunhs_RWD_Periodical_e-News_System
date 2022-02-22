@@ -2,14 +2,14 @@ const mysql = require('mysql');
 const query = require('../../mysql/connetion');
 
 module.exports = {
-    get: async ({ page, sort_by, order_by }) => {
+    get: async ({ page, sort_by, order_by, limit }) => {
         page = (parseInt(page) - 1) * 10;
-        let selectSQL = `select * from periodical order by ${sort_by} ${order_by} limit ${page},20 `;
+        let selectSQL = `select * from periodical order by ${sort_by} ${order_by} limit ${page},${limit} `;
         const results = await query(selectSQL);
         const total = await query(`select count(*) as count from periodical`);
         return { results, totalCount: total[0].count };
     },
-    getByQuery: async ({ content, writer, category_id, subject, page, sort_by, order_by }) => {
+    getByQuery: async ({ content, writer, category_id, subject, page, sort_by, order_by, limit }) => {
         let searchSQL = `select * from periodical where 1 `;
         [content, writer, category_id, subject].forEach((item) => {
             if (!item) return;
@@ -29,7 +29,7 @@ module.exports = {
             }
         });
         const total = await query(`select count(*) as count from (${searchSQL}) final`);
-        const results = await query(`${searchSQL} order by ${sort_by} ${order_by} limit ${page},20 `);
+        const results = await query(`${searchSQL} order by ${sort_by} ${order_by} limit ${page},${limit} `);
         return { results, totalCount: total[0].count };
     },
     getByID: async ({ postID }) => {

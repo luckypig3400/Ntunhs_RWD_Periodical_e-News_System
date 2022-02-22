@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const fileUpload = require('express-fileupload');
 
 const APIRouter = require('./routes/api');
 const { router: authRouter } = require('./routes/auth');
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: process.env.WEB_ORIGIN_URL }));
 app.use(cookieParser());
+app.use(fileUpload());
 
 app.use('/periodical/auth', authRouter);
 app.use('/periodical/api', APIRouter);

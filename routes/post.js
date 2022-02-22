@@ -7,11 +7,12 @@ router
     .route('/')
     .get(async (req, res) => {
         try {
-            const { page = 1, sort_by = 'id', order_by = 'DESC' } = req.query;
+            const { page = 1, sort_by = 'id', order_by = 'DESC', limit = 10 } = req.query;
             const { results, totalCount } = await POST.get({
                 page,
                 sort_by,
                 order_by,
+                limit,
             });
 
             return res.status(200).json({ totalCount, results });
@@ -22,8 +23,7 @@ router
     .post(async (req, res) => {
         try {
             const { periodNumber, noYear, noMonth, categoryID, subject, writer, content } = req.body;
-            if (!periodNumber || !noYear || !noMonth || !categoryID || !subject || !writer || !content)
-                return res.status(400).json({ message: 'Required field is missing' });
+            if (!periodNumber || !noYear || !noMonth || !categoryID || !subject || !writer || !content) throw 'Required field is missing';
             await POST.create({
                 periodNumber,
                 noYear,

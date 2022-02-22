@@ -37,7 +37,7 @@ router
         try {
             const { categoryID } = req.params;
             const result = await CATEGORY.delete({ categoryID });
-            return res.status(200).json({ message: 'delete successfully' });
+            if (result) return res.status(200).json({ message: 'delete successfully' });
         } catch (error) {
             return res.status(500).json({ error });
         }
