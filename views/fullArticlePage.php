@@ -9,6 +9,14 @@ require("./partials/head.php");
 
     <?php
     require("./partials/header.php");
+
+    $linkString = parseGETparamsToString();
+    // echo $linkString . "<br>";
+
+    $articleID = getIDParam();
+
+    require("../model/fetchArticle.php");
+    $dataRow = fetchFullArticle_WithID($articleID);
     ?>
     <!-- https://quilljs.com/docs/quickstart/ -->
     <main id="main">
@@ -16,22 +24,30 @@ require("./partials/head.php");
         <section class="breadcrumbs">
             <div class="container">
                 <div class="d-flex justify-content-between align-items-center">
-                    <h2>完整文章內容</h2>
+                    <h2>完整報導內文</h2>
                     <ol>
                         <li><a href="index.php">首頁</a></li>
-                        <li>文章分類與連結</li>
-                        <li>此篇文章標題</li>
+                        <li>
+                            <a <?php
+                                echo "href=\"categoriesSummary.php$linkString\">";
+                                if (gettype($dataRow) == "array") {
+                                    echo fetchCategoryWithID($dataRow[0]["categoryID"]);
+                                    $articleSubject = $dataRow[0]["subject"];
+                                } else {
+                                    echo "很抱歉您所尋訪的文章分類不存在";
+                                    $articleSubject = "沒有文章";
+                                }
+                                ?> </a>
+                        </li>
+                        <li>
+                            <?php
+                            echo $articleSubject;
+                            ?>
+                        </li>
                     </ol>
                 </div>
             </div>
         </section><!-- 麵包屑區塊 -->
-
-        <?php
-        $linkString = parseGETparamsToString();
-        // echo $linkString . "<br>";
-
-        $articleID = getIDParam();
-        ?>
 
         <section class="blog">
             <div class="container" data-aos="fade-up">
@@ -39,10 +55,6 @@ require("./partials/head.php");
                 <!-- Create the editor container -->
                 <div id="editor">
                     <?php
-                    require("../model/fetchArticle.php");
-
-                    $dataRow = fetchFullArticle_WithID($articleID);
-
                     if (gettype($dataRow) == "array") {
                         echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";
 
@@ -66,7 +78,7 @@ require("./partials/head.php");
     <?php
     if (gettype($dataRow) == "array") {
         echo "<div id=\"articleInfoDiv\" hidden>
-            北護校訊電子期刊 第" . $dataRow[0]["periodNumber"] . "期 "
+            北護期刊 第" . $dataRow[0]["periodNumber"] . "期 "
             . $dataRow[0]["noYear"] . " 年 "
             . $dataRow[0]["noMonth"] . " 月<br><br><hr></div>";
     }
