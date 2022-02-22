@@ -14,6 +14,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors({ credentials: true, origin: process.env.WEB_ORIGIN_URL }));
 app.use(cookieParser());
 app.use(fileUpload());
+app.use(express.static('./public'));
 
 app.use('/periodical/auth', authRouter);
 app.use('/periodical/api', APIRouter);
