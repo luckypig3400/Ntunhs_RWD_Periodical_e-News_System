@@ -3,6 +3,10 @@ function blogArticleEntryBlock($in_singleArticle)
 {
   $article = $in_singleArticle;
 
+  // https://stackoverflow.com/questions/7124823/file-get-html-displays-fatal-error-call-to-undefined-function
+  require_once("../controller/simple_html_dom.php");
+  // https://stackoverflow.com/questions/13780025/redeclare-file-get-html-simple-html-dom-php
+
   $id = $article['id'];
   $subject = $article['subject'];
   $quillcontent = $article['quillcontent'];
@@ -23,6 +27,17 @@ function blogArticleEntryBlock($in_singleArticle)
   }
 
   $linkParams = parseGETparamsToString();
+
+  $simplifiedContent = "";
+  // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
+  $html = str_get_html($quillcontent);
+
+  // echo $html;
+  // if ($items->length > 0) {
+  //   for ($i = 0; $i < $items->length; $i++) {
+  //     echo "$i:" . $items[$i];
+  //   }
+  // }
 
   echo "
     <!-- 文章入口區塊 -->
