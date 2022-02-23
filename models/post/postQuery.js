@@ -9,9 +9,9 @@ module.exports = {
         const total = await query(`select count(*) as count from periodical`);
         return { results, totalCount: total[0].count };
     },
-    getByQuery: async ({ content, writer, category_id, subject, page, sort_by, order_by, limit }) => {
+    getByQuery: async ({ content, writer, category_id, subject, period_number, page, sort_by, order_by, limit }) => {
         let searchSQL = `select * from periodical where 1 `;
-        [content, writer, category_id, subject].forEach((item) => {
+        [content, writer, category_id, subject, period_number].forEach((item) => {
             if (!item) return;
             switch (item) {
                 case content:

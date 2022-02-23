@@ -7,7 +7,7 @@ router.route('/video').post(async (req, res) => {
     try {
         const file = req.files.video;
         const extension = path.extname(file.name);
-        if (file.size > 100000000) throw 'File must be less than 100MB';
+        if (file.size > 100000000) return res.status(400).json({ message: 'File must be less than 100MB' });
         if (file) {
             const fileName = file.md5 + extension;
             const URL = `./public/video/${fileName}`;

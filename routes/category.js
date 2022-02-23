@@ -28,7 +28,7 @@ router
             const { categoryID } = req.params;
             const { value } = req.body;
             const result = await CATEGORY.update({ categoryID, value });
-            if (result) return res.status(200).json({ message: result.message || 'inserted successfully' });
+            if (result) return res.status(201).json({ message: result.message || 'Added successfully' });
         } catch (error) {
             return res.status(500).json({ error });
         }

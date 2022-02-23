@@ -5,13 +5,14 @@ const POST = require('../models/post/postQuery');
 
 router.route('/').get(async (req, res) => {
     try {
-        const { content, writer, category_id, subject, page = 1, order_by = 'DESC', sort_by = 'id', limit = 10 } = req.query;
-        if (!content && !writer && !category_id && !subject) throw 'Required field is missing';
+        const { content, writer, category_id, subject, period_number, page = 1, order_by = 'DESC', sort_by = 'id', limit = 10 } = req.query;
+        if (!content && !writer && !category_id && !subject && !period_number) return res.status(400).json({ message: 'Must provide a query' });
         const { results, totalCount } = await POST.getByQuery({
             content,
             writer,
             category_id,
             subject,
+            period_number,
             page,
             order_by,
             sort_by,

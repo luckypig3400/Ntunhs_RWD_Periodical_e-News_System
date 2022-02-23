@@ -23,7 +23,8 @@ router
     .post(async (req, res) => {
         try {
             const { periodNumber, noYear, noMonth, categoryID, subject, writer, content } = req.body;
-            if (!periodNumber || !noYear || !noMonth || !categoryID || !subject || !writer || !content) throw 'Required field is missing';
+            if (!periodNumber || !noYear || !noMonth || !categoryID || !subject || !writer || !content)
+                return res.status(400).json({ message: 'Required field is missing' });
             await POST.create({
                 periodNumber,
                 noYear,
@@ -33,7 +34,7 @@ router
                 writer,
                 quillcontent: content,
             });
-            return res.status(200).json({
+            return res.status(201).json({
                 periodNumber,
                 noYear,
                 noMonth,
