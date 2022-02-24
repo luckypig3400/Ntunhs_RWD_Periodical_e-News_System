@@ -30,6 +30,7 @@ function blogArticleEntryBlock($in_singleArticle)
 
   // 從完整文章解析出第一段文字
   $simplifiedContent = $quillcontent;
+  $simplifiedContent = str_replace("&nbsp;", "", $simplifiedContent);
   $simplifiedContent = str_replace("<p><br></p>", "", $simplifiedContent);
   // https://stackoverflow.com/questions/10142658/php-find-string-with-regex
   preg_match_all("/<p.*<img.*<\/p>/", $simplifiedContent, $matches);
@@ -38,10 +39,23 @@ function blogArticleEntryBlock($in_singleArticle)
   foreach ($matches as $match) {
     $simplifiedContent = str_replace($match, "", $simplifiedContent);
   }
+  // remove <p> tags
+  $simplifiedContent = str_replace("<p>", "", $simplifiedContent);
+  $simplifiedContent = str_replace("</p>", "", $simplifiedContent);
+  // now we can use <br> to check if the content is long enough to be a paragraph
+  $splitedArr = explode("<br>", $simplifiedContent);
+  foreach ($splitedArr as $p) {
+    // echo "<b>" . strlen($p) . "New:</b>" . $p . "<br>";
+    if (strlen($p) > 199) {
+      // https://stackoverflow.com/questions/10934711/truncating-chinese-text
+      $simplifiedContent = mb_substr($p, 0, 69) . "...";
+      break;
+    }
+  }
 
+  /*採用函式庫的方式解析HTML但是在解析<p>的過程中會出現嚴重錯誤因此遺棄
   // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
-  $html = str_get_html($simplifiedContent);
-
+  */
 
   echo "
     <!-- 文章入口區塊 -->
