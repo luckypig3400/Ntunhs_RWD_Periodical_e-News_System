@@ -28,16 +28,20 @@ function blogArticleEntryBlock($in_singleArticle)
 
   $linkParams = parseGETparamsToString();
 
-  $simplifiedContent = "";
-  // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
-  $html = str_get_html($quillcontent);
+  // 從完整文章解析出第一段文字
+  $simplifiedContent = $quillcontent;
+  $simplifiedContent = str_replace("<p><br></p>", "", $simplifiedContent);
+  // https://stackoverflow.com/questions/10142658/php-find-string-with-regex
+  preg_match("/<p.*<img.*<\/p>/", $simplifiedContent, $matches);
+  // https://stackoverflow.com/questions/2912894/how-to-match-any-character-in-regular-expression
+  foreach ($matches as $match) {
+    echo sizeof($matches) . "Images found!<br>";
+    $simplifiedContent = str_replace($match, "", $simplifiedContent);
+  }
 
-  // echo $html;
-  // if ($items->length > 0) {
-  //   for ($i = 0; $i < $items->length; $i++) {
-  //     echo "$i:" . $items[$i];
-  //   }
-  // }
+  // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
+  $html = str_get_html($simplifiedContent);
+
 
   echo "
     <!-- 文章入口區塊 -->
@@ -60,7 +64,7 @@ function blogArticleEntryBlock($in_singleArticle)
           </div>
 
           <div id=\"editor\">
-            $quillcontent
+            $simplifiedContent
           </div>
 
           <div class=\"entry-content\">
