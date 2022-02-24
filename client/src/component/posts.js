@@ -25,6 +25,8 @@ import {
   FileInput,
   ShowButton,
 } from "react-admin";
+import axios from 'axios';
+axios.defaults.withcredentials = true;
 
 //提供Quill套件image、video改變大小用
 Quill.register("modules/resize", ResizeModule);
@@ -43,10 +45,10 @@ const postFilters = [
   <ReferenceInput
     source="CategoryID"
     label="Category"
-    reference="categorys"
+    reference="category"
     allowEmpty
   >
-    <SelectInput optionText="Category_name" />
+    <SelectInput optionText="Name" />
   </ReferenceInput>,
 ];
 
@@ -214,12 +216,24 @@ export const PostCreate = (props) => (
                 // return a Promise that resolves in a link to the uploaded image
                 return new Promise((resolve) => {
                   const fd = new FormData();
+                  fd.append("video", file);
+                  
+                  
+
+                  _onUpload(fd, resolve);
+                });
+              },
+            },
+            imageHandler: {
+              upload: file => {
+                return new Promise((resolve) => {
+                  const fd = new FormData();
                   fd.append("file", file);
                   fd.append("fileName", file.name);
 
                   _onUpload(fd, resolve);
                 });
-              },
+              }
             },
           },
         }}
@@ -228,20 +242,23 @@ export const PostCreate = (props) => (
   </Create>
 );
 
-const _onUpload = function (fd, resolve) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", "https://upload.imagekit.io/api/v1/files/upload");
-  xhr.setRequestHeader(
-    "Authorization",
-    "Basic cHJpdmF0ZV9LKzNFRGJnMXRQOXBsejlvOGhkd1J0bkZ0bjQ9Og=="
-  );
-  xhr.onload = () => {
-    if (xhr.status === 200) {
-      const response = JSON.parse(xhr.responseText);
+const _onUpload =  async(fd, resolve)=> {
+  const baseURL = 'http://localhost:3090/perioical'
+  const result = await axios.post('http://localhost:3090/periodical/api/upload/video',fd);
+  resolve(`http://localhost:3090/video/${result.data.fileName}`);
+  // const xhr = new XMLHttpRequest();
+  // xhr.open("POST", "https://upload.imagekit.io/api/v1/files/upload");
+  // xhr.setRequestHeader(
+  //   "Authorization",
+  //   "Basic cHJpdmF0ZV9LKzNFRGJnMXRQOXBsejlvOGhkd1J0bkZ0bjQ9Og=="
+  // );
+  // xhr.onload = () => {
+  //   if (xhr.status === 200) {
+  //     const response = JSON.parse(xhr.responseText);
 
-      resolve(response.url); // Must resolve as a link to the image
-    }
-  };
+  //     resolve(response.url); // Must resolve as a link to the image
+  //   }
+  // };
 
-  xhr.send(fd);
+  // xhr.send(fd);
 };
