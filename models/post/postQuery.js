@@ -34,6 +34,8 @@ module.exports = {
     },
     getByID: async ({ postID }) => {
         let selectSQL = mysql.format('select * from periodical where id = ?', [postID]);
+        //increment clicked
+        await query(mysql.format('update periodical set clicked = clicked + 1 where id = ?', [postID]));
         const result = await query(selectSQL);
         return result[0];
     },
