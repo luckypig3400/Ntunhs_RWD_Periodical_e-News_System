@@ -32,10 +32,10 @@ function blogArticleEntryBlock($in_singleArticle)
   $simplifiedContent = $quillcontent;
   $simplifiedContent = str_replace("<p><br></p>", "", $simplifiedContent);
   // https://stackoverflow.com/questions/10142658/php-find-string-with-regex
-  preg_match("/<p.*<img.*<\/p>/", $simplifiedContent, $matches);
+  preg_match_all("/<p.*<img.*<\/p>/", $simplifiedContent, $matches);
+  // https://www.w3schools.com/php/func_regex_preg_match_all.asp
   // https://stackoverflow.com/questions/2912894/how-to-match-any-character-in-regular-expression
   foreach ($matches as $match) {
-    echo sizeof($matches) . "Images found!<br>";
     $simplifiedContent = str_replace($match, "", $simplifiedContent);
   }
 
