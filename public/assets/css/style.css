@@ -242,7 +242,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-image: linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%);
+  /* https://webgradients.com/ */
   overflow-y: auto;
   transition: 0.3s;
 }
@@ -265,7 +266,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   z-index: 99;
   opacity: 1;
   visibility: visible;
-  background: #fff;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 .navbar-mobile .dropdown ul li {
