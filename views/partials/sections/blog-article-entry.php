@@ -27,6 +27,11 @@ function blogArticleEntryBlock($in_singleArticle)
   }
 
   $linkParams = parseGETparamsToString();
+  if ($linkParams != "") {
+    $id = "&id=" . $id;
+  } else {
+    $id = "?id=" . $id;
+  }
 
   // 從完整文章解析出第一段文字
   $simplifiedContent = $quillcontent;
@@ -83,7 +88,7 @@ function blogArticleEntryBlock($in_singleArticle)
 
           <div class=\"entry-content\">
             <div class=\"read-more\">
-                <a href=\"fullArticlePage.php$linkParams&id=$id\">瀏覽全文</a>
+                <a href=\"fullArticlePage.php$linkParams$id\">瀏覽全文</a>
             </div>
           </div>
 
