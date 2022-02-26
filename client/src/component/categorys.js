@@ -12,6 +12,7 @@ import {
   DeleteButton,
 } from "react-admin";
 
+
 const CategorysTitle = ({ record }) => {
   return <span>Post {record ? `"${record.title}"` : ""}</span>;
 };
@@ -20,7 +21,7 @@ export const CategorysList = (props) => (
   <List {...props}>
     <Datagrid>
       <TextField source="id" />
-      <TextField source="Category_name" />
+      <TextField source="name" />
       <EditButton />
       <DeleteButton />
     </Datagrid>

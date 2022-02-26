@@ -16,7 +16,7 @@ import CategoryIcon from "@material-ui/icons/Category";
 const App = () => (
   <Admin authProvider={authProvider} dataProvider={dataProvider}>
     <Resource
-      name="posts"
+      name="post"
       list={PostList}
       edit={PostEdit}
       create={PostCreate}
@@ -24,7 +24,7 @@ const App = () => (
       icon={PostIcon}
     />
     <Resource
-      name="categorys"
+      name="category"
       list={CategorysList}
       create={CategorysCreate}
       edit={CategorysEdit}
