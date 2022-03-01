@@ -50,6 +50,37 @@ function resetAllfontSize() {
   currentFontLevel = 0;
 }
 
+
+function changeHeaderLinksActive() {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var peroid = url.searchParams.get("period");
+  var category = url.searchParams.get("category");
+  // https://stackoverflow.com/questions/979975/get-the-values-from-the-get-parameters-javascript
+
+  if (url_string.search("index.php") != -1) {
+    // https://www.w3schools.com/jsref/jsref_search.asp
+    console.log("We are in the index page");
+  } else {
+    indexLink = document.getElementById('indexLink');
+    indexLink.classList.remove('active');
+
+    currentLink = document.getElementById(category + 'Link');
+    if (currentLink != null) {
+      currentLink.classList.add('active');
+      
+      if(category != 'C01' && category!= 'C02') {
+        otherCategories = document.getElementById('otherCategories');
+        otherCategories.classList.add('active');
+      }
+    }
+  }
+
+}
+
+changeHeaderLinksActive();
+
+
 (function () {
   "use strict";
 

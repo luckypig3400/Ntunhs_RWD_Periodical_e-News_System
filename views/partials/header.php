@@ -20,18 +20,18 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
             ?>
 
             <ul>
-                <li><a class="active " href="index.php">首頁</a></li>
+                <li><a id="indexLink" class="active " href="index.php">首頁</a></li>
                 <?php
                 $period_GET = getPeriodParam();
                 if ($period_GET != "") {
-                    echo "<li><a href=\"categoriesSummary.php?category=C01&period=" . $period_GET . "\">頭條新聞</a></li>";
-                    echo "<li><a href=\"categoriesSummary.php?category=C02&period=" . $period_GET . "\">特別報導</a></li>";
+                    echo "<li><a id=\"C01Link\" href=\"categoriesSummary.php?category=C01&period=" . $period_GET . "\">頭條新聞</a></li>";
+                    echo "<li><a id=\"C02Link\" href=\"categoriesSummary.php?category=C02&period=" . $period_GET . "\">特別報導</a></li>";
                 } else {
-                    echo "<li><a href=\"categoriesSummary.php?category=C01\">頭條新聞</a></li>";
-                    echo "<li><a href=\"categoriesSummary.php?category=C02\">特別報導</a></li>";
+                    echo "<li><a id=\"C01Link\" href=\"categoriesSummary.php?category=C01\">頭條新聞</a></li>";
+                    echo "<li><a id=\"C02Link\" href=\"categoriesSummary.php?category=C02\">特別報導</a></li>";
                 }
                 ?>
-                <li class="dropdown"><a href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a id="otherCategories" href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <?php
                         require("../model/fetchCategories.php");
@@ -41,9 +41,9 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         foreach ($categories as $row) {
                             if ($row["id"] != "C01" && $row["id"] != "C02") {
                                 if ($period_GET != "") {
-                                    echo "<li><a href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $period_GET . "\">" . $row["name"] . "</a></li>";
+                                    echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $period_GET . "\">" . $row["name"] . "</a></li>";
                                 } else {
-                                    echo "<li><a href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
+                                    echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
                                 }
                             }
                         }
