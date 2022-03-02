@@ -78,7 +78,7 @@ const PostList = () => {
                             rowsPerPageOptions={[5, 10, 20]}
                             autoHeight={true}
                             onRowClick={(rowData) => {
-                                window.location.href = `/EditPost/${rowData.id}`;
+                                window.location.href = `/EditPost?PostID=${rowData.id}`;
                             }}
                         />
                     </div>

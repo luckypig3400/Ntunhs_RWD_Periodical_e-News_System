@@ -13,6 +13,7 @@ import {
     Alert,
     IconButton,
     Collapse,
+    NativeSelect,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
@@ -21,23 +22,17 @@ import DatePicker from "@mui/lab/DatePicker";
 import SendIcon from "@mui/icons-material/Send";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import axios from "axios";
+
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
+const PostID = getQueryVariable("PostID");
 
 function EditPost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [newpostsperiodNumber, setNewpostsperiodNumber] = useState(); //取的最新期別
-    //存取最新期別+2-2
-    const nowpostsperiodNumber = [
-        newpostsperiodNumber - 2,
-        newpostsperiodNumber - 1,
-        Number(newpostsperiodNumber),
-        Number(newpostsperiodNumber) + 1,
-        Number(newpostsperiodNumber) + 2,
-    ];
-    const [totalcategory] = useState([{ name: "", id: "" }]);
+    const [totalcategoryEnd,setTotalcategoryEnd]=useState([])
+    const [totalcategory] = useState([]);
     const [postime] = React.useState(
         `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     ); //預設時間
@@ -50,29 +45,32 @@ function EditPost() {
     const [noYear, setNoYear] = useState("");
     const [noMonth, setNoMonth] = useState("");
     const [content, setContent] = useState("");
-
+       
     useEffect(() => {
         axios
             .all([
-                axios.get(`${apiURL}/api/post`),
+                axios.get(`${apiURL}/api/post/${PostID}`),
                 axios.get(`${apiURL}/api/category`),
             ])
             .then(
-                //關聯post.categoryID
                 axios.spread((data1, data2) => {
-                    const postResult = data1.data.results[0].periodNumber;
                     const categoryResult = data2.data.results;
+                    //關聯post.categoryID
                     categoryResult.forEach((item) => {
                         totalcategory.push(item);
                     });
-                    setNewpostsperiodNumber(postResult);
+
+                    setSubject(data1.data.subject);
+                    setContent(data1.data.quillcontent);
+                    setWriter(data1.data.writer);
+                    setPeriodNumber(data1.data.periodNumber);
+                    setCategoryID(data1.data.categoryID);
                 })
             )
             .catch((err) => {
                 console.log(err);
             });
     }, []);
-
     const SendOnClick = () => {
         axios.defaults.withCredentials = true;
         axios
@@ -86,12 +84,12 @@ function EditPost() {
                 subject: subject,
             })
             .then((response) => console.log(response))
-            .catch((error) => console.log(error.request),setOpen(true));
+            .catch((error) => console.log(error.request), setOpen(true));
     };
 
     return (
         <>
-            <div className="headerTitle">新增期刊</div>
+            <div className="headerTitle">編輯期刊-{PostID}</div>
             <div className="pagecontent">
                 <Collapse in={open}>
                     <Alert
@@ -128,7 +126,7 @@ function EditPost() {
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
-                    <h3>輸入發文單位</h3>
+                    <h3>輸入發文單位 / 期數 / 日期</h3>
                     <TextField
                         sx={{ top: 10 }}
                         required
@@ -138,52 +136,15 @@ function EditPost() {
                         value={writer}
                         onChange={(e) => setWriter(e.target.value)}
                     />
-                </div>
+                    <TextField
+                        id="time"
+                        sx={{ top: 10, left: 10 }}
+                        label="期數"
+                        value={periodNumber}
+                        onChange={(e)=>{setPeriodNumber(e.target.value)}}
+                        type="number"
+                    />
 
-                <div style={{ paddingTop: "20px" }}>
-                    <h3>選取分類</h3>
-                    <FormControl
-                        required
-                        variant="standard"
-                        sx={{ minWidth: 200 }}
-                    >
-                        <InputLabel id="postsperiodNumber">期别</InputLabel>
-                        <Select
-                            labelId="postsperiodNumber"
-                            id="postsperiodNumber"
-                            label="postsperiodNumber"
-                            onChange={(e) => setPeriodNumber(e.target.value)}
-                        >
-                            {nowpostsperiodNumber.map((name) => (
-                                <MenuItem key={name} value={name}>
-                                    {name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <FormControl
-                        required
-                        variant="standard"
-                        sx={{ left: 20, minWidth: 200 }}
-                    >
-                        <InputLabel id="postsperiodNumber">分類</InputLabel>
-                        <Select
-                            labelId="category"
-                            id="category"
-                            label="category"
-                            onChange={(e) => setCategoryID(e.target.value)}
-                        >
-                            {totalcategory.map((name) => (
-                                <MenuItem key={name.id} value={name.id}>
-                                    {name.name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                </div>
-
-                <div style={{ paddingTop: "20px" }}>
-                    <h3 style={{ paddingBottom: "10px" }}>選擇日期</h3>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Basic example"
@@ -192,9 +153,34 @@ function EditPost() {
                                 setNoYear(newValue.getFullYear());
                                 setNoMonth(newValue.getMonth() + 1);
                             }}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    sx={{ top: 10, left: 20 }}
+                                />
+                            )}
                         />
                     </LocalizationProvider>
+                </div>
+
+                <div style={{ paddingTop: "20px" }}>
+                    <h3>選取分類</h3>
+                    <FormControl variant="standard" sx={{ minWidth: 200 }}>
+                        <NativeSelect
+                            labelId="category"
+                            id="category"
+                            label="category"
+                            value={categoryID}
+                            onChange={(e) => setCategoryID(e.target.value)}
+                        >
+                            {
+                            totalcategory.map((name) => (
+                                <option key={name.id} value={name.id}>
+                                    {name.name}
+                                </option>
+                            ))}
+                        </NativeSelect>
+                    </FormControl>
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -230,4 +216,18 @@ function EditPost() {
         </>
     );
 }
+
+//獲取PostID
+function getQueryVariable(variable) {
+    var query = window.location.search.substring(1);
+    var vars = query.split("&");
+    for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split("=");
+        if (pair[0] == variable) {
+            return pair[1];
+        }
+    }
+    return false;
+}
+
 export default EditPost;

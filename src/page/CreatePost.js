@@ -58,10 +58,10 @@ function CreatePost() {
                 axios.get(`${apiURL}/api/category`),
             ])
             .then(
-                //關聯post.categoryID
                 axios.spread((data1, data2) => {
                     const postResult = data1.data.results[0].periodNumber;
                     const categoryResult = data2.data.results;
+                    //關聯post.categoryID
                     categoryResult.forEach((item) => {
                         totalcategory.push(item);
                     });
