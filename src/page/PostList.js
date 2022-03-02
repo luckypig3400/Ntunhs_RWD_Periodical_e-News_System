@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { DataGridPro, GridActionsCellItem } from "@mui/x-data-grid-pro";
-import DeleteIcon from "@mui/icons-material/Delete";
-import EditIcon from "@mui/icons-material/Edit";
 import axios from "axios";
 const config = require("../config/default.json");
 
@@ -23,7 +20,6 @@ const PostList = () => {
                 axios.spread((data1, data2) => {
                     const postResult = data1.data.results;
                     const categoryResult = data2.data.results;
-                    console.log(postResult);
                     postResult.forEach((item) => {
                         item.categoryID = categoryResult.find(
                             (category) => item.categoryID === category.id
