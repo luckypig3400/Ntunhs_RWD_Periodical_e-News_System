@@ -48,14 +48,32 @@ router
         }
     });
 
-router.route('/:postID').get(async (req, res) => {
-    try {
-        const { postID } = req.params;
-        const result = await POST.getByID({ postID });
-        return res.status(200).json(result);
-    } catch (error) {
-        return res.status(500).json({ error });
-    }
-});
+router
+    .route('/:postID')
+    .get(async (req, res) => {
+        try {
+            const { postID } = req.params;
+            const result = await POST.getByID({ postID });
+            return res.status(200).json(result);
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    })
+    .patch(async (req, res) => {
+        try {
+            const { postID } = req.params;
+            const { periodNumber, noYear, noMonth, categoryID, subject, writer, content } = req.body;
+            if (!periodNumber && !noYear && !noMonth && !categoryID && !subject && !writer && !content)
+                return res.status(400).json({ message: 'Required field is missing' });
+
+            const data = Object.fromEntries(
+                Object.entries({ periodNumber, noYear, noMonth, categoryID, subject, writer, content }).filter(([key, value]) => value)
+            );
+            await POST.update({ postID, data });
+            return res.status(200).json({ message: 'Updated successfully' });
+        } catch (error) {
+            return res.status(500).json({ error });
+        }
+    });
 
 module.exports = router;

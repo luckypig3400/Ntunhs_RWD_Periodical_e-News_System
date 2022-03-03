@@ -44,4 +44,9 @@ module.exports = {
         const result = await query(insertSQL);
         return result;
     },
+    update: async ({ postID, data }) => {
+        let updateSQL = mysql.format('update periodical set ? where id = ?', [data, postID]);
+        const result = await query(updateSQL);
+        return result;
+    },
 };

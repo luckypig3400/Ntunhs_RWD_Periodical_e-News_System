@@ -6,9 +6,7 @@ const bcrypt = require('bcrypt');
 const USER = require('../models/user/userQuery');
 
 const verifyToken = (req, res, next) => {
-    const accessToken =
-        req.cookies.accessToken ||
-        (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null);
+    const accessToken = req.cookies.accessToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null);
     //取得資料跳過驗證
     if (req.method === 'GET') return next();
 
@@ -35,12 +33,12 @@ router.route('/login').post(async (req, res) => {
 
         if (await bcrypt.compare(password, user.password)) {
             const accessToken = jwt.sign({ id: user.id, username: user.username }, process.env.JWT_SECRECT_KEY, {
-                expiresIn: 60 * 60 * 24,
+                expiresIn: 6000000,
             });
             delete user.password;
             return res
                 .cookie('accessToken', accessToken, {
-                    maxAge: 60 * 60 * 24,
+                    maxAge: 6000000,
                     secure: false, //set true if using https
                     httpOnly: true, //can't access from javascript
                     sameSite: true,
@@ -76,9 +74,7 @@ router.route('/register').post(async (req, res) => {
 
 router.route('/verify').post(async (req, res) => {
     try {
-        const accessToken =
-            req.cookies.accessToken ||
-            (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null);
+        const accessToken = req.cookies.accessToken || (req.headers['authorization'] ? req.headers['authorization'].split(' ').pop() : null);
 
         if (accessToken) {
             jwt.verify(accessToken, process.env.JWT_SECRECT_KEY, (err, token) => {
