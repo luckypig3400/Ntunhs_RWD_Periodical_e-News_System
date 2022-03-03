@@ -8,7 +8,6 @@ const apiURL = config.apiURL;
 
 function Category() {
     const [category, setCategory] = useState([]);
-    const [editCategory, setEditCategory] = useState([]);
     useEffect(() => {
         axios
             .get(`${apiURL}/api/category`)
@@ -34,7 +33,21 @@ function Category() {
         },
     ];
 
-    function checkEditCategory() {}
+    function checkEditCategory(id,value) {
+        
+        axios.defaults.withCredentials = true;
+        axios
+            .put(`${apiURL}/api/Category/${id}`, {
+                value: value,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    }
+
     return (
         <>
             <div className="headerTitle">類別管理</div>
@@ -49,12 +62,10 @@ function Category() {
                                 var message = window.confirm("確定要修改類別?");
                                 if (message == true) {
                                     alert("OK");
-                                    setEditCategory({
-                                      id: data.id,
-                                      name: data.value,
-                                  })
+                                    checkEditCategory(data.id,data.value);
                                 } else {
-                                    alert("Not");
+                                    alert("取消更新");
+                                    window.location.href=`/Category`
                                 }
                             }}
                         />

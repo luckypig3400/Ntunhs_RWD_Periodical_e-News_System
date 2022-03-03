@@ -20,7 +20,7 @@ function loginauth(name, password) {
             username: name,
             password: password,
         })
-        .then((response) => window.location.href=`/CreatePost`)
+        .then((response) => window.location.href=`/PostList`)
         .catch((error) => {
           alert('帳號密碼錯誤')
         });
