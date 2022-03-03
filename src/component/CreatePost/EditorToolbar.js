@@ -3,7 +3,7 @@ import { Quill } from "react-quill";
 import ResizeModule from "@botom/quill-resize-module";
 import axios from "axios";
 import { ImageHandler, VideoHandler, AttachmentHandler } from "quill-upload";
-const config = require('../config/default.json')
+const config = require('../../config/default.json')
 
 const apiURL = config.apiURL;
 //提供Quill套件image、video改變大小用

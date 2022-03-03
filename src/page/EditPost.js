@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
+import EditPostSendOnClick from "../component/EditPost/SenedOnClick";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import EditorToolbar, { modules } from "../component/EditorToolbar";
+import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
 import {
     FormControl,
-    InputLabel,
-    Select,
-    MenuItem,
     TextField,
     Button,
     Stack,
@@ -31,11 +29,8 @@ const PostID = getQueryVariable("PostID");
 function EditPost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [totalcategoryEnd,setTotalcategoryEnd]=useState([])
     const [totalcategory] = useState([]);
-    const [postime] = React.useState(
-        `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
-    ); //預設時間
+    const [postime,setPostime] = useState('');//預設時間
 
     //存取表單輸入值
     const [subject, setSubject] = useState("");
@@ -65,27 +60,15 @@ function EditPost() {
                     setWriter(data1.data.writer);
                     setPeriodNumber(data1.data.periodNumber);
                     setCategoryID(data1.data.categoryID);
+                    setNoYear(data1.data.noYear);
+                    setNoMonth(data1.data.noMonth);
+                    setPostime(`${data1.data.noYear}/${data1.data.noMonth}`)
                 })
             )
             .catch((err) => {
                 console.log(err);
             });
     }, []);
-    const SendOnClick = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .post(`${apiURL}/api/post`, {
-                periodNumber: periodNumber,
-                noYear: noYear,
-                noMonth: noMonth,
-                categoryID: categoryID,
-                writer: writer,
-                content: content,
-                subject: subject,
-            })
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error.request), setOpen(true));
-    };
 
     return (
         <>
@@ -152,6 +135,7 @@ function EditPost() {
                             onChange={(newValue) => {
                                 setNoYear(newValue.getFullYear());
                                 setNoMonth(newValue.getMonth() + 1);
+                                setPostime(newValue)
                             }}
                             renderInput={(params) => (
                                 <TextField
@@ -206,7 +190,7 @@ function EditPost() {
                         variant="contained"
                         endIcon={<SendIcon />}
                         onClick={() => {
-                            SendOnClick();
+                            EditPostSendOnClick(PostID,apiURL,periodNumber,noYear,noMonth,categoryID,writer,content,subject);
                         }}
                     >
                         Send
@@ -223,7 +207,7 @@ function getQueryVariable(variable) {
     var vars = query.split("&");
     for (var i = 0; i < vars.length; i++) {
         var pair = vars[i].split("=");
-        if (pair[0] == variable) {
+        if (pair[0] === variable) {
             return pair[1];
         }
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import EditorToolbar, { modules } from "../component/EditorToolbar";
+import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
 import {
     FormControl,
     InputLabel,
@@ -28,17 +28,8 @@ const apiURL = config.apiURL;
 function CreatePost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [newpostsperiodNumber, setNewpostsperiodNumber] = useState(); //取的最新期別
-    //存取最新期別+2-2
-    const nowpostsperiodNumber = [
-        newpostsperiodNumber - 2,
-        newpostsperiodNumber - 1,
-        Number(newpostsperiodNumber),
-        Number(newpostsperiodNumber) + 1,
-        Number(newpostsperiodNumber) + 2,
-    ];
     const [totalcategory] = useState([{ name: "", id: "" }]);
-    const [postime] = React.useState(
+    const [postime,setPostime] = React.useState(
         `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     ); //預設時間
 
@@ -47,8 +38,8 @@ function CreatePost() {
     const [writer, setWriter] = useState("");
     const [periodNumber, setPeriodNumber] = useState("");
     const [categoryID, setCategoryID] = useState("");
-    const [noYear, setNoYear] = useState("");
-    const [noMonth, setNoMonth] = useState("");
+    const [noYear, setNoYear] = useState(date.getFullYear());
+    const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
 
     useEffect(() => {
@@ -65,7 +56,7 @@ function CreatePost() {
                     categoryResult.forEach((item) => {
                         totalcategory.push(item);
                     });
-                    setNewpostsperiodNumber(postResult);
+                    setPeriodNumber(postResult);
                 })
             )
             .catch((err) => {
@@ -74,6 +65,7 @@ function CreatePost() {
     }, []);
 
     const SendOnClick = () => {
+        console.log(periodNumber,noYear,noMonth,categoryID,writer,content,subject);
         axios.defaults.withCredentials = true;
         axios
             .post(`${apiURL}/api/post`, {
@@ -86,7 +78,7 @@ function CreatePost() {
                 subject: subject,
             })
             .then((response) => console.log(response))
-            .catch((error) => console.log(error.request),setOpen(true));
+            .catch((error) => console.log(error.request), setOpen(true));
     };
 
     return (
@@ -128,7 +120,7 @@ function CreatePost() {
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
-                    <h3>輸入發文單位</h3>
+                    <h3>輸入發文單位 / 期數 / 日期</h3>
                     <TextField
                         sx={{ top: 10 }}
                         required
@@ -138,6 +130,33 @@ function CreatePost() {
                         value={writer}
                         onChange={(e) => setWriter(e.target.value)}
                     />
+                    <TextField
+                        id="time"
+                        sx={{ top: 10, left: 10 }}
+                        label="期數"
+                        value={periodNumber}
+                        onChange={(e) => {
+                            setPeriodNumber(e.target.value);
+                        }}
+                        type="number"
+                    />
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Basic example"
+                            value={postime}
+                            onChange={(newValue) => {
+                                setNoYear(newValue.getFullYear());
+                                setNoMonth(newValue.getMonth() + 1);
+                                setPostime(newValue)
+                            }}
+                            renderInput={(params) => (
+                                <TextField
+                                    {...params}
+                                    sx={{ top: 10, left: 20 }}
+                                />
+                            )}
+                        />
+                    </LocalizationProvider>
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -145,26 +164,7 @@ function CreatePost() {
                     <FormControl
                         required
                         variant="standard"
-                        sx={{ minWidth: 200 }}
-                    >
-                        <InputLabel id="postsperiodNumber">期别</InputLabel>
-                        <Select
-                            labelId="postsperiodNumber"
-                            id="postsperiodNumber"
-                            label="postsperiodNumber"
-                            onChange={(e) => setPeriodNumber(e.target.value)}
-                        >
-                            {nowpostsperiodNumber.map((name) => (
-                                <MenuItem key={name} value={name}>
-                                    {name}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    <FormControl
-                        required
-                        variant="standard"
-                        sx={{ left: 20, minWidth: 200 }}
+                        sx={{minWidth: 200 }}
                     >
                         <InputLabel id="postsperiodNumber">分類</InputLabel>
                         <Select
@@ -180,21 +180,6 @@ function CreatePost() {
                             ))}
                         </Select>
                     </FormControl>
-                </div>
-
-                <div style={{ paddingTop: "20px" }}>
-                    <h3 style={{ paddingBottom: "10px" }}>選擇日期</h3>
-                    <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
-                            label="Basic example"
-                            value={postime}
-                            onChange={(newValue) => {
-                                setNoYear(newValue.getFullYear());
-                                setNoMonth(newValue.getMonth() + 1);
-                            }}
-                            renderInput={(params) => <TextField {...params} />}
-                        />
-                    </LocalizationProvider>
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
