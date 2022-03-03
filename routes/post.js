@@ -67,7 +67,7 @@ router
                 return res.status(400).json({ message: 'Required field is missing' });
 
             const data = Object.fromEntries(
-                Object.entries({ periodNumber, noYear, noMonth, categoryID, subject, writer, content }).filter(([key, value]) => value)
+                Object.entries({ periodNumber, noYear, noMonth, categoryID, subject, writer, quillcontent: content }).filter(([key, value]) => value)
             );
             await POST.update({ postID, data });
             return res.status(200).json({ message: 'Updated successfully' });
