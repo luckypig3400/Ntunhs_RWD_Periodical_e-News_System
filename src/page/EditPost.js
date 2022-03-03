@@ -30,7 +30,7 @@ function EditPost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
     const [totalcategory] = useState([]);
-    const [postime,setPostime] = useState('');//預設時間
+    const [postime, setPostime] = useState(""); //預設時間
 
     //存取表單輸入值
     const [subject, setSubject] = useState("");
@@ -40,7 +40,7 @@ function EditPost() {
     const [noYear, setNoYear] = useState("");
     const [noMonth, setNoMonth] = useState("");
     const [content, setContent] = useState("");
-       
+
     useEffect(() => {
         axios
             .all([
@@ -62,7 +62,7 @@ function EditPost() {
                     setCategoryID(data1.data.categoryID);
                     setNoYear(data1.data.noYear);
                     setNoMonth(data1.data.noMonth);
-                    setPostime(`${data1.data.noYear}/${data1.data.noMonth}`)
+                    setPostime(`${data1.data.noYear}/${data1.data.noMonth}`);
                 })
             )
             .catch((err) => {
@@ -124,7 +124,9 @@ function EditPost() {
                         sx={{ top: 10, left: 10 }}
                         label="期數"
                         value={periodNumber}
-                        onChange={(e)=>{setPeriodNumber(e.target.value)}}
+                        onChange={(e) => {
+                            setPeriodNumber(e.target.value);
+                        }}
                         type="number"
                     />
 
@@ -135,7 +137,7 @@ function EditPost() {
                             onChange={(newValue) => {
                                 setNoYear(newValue.getFullYear());
                                 setNoMonth(newValue.getMonth() + 1);
-                                setPostime(newValue)
+                                setPostime(newValue);
                             }}
                             renderInput={(params) => (
                                 <TextField
@@ -157,8 +159,7 @@ function EditPost() {
                             value={categoryID}
                             onChange={(e) => setCategoryID(e.target.value)}
                         >
-                            {
-                            totalcategory.map((name) => (
+                            {totalcategory.map((name) => (
                                 <option key={name.id} value={name.id}>
                                     {name.name}
                                 </option>
@@ -186,15 +187,17 @@ function EditPost() {
                     <Button variant="outlined" endIcon={<RemoveRedEyeIcon />}>
                         檢視
                     </Button>
-                    <Button
-                        variant="contained"
-                        endIcon={<SendIcon />}
-                        onClick={() => {
-                            EditPostSendOnClick(PostID,apiURL,periodNumber,noYear,noMonth,categoryID,writer,content,subject);
-                        }}
-                    >
-                        Send
-                    </Button>
+                    <EditPostSendOnClick
+                        apiURL={apiURL}
+                        PostID={PostID}
+                        periodNumber={periodNumber}
+                        noYear={noYear}
+                        noMonth={noMonth}
+                        categoryID={categoryID}
+                        writer={writer}
+                        content={content}
+                        subject={subject}
+                    />
                 </Stack>
             </div>
         </>

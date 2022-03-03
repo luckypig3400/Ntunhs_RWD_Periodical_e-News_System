@@ -5,16 +5,16 @@ import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 const config = require("../../config/default.json");
 
-export default function EditPostSendOnClick(props) {
+export default function CreatePostSendOnClick(props) {
     const [open, setOpen] = useState(false);
     const [severity, SetSeverity] = useState("success");
 
-    var [renderMessage,setRenderMessage]=useState('');
+    var [renderMessage, setRenderMessage] = useState("");
 
     const SendOnClick = () => {
         axios.defaults.withCredentials = true;
         axios
-            .patch(`${config.apiURL}/api/post/${props.PostID}`, {
+            .post(`${config.apiURL}/api/post/`, {
                 periodNumber: props.periodNumber,
                 noYear: props.noYear,
                 noMonth: props.noMonth,
@@ -23,18 +23,15 @@ export default function EditPostSendOnClick(props) {
                 content: props.content,
                 subject: props.subject,
             })
-            .then(
-                (response) =>{
-                    setOpen(true)
-                    SetSeverity("success")
-                    setRenderMessage('更新成功')
-                } 
-            )
-            .catch((error) => {
-                console.log(error.request.onerror.name);
+            .then((response) => {
                 setOpen(true);
-                SetSeverity("error")
-                setRenderMessage(error.request.onerror.name)
+                SetSeverity("success");
+                setRenderMessage("新增成功");
+            })
+            .catch((error) => {
+                setOpen(true);
+                SetSeverity("error");
+                setRenderMessage(JSON.parse(error.request.responseText).message);
             });
     };
 
@@ -45,7 +42,6 @@ export default function EditPostSendOnClick(props) {
                 endIcon={<SendIcon />}
                 onClick={() => {
                     SendOnClick();
-                    console.log(renderMessage)
                 }}
             >
                 Send

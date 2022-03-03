@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
+import CreatePostSendOnClick from "../component/CreatePost/SenedOnClick";
 import "react-quill/dist/quill.snow.css";
 import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
 import {
@@ -29,7 +30,7 @@ function CreatePost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
     const [totalcategory] = useState([{ name: "", id: "" }]);
-    const [postime,setPostime] = React.useState(
+    const [postime, setPostime] = React.useState(
         `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     ); //預設時間
 
@@ -63,23 +64,6 @@ function CreatePost() {
                 console.log(err);
             });
     }, []);
-
-    const SendOnClick = () => {
-        console.log(periodNumber,noYear,noMonth,categoryID,writer,content,subject);
-        axios.defaults.withCredentials = true;
-        axios
-            .post(`${apiURL}/api/post`, {
-                periodNumber: periodNumber,
-                noYear: noYear,
-                noMonth: noMonth,
-                categoryID: categoryID,
-                writer: writer,
-                content: content,
-                subject: subject,
-            })
-            .then((response) => console.log(response))
-            .catch((error) => console.log(error.request), setOpen(true));
-    };
 
     return (
         <>
@@ -147,7 +131,7 @@ function CreatePost() {
                             onChange={(newValue) => {
                                 setNoYear(newValue.getFullYear());
                                 setNoMonth(newValue.getMonth() + 1);
-                                setPostime(newValue)
+                                setPostime(newValue);
                             }}
                             renderInput={(params) => (
                                 <TextField
@@ -164,7 +148,7 @@ function CreatePost() {
                     <FormControl
                         required
                         variant="standard"
-                        sx={{minWidth: 200 }}
+                        sx={{ minWidth: 200 }}
                     >
                         <InputLabel id="postsperiodNumber">分類</InputLabel>
                         <Select
@@ -201,15 +185,15 @@ function CreatePost() {
                     <Button variant="outlined" endIcon={<RemoveRedEyeIcon />}>
                         檢視
                     </Button>
-                    <Button
-                        variant="contained"
-                        endIcon={<SendIcon />}
-                        onClick={() => {
-                            SendOnClick();
-                        }}
-                    >
-                        Send
-                    </Button>
+                    <CreatePostSendOnClick
+                        periodNumber={periodNumber}
+                        noYear={noYear}
+                        noMonth={noMonth}
+                        categoryID={categoryID}
+                        writer={writer}
+                        content={content}
+                        subject={subject}
+                    />
                 </Stack>
             </div>
         </>
