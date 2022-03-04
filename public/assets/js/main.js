@@ -68,8 +68,8 @@ function changeHeaderLinksActive() {
     currentLink = document.getElementById(category + 'Link');
     if (currentLink != null) {
       currentLink.classList.add('active');
-      
-      if(category != 'C01' && category!= 'C02') {
+
+      if (category != 'C01' && category != 'C02') {
         otherCategories = document.getElementById('otherCategories');
         otherCategories.classList.add('active');
       }
@@ -84,7 +84,10 @@ changeHeaderLinksActive();
 // https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
 
 var heroAfterStyle = document.createElement("style");
-heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;filter: blur(6px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
+  "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
+  "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
+  "filter: blur(1px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
 document.head.appendChild(heroAfterStyle);
 
 (function () {
