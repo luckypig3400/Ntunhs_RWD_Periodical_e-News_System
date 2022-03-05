@@ -99,7 +99,7 @@ function fetchLatestArticleInCurrentPeriod($in_period)
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         if ($period == "") {
-            require("fetchPeriodNumbers.php");
+            require_once("fetchPeriodNumbers.php");
             $period = fetchLatestPeriodNumbers();
         }
 

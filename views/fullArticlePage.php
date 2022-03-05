@@ -2,20 +2,20 @@
 <html lang="zh-Hant">
 
 <?php
-require("./partials/head.php");
+require_once("./partials/head.php");
 ?>
 
 <body>
 
     <?php
-    require("./partials/header.php");
+    require_once("./partials/header.php");
 
     $linkString = parseGETparamsToString();
     // echo $linkString . "<br>";
 
     $articleID = getIDParam();
 
-    require("../model/fetchArticle.php");
+    require_once("../model/fetchArticle.php");
     $dataRow = fetchFullArticle_WithID($articleID);
     ?>
     <!-- https://quilljs.com/docs/quickstart/ -->
@@ -82,7 +82,7 @@ require("./partials/head.php");
             . $dataRow[0]["noYear"] . " 年 "
             . $dataRow[0]["noMonth"] . " 月<br><br><hr></div>";
     }
-    require("./partials/footer.php");
+    require_once("./partials/footer.php");
     ?>
 
 </body>

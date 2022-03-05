@@ -15,7 +15,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
 
         <nav id="navbar" class="navbar">
             <?php
-            require("../controller/parseGETparams.php");
+            require_once("../controller/parseGETparams.php");
             $parsedGETparams = parseGETparams();
             ?>
 
@@ -34,7 +34,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 <li class="dropdown"><a id="otherCategories" href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <?php
-                        require("../model/fetchCategories.php");
+                        require_once("../model/fetchCategories.php");
 
                         $categories = fetchCategories();
                         // print_r($categories);
@@ -61,7 +61,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 <li class="dropdown"><a href="#dontReload"><span>選擇期別</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <?php
-                        require("../model/fetchPeriodNumbers.php");
+                        require_once("../model/fetchPeriodNumbers.php");
 
                         $periods = fetchPeriodNumbers();
                         $periodsNumbers = array();

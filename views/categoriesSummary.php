@@ -2,13 +2,13 @@
 <html lang="zh-Hant">
 
 <?php
-require("partials/head.php");
+require_once("partials/head.php");
 ?>
 
 <body>
 
   <?php
-  require("partials/header.php");
+  require_once("partials/header.php");
   ?>
 
   <main id="main">
@@ -47,7 +47,7 @@ require("partials/head.php");
             </div>
 
             <?php
-            require("../model/fetchArticle.php");
+            require_once("../model/fetchArticle.php");
 
             $currentPeriod = getPeriodParam();
             $currentCategoryID = getCategoryParam();
@@ -56,7 +56,7 @@ require("partials/head.php");
             if (gettype($articles) == "string") {
               echo "<h3>$articles</h3>";
             } else {
-              require("partials/sections/blog-article-entry.php");
+              require_once("partials/sections/blog-article-entry.php");
               foreach ($articles as $article) {
                 blogArticleEntryBlock($article);
               }
@@ -72,7 +72,7 @@ require("partials/head.php");
   </main><!-- End #main -->
 
   <?php
-  require("./partials/footer.php");
+  require_once("./partials/footer.php");
   ?>
 
 </body>
