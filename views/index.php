@@ -6,7 +6,8 @@ require_once("./partials/head.php");
 ?>
 
 <body>
-
+    <style id="heroAfterStyle">
+    </style>
     <?php
     require_once("./partials/header.php");
     require_once("../model/fetchArticle.php");
@@ -15,8 +16,8 @@ require_once("./partials/head.php");
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
-        "filter: blur(1px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
-    echo "<style>" . $indexBGstyle . "</style>";
+        "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+    // echo "<style>" . $indexBGstyle . "</style>";
     ?>
 
     <!-- ======= 首頁頭條報導輪播區 ======= -->

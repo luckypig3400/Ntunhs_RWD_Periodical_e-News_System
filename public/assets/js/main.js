@@ -83,12 +83,17 @@ changeHeaderLinksActive();
 function changeIndexBGimage() {
   // 可運作，但暫時不使用，先直接由php echo的方式改變背景圖
 
-  var heroAfterStyle = document.createElement("style");
-  heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
-    "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
-    "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
-    "filter: blur(1px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
-  document.head.appendChild(heroAfterStyle);
+  // var heroAfterStyle = document.createElement("style");
+  var heroAfterStyle = document.getElementById("heroAfterStyle");
+
+  if (heroAfterStyle != null) {
+    heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
+      "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
+      "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
+      "filter: blur(1px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+  } else {
+    // do nothing
+  }
   // https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
   // https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
 }
@@ -248,7 +253,7 @@ function changeIndexBGimage() {
       type: 'bullets',
       clickable: true
     }
-  });
+  }, changeIndexBGimage());
 
   /**
    * Porfolio isotope and filter
