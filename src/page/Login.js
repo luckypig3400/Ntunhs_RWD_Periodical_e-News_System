@@ -10,7 +10,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
-const config = require('../config/default.json')
+const config = require("../config/default.json");
 
 function loginauth(name, password) {
     axios.defaults.withCredentials = true;
@@ -19,9 +19,13 @@ function loginauth(name, password) {
             username: name,
             password: password,
         })
-        .then((response) => window.location.href=`/PostList`)
+        .then((response) =>
+            setTimeout(function () {
+                window.location.href = `/PostList`;
+            }, 1000)
+        )
         .catch((error) => {
-          alert('帳號密碼錯誤')
+            alert("帳號密碼錯誤");
         });
 }
 

@@ -27,7 +27,6 @@ const PostList = () => {
                     });
                     postResult.forEach((item) => {
                         item.posttime = `${item.noYear}-${item.noMonth}`;
-                        console.log(item);
                     });
                     setPosts(postResult);
                     setCategory(categoryResult);

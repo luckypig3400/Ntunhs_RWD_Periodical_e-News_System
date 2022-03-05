@@ -39,7 +39,7 @@ const Menu=()=>{
                     </Link>
                 </li>
                 <li>
-                    <Link to="#">
+                    <Link to="/Signout">
                         <span className="icon"><div className="icons"><FiPower/></div></span>
                         <span className="title">Sign Out</span>
                     </Link> 
