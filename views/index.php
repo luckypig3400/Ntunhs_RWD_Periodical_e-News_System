@@ -2,13 +2,15 @@
 <html lang="zh-Hant">
 
 <?php
-require("./partials/head.php");
+require_once("./partials/head.php");
 ?>
 
 <body>
 
     <?php
-    require("./partials/header.php");
+    require_once("./partials/header.php");
+    require_once("../model/fetchArticle.php");
+
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
@@ -24,9 +26,9 @@ require("./partials/head.php");
             <!-- Slide 1 -->
             <div class="carousel-item active">
                 <div class="carousel-container">
-                    <h2 class="animate__animated animate__fadeInDown">北護74榮耀雙喜<br>學思爾雅二樓啟用</h2>
+                    <h2 class="animate__animated animate__fadeInDown">北護69榮耀雙喜<br>學思爾雅二樓啟用</h2>
                     <p class="animate__animated animate__fadeInUp">
-                        國立臺北護理健康大學創校邁進74週年，今年校慶主題為「北護74．榮耀雙喜」，110年10月23日在石牌校區明倫館舉辦慶祝大會及運動賽事......
+                        國立臺北護理健康大學創校邁進69週年，今年校慶......
                     </p>
                     <a href="#headline1" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>
                 </div>
@@ -71,20 +73,48 @@ require("./partials/head.php");
         <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
             <div class="container">
                 <div class="row">
+                    <?php
+                    $latestArticle =  fetchLatestArticleInCurrentPeriod(getPeriodParam());
+                    ?>
+
                     <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                         <h2>最新消息</h2><br>
 
-                        <h3>109學年度線上畢業典禮</h3>
+                        <?php
+                        if (gettype($latestArticle) == "string") {
+                            echo "<h3>" . $latestArticle . "</h3>";
+                        } else {
+                            require_once("../controller/simplifyArticleContent.php");
 
-                        <p class="description">109學年度線上畢業典禮 時間110年6月12日 上午10時開始<br>祝福所有畢業生 一帆風順
-                            鵬程萬里<br>一顆星劃過，心跳快了兩下，因爲雀躍，一片雪飄落，左眼跳了兩下，因爲欣喜；而今，左眼沒有跳，心卻痛著，因爲我們從此別過
-                            僅次獻給畢業分離的同學們，祝福彼此<br><a href="https://student.ntunhs.edu.tw/files/13-1002-51993-1.php?Lang=zh-tw">更多資訊</a>
-                        </p>
-
+                            $id = $latestArticle[0]["id"];
+                            echo "<h3>" . $latestArticle[0]["subject"] . "</h3>";
+                            echo "<p class=\"description\">" . simplifyArticleContent($latestArticle[0]["quillcontent"], 168)
+                                . "<br><a href=\"fullArticlePage.php?id=$id\">更多資訊</a> </p>";
+                        }
+                        ?>
                     </div>
 
-                    <div class="col-lg-6">
-                        <img src="https://ntunhsson.ntunhs.edu.tw/ezfiles/31/1031/img/1213/_DSC4773.jpg" class="img-fluid" alt="">
+                    <div class="col-lg-6 text-center">
+                        <?php
+                        if (gettype($latestArticle) == "string") {
+                            echo "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
+                        } else {
+                            // split string by ","
+                            $photoLinks = explode(",", $latestArticle[0]["photo"]);
+                            $photoLink = "";
+                            for ($i = 0; $i < count($photoLinks); $i++) {
+                                if ($photoLinks[$i] != "" && $i == count($photoLinks) - 1) {
+                                    // check if the last photo is still empty
+                                    $photoLink =  "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
+                                } else if ($photoLinks[$i] != "") {
+                                    $photoLink = $photoLinks[$i];
+                                    $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"img-fluid\" alt=\"" . $latestArticle[0]["subject"] . "\">";
+                                    break; // only show the first photo
+                                }
+                            }
+                            echo $photoLink;
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -176,10 +206,9 @@ require("./partials/head.php");
             </div>
         </section><!-- End Service Details Section -->
 
-        <!-- ======= 輪播區 ======= -->
+        <!-- ======= 輪播區 =======
         <section class="testimonials" data-aos="fade-up">
             <div class="container">
-
                 <div class="section-title">
                     <h2>輪播區</h2>
                     <p>輪播區內文OwOdsdsfdgsgd</p>
@@ -199,17 +228,6 @@ require("./partials/head.php");
                         </div>
 
                         <div class="testimonial-item swiper-slide">
-                            <img src="../public/assets/img/testimonials/testimonials-3.jpg" class="img-fluid" alt="">
-                            <h3>Sara Wilsson</h3>
-                            <h4>Designer</h4>
-                            <p>
-                                <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-                                輪播區塊2內文owowwdewrfewf
-                                <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-                            </p>
-                        </div>
-
-                        <div class="testimonial-item swiper-slide">
                             <img src="../public/assets/img/testimonials/testimonials-2.jpg" class="img-fluid" alt="">
                             <h3>Sara Wilsson</h3>
                             <h4>Designer</h4>
@@ -223,14 +241,13 @@ require("./partials/head.php");
                     </div>
                     <div class="swiper-pagination"></div>
                 </div>
-
             </div>
-        </section><!-- 輪播區 -->
+        </section>輪播區 -->
 
     </main><!-- End #main -->
 
     <?php
-    require("./partials/footer.php");
+    require_once("./partials/footer.php");
     ?>
 
 </body>
