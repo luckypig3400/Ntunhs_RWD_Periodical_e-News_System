@@ -88,3 +88,35 @@ function fetchArticleList($in_period, $in_category)
         return $result;
     }
 }
+
+function fetchLatestArticleInCurrentPeriod($in_period)
+{
+    require("config.php");
+    $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if ($period == "") {
+            require("fetchPeriodNumbers.php");
+            $period = fetchLatestPeriodNumbers();
+        }
+
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' ORDER BY updateTime DESC LIMIT 1";
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Latest Article:" . $e->getMessage();
+    }
+
+    if (sizeof($result) == 1) {
+        return $result;
+    } else {
+        return "很抱歉`(*>﹏<*)′<br>在抓取本期最新訊息時出了些問題<br>(っ °Д °;)っ<br>Sorry ＞﹏＜!<br>Error occured while fetching the latest new in current period!";
+    }
+}
