@@ -104,9 +104,9 @@ require_once("./partials/head.php");
                             $photoLinks = explode(",", $latestArticle[0]["photo"]);
                             $photoLink = "";
                             for ($i = 0; $i < count($photoLinks); $i++) {
-                                if ($photoLinks[$i] != "" && $i == count($photoLinks) - 1) {
+                                if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
                                     // check if the last photo is still empty
-                                    $photoLink =  "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
+                                    $photoLink =  "<    img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
                                     $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
@@ -136,35 +136,33 @@ require_once("./partials/head.php");
             <div class="container">
 
                 <div class="row">
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="headline1">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="../public/assets/img/service-details-1.jpg" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="#">北護69榮耀雙喜 學思爾雅二樓啟用</a></h5>
-                                <p class="card-text">
-                                    國立臺北護理健康大學創校邁進69週年...<br>Ya 69讚!
-                                </p>
-                                <div class="read-more"><a href="fullArticlePage.php?id="><i class="bi bi-arrow-right"></i> Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                    $articles = fetchArticleList(getPeriodParam(), "");
 
-                    <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
-                        <div class="card">
-                            <div class="card-img">
-                                <img src="../public/assets/img/service-details-4.jpg" alt="...">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title"><a href="#">文章2標題</a></h5>
-                                <p class="card-text">內文OwO ~fldsfdksgkfdjklfsdgjfkdlgjdf</p>
-                                <div class="read-more"><a href="fullArticlePage.php?id="><i class="bi bi-arrow-right"></i> Read More</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    foreach ($articles as $article) {
+                        $photoLinks = explode(",", $article["photo"]); // split string by ","
+                        $photoLink = "";
+                        for ($i = 0; $i < count($photoLinks); $i++) {
+                            if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
+                                // check if the last photo is still empty
+                                $photoLink =  "../public/assets/img/ntunhs-overview.jpg";
+                            } else if ($photoLinks[$i] != "") {
+                                $photoLink = $photoLinks[$i];
+                                $photoLink =  "../periodical_data/$photoLink";
+                                break; // only show the first photo
+                            }
+                        }
+
+                        echo '<div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="">';
+                        echo '<div class="card"><div class="card-img">';
+                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
+                        echo '</div><div class="card-body">';
+                        echo '<h5 class="card-title"><a href="categoriesSummary.php?category=' . $article["categoryID"]
+                            . '&period=' . getPeriodParam() . '">' . $article["subject"] . '</a></h5>';
+                        echo '<div class="read-more"><a href="fullArticlePage.php?id=' . $article["id"] . '">';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看完整報導</a></div></div></div></div>';
+                    }
+                    ?>
                 </div>
 
             </div>
