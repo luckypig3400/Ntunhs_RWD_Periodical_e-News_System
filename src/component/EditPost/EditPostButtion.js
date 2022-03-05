@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { Alert, IconButton, Collapse, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/Delete";
 const config = require("../../config/default.json");
 
 export default function EditPostSendOnClick(props) {
     const [open, setOpen] = useState(false);
     const [severity, SetSeverity] = useState("success");
 
-    var [renderMessage,setRenderMessage]=useState('');
+    var [renderMessage, setRenderMessage] = useState("");
 
     const SendOnClick = () => {
         axios.defaults.withCredentials = true;
@@ -23,19 +24,30 @@ export default function EditPostSendOnClick(props) {
                 content: props.content,
                 subject: props.subject,
             })
-            .then(
-                (response) =>{
-                    setOpen(true)
-                    SetSeverity("success")
-                    setRenderMessage('更新成功')
-                } 
-            )
-            .catch((error) => {
-                console.log(error.request.onerror.name);
+            .then((response) => {
                 setOpen(true);
-                SetSeverity("error")
-                setRenderMessage(error.request.onerror.name)
+                SetSeverity("success");
+                setRenderMessage("更新成功");
+            })
+            .catch((error) => {
+                setOpen(true);
+                SetSeverity("error");
+                setRenderMessage(error.request.onerror.name);
             });
+    };
+
+    const checkDropAlert = () => {
+        axios.defaults.withCredentials = true;
+        axios
+            .delete(`${config.apiURL}/api/Post/${props.PostID}`,{
+                postID:props.PostID
+            })
+            .then((response) => {
+                setOpen(true);
+                SetSeverity("success");
+                setRenderMessage("刪除成功");
+            })
+            .catch((error) => console.log(error.request));
     };
 
     return (
@@ -45,10 +57,20 @@ export default function EditPostSendOnClick(props) {
                 endIcon={<SendIcon />}
                 onClick={() => {
                     SendOnClick();
-                    console.log(renderMessage)
+                    console.log(renderMessage);
                 }}
             >
                 Send
+            </Button>
+            <Button
+                variant="outlined"
+                endIcon={<DeleteIcon />}
+                color="error"
+                onClick={() => {
+                    checkDropAlert(props.PostID);
+                }}
+            >
+                刪除貼文
             </Button>
             <Collapse in={open}>
                 <Alert

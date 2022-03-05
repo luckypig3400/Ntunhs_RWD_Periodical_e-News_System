@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import EditPostSendOnClick from "../component/EditPost/SenedOnClick";
+import EditPostButtion from "../component/EditPost/EditPostButtion";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
 import {
     FormControl,
     TextField,
-    Button,
     Stack,
     Alert,
     IconButton,
@@ -17,8 +16,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import SendIcon from "@mui/icons-material/Send";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+
 import axios from "axios";
 
 const config = require("../config/default.json");
@@ -184,10 +183,7 @@ function EditPost() {
                     spacing={2}
                     style={{ paddingTop: "20px" }}
                 >
-                    <Button variant="outlined" endIcon={<RemoveRedEyeIcon />}>
-                        檢視
-                    </Button>
-                    <EditPostSendOnClick
+                    <EditPostButtion
                         apiURL={apiURL}
                         PostID={PostID}
                         periodNumber={periodNumber}
