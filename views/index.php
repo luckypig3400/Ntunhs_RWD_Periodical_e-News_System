@@ -109,7 +109,7 @@ require_once("./partials/head.php");
                                     $photoLink =  "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
-                                    $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"img-fluid\" alt=\"" . $latestArticle[0]["subject"] . "\">";
+                                    $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
                                     break; // only show the first photo
                                 }
                             }

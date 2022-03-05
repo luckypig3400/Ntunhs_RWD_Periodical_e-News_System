@@ -33,6 +33,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: "Roboto", sans-serif;
 }
 
+.cropImg{
+  /* https://www.w3schools.com/css/css_rwd_images.asp */
+  width: 100%;
+  max-height: 569px;
+  object-fit: cover;
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
