@@ -16,7 +16,7 @@ function blogArticleEntryBlock($in_singleArticle)
   $photoLinks = explode(",", $article["photo"]);
   $photoLink = "";
   for ($i = 0; $i < count($photoLinks); $i++) {
-    if ($photoLinks[$i] != "" && $i == count($photoLinks) - 1) {
+    if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
       // check if the last photo is still empty
       $photoLink =  "<img src=\"../public/assets/img/No-Image.jpg\" class=\"img-fluid\">";
     } else if ($photoLinks[$i] != "") {
