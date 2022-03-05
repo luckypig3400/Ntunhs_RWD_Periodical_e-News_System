@@ -9,7 +9,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Alert from '@mui/material/Alert';
 import axios from "axios";
 const config = require('../config/default.json')
 
@@ -24,23 +23,6 @@ function loginauth(name, password) {
         .catch((error) => {
           alert('帳號密碼錯誤')
         });
-}
-function Copyright(props) {
-    return (
-        <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            {...props}
-        >
-            {"Copyright © "}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{" "}
-            {new Date().getFullYear()}
-            {"."}
-        </Typography>
-    );
 }
 
 const theme = createTheme();

@@ -1,5 +1,5 @@
-import { FiFilePlus,FiCopy,FiGrid,FiImage,FiPower,FiLayers} from "react-icons/fi";
-import { AiOutlineUsergroupAdd,AiFillMail} from "react-icons/ai";
+import { FiFilePlus,FiCopy,FiGrid,FiPower} from "react-icons/fi";
+import { AiOutlineUsergroupAdd} from "react-icons/ai";
 import React from "react";
 import {Link} from "react-router-dom";
 

@@ -60,7 +60,7 @@ function Category() {
                             autoHeight={true}
                             onCellEditCommit={(data) => {
                                 var message = window.confirm("確定要修改類別?");
-                                if (message == true) {
+                                if (message === true) {
                                     alert("OK");
                                     checkEditCategory(data.id,data.value);
                                 } else {
