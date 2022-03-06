@@ -99,7 +99,6 @@ function EditPost() {
                         required
                         id="subject"
                         label="標題"
-                        defaultValue=""
                         fullWidth={true}
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
@@ -113,7 +112,6 @@ function EditPost() {
                         required
                         id="writer"
                         label="單位"
-                        defaultValue=""
                         value={writer}
                         onChange={(e) => setWriter(e.target.value)}
                     />
@@ -151,7 +149,6 @@ function EditPost() {
                     <h3>選取分類</h3>
                     <FormControl variant="standard" sx={{ minWidth: 200 }}>
                         <NativeSelect
-                            labelId="category"
                             id="category"
                             label="category"
                             value={categoryID}

@@ -96,7 +96,6 @@ function CreatePost() {
                         required
                         id="subject"
                         label="標題"
-                        defaultValue=""
                         fullWidth={true}
                         value={subject}
                         onChange={(e) => setSubject(e.target.value)}
@@ -110,7 +109,6 @@ function CreatePost() {
                         required
                         id="writer"
                         label="單位"
-                        defaultValue=""
                         value={writer}
                         onChange={(e) => setWriter(e.target.value)}
                     />
@@ -152,7 +150,6 @@ function CreatePost() {
                     >
                         <InputLabel id="postsperiodNumber">分類</InputLabel>
                         <Select
-                            labelId="category"
                             id="category"
                             label="category"
                             onChange={(e) => setCategoryID(e.target.value)}
