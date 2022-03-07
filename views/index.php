@@ -25,11 +25,7 @@ require_once("./partials/head.php");
         <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
             <?php
-            //在這邊把首頁輪播圖的資料撈出來
-            //然後把圖片位址放到隱藏的<div>(div要給id)
-            //然後js再讀取<div>並於輪播圖更新時放到<style>裡面
             $carouselArticles = fetchIndexCarouselArticleList(getPeriodParam());
-
 
             for ($i = 0; $i < 3; $i++) {
                 if ($i == 0)
@@ -42,12 +38,39 @@ require_once("./partials/head.php");
                     echo '<p class="animate__animated animate__fadeInUp">更多優質報導正在撰寫中......</p>';
                     echo '<a href="#" class="btn-get-started animate__animated animate__fadeInUp">我很期待</a>';
                     echo '</div></div>';
+
+                    echo "<div hidden id=\"carouselStyle$i\">";
+                    echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
+                        "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
                 } else {
                     echo '<h2 class="animate__animated animate__fadeInDown">' . $carouselArticles[$i]["subject"] . '</h2>';
                     echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
                     echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
+
+                    // 以下解析該文章的圖片，取第一張圖片放到隱藏的<div>(div要給id)
+                    // 供給js讀取該報導的<div>並於輪播圖更新時放到<style>裡面
+                    $articelPhotos = $carouselArticles[$i]["photo"];
+                    $pLinks = explode(",", $articelPhotos); // split string by ","
+                    $pLink = "";
+                    for ($j = 0; $j < count($pLinks); $j++) {
+                        if ($pLinks[$j] == "" && $j == count($pLinks) - 1) {
+                            // check if the last photo is still empty
+                            $pLink =  "../public/assets/img/ntunhs-frontDoor2.png";
+                        } else if ($pLinks[$j] != "") {
+                            $pLink = $pLinks[$j];
+                            $pLink =  "../periodical_data/$pLink";
+                            break; // only show the first photo
+                        }
+                    }
+                    echo "<div hidden id=\"carouselStyle$i\">";
+                    echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "url(\"$pLink\") center center no-repeat;background-size: cover;" .
+                        "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                 }
             }
 
