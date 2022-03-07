@@ -11,12 +11,12 @@ require_once("./partials/head.php");
     <?php
     require_once("./partials/header.php");
     require_once("../model/fetchArticle.php");
-
+    require_once("../controller/simplifyArticleContent.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
-        "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+        "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
     ?>
 
@@ -24,38 +24,34 @@ require_once("./partials/head.php");
     <section id="hero" class="d-flex justify-cntent-center align-items-center">
         <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
 
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="carousel-container">
-                    <h2 class="animate__animated animate__fadeInDown">北護69榮耀雙喜<br>學思爾雅二樓啟用</h2>
-                    <p class="animate__animated animate__fadeInUp">
-                        國立臺北護理健康大學創校邁進69週年，今年校慶......
-                    </p>
-                    <a href="#headline1" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>
-                </div>
-            </div>
+            <?php
+            //在這邊把首頁輪播圖的資料撈出來
+            //然後把圖片位址放到隱藏的<div>(div要給id)
+            //然後js再讀取<div>並於輪播圖更新時放到<style>裡面
+            $carouselArticles = fetchIndexCarouselArticleList(getPeriodParam());
 
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <div class="carousel-container">
-                    <h2 class="animate__animated animate__fadeInDown">高教深耕成果分享會<br>暨成果海報展</h2>
-                    <p class="animate__animated animate__fadeInUp">
-                        國立臺北護理健康大學於11月24日至26日連續三天，於親仁樓前川堂設有靜態海報成果展，同時於11月24日下午2時在校本部親仁樓B118舉行......
-                    </p>
-                    <a href="#headline2" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>
-                </div>
-            </div>
 
-            <!-- Slide 3 -->
-            <div class="carousel-item">
-                <div class="carousel-container">
-                    <h2 class="animate__animated animate__fadeInDown">教育部委員蒞校訪視<br>北護大招生選才作業獲肯定</h2>
-                    <p class="animate__animated animate__fadeInUp">
-                        教育部委員於110年11月16日蒞臨國立臺北護理健康大校訪視招生選才計畫執行情形，由簡良翰執行長、李傳房教授、張嘉育教授等一行5人蒞校訪視......
-                    </p>
-                    <a href="#headline3" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>
-                </div>
-            </div>
+            for ($i = 0; $i < 3; $i++) {
+                if ($i == 0)
+                    echo '<!-- Single Slide --><div class="carousel-item active"><div class="carousel-container">';
+                else
+                    echo '<!-- Single Slide --><div class="carousel-item"><div class="carousel-container">';
+
+                if ($i >= sizeof($carouselArticles)) {
+                    echo '<h2 class="animate__animated animate__fadeInDown">敬請期待本期更多精采文章</h2>';
+                    echo '<p class="animate__animated animate__fadeInUp">更多優質報導正在撰寫中......</p>';
+                    echo '<a href="#" class="btn-get-started animate__animated animate__fadeInUp">我很期待</a>';
+                    echo '</div></div>';
+                    break;
+                } else {
+                    echo '<h2 class="animate__animated animate__fadeInDown">' . $carouselArticles[$i]["subject"] . '</h2>';
+                    echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
+                    echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
+                    echo '</div></div>';
+                }
+            }
+
+            ?>
 
             <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
@@ -85,8 +81,6 @@ require_once("./partials/head.php");
                         if (gettype($latestArticle) == "string") {
                             echo "<h3>" . $latestArticle . "</h3>";
                         } else {
-                            require_once("../controller/simplifyArticleContent.php");
-
                             $id = $latestArticle[0]["id"];
                             echo "<h3>" . $latestArticle[0]["subject"] . "</h3>";
                             echo "<p class=\"description\">" . simplifyArticleContent($latestArticle[0]["quillcontent"], 168)
@@ -153,7 +147,7 @@ require_once("./partials/head.php");
                             }
                         }
 
-                        echo '<div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="">';
+                        echo '<div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
                         echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
                         echo '</div><div class="card-body">';

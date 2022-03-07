@@ -31,7 +31,7 @@ function simplifyArticleContent($in_articleContent, $max_length)
     // echo "<b>" . strlen($p) . "New:</b>" . $p . "<br>";
     if (strlen($p) > 199) {
       // https://stackoverflow.com/questions/10934711/truncating-chinese-text
-      $simplifiedContent = mb_substr($p, 0, $max_length) . "...";
+      $simplifiedContent = mb_substr($p, 0, $max_length) . "......";
       break;
     }
   }

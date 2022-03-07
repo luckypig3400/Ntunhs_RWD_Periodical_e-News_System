@@ -120,3 +120,36 @@ function fetchLatestArticleInCurrentPeriod($in_period)
         return "很抱歉`(*>﹏<*)′<br>在抓取本期最新訊息時出了些問題<br>(っ °Д °;)っ<br>Sorry ＞﹏＜!<br>Error occured while fetching the latest new in current period!";
     }
 }
+
+function fetchIndexCarouselArticleList($in_period)
+{
+    require("config.php");
+    $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        if ($period == "") {
+            require_once("fetchPeriodNumbers.php");
+            $period = fetchLatestPeriodNumbers();
+        }
+
+        $sql = "SELECT * FROM `periodical` WHERE `periodNumber` = '$period' ORDER BY `categoryID` ASC";
+        // 預設抓取頭條新聞C01與特別報導C02來做為首頁輪播資訊
+
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Index Carousel new :" . $e->getMessage();
+    }
+
+    if (sizeof($result) == 0) {
+        return "很抱歉`(*>﹏<*)′<br>在抓取本期首頁輪播新聞時出了些問題<br>(っ °Д °;)っ<br>Sorry ＞﹏＜!<br>Error occured while fetching the carousel news for Index page!";
+    } else {
+        return $result;
+    }
+}
