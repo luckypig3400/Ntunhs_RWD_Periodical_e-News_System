@@ -69,8 +69,11 @@ require_once("./partials/head.php");
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
-                        "url(\"$pLink\") center center no-repeat;background-size: cover;" .
-                        "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
+                        "url(\"$pLink\") center center no-repeat;background-size: cover;";
+                    if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
+                        echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
+                    else
+                        echo "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                 }
             }
 
