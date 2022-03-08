@@ -80,19 +80,31 @@ function changeHeaderLinksActive() {
 
 changeHeaderLinksActive();
 
+var currentCarousel = -1;
 function changeIndexBGimage() {
-  // 可運作，但暫時不使用，先直接由php echo的方式改變背景圖
+  // 已放置於new Swiper()內使用
 
   // var heroAfterStyle = document.createElement("style");
   var heroAfterStyle = document.getElementById("heroAfterStyle");
 
+  currentCarousel += 1;
+  if (currentCarousel >= 3) {
+    // only 0 1 2 are available
+    currentCarousel = 0;
+  }
   if (heroAfterStyle != null) {
-    heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
-      "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
-      "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
-      "filter: blur(1px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+    currentImage = document.getElementById('carouselStyle' + currentCarousel).innerHTML;
+    if (currentImage != null) {
+      // console.log(currentImage);
+      heroAfterStyle.innerHTML = currentImage;
+    } else {
+      heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
+        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
+        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
+        "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+    }
   } else {
-    // do nothing
+    // do nothing, prevent not index page Error
   }
   // https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
   // https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
@@ -246,7 +258,7 @@ function changeIndexBGimage() {
     loop: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
       el: '.swiper-pagination',
