@@ -33,7 +33,7 @@ const Menu=()=>{
                     </Link>
                 </li>
                 <li>
-                    <Link to="#">
+                    <Link to="/User">
                         <span className="icon"><div className="icons"><AiOutlineUsergroupAdd/></div></span>
                         <span className="title">成員管理</span>
                     </Link>

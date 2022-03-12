@@ -8,6 +8,8 @@ import EditPost from "./page/EditPost";
 import { Routes, Route } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import Signout from "./component/Signout";
+import User from "./page/User";
+import CreateUser from "./page/CreateUser";
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
                 <Route path="/PostList" element={<PostList />} />
                 <Route path="/Category" element={<Category />} />
                 <Route path="/EditPost" element={<EditPost />} />
+                <Route path="/User" element={<User />} />
+                <Route path="/CreateUser" element={<CreateUser />} />
                 <Route path="/Signout" element={<Signout />} />
             </Route>
 
