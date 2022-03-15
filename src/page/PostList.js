@@ -12,7 +12,7 @@ const PostList = () => {
     useEffect(() => {
         axios
             .all([
-                axios.get(`${apiURL}/api/post`),
+                axios.get(`${apiURL}/api/post?limit=9119453`),
                 axios.get(`${apiURL}/api/category`),
             ])
             .then(
