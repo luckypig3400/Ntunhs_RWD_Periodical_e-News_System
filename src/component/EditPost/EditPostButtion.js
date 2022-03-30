@@ -39,8 +39,8 @@ export default function EditPostSendOnClick(props) {
     const checkDropAlert = () => {
         axios.defaults.withCredentials = true;
         axios
-            .delete(`${config.apiURL}/api/Post/${props.PostID}`,{
-                postID:props.PostID
+            .delete(`${config.apiURL}/api/Post/${props.PostID}`, {
+                postID: props.PostID,
             })
             .then((response) => {
                 setOpen(true);
@@ -67,7 +67,15 @@ export default function EditPostSendOnClick(props) {
                 endIcon={<DeleteIcon />}
                 color="error"
                 onClick={() => {
-                    checkDropAlert(props.PostID);
+                    var message = window.confirm("確定要刪除貼文?");
+                    if (message === true) {
+                        alert("OK");
+                        checkDropAlert(props.PostID);
+                        window.location.href = `/PostList`;
+                    } else {
+                        alert("取消刪除");
+                        window.location.href = `/PostList`;
+                    }
                 }}
             >
                 刪除貼文

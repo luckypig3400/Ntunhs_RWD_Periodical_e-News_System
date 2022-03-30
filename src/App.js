@@ -24,6 +24,7 @@ function App() {
                 <Route path="/EditPost" element={<EditPost />} />
                 <Route path="/User" element={<User />} />
                 <Route path="/CreateUser" element={<CreateUser />} />
+                <Route path="/Startposts" element={<CreateUser />} />
                 <Route path="/Signout" element={<Signout />} />
             </Route>
 

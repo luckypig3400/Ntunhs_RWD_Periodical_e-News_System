@@ -33,6 +33,12 @@ const Menu=()=>{
                     </Link>
                 </li>
                 <li>
+                    <Link to="/StartPosts">
+                        <span className="icon"><div className="icons"><FiGrid/></div></span>
+                        <span className="title">熱門文章管理</span>
+                    </Link>
+                </li>
+                <li>
                     <Link to="/User">
                         <span className="icon"><div className="icons"><AiOutlineUsergroupAdd/></div></span>
                         <span className="title">成員管理</span>

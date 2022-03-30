@@ -42,6 +42,7 @@ export default function CreatePostSendOnClick(props) {
                 endIcon={<SendIcon />}
                 onClick={() => {
                     SendOnClick();
+                    window.location.href = `/PostList`;
                 }}
             >
                 Send
