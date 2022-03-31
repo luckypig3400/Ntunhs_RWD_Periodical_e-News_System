@@ -14,7 +14,7 @@ require_once("./partials/head.php");
     require_once("../controller/simplifyArticleContent.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
@@ -42,7 +42,7 @@ require_once("./partials/head.php");
 
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
                         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
@@ -69,7 +69,7 @@ require_once("./partials/head.php");
                     }
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") center center no-repeat;background-size: cover;";
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
@@ -150,7 +150,7 @@ require_once("./partials/head.php");
         <section class="features">
             <div class="container">
                 <div class="section-title">
-                    <h2>本期所有文章蓋覽</h2>
+                    <h2>本期所有文章概覽</h2>
                 </div>
             </div>
         </section><!-- 首頁各區塊標題 -->
@@ -181,10 +181,9 @@ require_once("./partials/head.php");
                         echo '<div class="card"><div class="card-img">';
                         echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
                         echo '</div><div class="card-body">';
-                        echo '<h5 class="card-title"><a href="categoriesSummary.php?category=' . $article["categoryID"]
-                            . '&period=' . getPeriodParam() . '">' . $article["subject"] . '</a></h5>';
-                        echo '<div class="read-more"><a href="fullArticlePage.php?id=' . $article["id"] . '">';
-                        echo '<i class="bi bi-arrow-right"></i>前往查看完整報導</a></div></div></div></div>';
+                        echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
+                        echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看同類別報導</a></div></div></div></div>';
                     }
                     ?>
                 </div>
