@@ -80,20 +80,14 @@ function changeHeaderLinksActive() {
 
 changeHeaderLinksActive();
 
-var currentCarousel = -1;
-function changeIndexBGimage() {
-  // 已放置於new Swiper()內使用
+function changeIndexBGimage(currentSlideRealIndex = 0) {
+  // Asign default value for function parameter:
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
 
-  // var heroAfterStyle = document.createElement("style");
   var heroAfterStyle = document.getElementById("heroAfterStyle");
 
-  currentCarousel += 1;
-  if (currentCarousel >= 3) {
-    // only 0 1 2 are available
-    currentCarousel = 0;
-  }
   if (heroAfterStyle != null) {
-    currentImage = document.getElementById('carouselStyle' + currentCarousel).innerHTML;
+    currentImage = document.getElementById('carouselStyle' + currentSlideRealIndex).innerHTML;
     if (currentImage != null) {
       // console.log(currentImage);
       heroAfterStyle.innerHTML = currentImage;
@@ -271,7 +265,7 @@ function changeIndexBGimage() {
   * Index Hero slider
   */
   const indexCarousel = new Swiper('.index-carousel', {
-    speed: 900,
+    speed: 1500,
     loop: true,
     autoplay: {
       delay: 3000,
@@ -285,8 +279,10 @@ function changeIndexBGimage() {
   }, changeIndexBGimage());
 
   indexCarousel.on('slideChange', function () {
-    // console.log("Wow ~ Index Slide changed");
-    changeIndexBGimage();
+    // https://stackoverflow.com/questions/50244532/how-can-i-get-the-index-of-the-current-slide-when-the-slide-is-changed
+    console.log('indexSwiper real index:' + indexCarousel.realIndex);
+
+    changeIndexBGimage(indexCarousel.realIndex);
   });
 
 
