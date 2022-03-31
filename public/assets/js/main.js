@@ -265,7 +265,30 @@ function changeIndexBGimage() {
       type: 'bullets',
       clickable: true
     }
+  });
+
+  /**
+  * Index Hero slider
+  */
+  const indexCarousel = new Swiper('.index-carousel', {
+    speed: 900,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    // https://swiperjs.com/get-started#initialize-swiper
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   }, changeIndexBGimage());
+
+  indexCarousel.on('slideChange', function () {
+    // console.log("Wow ~ Index Slide changed");
+    changeIndexBGimage();
+  });
+
 
   /**
    * Porfolio isotope and filter
