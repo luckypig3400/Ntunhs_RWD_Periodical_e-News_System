@@ -31,7 +31,7 @@ export default function CreatePostSendOnClick(props) {
             .catch((error) => {
                 setOpen(true);
                 SetSeverity("error");
-                setRenderMessage(JSON.parse(error.request.responseText).message);
+                setRenderMessage(error.request.onerror.name);
             });
     };
 
@@ -42,7 +42,6 @@ export default function CreatePostSendOnClick(props) {
                 endIcon={<SendIcon />}
                 onClick={() => {
                     SendOnClick();
-                    window.location.href = `/PostList`;
                 }}
             >
                 Send
