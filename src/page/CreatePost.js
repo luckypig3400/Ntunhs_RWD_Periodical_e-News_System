@@ -19,12 +19,17 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import SendIcon from "@mui/icons-material/Send";
+import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import axios from "axios";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
+
+const Input = styled("input")({
+    display: "none",
+});
 
 function CreatePost() {
     var date = new Date();
@@ -42,6 +47,7 @@ function CreatePost() {
     const [noYear, setNoYear] = useState(date.getFullYear());
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
+    const [cover, setCover] = useState([]);
 
     useEffect(() => {
         axios
@@ -161,6 +167,22 @@ function CreatePost() {
                             ))}
                         </Select>
                     </FormControl>
+                    <label htmlFor="icon-button-file">
+                        <Input
+                            accept="image/jpeg, image/png"
+                            id="icon-button-file"
+                            type="file"
+                        />
+                        <Button
+                            variant="contained"
+                            component="span"
+                            aria-label="upload picture"
+                            endIcon={<DriveFolderUploadIcon />}
+                            sx={{ marginLeft: "20px", marginTop: "10px" }}
+                        >
+                            上傳封面
+                        </Button>
+                    </label>
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -196,4 +218,5 @@ function CreatePost() {
         </>
     );
 }
+
 export default CreatePost;
