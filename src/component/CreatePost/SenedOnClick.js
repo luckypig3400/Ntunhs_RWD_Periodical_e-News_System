@@ -22,6 +22,7 @@ export default function CreatePostSendOnClick(props) {
                 writer: props.writer,
                 content: props.content,
                 subject: props.subject,
+                cover: props.cover,
             })
             .then((response) => {
                 setOpen(true);

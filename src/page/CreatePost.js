@@ -22,6 +22,7 @@ import DatePicker from "@mui/lab/DatePicker";
 import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import axios from "axios";
 const config = require("../config/default.json");
 
@@ -47,7 +48,7 @@ function CreatePost() {
     const [noYear, setNoYear] = useState(date.getFullYear());
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
-    const [cover, setCover] = useState([]);
+    const [cover, setCover] = useState("");
 
     useEffect(() => {
         axios
@@ -70,6 +71,17 @@ function CreatePost() {
                 console.log(err);
             });
     }, []);
+
+    const _onUpload = async (fd, resolve, type) => {
+        axios.defaults.withCredentials = true;
+        const result = await axios
+            .post(`${apiURL}/api/upload/${type}`, fd)
+            .catch((err) => console.log(err));
+        resolve(
+            `http://localhost:3090/${type}/${result.data.fileName}`,
+            setCover(result.data.fileName)
+        );
+    };
 
     return (
         <>
@@ -167,22 +179,56 @@ function CreatePost() {
                             ))}
                         </Select>
                     </FormControl>
-                    <label htmlFor="icon-button-file">
-                        <Input
-                            accept="image/jpeg, image/png"
-                            id="icon-button-file"
-                            type="file"
-                        />
-                        <Button
-                            variant="contained"
-                            component="span"
-                            aria-label="upload picture"
-                            endIcon={<DriveFolderUploadIcon />}
-                            sx={{ marginLeft: "20px", marginTop: "10px" }}
-                        >
-                            上傳封面
-                        </Button>
-                    </label>
+                    {cover ? (
+                        <>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<InsertPhotoIcon />}
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                            >
+                                瀏覽封面"{cover}"
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                color="success"
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                            >
+                                變更
+                            </Button>
+                            
+                        </>
+                    ) : (
+                        <label htmlFor="icon-button-file">
+                            <Input
+                                accept="image/jpeg, image/png"
+                                id="icon-button-file"
+                                type="file"
+                                onChange={(file) => {
+                                    return new Promise((resolve, reject) => {
+                                        const fd = new FormData();
+                                        fd.append(
+                                            "image",
+                                            file.target.files[0]
+                                        );
+                                        _onUpload(fd, resolve, "image");
+                                    });
+                                }}
+                            />
+                            <Button
+                                variant="outlined"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<DriveFolderUploadIcon />}
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                            >
+                                上傳封面
+                            </Button>
+                        </label>
+                    )}
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -212,6 +258,7 @@ function CreatePost() {
                         writer={writer}
                         content={content}
                         subject={subject}
+                        cover={cover}
                     />
                 </Stack>
             </div>
