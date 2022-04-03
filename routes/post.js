@@ -72,7 +72,6 @@ router
                     ([key, value]) => value
                 )
             )
-            console.log(data);
             await POST.update({ postID, data })
             return res.status(200).json({ message: 'Update successfully' })
         } catch (error) {
