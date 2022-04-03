@@ -63,15 +63,16 @@ router
     .patch(async (req, res) => {
         try {
             const { postID } = req.params
-            const { periodNumber, noYear, noMonth, categoryID, subject, writer, content } = req.body
+            const { periodNumber, noYear, noMonth, categoryID, subject, writer, content, cover=''} = req.body
             if (!periodNumber && !noYear && !noMonth && !categoryID && !subject && !writer && !content)
                 return res.status(400).json({ message: 'Required field is missing' })
 
             const data = Object.fromEntries(
-                Object.entries({ periodNumber, noYear, noMonth, categoryID, subject, writer, quillcontent: content }).filter(
+                Object.entries({ periodNumber, noYear, noMonth, categoryID, subject, writer, quillcontent: content, cover }).filter(
                     ([key, value]) => value
                 )
             )
+            console.log(data);
             await POST.update({ postID, data })
             return res.status(200).json({ message: 'Update successfully' })
         } catch (error) {
