@@ -46,7 +46,6 @@ function EditPost() {
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
     const [coverLink, setCoverLink] = useState("");
-    console.log(coverLink);
     const Input = styled("input")({
         display: "none",
     });
