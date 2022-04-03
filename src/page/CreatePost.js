@@ -49,6 +49,7 @@ function CreatePost() {
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
+    const [coverLink, setCoverLink] = useState("");
 
     useEffect(() => {
         axios
@@ -79,7 +80,10 @@ function CreatePost() {
             .catch((err) => console.log(err));
         resolve(
             `http://localhost:3090/${type}/${result.data.fileName}`,
-            setCover(result.data.fileName)
+            setCover(result.data.fileName),
+            setCoverLink(
+                `http://localhost:3090/${type}/${result.data.fileName}`
+            )
         );
     };
 
@@ -187,6 +191,9 @@ function CreatePost() {
                                 aria-label="upload picture"
                                 endIcon={<InsertPhotoIcon />}
                                 sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={(e) => {
+                                    window.open(coverLink, "_blank");
+                                }}
                             >
                                 瀏覽封面"{cover}"
                             </Button>
@@ -194,12 +201,15 @@ function CreatePost() {
                                 variant="contained"
                                 component="span"
                                 aria-label="upload picture"
-                                color="success"
+                                color="error"
                                 sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={() => {
+                                    setCover("");
+                                    setCoverLink("");
+                                }}
                             >
-                                變更
+                                刪除封面
                             </Button>
-                            
                         </>
                     ) : (
                         <label htmlFor="icon-button-file">

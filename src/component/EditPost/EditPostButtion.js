@@ -13,6 +13,7 @@ export default function EditPostSendOnClick(props) {
     var [renderMessage, setRenderMessage] = useState("");
 
     const SendOnClick = () => {
+        console.log(props);
         axios.defaults.withCredentials = true;
         axios
             .patch(`${config.apiURL}/api/post/${props.PostID}`, {
@@ -23,6 +24,7 @@ export default function EditPostSendOnClick(props) {
                 writer: props.writer,
                 content: props.content,
                 subject: props.subject,
+                cover: props.cover,
             })
             .then((response) => {
                 setOpen(true);

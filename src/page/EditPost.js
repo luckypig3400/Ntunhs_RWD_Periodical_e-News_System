@@ -45,7 +45,8 @@ function EditPost() {
     const [noMonth, setNoMonth] = useState("");
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
-
+    const [coverLink, setCoverLink] = useState("");
+    console.log(coverLink);
     const Input = styled("input")({
         display: "none",
     });
@@ -73,6 +74,9 @@ function EditPost() {
                     setNoMonth(data1.data.noMonth);
                     setPostime(`${data1.data.noYear}/${data1.data.noMonth}`);
                     setCover(data1.data.cover);
+                    setCoverLink(
+                        `http://localhost:3090/image/${data1.data.cover}`
+                    );
                 })
             )
             .catch((err) => {
@@ -87,7 +91,8 @@ function EditPost() {
             .catch((err) => console.log(err));
         resolve(
             `http://localhost:3090/${type}/${result.data.fileName}`,
-            setCover(result.data.fileName)
+            setCover(result.data.fileName),
+            setCoverLink(`http://localhost:3090/imaghe/${result.data.fileName}`)
         );
     };
 
@@ -190,9 +195,11 @@ function EditPost() {
                                 variant="contained"
                                 component="span"
                                 aria-label="upload picture"
-                                color="success"
                                 endIcon={<InsertPhotoIcon />}
-                                sx={{ marginLeft: "20px" }}
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={(e) => {
+                                    window.open(coverLink, "_blank");
+                                }}
                             >
                                 瀏覽封面"{cover}"
                             </Button>
@@ -200,10 +207,14 @@ function EditPost() {
                                 variant="contained"
                                 component="span"
                                 aria-label="upload picture"
-                                color="success"
+                                color="error"
                                 sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={() => {
+                                    setCover("");
+                                    setCoverLink("");
+                                }}
                             >
-                                變更
+                                刪除封面
                             </Button>
                         </>
                     ) : (
@@ -262,6 +273,7 @@ function EditPost() {
                         writer={writer}
                         content={content}
                         subject={subject}
+                        cover={cover}
                     />
                 </Stack>
             </div>
