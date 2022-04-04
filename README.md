@@ -1,21 +1,24 @@
 # Ntunhs_RWD_Periodical_e-News_System
 北護RWD校刊系統
-(前後端放置於不同分支，各分支獨立不干擾彼此)
-測試或實際部署系統時，切換分支並複製該分支內的所有資料
-另外放置於其他沒有git的資料夾內即可運行
+**本分支已整合前後端**
+
+## How to deploy
+1. Clone or download this repo as Zip
+2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
+3. Unzip ```DB/DB_ver5....7z``` and import to MySQL Server
+4. Download [Periodical Data Ver1](http://gg.gg/ntunhsPeriodicalData) then unzip & place in the root of this repo folder
+5. Update ```.ENV``` file config
+6. Run ```npm install``` in project root folder & ```AdminPages/```
+7. In this folder(project root) run ```node server.js```
+8. In ```AdminPages/``` run ```npm start```
+9. Finished! Visit [localhost](http://localhost/Ntunhs_RWD_Periodical_e-News_System/) & [localhost:3080](http://localhost:3080/) to test ~
+
+---
 
 ## About .ENV
 ### 記得更新裡面的設定
 JWT_SECRECT_KEY=
-上面這行要記得更新
-
----
-
-## TO-DO List
-- [ ] 首頁橫幅大輪播圖，改為亮色系
-- [ ] 錯字蓋覽 -> 概覽
-- [ ] 首頁新聞概覽，點標題直接進入文章
-- [ ] 文章點閱計數器
+這行要記得更新
 
 ---
 ## 雲端資料共用
