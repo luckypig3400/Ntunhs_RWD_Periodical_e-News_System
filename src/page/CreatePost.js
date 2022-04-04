@@ -174,6 +174,7 @@ function CreatePost() {
                         <Select
                             id="category"
                             label="category"
+                            value={categoryID}
                             onChange={(e) => setCategoryID(e.target.value)}
                         >
                             {totalcategory.map((name) => (
