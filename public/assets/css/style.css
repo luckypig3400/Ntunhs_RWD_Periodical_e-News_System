@@ -14,6 +14,11 @@ body {
   font-size: 120%;
 }
 
+#editor {
+  border: none;
+  font-size: larger;
+}
+
 a {
   color: #4fa6d5;
   text-decoration: none;
@@ -26,6 +31,13 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: "Roboto", sans-serif;
+}
+
+.cropImg{
+  /* https://www.w3schools.com/css/css_rwd_images.asp */
+  width: 100%;
+  max-height: 569px;
+  object-fit: cover;
 }
 
 /*--------------------------------------------------------------
@@ -76,7 +88,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   height: 60px;
 }
 #header .logo h1 {
-  font-size: 28px;
+  font-size: 30px;
   margin: 0;
   padding: 4px 0;
   line-height: 1;
@@ -123,7 +135,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-family: "Open Sans", sans-serif;
-  font-size: 14px;
+  font-size: 18px;
   color: #fff;
   white-space: nowrap;
   transition: 0.3s;
@@ -155,7 +167,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 .navbar .dropdown ul a {
   padding: 10px 20px;
-  font-size: 14px;
+  font-size: 18px;
   text-transform: none;
   color: #1c3745;
 }
@@ -169,6 +181,9 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   opacity: 1;
   top: 100%;
   visibility: visible;
+  max-height: 369px;
+  overflow: auto;
+  /* https://stackoverflow.com/questions/4102832/ul-or-div-vertical-scrollbar */
 }
 .navbar .dropdown .dropdown ul {
   top: 0;
@@ -195,7 +210,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 */
 .mobile-nav-toggle {
   color: #fff;
-  font-size: 28px;
+  font-size: 36px;
   cursor: pointer;
   display: none;
   line-height: 0;
@@ -234,13 +249,14 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   bottom: 15px;
   left: 15px;
   padding: 10px 0;
-  background-color: #fff;
+  background-image: linear-gradient(to bottom, #fff1eb 0%, #ace0f9 100%);
+  /* https://webgradients.com/ */
   overflow-y: auto;
   transition: 0.3s;
 }
 .navbar-mobile a, .navbar-mobile a:focus {
   padding: 10px 20px;
-  font-size: 15px;
+  font-size: 18px;
   color: #1e4356;
 }
 .navbar-mobile a:hover, .navbar-mobile .active, .navbar-mobile li:hover > a {
@@ -257,7 +273,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   z-index: 99;
   opacity: 1;
   visibility: visible;
-  background: #fff;
+  background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
   box-shadow: 0px 0px 30px rgba(127, 137, 161, 0.25);
 }
 .navbar-mobile .dropdown ul li {
@@ -285,18 +301,25 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   overflow: hidden;
   position: relative;
 }
+/*
 #hero::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: 0;
+  top: -3%;
   width: 130%;
   height: 95%;
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url("../img/ntunhs-frontDoor2.png") center top no-repeat;
+  https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
+  https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
+  background-size: cover;
+  filter: blur(6px);
+  https://www.casper.tw/development/2020/10/12/frosted-glass/
   z-index: 0;
   border-radius: 0 0 50% 50%;
   transform: translateX(-50%) rotate(0deg);
 }
+*/
 #hero::before {
   content: "";
   position: absolute;
@@ -983,7 +1006,7 @@ section {
   color: #777777;
   text-transform: uppercase;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 15px;
   transition: 0.3s;
 }
 .service-details .read-more a:hover {
@@ -1488,7 +1511,7 @@ section {
   color: #fff;
   padding: 6px 20px;
   transition: 0.3s;
-  font-size: 14px;
+  font-size: 15px;
 }
 .blog .entry .entry-content .read-more a:hover {
   background: #7aafcb;

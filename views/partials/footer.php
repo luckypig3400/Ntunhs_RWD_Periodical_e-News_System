@@ -3,6 +3,9 @@
 
     <div class="footer-newsletter">
         <div class="container">
+            <div class="row" style="text-align: center;">
+                <h4 id="articleInfoTitle" hidden> 北護校訊電子期刊 第 period 期 year 年 month 月<br><br><hr></h4>
+            </div>
             <div class="row">
                 <div class="col-lg-6">
                     <h4>訂閱校訊</h4>
@@ -73,3 +76,9 @@
 
 <!-- Template Main JS File -->
 <script src="../public/assets/js/main.js"></script>
+<!-- Include the Quill library -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<!-- https://www.npmjs.com/package/quill-better-table -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/quill/2.0.0-dev.3/quill.min.js" type="text/javascript"></script>
+<!-- Initialize Quill editor -->
+<script src="../public/assets/js/initialQuill.js"></script>

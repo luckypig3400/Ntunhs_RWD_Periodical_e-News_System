@@ -2,13 +2,13 @@
 <html lang="zh-Hant">
 
 <?php
-require("partials/head.php");
+require_once("partials/head.php");
 ?>
 
 <body>
 
   <?php
-  require("partials/header.php");
+  require_once("partials/header.php");
   ?>
 
   <main id="main">
@@ -71,7 +71,7 @@ require("partials/head.php");
   </main><!-- End #main -->
 
   <?php
-  require("partials/footer.php");
+  require_once("partials/footer.php");
   ?>
 
 </body>

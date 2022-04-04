@@ -4,6 +4,112 @@
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
 */
+
+let articleDiv = document.getElementById('articleInfoDiv');
+let articleTitle = document.getElementById('articleInfoTitle');
+
+if (articleDiv != null) {
+  articleTitle.innerHTML = articleDiv.innerHTML;
+  articleTitle.removeAttribute('hidden');
+}
+
+let currentFontLevel = 0;
+function increaseAllfontSize() {
+  if (currentFontLevel < 6) {
+    let allelements = document.getElementsByTagName('*');
+
+    for (var i = 0; i < allelements.length; i++) {
+      // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
+      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+      var fontSize = parseFloat(style);
+      allelements[i].style.fontSize = (fontSize + 1) + 'px';
+    }
+    currentFontLevel++;
+  }
+}
+
+function decreaseAllfontSize() {
+  if (currentFontLevel > -6) {
+    let allelements = document.getElementsByTagName('*');
+
+    for (var i = 0; i < allelements.length; i++) {
+      // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
+      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+      var fontSize = parseFloat(style);
+      allelements[i].style.fontSize = (fontSize - 1) + 'px';
+    }
+  }
+  currentFontLevel--;
+}
+
+function resetAllfontSize() {
+  let allelements = document.getElementsByTagName('*');
+  for (var i = 0; i < allelements.length; i++) {
+    allelements[i].style.fontSize = '';
+  }
+  currentFontLevel = 0;
+}
+
+
+function changeHeaderLinksActive() {
+  var url_string = window.location.href;
+  var url = new URL(url_string);
+  var peroid = url.searchParams.get("period");
+  var category = url.searchParams.get("category");
+  // https://stackoverflow.com/questions/979975/get-the-values-from-the-get-parameters-javascript
+
+  if (url_string.search("index.php") != -1) {
+    // https://www.w3schools.com/jsref/jsref_search.asp
+    console.log("We are in the index page");
+  } else {
+    indexLink = document.getElementById('indexLink');
+    indexLink.classList.remove('active');
+
+    currentLink = document.getElementById(category + 'Link');
+    if (currentLink != null) {
+      currentLink.classList.add('active');
+
+      if (category != 'C01' && category != 'C02') {
+        otherCategories = document.getElementById('otherCategories');
+        otherCategories.classList.add('active');
+      }
+    }
+  }
+
+}
+
+changeHeaderLinksActive();
+
+var currentCarousel = -1;
+function changeIndexBGimage() {
+  // 已放置於new Swiper()內使用
+
+  // var heroAfterStyle = document.createElement("style");
+  var heroAfterStyle = document.getElementById("heroAfterStyle");
+
+  currentCarousel += 1;
+  if (currentCarousel >= 3) {
+    // only 0 1 2 are available
+    currentCarousel = 0;
+  }
+  if (heroAfterStyle != null) {
+    currentImage = document.getElementById('carouselStyle' + currentCarousel).innerHTML;
+    if (currentImage != null) {
+      // console.log(currentImage);
+      heroAfterStyle.innerHTML = currentImage;
+    } else {
+      heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
+        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
+        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
+        "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
+    }
+  } else {
+    // do nothing, prevent not index page Error
+  }
+  // https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
+  // https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
+}
+
 (function () {
   "use strict";
 
@@ -152,14 +258,14 @@
     loop: true,
     autoplay: {
       delay: 5000,
-      disableOnInteraction: false
+      disableOnInteraction: false,
     },
     pagination: {
       el: '.swiper-pagination',
       type: 'bullets',
       clickable: true
     }
-  });
+  }, changeIndexBGimage());
 
   /**
    * Porfolio isotope and filter
