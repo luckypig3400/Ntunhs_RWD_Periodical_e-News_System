@@ -8,12 +8,12 @@
             </div>
             <div class="row">
                 <div class="col-lg-6">
-                    <h4>訂閱校訊</h4>
-                    <p>在最新校刊等資訊發布的第一時刻 透過Email獲得最新資訊</p>
+                    <h4>投稿文章</h4>
+                    <p>有關於北護的新鮮事要投稿嗎? 歡迎透過Email投稿您撰寫的精采文章!</p>
                 </div>
                 <div class="col-lg-6">
-                    <form action="" method="post">
-                        <input type="email" name="email" placeholder="您的Email"><input type="submit" value="立即訂閱">
+                    <form action="mailto:yuting@ntunhs.edu.tw" method="post">
+                        <input type="email" name="email" placeholder="寄信給:yuting@ntunhs.edu.tw" disabled><input type="submit" value="點我立即前往投稿">
                     </form>
                 </div>
             </div>

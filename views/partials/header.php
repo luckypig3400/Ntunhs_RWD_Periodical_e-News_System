@@ -78,7 +78,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         ?>
                     </ul>
                 </li>
-                <li><a href="#footer" class="scrollto">我要投稿</a></li>
+                <li><a href="#footer" class="scrollto">聯繫我們</a></li>
                 <li><a href="search.php"><i class="bi bi-search"></i></a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
