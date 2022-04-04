@@ -61,6 +61,12 @@ function changeHeaderLinksActive() {
   if (url_string.search("index.php") != -1) {
     // https://www.w3schools.com/jsref/jsref_search.asp
     console.log("We are in the index page");
+  } else if (url_string.search("search.php") != -1) {
+    indexLink = document.getElementById('indexLink');
+    indexLink.classList.remove('active');
+
+    searchLink = document.getElementById('searchLink');
+    searchLink.classList.add('active');
   } else {
     indexLink = document.getElementById('indexLink');
     indexLink.classList.remove('active');
