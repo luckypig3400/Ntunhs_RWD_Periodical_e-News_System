@@ -201,12 +201,10 @@ export const QuillToolbar = () => (
 
 const _onUpload = async (fd, resolve, type) => {
     axios.defaults.withCredentials = true;
-    await axios
+    const result = await axios
         .post(`${apiURL}/api/upload/${type}`, fd)
-        .then((res) => {
-            resolve(`http://localhost:3090/${type}/${res.data.fileName}`);
-        })
         .catch((err) => console.log(err));
+    resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
 };
 
 export default QuillToolbar;
