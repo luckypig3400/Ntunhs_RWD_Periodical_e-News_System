@@ -8,7 +8,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
     <div class="container d-flex justify-content-between align-items-center">
 
         <div class="logo">
-            <h1 class="text-light"><a href="index.php"><img src="../public/assets/img/ntunhs_logo.png" class="img-fluid"><span>北護校訊電子期刊</span></a></h1>
+            <h1 class="text-light"><a href="index.php"><img src="../public/assets/img/ntunhs_logo.png" class="img-fluid"><span>&nbsp;北護校訊電子期刊</span></a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="index.php"><img src="../public/assets/img/logo.png" alt="" class="img-fluid"></a>-->
         </div>
