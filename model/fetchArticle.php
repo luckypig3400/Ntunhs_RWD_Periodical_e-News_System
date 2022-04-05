@@ -47,7 +47,7 @@ function fetchArticleList($in_period, $in_category)
         $sql = "SELECT * FROM periodical WHERE periodNumber = '$period'";
     } else if ($category != "" && $getAllCategories == "true") {
         // 同一分類的文章太多，因此只提供該分類全部文章的摘要
-        $sql = "SELECT id,subject,photo FROM periodical WHERE categoryID = '$category'";
+        $sql = "SELECT id,subject,cover FROM periodical WHERE categoryID = '$category'";
     } else if ($category != "") {
         try {
             // 利用SQL取得最新文章期別

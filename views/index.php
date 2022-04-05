@@ -54,7 +54,7 @@ require_once("./partials/head.php");
 
                     // 以下解析該文章的圖片，取第一張圖片放到隱藏的<div>(div要給id)
                     // 供給js讀取該報導的<div>並於輪播圖更新時放到<style>裡面
-                    $articelPhotos = $carouselArticles[$i]["photo"];
+                    $articelPhotos = $carouselArticles[$i]["cover"];
                     $pLinks = explode(",", $articelPhotos); // split string by ","
                     $pLink = "";
                     for ($j = 0; $j < count($pLinks); $j++) {
@@ -125,7 +125,7 @@ require_once("./partials/head.php");
                             echo "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                         } else {
                             // split string by ","
-                            $photoLinks = explode(",", $latestArticle[0]["photo"]);
+                            $photoLinks = explode(",", $latestArticle[0]["cover"]);
                             $photoLink = "";
                             for ($i = 0; $i < count($photoLinks); $i++) {
                                 if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
@@ -164,7 +164,7 @@ require_once("./partials/head.php");
                     $articles = fetchArticleList(getPeriodParam(), "");
 
                     foreach ($articles as $article) {
-                        $photoLinks = explode(",", $article["photo"]); // split string by ","
+                        $photoLinks = explode(",", $article["cover"]); // split string by ","
                         $photoLink = "";
                         for ($i = 0; $i < count($photoLinks); $i++) {
                             if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {

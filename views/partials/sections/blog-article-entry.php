@@ -13,7 +13,7 @@ function blogArticleEntryBlock($in_singleArticle)
   $writer = $article['writer'];
 
   // split string by ","
-  $photoLinks = explode(",", $article["photo"]);
+  $photoLinks = explode(",", $article["cover"]);
   $photoLink = "";
   for ($i = 0; $i < count($photoLinks); $i++) {
     if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
