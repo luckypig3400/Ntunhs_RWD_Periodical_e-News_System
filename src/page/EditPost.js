@@ -88,10 +88,11 @@ function EditPost() {
         const result = await axios
             .post(`${apiURL}/api/upload/${type}`, fd)
             .catch((err) => console.log(err));
-        resolve(
+
+        await resolve(
             `http://localhost:3090/${type}/${result.data.fileName}`,
             setCover(result.data.fileName),
-            setCoverLink(`http://localhost:3090/imaghe/${result.data.fileName}`)
+            setCoverLink(`http://localhost:3090/image/${result.data.fileName}`)
         );
     };
 
@@ -195,7 +196,7 @@ function EditPost() {
                                 component="span"
                                 aria-label="upload picture"
                                 endIcon={<InsertPhotoIcon />}
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ marginLeft: "20px" }}
                                 onClick={(e) => {
                                     window.open(coverLink, "_blank");
                                 }}
@@ -207,7 +208,7 @@ function EditPost() {
                                 component="span"
                                 aria-label="upload picture"
                                 color="error"
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ marginLeft: "20px" }}
                                 onClick={() => {
                                     setCover("");
                                     setCoverLink("");
@@ -238,7 +239,7 @@ function EditPost() {
                                 component="span"
                                 aria-label="upload picture"
                                 endIcon={<DriveFolderUploadIcon />}
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ marginLeft: "20px" }}
                             >
                                 上傳封面
                             </Button>
