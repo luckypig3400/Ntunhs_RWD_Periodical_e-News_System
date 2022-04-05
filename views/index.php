@@ -47,7 +47,13 @@ require_once("./partials/head.php");
                         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
                 } else {
-                    echo '<h2 class="animate__animated animate__fadeInDown">' . $carouselArticles[$i]["subject"] . '</h2>';
+                    // https://stackoverflow.com/questions/9393885/how-to-replace-multiple-items-from-a-text-string-in-php
+                    $subjectSplitter = [",", "、", "，", "：", ":", "（", "(", "「", "」", "－", " "];
+                    $replacedWords = [",<br>", "、<br>", "，<br>", "：<br>", ":<br>", "<br>（", "<br>(", "<br>「", "」<br>", "－<br>", "<br>"];
+
+                    echo '<h2 class="animate__animated animate__fadeInDown">' .
+                        str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';
+
                     echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
                     echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
