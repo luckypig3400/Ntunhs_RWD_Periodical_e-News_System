@@ -203,6 +203,11 @@ function changeIndexBGimage(currentSlideRealIndex = 0) {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
+
+    var otherCategoriesDL = document.getElementById('otherCategoriesDropdownList');
+    if(otherCategoriesDL != null){
+      otherCategoriesDL.classList.toggle('dropdown-active');
+    }
   })
 
   /**

@@ -32,7 +32,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 }
                 ?>
                 <li class="dropdown"><a id="otherCategories" href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
-                    <ul>
+                    <ul id="otherCategoriesDropdownList">
                         <?php
                         require_once("../model/fetchCategories.php");
 
