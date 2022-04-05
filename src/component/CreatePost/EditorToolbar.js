@@ -204,7 +204,9 @@ const _onUpload = async (fd, resolve, type) => {
     const result = await axios
         .post(`${apiURL}/api/upload/${type}`, fd)
         .catch((err) => console.log(err));
-    resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
+    await setTimeout(() => {
+        resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
+    }, 3000);
 };
 
 export default QuillToolbar;
