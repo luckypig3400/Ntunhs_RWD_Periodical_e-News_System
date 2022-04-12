@@ -1,3 +1,4 @@
+from audioop import mul
 from types import coroutine
 import openpyxl
 import mysql.connector
@@ -44,6 +45,15 @@ except mysql.connector.Error as err:
     else:
         print(err)
 else:
+    # 詢問是否建立User與Category資料表
+    if input("是否要建立User與Category資料表？(y/n):") == "y":
+        # https://stackoverflow.com/questions/59848116/how-to-execute-a-sql-file-using-mysql-connector-and-save-it-in-a-database-in-py
+        with open('./empty_DB_with_user_and_categoryTables.sql', 'r', encoding="utf-8") as sqlFile:
+            cursor = conn.cursor()
+            cursor.execute(sqlFile.read(), multi=True)
+            cursor.close()
+            conn.commit()
+            print("帶有預設資料的User與Category資料表已建立")
     # 開啟工作簿
     workbook = openpyxl.load_workbook('newspaper.xlsx')
     # 獲取表單
@@ -91,15 +101,20 @@ else:
                     # print(insertSQLcommand)
                     cursor.execute(insertSQLcommand)
                     print("Inserted", cursor.rowcount, "row(s) of data.")
-                    conn.commit()
-                    print("Done.")
                     cursor.close()
+                    # 每100筆資料提交一次
+                    if j % 100 == 0:
+                        conn.commit()
+                        print("Transaction committed:", j,
+                              "rows have been inserted.")
                 # 其餘中間欄位資料(用''包住代表字串)
                 else:
                     if str(cell) == "None":
                         insertSQLcommand += "NULL,"
                     else:
-                        insertSQLcommand += "'" + str(cell) + "',"
+                        cellData = str(cell)
+                        cellData = cellData.replace("'", "\\'")
+                        insertSQLcommand += "'" + cellData + "',"
 
 conn.close()
 print("Connection closed.")
