@@ -49,11 +49,13 @@ else:
     if input("是否要建立User與Category資料表？(y/n):") == "y":
         # https://stackoverflow.com/questions/59848116/how-to-execute-a-sql-file-using-mysql-connector-and-save-it-in-a-database-in-py
         with open('./empty_DB_with_user_and_categoryTables.sql', 'r', encoding="utf-8") as sqlFile:
-            cursor = conn.cursor()
-            cursor.execute(sqlFile.read(), multi=True)
-            cursor.close()
-            conn.commit()
-            print("帶有預設資料的User與Category資料表已建立")
+            for line in sqlFile:
+                # https://stackoverflow.com/questions/3277503/how-to-read-a-file-line-by-line-into-a-list
+                cursor = conn.cursor()
+                cursor.execute(line)
+                cursor.close()
+        conn.commit()
+        print("帶有預設資料的User與Category資料表已建立")
     # 開啟工作簿
     workbook = openpyxl.load_workbook('newspaper.xlsx')
     # 獲取表單
