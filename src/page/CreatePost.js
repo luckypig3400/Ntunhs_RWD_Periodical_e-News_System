@@ -23,10 +23,10 @@ import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
-import axios from "axios";
+import { createPost } from "../axios";
+import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
-
-const apiURL = config.apiURL;
+const imageURL = config.imageURL;
 
 const Input = styled("input")({
     display: "none",
@@ -35,7 +35,7 @@ const Input = styled("input")({
 function CreatePost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [totalcategory] = useState([{ name: "", id: "" }]);
+    const [totalcategory, setTotalcategory] = useState([]);
     const [postime, setPostime] = React.useState(
         `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     ); //預設時間
@@ -51,39 +51,19 @@ function CreatePost() {
     const [cover, setCover] = useState("");
     const [coverLink, setCoverLink] = useState("");
 
-    useEffect(() => {
-        axios
-            .all([
-                axios.get(`${apiURL}/api/post`),
-                axios.get(`${apiURL}/api/category`),
-            ])
-            .then(
-                axios.spread((data1, data2) => {
-                    const postResult = data1.data.results[0].periodNumber;
-                    const categoryResult = data2.data.results;
-                    //關聯post.categoryID
-                    categoryResult.forEach((item) => {
-                        totalcategory.push(item);
-                    });
-                    setPeriodNumber(postResult);
-                })
-            )
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        //關聯post.categoryID
+        const response = await createPost();
+        setTotalcategory(response.categoryResult);
+        setPeriodNumber(response.postResult);
     }, []);
 
     const _onUpload = async (fd, resolve, type) => {
-        axios.defaults.withCredentials = true;
-        const result = await axios
-            .post(`${apiURL}/api/upload/${type}`, fd)
-            .catch((err) => console.log(err));
+        const response = await coverUpload(fd);
         resolve(
-            `http://localhost:3090/${type}/${result.data.fileName}`,
-            setCover(result.data.fileName),
-            setCoverLink(
-                `http://localhost:3090/${type}/${result.data.fileName}`
-            )
+            `${imageURL}/${response}`,
+            setCover(response),
+            setCoverLink(`${imageURL}/${type}/${response}`)
         );
     };
 

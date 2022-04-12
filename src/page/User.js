@@ -3,24 +3,19 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { Button, TextField } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
+import { getUser } from "../axios";
+import { deleteUser, editUser } from "../axios/putAxios";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
 
 const User = () => {
-    const [category, setCategory] = useState([]);
+    const [user, setUser] = useState([]);
     const [createUserButton, setUserButton] = useState(true);
     const [userEditRender, setUserEditRender] = useState(false);
     const [userContent, setUserContent] = useState({});
-    useEffect(() => {
-        axios
-            .get(`${apiURL}/api/user`)
-            .then((result) => {
-                setCategory(result.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        setUser(await getUser());
     }, []);
 
     const columns = [
@@ -35,34 +30,6 @@ const User = () => {
             width: 300,
         },
     ];
-
-    const EditUser = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .patch(`${apiURL}/api/user/${userContent.ID}`, {
-                name: userContent.name,
-                username: userContent.username,
-                password: userContent.password,
-            })
-            .then((result) => {
-                setCategory(result.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
-
-    const DeleteUser = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .delete(`${apiURL}/api/user/${userContent.ID}`)
-            .then((result) => {
-                setCategory(result.data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    };
 
     const userEditDiv = () => {
         return (
@@ -116,7 +83,7 @@ const User = () => {
                             marginRight: "20px",
                         }}
                         onClick={() => {
-                            EditUser();
+                            editUser(userContent);
                             setUserEditRender(false);
                             window.location.reload();
                         }}
@@ -133,7 +100,7 @@ const User = () => {
                             );
                             if (message === true) {
                                 alert("OK");
-                                DeleteUser();
+                                deleteUser(userContent);
                                 setUserEditRender(false);
                                 window.location.reload();
                             } else {
@@ -156,7 +123,7 @@ const User = () => {
                 <div style={{ display: "flex", height: "100%" }}>
                     <div style={{ flexGrow: 1 }}>
                         <DataGrid
-                            rows={category}
+                            rows={user}
                             columns={columns}
                             autoHeight={true}
                             onRowClick={(user) => {

@@ -4,6 +4,7 @@ import { Alert, IconButton, Collapse, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { editPost, deletePost } from "../../axios/putAxios";
 const config = require("../../config/default.json");
 
 export default function EditPostSendOnClick(props) {
@@ -12,44 +13,18 @@ export default function EditPostSendOnClick(props) {
 
     var [renderMessage, setRenderMessage] = useState("");
 
-    const SendOnClick = () => {
-        console.log(props);
-        axios.defaults.withCredentials = true;
-        axios
-            .patch(`${config.apiURL}/api/post/${props.PostID}`, {
-                periodNumber: props.periodNumber,
-                noYear: props.noYear,
-                noMonth: props.noMonth,
-                categoryID: props.categoryID,
-                writer: props.writer,
-                content: props.content,
-                subject: props.subject,
-                cover: props.cover,
-            })
-            .then((response) => {
-                setOpen(true);
-                SetSeverity("success");
-                setRenderMessage("更新成功");
-            })
-            .catch((error) => {
-                setOpen(true);
-                SetSeverity("error");
-                setRenderMessage(error.request.onerror.name);
-            });
+    const SendOnClick = async () => {
+        const response = await editPost(props);
+        setOpen(response.Open);
+        SetSeverity(response.Severity);
+        setRenderMessage(response.RenderMessage);
     };
 
-    const checkDropAlert = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .delete(`${config.apiURL}/api/Post/${props.PostID}`, {
-                postID: props.PostID,
-            })
-            .then((response) => {
-                setOpen(true);
-                SetSeverity("success");
-                setRenderMessage("刪除成功");
-            })
-            .catch((error) => console.log(error.request));
+    const checkDropAlert = async () => {
+        const response = await deletePost(props);
+        setOpen(response.Open);
+        SetSeverity(response.Severity);
+        setRenderMessage(response.RenderMessage);
     };
 
     return (

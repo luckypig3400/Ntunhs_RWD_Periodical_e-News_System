@@ -25,15 +25,18 @@ import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 
 import axios from "axios";
 
+import { editPost } from "../axios";
+import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
+const imageURL = config.imageURL;
 const PostID = getQueryVariable("PostID");
 
 function EditPost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [totalcategory] = useState([]);
+    const [totalcategory, setTotalcategory] = useState([]);
     const [postime, setPostime] = useState(""); //預設時間
 
     //存取表單輸入值
@@ -50,49 +53,31 @@ function EditPost() {
         display: "none",
     });
 
-    useEffect(() => {
-        axios
-            .all([
-                axios.get(`${apiURL}/api/post/${PostID}`),
-                axios.get(`${apiURL}/api/category`),
-            ])
-            .then(
-                axios.spread((data1, data2) => {
-                    const categoryResult = data2.data.results;
-                    //關聯post.categoryID
-                    categoryResult.forEach((item) => {
-                        totalcategory.push(item);
-                    });
-
-                    setSubject(data1.data.subject);
-                    setContent(data1.data.quillcontent);
-                    setWriter(data1.data.writer);
-                    setPeriodNumber(data1.data.periodNumber);
-                    setCategoryID(data1.data.categoryID);
-                    setNoYear(data1.data.noYear);
-                    setNoMonth(data1.data.noMonth);
-                    setPostime(`${data1.data.noYear}/${data1.data.noMonth}`);
-                    setCover(data1.data.cover);
-                    setCoverLink(
-                        `http://localhost:3090/image/${data1.data.cover}`
-                    );
-                })
-            )
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        const response = await editPost(PostID);
+        setSubject(response.data1.data.subject);
+        setContent(response.data1.data.quillcontent);
+        setWriter(response.data1.data.writer);
+        setPeriodNumber(response.data1.data.periodNumber);
+        setCategoryID(response.data1.data.categoryID);
+        setNoYear(response.data1.data.noYear);
+        setNoMonth(response.data1.data.noMonth);
+        setPostime(
+            `${response.data1.data.noYear}/${response.data1.data.noMonth}`
+        );
+        setCover(response.data1.data.cover);
+        setCoverLink(
+            `http://localhost:3090/image/${response.data1.data.cover}`
+        );
+        setTotalcategory(response.categoryResult);
     }, []);
 
     const _onUpload = async (fd, resolve, type) => {
-        axios.defaults.withCredentials = true;
-        const result = await axios
-            .post(`${apiURL}/api/upload/${type}`, fd)
-            .catch((err) => console.log(err));
-
-        await resolve(
-            `http://localhost:3090/${type}/${result.data.fileName}`,
-            setCover(result.data.fileName),
-            setCoverLink(`http://localhost:3090/image/${result.data.fileName}`)
+        const response = await coverUpload(fd);
+        resolve(
+            `${imageURL}/${response}`,
+            setCover(response),
+            setCoverLink(`${imageURL}/${type}/${response}`)
         );
     };
 

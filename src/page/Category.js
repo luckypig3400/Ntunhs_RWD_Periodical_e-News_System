@@ -9,6 +9,7 @@ import {
     MenuItem,
 } from "@mui/material";
 import axios from "axios";
+import { getCategory } from "../axios";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
@@ -22,15 +23,8 @@ function Category() {
     const [createCategoryName, setCreateCategoryName] = useState("");
     const [deleteCategoryID, setDeleteCategoryID] = useState("");
 
-    useEffect(() => {
-        axios
-            .get(`${apiURL}/api/category`)
-            .then((result) => {
-                setCategory(result.data.results);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        setCategory(await getCategory());
     }, []);
 
     const columns = [
