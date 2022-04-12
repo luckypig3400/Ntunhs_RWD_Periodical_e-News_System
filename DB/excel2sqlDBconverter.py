@@ -18,6 +18,12 @@ try:
         password=config["password"]
     )
 
+    if input("是否要刪除舊資料庫？(y/n):") == "y":
+        cursor = conn.cursor()
+        cursor.execute("DROP DATABASE IF EXISTS {}".format(config["db"]))
+        conn.commit()
+        print("資料庫已刪除")
+
     # https://www.w3schools.com/python/python_mysql_create_db.asp
     # Auto-create database
     cursor = conn.cursor()
