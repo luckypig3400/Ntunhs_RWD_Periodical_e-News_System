@@ -3,12 +3,11 @@ import Box from "@mui/material/Box";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
-import CommentIcon from "@mui/icons-material/Comment";
-import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteIcon from "@mui/icons-material/Delete";
 
 import IconButton from "@mui/material/IconButton";
 
-const BulletinList = ({setBulletin,bulletin}) => {
+const BulletinList = ({ setBulletin, bulletin }) => {
     return (
         <Box>
             <List
@@ -17,19 +16,26 @@ const BulletinList = ({setBulletin,bulletin}) => {
                     bgcolor: "background.paper",
                 }}
             >
-                {bulletin.map((value,id) => (
+                {bulletin.map((value,index) => (
                     <ListItem
-                        key={value}
+                        key={index}
                         disableGutters
                         secondaryAction={
-                            <IconButton onClick={() =>{
-                                setBulletin(prev=>prev.filter(p=>p!==value))
-                            }}>
+                            <IconButton
+                                onClick={() => {
+                                    const newValue = (prev) =>
+                                        prev.filter(
+                                            (p) => p.value !== value.value
+                                        );
+                                    setBulletin(newValue);
+                                }}
+                            >
                                 <DeleteIcon />
                             </IconButton>
                         }
                     >
-                        <ListItemText primary={value} />
+                        <ListItemText primary={value.value} />
+                        {value.time}
                     </ListItem>
                 ))}
             </List>

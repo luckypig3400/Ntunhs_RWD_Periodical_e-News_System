@@ -4,14 +4,14 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
 const CreateBulletin = ({ setBulletin, bulletin }) => {
-    const [newBulletin, setNewBulletin] = useState("");
+    const [newBulletin, setNewBulletin] = useState({ value: "", time: "" });
     return (
         <Box
             component="form"
             sx={{
                 width: "100%",
                 height: "50px",
-                marginTop:"20px",
+                marginTop: "20px",
                 marginBottom: "50px",
             }}
             noValidate
@@ -20,9 +20,12 @@ const CreateBulletin = ({ setBulletin, bulletin }) => {
             <TextField
                 id="outlined-basic"
                 label="內容"
-                value={newBulletin}
+                value={newBulletin.value}
                 onChange={(event) => {
-                    setNewBulletin(event.target.value);
+                    const time = new Date().toLocaleString("zh-TW", {
+                        timeZone: "Asia/Taipei",
+                    });
+                    setNewBulletin({ value: event.target.value, time: time });
                 }}
                 variant="outlined"
                 sx={{ width: "80%", marginRight: "2%" }}
@@ -33,6 +36,7 @@ const CreateBulletin = ({ setBulletin, bulletin }) => {
                 sx={{ height: "100%", width: "18%" }}
                 onClick={() => {
                     setBulletin((bulletin) => [...bulletin, newBulletin]);
+                    setNewBulletin({ value: "", time: "" });
                 }}
             >
                 新增

@@ -8,7 +8,7 @@ const Bulletin = () => {
             <div className="headerTitle">公告設定</div>
             <div className="pagecontent">
                 <CreateBulletin setBulletin={setBulletin} bulletin={bulletin} />
-                <BulletinList setBulletin={setBulletin} bulletin={bulletin}/>
+                <BulletinList setBulletin={setBulletin} bulletin={bulletin} />
             </div>
         </>
     );
