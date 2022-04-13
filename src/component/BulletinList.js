@@ -4,6 +4,8 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import CommentIcon from "@mui/icons-material/Comment";
+import DeleteIcon from '@mui/icons-material/Delete';
+
 import IconButton from "@mui/material/IconButton";
 
 const BulletinList = ({setBulletin,bulletin}) => {
@@ -15,16 +17,15 @@ const BulletinList = ({setBulletin,bulletin}) => {
                     bgcolor: "background.paper",
                 }}
             >
-                {bulletin.map((value) => (
+                {bulletin.map((value,id) => (
                     <ListItem
                         key={value}
                         disableGutters
                         secondaryAction={
                             <IconButton onClick={() =>{
-                                //setBulletin(bulletin=>[...bulletin,bulletin.shift()]);
-                                console.log(value.index);
+                                setBulletin(prev=>prev.filter(p=>p!==value))
                             }}>
-                                <CommentIcon />
+                                <DeleteIcon />
                             </IconButton>
                         }
                     >

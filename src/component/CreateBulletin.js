@@ -11,6 +11,7 @@ const CreateBulletin = ({ setBulletin, bulletin }) => {
             sx={{
                 width: "100%",
                 height: "50px",
+                marginTop:"20px",
                 marginBottom: "50px",
             }}
             noValidate
