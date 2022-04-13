@@ -53,7 +53,7 @@ try {
         }
 
         if ($photo1 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo1\" alt=\"$img1Alt\">";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../public/image/$photo1\" alt=\"$img1Alt\">";
             if ($img1Alt != null) {
                 $outputQuillText .= "<br>▲ $img1Alt";
             }
@@ -63,7 +63,7 @@ try {
             $outputQuillText .= "<p>$content1</p><p><br></p>";
         }
         if ($photo2 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo2\" alt=\"$img2Alt\">";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../public/image/$photo2\" alt=\"$img2Alt\">";
             if ($img2Alt != null) {
                 $outputQuillText .= "<br>▲ $img2Alt";
             }
@@ -73,7 +73,7 @@ try {
             $outputQuillText .= "<p>$content2</p><p><br></p>";
         }
         if ($photo3 != null) {
-            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../periodical_data/$photo3\" alt=\"$img3Alt\">";
+            $outputQuillText .= "<p class=\"ql-align-center\"><img src=\"../public/image/$photo3\" alt=\"$img3Alt\">";
             if ($img3Alt != null) {
                 $outputQuillText .= "<br>▲ $img3Alt";
             }
@@ -99,7 +99,7 @@ try {
             echo "ID:$serial <b>Error</b> converted failed! empty string<br>";
         }
     }
-} catch (PDOException $e) {
+} catch (PDOException $e) { 
     echo "Error occured while accessing MySQL DB:" . $e->getMessage();
 }
 
@@ -125,7 +125,7 @@ echo "<h1>Total Table: $totalTable</h1>";
 </head>
 
 <body>
-    <div id="editor">
+    <div id="editor">   
         <?php
         // echo $outputQuillText;
         ?>
