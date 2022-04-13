@@ -64,8 +64,20 @@ else:
     # 直接轉換為新系統用的資料表格式
     if(input("是否直接轉換為periodical資料表？(y/n):") == "y"):
         print("開始轉換為periodical資料表...")
+        createTableSQLcommand = "CREATE TABLE IF NOT EXISTS `periodical` (`id` int(11) NOT NULL,`periodNumber` varchar(50) DEFAULT NULL,`noYear` varchar(4) DEFAULT NULL,`noMonth` varchar(2) DEFAULT NULL,`categoryID` varchar(50) DEFAULT NULL,`subject` varchar(50) DEFAULT NULL,`writer` varchar(50) DEFAULT NULL,`quillcontent` mediumtext DEFAULT NULL,`cover` text DEFAULT NULL,`clicked` int(11) DEFAULT NULL,`updateTime` datetime DEFAULT current_timestamp()) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+        for currentRow in range(1, sheet.max_row + 1):
+            insertSQLcommand = ""
+            
+            for currentColumn in range(1, sheet.max_column + 1):
+                cellData = sheet.cell(row=currentRow, column=currentColumn).value
+                
+                if currentColumn == 1:
+                    print("id:", str(cellData))
+
+        print("成功轉換為periodical資料表!")
 
     else:
+        createTableSQLcommand = "CREATE TABLE IF NOT EXISTS `content` (`Serial` int(11) NOT NULL,`NoID` varchar(50) DEFAULT NULL,`NoYear` varchar(4) DEFAULT NULL,`NoMonth` varchar(2) DEFAULT NULL,`NoClass` varchar(50) DEFAULT NULL,`Subject` varchar(50) DEFAULT NULL,`Writer` varchar(50) DEFAULT NULL,`StarID` int(11) DEFAULT NULL,`Email` varchar(50) DEFAULT NULL,`Content1` mediumtext DEFAULT NULL,`Content2` mediumtext DEFAULT NULL,`Content3` mediumtext DEFAULT NULL,`Photo1` varchar(50) DEFAULT NULL,`Photo2` varchar(50) DEFAULT NULL,`Photo3` varchar(50) DEFAULT NULL,`Alt1` varchar(50) DEFAULT NULL,`Alt2` varchar(50) DEFAULT NULL,`Alt3` varchar(50) DEFAULT NULL,`Temp1` varchar(15) DEFAULT NULL,`Temp2` varchar(15) DEFAULT NULL,`Temp3` varchar(15) DEFAULT NULL,`TempColor` varchar(50) DEFAULT NULL,`Link1` mediumtext DEFAULT NULL,`Link2` mediumtext DEFAULT NULL,`Link3` mediumtext DEFAULT NULL,`Linkloc1` varchar(50) DEFAULT NULL,`Linkloc2` varchar(50) DEFAULT NULL,`Linkloc3` varchar(50) DEFAULT NULL,`Linkalt1` varchar(50) DEFAULT NULL,`Linkalt2` varchar(50) DEFAULT NULL,`Linkalt3` varchar(50) DEFAULT NULL,`Counter` int(11) DEFAULT NULL,`Memo1` varchar(50) DEFAULT NULL,`Memo2` varchar(50) DEFAULT NULL,`Memo3` varchar(50) DEFAULT NULL,`Memo4` varchar(50) DEFAULT NULL,`Memo5` varchar(50) DEFAULT NULL,`TheDate` datetime DEFAULT NULL) CHARSET=utf8mb4;"
         for j in range(1, sheet.max_row + 1):
             # loop for each row
             # https://openpyxl.readthedocs.io/en/stable/api/openpyxl.worksheet.worksheet.html#openpyxl.worksheet.worksheet.Worksheet.max_row
@@ -74,7 +86,6 @@ else:
             for i in range(1, sheet.max_column + 1):
                 # loop for each column
                 cell = sheet.cell(row=j, column=i).value
-                createTableSQLcommand = "CREATE TABLE IF NOT EXISTS `content` (`Serial` int(11) NOT NULL,`NoID` varchar(50) DEFAULT NULL,`NoYear` varchar(4) DEFAULT NULL,`NoMonth` varchar(2) DEFAULT NULL,`NoClass` varchar(50) DEFAULT NULL,`Subject` varchar(50) DEFAULT NULL,`Writer` varchar(50) DEFAULT NULL,`StarID` int(11) DEFAULT NULL,`Email` varchar(50) DEFAULT NULL,`Content1` mediumtext DEFAULT NULL,`Content2` mediumtext DEFAULT NULL,`Content3` mediumtext DEFAULT NULL,`Photo1` varchar(50) DEFAULT NULL,`Photo2` varchar(50) DEFAULT NULL,`Photo3` varchar(50) DEFAULT NULL,`Alt1` varchar(50) DEFAULT NULL,`Alt2` varchar(50) DEFAULT NULL,`Alt3` varchar(50) DEFAULT NULL,`Temp1` varchar(15) DEFAULT NULL,`Temp2` varchar(15) DEFAULT NULL,`Temp3` varchar(15) DEFAULT NULL,`TempColor` varchar(50) DEFAULT NULL,`Link1` mediumtext DEFAULT NULL,`Link2` mediumtext DEFAULT NULL,`Link3` mediumtext DEFAULT NULL,`Linkloc1` varchar(50) DEFAULT NULL,`Linkloc2` varchar(50) DEFAULT NULL,`Linkloc3` varchar(50) DEFAULT NULL,`Linkalt1` varchar(50) DEFAULT NULL,`Linkalt2` varchar(50) DEFAULT NULL,`Linkalt3` varchar(50) DEFAULT NULL,`Counter` int(11) DEFAULT NULL,`Memo1` varchar(50) DEFAULT NULL,`Memo2` varchar(50) DEFAULT NULL,`Memo3` varchar(50) DEFAULT NULL,`Memo4` varchar(50) DEFAULT NULL,`Memo5` varchar(50) DEFAULT NULL,`TheDate` datetime DEFAULT NULL) CHARSET=utf8mb4;"
 
                 # first row, create table
                 if j == 1:
@@ -113,7 +124,7 @@ else:
                         if j % 100 == 0:
                             conn.commit()
                             print("Transaction committed:", j,
-                                "rows have been inserted.")
+                                  "rows have been inserted.")
                     # 其餘中間欄位資料(用''包住代表字串)
                     else:
                         if str(cell) == "None":
