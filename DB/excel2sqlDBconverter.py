@@ -87,6 +87,8 @@ else:
 
                     if currentColumn >= 2 and currentColumn <= 7:
                         # periodNumber, noYear, noMonth, categoryID, subject, writer
+                        if str(cellData) == "None":
+                            cellData = "NULL"
                         insertSQLcommand += "'" + str(cellData) + "',"
 
                     if currentColumn == 13:
