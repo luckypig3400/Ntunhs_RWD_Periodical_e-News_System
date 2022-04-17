@@ -71,7 +71,7 @@ else:
         cursor.close()
 
         for currentRow in range(1, sheet.max_row + 1):
-            insertSQLcommand = "INSERT INTO `periodical` (`id`,`periodNumber`,`noYear`,`noMonth`,`categoryID`,`subject`,`writer`,`quillcontent`,`cover`,`clicked`,`updateTime`) VALUES ("
+            insertSQLcommand = "INSERT INTO `periodical` (`id`,`periodNumber`,`noYear`,`noMonth`,`categoryID`,`subject`,`writer`,`cover`,`clicked`,`updateTime`) VALUES ("
             # quillcontent請使用quillTextConverter.php 配上content Table轉換
 
             for currentColumn in range(1, sheet.max_column + 1):
