@@ -65,14 +65,48 @@ else:
     if(input("是否直接轉換為periodical資料表？(y/n):") == "y"):
         print("開始轉換為periodical資料表...")
         createTableSQLcommand = "CREATE TABLE IF NOT EXISTS `periodical` (`id` int(11) NOT NULL,`periodNumber` varchar(50) DEFAULT NULL,`noYear` varchar(4) DEFAULT NULL,`noMonth` varchar(2) DEFAULT NULL,`categoryID` varchar(50) DEFAULT NULL,`subject` varchar(50) DEFAULT NULL,`writer` varchar(50) DEFAULT NULL,`quillcontent` mediumtext DEFAULT NULL,`cover` text DEFAULT NULL,`clicked` int(11) DEFAULT NULL,`updateTime` datetime DEFAULT current_timestamp()) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;"
+        cursor = conn.cursor()
+        cursor.execute(createTableSQLcommand)
+        conn.commit()
+        cursor.close()
+
         for currentRow in range(1, sheet.max_row + 1):
-            insertSQLcommand = ""
-            
+            insertSQLcommand = "INSERT INTO `periodical` (`id`,`periodNumber`,`noYear`,`noMonth`,`categoryID`,`subject`,`writer`,`quillcontent`,`cover`,`clicked`,`updateTime`) VALUES ("
+            # quillcontent請使用quillTextConverter.php 配上content Table轉換
+
             for currentColumn in range(1, sheet.max_column + 1):
-                cellData = sheet.cell(row=currentRow, column=currentColumn).value
-                
-                if currentColumn == 1:
-                    print("id:", str(cellData))
+                cellData = sheet.cell(
+                    row=currentRow, column=currentColumn).value
+
+                if(currentRow == 1):
+                    print("第" + str(currentColumn) + "個欄位名稱為：" + str(cellData))
+                else:
+                    if currentColumn == 1:
+                        print("id:", str(cellData))
+                        insertSQLcommand += str(cellData) + ","
+
+                    if currentColumn >= 2 and currentColumn <= 7:
+                        # periodNumber, noYear, noMonth, categoryID, subject, writer
+                        insertSQLcommand += "'" + str(cellData) + "',"
+
+                    if currentColumn == 13:
+                        # First photo as Cover image
+                        insertSQLcommand += "'" + str(cellData) + "',"
+                    
+                    if currentColumn == 32:
+                        # clicked
+                        insertSQLcommand += str(cellData) + ","
+
+                    if currentColumn == 38:
+                        # updateTime
+                        insertSQLcommand += "'" + str(cellData) + "')"
+
+                        # 已讀取完畢該列所有資料，執行插入資料庫
+                        cursor = conn.cursor()
+                        cursor.execute(insertSQLcommand)
+                        cursor.close()
+                        conn.commit()
+                    
 
         print("成功轉換為periodical資料表!")
 
