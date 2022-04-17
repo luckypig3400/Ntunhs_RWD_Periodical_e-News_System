@@ -73,6 +73,7 @@ else:
         for currentRow in range(1, sheet.max_row + 1):
             insertSQLcommand = "INSERT INTO `periodical` (`id`,`periodNumber`,`noYear`,`noMonth`,`categoryID`,`subject`,`writer`,`cover`,`clicked`,`updateTime`) VALUES ("
             # quillcontent請使用quillTextConverter.php 配上content Table轉換
+            coverImage = ""
 
             for currentColumn in range(1, sheet.max_column + 1):
                 cellData = sheet.cell(
@@ -91,10 +92,14 @@ else:
                             cellData = "NULL"
                         insertSQLcommand += "'" + str(cellData) + "',"
 
-                    if currentColumn == 13:
+                    if currentColumn >= 13 and currentColumn <= 15:
                         # First photo as Cover image
-                        insertSQLcommand += "'" + str(cellData) + "',"
-                    
+                        if str(cellData) != "None" and coverImage == "":
+                            coverImage = str(cellData)
+
+                        if currentColumn == 15: # Last photo in this article
+                            insertSQLcommand += "'" + coverImage + "',"
+
                     if currentColumn == 32:
                         # clicked
                         insertSQLcommand += str(cellData) + ","
@@ -108,9 +113,9 @@ else:
                         cursor.execute(insertSQLcommand)
                         cursor.close()
                         conn.commit()
-                    
 
         print("成功轉換為periodical資料表!")
+        print("請記得使用quillTextConverter.php 配上已轉換過的content Table以生成quillcontent欄位資料")
 
     else:
         createTableSQLcommand = "CREATE TABLE IF NOT EXISTS `content` (`Serial` int(11) NOT NULL,`NoID` varchar(50) DEFAULT NULL,`NoYear` varchar(4) DEFAULT NULL,`NoMonth` varchar(2) DEFAULT NULL,`NoClass` varchar(50) DEFAULT NULL,`Subject` varchar(50) DEFAULT NULL,`Writer` varchar(50) DEFAULT NULL,`StarID` int(11) DEFAULT NULL,`Email` varchar(50) DEFAULT NULL,`Content1` mediumtext DEFAULT NULL,`Content2` mediumtext DEFAULT NULL,`Content3` mediumtext DEFAULT NULL,`Photo1` varchar(50) DEFAULT NULL,`Photo2` varchar(50) DEFAULT NULL,`Photo3` varchar(50) DEFAULT NULL,`Alt1` varchar(50) DEFAULT NULL,`Alt2` varchar(50) DEFAULT NULL,`Alt3` varchar(50) DEFAULT NULL,`Temp1` varchar(15) DEFAULT NULL,`Temp2` varchar(15) DEFAULT NULL,`Temp3` varchar(15) DEFAULT NULL,`TempColor` varchar(50) DEFAULT NULL,`Link1` mediumtext DEFAULT NULL,`Link2` mediumtext DEFAULT NULL,`Link3` mediumtext DEFAULT NULL,`Linkloc1` varchar(50) DEFAULT NULL,`Linkloc2` varchar(50) DEFAULT NULL,`Linkloc3` varchar(50) DEFAULT NULL,`Linkalt1` varchar(50) DEFAULT NULL,`Linkalt2` varchar(50) DEFAULT NULL,`Linkalt3` varchar(50) DEFAULT NULL,`Counter` int(11) DEFAULT NULL,`Memo1` varchar(50) DEFAULT NULL,`Memo2` varchar(50) DEFAULT NULL,`Memo3` varchar(50) DEFAULT NULL,`Memo4` varchar(50) DEFAULT NULL,`Memo5` varchar(50) DEFAULT NULL,`TheDate` datetime DEFAULT NULL) CHARSET=utf8mb4;"
