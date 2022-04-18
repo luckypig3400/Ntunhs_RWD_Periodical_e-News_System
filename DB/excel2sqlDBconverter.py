@@ -9,7 +9,7 @@ config = {
     "host": "localhost",
     "user": "root",
     "password": "",
-    "db": "periodicaldirectConverter"
+    "db": "periodical"
 }
 
 try:
@@ -175,5 +175,6 @@ else:
                             cellData = cellData.replace("'", "\\'")
                             insertSQLcommand += "'" + cellData + "',"
 
+conn.commit()
 conn.close()
 print("Connection closed.")
