@@ -2,6 +2,7 @@
     "name": "myapp",
     "version": "0.1.0",
     "private": true,
+	"homepage": "http://localhost/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/",
     "dependencies": {
         "@botom/quill-resize-module": "^2.0.0",
         "@date-io/date-fns": "^1.3.13",

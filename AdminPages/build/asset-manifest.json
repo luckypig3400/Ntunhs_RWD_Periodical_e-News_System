@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/static/css/main.b472b2ac.css",
+    "main.js": "/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/static/js/main.26387c82.js",
+    "index.html": "/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/index.html",
+    "main.b472b2ac.css.map": "/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/static/css/main.b472b2ac.css.map",
+    "main.26387c82.js.map": "/Ntunhs_RWD_Periodical_e-News_System/AdminPages/build/static/js/main.26387c82.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b472b2ac.css",
+    "static/js/main.26387c82.js"
+  ]
+}
