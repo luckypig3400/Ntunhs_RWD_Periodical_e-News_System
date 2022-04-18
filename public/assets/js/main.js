@@ -61,6 +61,12 @@ function changeHeaderLinksActive() {
   if (url_string.search("index.php") != -1) {
     // https://www.w3schools.com/jsref/jsref_search.asp
     console.log("We are in the index page");
+  } else if (url_string.search("search.php") != -1) {
+    indexLink = document.getElementById('indexLink');
+    indexLink.classList.remove('active');
+
+    searchLink = document.getElementById('searchLink');
+    searchLink.classList.add('active');
   } else {
     indexLink = document.getElementById('indexLink');
     indexLink.classList.remove('active');
@@ -80,26 +86,20 @@ function changeHeaderLinksActive() {
 
 changeHeaderLinksActive();
 
-var currentCarousel = -1;
-function changeIndexBGimage() {
-  // 已放置於new Swiper()內使用
+function changeIndexBGimage(currentSlideRealIndex = 0) {
+  // Asign default value for function parameter:
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters
 
-  // var heroAfterStyle = document.createElement("style");
   var heroAfterStyle = document.getElementById("heroAfterStyle");
 
-  currentCarousel += 1;
-  if (currentCarousel >= 3) {
-    // only 0 1 2 are available
-    currentCarousel = 0;
-  }
   if (heroAfterStyle != null) {
-    currentImage = document.getElementById('carouselStyle' + currentCarousel).innerHTML;
+    currentImage = document.getElementById('carouselStyle' + currentSlideRealIndex).innerHTML;
     if (currentImage != null) {
       // console.log(currentImage);
       heroAfterStyle.innerHTML = currentImage;
     } else {
       heroAfterStyle.innerHTML = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" +
-        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " +
+        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " +
         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" +
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     }
@@ -203,6 +203,11 @@ function changeIndexBGimage() {
     select('#navbar').classList.toggle('navbar-mobile')
     this.classList.toggle('bi-list')
     this.classList.toggle('bi-x')
+
+    var otherCategoriesDL = document.getElementById('otherCategoriesDropdownList');
+    if(otherCategoriesDL != null){
+      otherCategoriesDL.classList.toggle('dropdown-active');
+    }
   })
 
   /**
@@ -265,7 +270,32 @@ function changeIndexBGimage() {
       type: 'bullets',
       clickable: true
     }
+  });
+
+  /**
+  * Index Hero slider
+  */
+  const indexCarousel = new Swiper('.index-carousel', {
+    speed: 1500,
+    loop: true,
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    // https://swiperjs.com/get-started#initialize-swiper
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev'
+    }
   }, changeIndexBGimage());
+
+  indexCarousel.on('slideChange', function () {
+    // https://stackoverflow.com/questions/50244532/how-can-i-get-the-index-of-the-current-slide-when-the-slide-is-changed
+    console.log('indexSwiper real index:' + indexCarousel.realIndex);
+
+    changeIndexBGimage(indexCarousel.realIndex);
+  });
+
 
   /**
    * Porfolio isotope and filter

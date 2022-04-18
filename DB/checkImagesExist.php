@@ -23,17 +23,17 @@ try {
         $photo3 = $row['Photo3'];
 
         if ($photo1 != null) {
-            if (!file_exists("../periodical_data/$photo1")) {
+            if (!file_exists("../public/image/$photo1")) {
                 echo "<b>ID:$serial Error:</b> $photo1 does not exist in data folder<br>";
             }
         }
         if ($photo2 != null) {
-            if (!file_exists("../periodical_data/$photo2")) {
+            if (!file_exists("../public/image/$photo2")) {
                 echo "<b>ID:$serial Error:</b> $photo2 does not exist in data folder<br>";
             }
         }
         if ($photo2 != null) {
-            if (!file_exists("../periodical_data/$photo3")) {
+            if (!file_exists("../public/image/$photo3")) {
                 echo "<b>ID:$serial Error:</b> $photo3 does not exist in data folder<br>";
             }
         }

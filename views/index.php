@@ -14,7 +14,7 @@ require_once("./partials/head.php");
     require_once("../controller/simplifyArticleContent.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
@@ -22,16 +22,17 @@ require_once("./partials/head.php");
 
     <!-- ======= 首頁頭條報導輪播區 ======= -->
     <section id="hero" class="d-flex justify-cntent-center align-items-center">
-        <div id="heroCarousel" class="container carousel carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <div id="heroCarousel" class="container index-carousel swiper">
 
             <?php
+            echo '<div class="swiper-wrapper">';
             $carouselArticles = fetchIndexCarouselArticleList(getPeriodParam());
 
             for ($i = 0; $i < 3; $i++) {
                 if ($i == 0)
-                    echo '<!-- Single Slide --><div class="carousel-item active"><div class="carousel-container">';
+                    echo '<!-- Single Slide --><div class="swiper-slide"><div class="carousel-container">';
                 else
-                    echo '<!-- Single Slide --><div class="carousel-item"><div class="carousel-container">';
+                    echo '<!-- Single Slide --><div class="swiper-slide"><div class="carousel-container">';
 
                 if ($i >= sizeof($carouselArticles)) {
                     echo '<h2 class="animate__animated animate__fadeInDown">敬請期待本期更多精采文章</h2>';
@@ -41,19 +42,25 @@ require_once("./partials/head.php");
 
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
                         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
                 } else {
-                    echo '<h2 class="animate__animated animate__fadeInDown">' . $carouselArticles[$i]["subject"] . '</h2>';
+                    // https://stackoverflow.com/questions/9393885/how-to-replace-multiple-items-from-a-text-string-in-php
+                    $subjectSplitter = [",", "、", "，", "：", ":", "（", "(", "「", "」", "－", " "];
+                    $replacedWords = [",<br>", "、<br>", "，<br>", "：<br>", ":<br>", "<br>（", "<br>(", "<br>「", "」<br>", "－<br>", "<br>"];
+
+                    echo '<h2 class="animate__animated animate__fadeInDown">' .
+                        str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';
+
                     echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
                     echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
 
                     // 以下解析該文章的圖片，取第一張圖片放到隱藏的<div>(div要給id)
                     // 供給js讀取該報導的<div>並於輪播圖更新時放到<style>裡面
-                    $articelPhotos = $carouselArticles[$i]["photo"];
+                    $articelPhotos = $carouselArticles[$i]["cover"];
                     $pLinks = explode(",", $articelPhotos); // split string by ","
                     $pLink = "";
                     for ($j = 0; $j < count($pLinks); $j++) {
@@ -62,13 +69,13 @@ require_once("./partials/head.php");
                             $pLink =  "../public/assets/img/ntunhs-frontDoor2.png";
                         } else if ($pLinks[$j] != "") {
                             $pLink = $pLinks[$j];
-                            $pLink =  "../periodical_data/$pLink";
+                            $pLink =  "../public/image/$pLink";
                             break; // only show the first photo
                         }
                     }
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
-                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), " .
+                        "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") center center no-repeat;background-size: cover;";
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
@@ -76,16 +83,19 @@ require_once("./partials/head.php");
                         echo "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                 }
             }
-
+            echo '</div>';
             ?>
 
-            <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+            <!-- <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
             </a>
-
             <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
                 <span class="carousel-control-next-icon bx bx-chevron-right" aria-hidden="true"></span>
-            </a>
+            </a> -->
+
 
         </div>
     </section><!-- 首頁頭條報導輪播區 -->
@@ -121,7 +131,7 @@ require_once("./partials/head.php");
                             echo "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                         } else {
                             // split string by ","
-                            $photoLinks = explode(",", $latestArticle[0]["photo"]);
+                            $photoLinks = explode(",", $latestArticle[0]["cover"]);
                             $photoLink = "";
                             for ($i = 0; $i < count($photoLinks); $i++) {
                                 if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
@@ -129,7 +139,7 @@ require_once("./partials/head.php");
                                     $photoLink =  "<    img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
-                                    $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
+                                    $photoLink =  "<img src=\"../public/image/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
                                     break; // only show the first photo
                                 }
                             }
@@ -146,7 +156,7 @@ require_once("./partials/head.php");
         <section class="features">
             <div class="container">
                 <div class="section-title">
-                    <h2>本期所有文章蓋覽</h2>
+                    <h2>本期所有文章概覽</h2>
                 </div>
             </div>
         </section><!-- 首頁各區塊標題 -->
@@ -160,7 +170,7 @@ require_once("./partials/head.php");
                     $articles = fetchArticleList(getPeriodParam(), "");
 
                     foreach ($articles as $article) {
-                        $photoLinks = explode(",", $article["photo"]); // split string by ","
+                        $photoLinks = explode(",", $article["cover"]); // split string by ","
                         $photoLink = "";
                         for ($i = 0; $i < count($photoLinks); $i++) {
                             if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
@@ -168,7 +178,7 @@ require_once("./partials/head.php");
                                 $photoLink =  "../public/assets/img/ntunhs-overview.jpg";
                             } else if ($photoLinks[$i] != "") {
                                 $photoLink = $photoLinks[$i];
-                                $photoLink =  "../periodical_data/$photoLink";
+                                $photoLink =  "../public/image/$photoLink";
                                 break; // only show the first photo
                             }
                         }
@@ -177,10 +187,9 @@ require_once("./partials/head.php");
                         echo '<div class="card"><div class="card-img">';
                         echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
                         echo '</div><div class="card-body">';
-                        echo '<h5 class="card-title"><a href="categoriesSummary.php?category=' . $article["categoryID"]
-                            . '&period=' . getPeriodParam() . '">' . $article["subject"] . '</a></h5>';
-                        echo '<div class="read-more"><a href="fullArticlePage.php?id=' . $article["id"] . '">';
-                        echo '<i class="bi bi-arrow-right"></i>前往查看完整報導</a></div></div></div></div>';
+                        echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
+                        echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看同類別報導</a></div></div></div></div>';
                     }
                     ?>
                 </div>
@@ -199,7 +208,7 @@ require_once("./partials/head.php");
                 <div class="testimonials-carousel swiper">
                     <div class="swiper-wrapper">
                         <div class="testimonial-item swiper-slide">
-                            <img src="../periodical_data/217/headline1-2.png" class="img-fluid" alt="">
+                            <img src="../public/image/217/headline1-2.png" class="img-fluid" alt="">
                             <h3>輪播區塊標題</h3>
                             <h4>輪播區塊副標題</h4>
                             <p>
