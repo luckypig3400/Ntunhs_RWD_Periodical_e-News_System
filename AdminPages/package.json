@@ -1,61 +1,13 @@
 {
-    "name": "myapp",
-    "version": "0.1.0",
-    "private": true,
-    "dependencies": {
-        "@botom/quill-resize-module": "^2.0.0",
-        "@date-io/date-fns": "^1.3.13",
-        "@date-io/date-fns-jalali": "^2.13.1",
-        "@emotion/react": "^11.8.1",
-        "@emotion/styled": "^11.8.1",
-        "@material-ui/core": "^4.12.3",
-        "@material-ui/icons": "^4.11.2",
-        "@mui/icons-material": "^5.4.2",
-        "@mui/lab": "^5.0.0-alpha.70",
-        "@mui/material": "^5.4.3",
-        "@mui/x-data-grid": "^5.5.1",
-        "@mui/x-data-grid-generator": "^5.5.1",
-        "@mui/x-data-grid-pro": "^5.5.1",
-        "@testing-library/jest-dom": "^5.16.1",
-        "@testing-library/react": "^12.1.2",
-        "@testing-library/user-event": "^13.5.0",
-        "ajax": "^0.0.4",
-        "antd": "^4.18.3",
-        "axios": "^0.26.0",
-        "config": "^3.3.7",
-        "confirm": "^0.1.1",
-        "date-fns": "^2.28.0",
-        "js-cookie": "^3.0.1",
-        "numeral": "^2.0.6",
-        "prop-types": "^15.8.1",
-        "quill": "^1.3.7",
-        "quill-upload": "^0.0.7-rc.1",
-        "react": "^17.0.0",
-        "react-cropper": "^2.1.8",
-        "react-dom": "^17.0.0",
-        "react-icons": "^4.3.1",
-        "react-img-carousel": "^2.1.1",
-        "react-ion-icon": "^4.0.0",
-        "react-quill": "^1.3.5",
-        "react-router-dom": "^6.2.2",
-        "react-scripts": "5.0.0",
-        "react-semantic-ui-datepickers": "^2.15.0",
-        "semantic-ui-css": "^2.4.1",
-        "semantic-ui-react": "^2.1.2",
-        "web-vitals": "^2.1.2"
-    },
+    "name": "ntunhs_rwd_periodical_e-news_system",
+    "version": "1.0.0",
+    "description": "Ntunhs_RWD_Periodical_e-News_System\r  北護RWD校刊系統\r  (前後端放置於不同分支，各分支獨立不干擾彼此)\r  測試或實際部署系統時，切換分支並複製該分支內的所有資料\r  另外放置於其他沒有git的資料夾內即可運行",
+    "main": "index.js",
     "scripts": {
-        "start": "set PORT=3080 && react-scripts start",
-        "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "dev": "nodemon server.js",
+        "start": "node server.js"
     },
-    "eslintConfig": {
-        "extends": [
-            "react-app",
-            "react-app/jest"
-        ]
-    },
+<<<<<<<< HEAD:AdminPages/package.json
     "browserslist": {
         "production": [
             ">0.2%",
@@ -67,5 +19,28 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+========
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/luckypig3400/Ntunhs_RWD_Periodical_e-News_System.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/luckypig3400/Ntunhs_RWD_Periodical_e-News_System/issues"
+    },
+    "homepage": "https://github.com/luckypig3400/Ntunhs_RWD_Periodical_e-News_System#readme",
+    "dependencies": {
+        "bcrypt": "^5.0.1",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "dotenv": "^10.0.0",
+        "express": "^4.17.2",
+        "express-fileupload": "^1.3.1",
+        "fs-extra": "^10.0.0",
+        "jsonwebtoken": "^8.5.1",
+        "mysql": "^2.18.1",
+        "nodemon": "^2.0.15"
+>>>>>>>> cacheForMerge--frontend_Admin:package.json
     }
 }

@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Alert, IconButton, Collapse, Button } from "@mui/material";
 import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
+import { createPost } from "../../axios/putAxios";
 const config = require("../../config/default.json");
 
 export default function CreatePostSendOnClick(props) {
@@ -11,28 +12,11 @@ export default function CreatePostSendOnClick(props) {
 
     var [renderMessage, setRenderMessage] = useState("");
 
-    const SendOnClick = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .post(`${config.apiURL}/api/post/`, {
-                periodNumber: props.periodNumber,
-                noYear: props.noYear,
-                noMonth: props.noMonth,
-                categoryID: props.categoryID,
-                writer: props.writer,
-                content: props.content,
-                subject: props.subject,
-            })
-            .then((response) => {
-                setOpen(true);
-                SetSeverity("success");
-                setRenderMessage("新增成功");
-            })
-            .catch((error) => {
-                setOpen(true);
-                SetSeverity("error");
-                setRenderMessage(JSON.parse(error.request.responseText).message);
-            });
+    const SendOnClick = async () => {
+        const response = await putPost(props);
+        setOpen(response.Open);
+        SetSeverity(response.Severity);
+        setRenderMessage(response.RenderMessage);
     };
 
     return (

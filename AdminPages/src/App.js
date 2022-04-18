@@ -10,7 +10,7 @@ import PageLayout from "./PageLayout";
 import Signout from "./component/Signout";
 import User from "./page/User";
 import CreateUser from "./page/CreateUser";
-
+import Bulletin from "./page/Bulletin";
 
 function App() {
     return (
@@ -24,6 +24,8 @@ function App() {
                 <Route path="/EditPost" element={<EditPost />} />
                 <Route path="/User" element={<User />} />
                 <Route path="/CreateUser" element={<CreateUser />} />
+                <Route path="/Startposts" element={<CreateUser />} />
+                <Route path="/Bulletin" element={<Bulletin />} />
                 <Route path="/Signout" element={<Signout />} />
             </Route>
 

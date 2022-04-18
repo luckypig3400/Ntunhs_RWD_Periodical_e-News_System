@@ -19,17 +19,23 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import SendIcon from "@mui/icons-material/Send";
+import { styled } from "@mui/material/styles";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import axios from "axios";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
+import { createPost } from "../axios";
+import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
+const imageURL = config.imageURL;
 
-const apiURL = config.apiURL;
+const Input = styled("input")({
+    display: "none",
+});
 
 function CreatePost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [totalcategory] = useState([{ name: "", id: "" }]);
+    const [totalcategory, setTotalcategory] = useState([]);
     const [postime, setPostime] = React.useState(
         `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`
     ); //預設時間
@@ -42,28 +48,24 @@ function CreatePost() {
     const [noYear, setNoYear] = useState(date.getFullYear());
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
+    const [cover, setCover] = useState("");
+    const [coverLink, setCoverLink] = useState("");
 
-    useEffect(() => {
-        axios
-            .all([
-                axios.get(`${apiURL}/api/post`),
-                axios.get(`${apiURL}/api/category`),
-            ])
-            .then(
-                axios.spread((data1, data2) => {
-                    const postResult = data1.data.results[0].periodNumber;
-                    const categoryResult = data2.data.results;
-                    //關聯post.categoryID
-                    categoryResult.forEach((item) => {
-                        totalcategory.push(item);
-                    });
-                    setPeriodNumber(postResult);
-                })
-            )
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        //關聯post.categoryID
+        const response = await createPost();
+        setTotalcategory(response.categoryResult);
+        setPeriodNumber(response.postResult);
     }, []);
+
+    const _onUpload = async (fd, resolve, type) => {
+        const response = await coverUpload(fd);
+        resolve(
+            `${imageURL}/${response}`,
+            setCover(response),
+            setCoverLink(`${imageURL}/${type}/${response}`)
+        );
+    };
 
     return (
         <>
@@ -152,6 +154,7 @@ function CreatePost() {
                         <Select
                             id="category"
                             label="category"
+                            value={categoryID}
                             onChange={(e) => setCategoryID(e.target.value)}
                         >
                             {totalcategory.map((name) => (
@@ -161,6 +164,62 @@ function CreatePost() {
                             ))}
                         </Select>
                     </FormControl>
+                    {cover ? (
+                        <>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<InsertPhotoIcon />}
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={(e) => {
+                                    window.open(coverLink, "_blank");
+                                }}
+                            >
+                                瀏覽封面"{cover}"
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                color="error"
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                onClick={() => {
+                                    setCover("");
+                                    setCoverLink("");
+                                }}
+                            >
+                                刪除封面
+                            </Button>
+                        </>
+                    ) : (
+                        <label htmlFor="icon-button-file">
+                            <Input
+                                accept="image/jpeg, image/png"
+                                id="icon-button-file"
+                                type="file"
+                                onChange={(file) => {
+                                    return new Promise((resolve, reject) => {
+                                        const fd = new FormData();
+                                        fd.append(
+                                            "image",
+                                            file.target.files[0]
+                                        );
+                                        _onUpload(fd, resolve, "image");
+                                    });
+                                }}
+                            />
+                            <Button
+                                variant="outlined"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<DriveFolderUploadIcon />}
+                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                            >
+                                上傳封面
+                            </Button>
+                        </label>
+                    )}
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -190,10 +249,12 @@ function CreatePost() {
                         writer={writer}
                         content={content}
                         subject={subject}
+                        cover={cover}
                     />
                 </Stack>
             </div>
         </>
     );
 }
+
 export default CreatePost;

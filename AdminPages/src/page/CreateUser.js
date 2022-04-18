@@ -1,15 +1,7 @@
-import React, { useState, useEffect } from "react";
-import {
-    FormControl,
-    TextField,
-    Stack,
-    Alert,
-    IconButton,
-    Button,
-    Collapse,
-    NativeSelect,
-} from "@mui/material";
+import React, { useState } from "react";
+import { TextField, Button } from "@mui/material";
 import axios from "axios";
+import { createUser } from "../axios/putAxios";
 const config = require("../config/default.json");
 const apiURL = config.apiURL;
 
@@ -20,20 +12,7 @@ const CreateUser = () => {
         } else if (password1 !== password2) {
             alert("密碼驗證不相同");
         } else {
-            axios.defaults.withCredentials = true;
-            axios
-            .post(`${apiURL}/auth/register`, {
-                username: userName,
-                name:name,
-                password:password1
-            })
-            .then((response) => {
-                console.log(response);
-                window.location.href = `/User`;
-            })
-            .catch((error) => {
-                console.log(error.request);
-            });
+            createUser(userName, name, password1);
         }
     }
     const [name, setName] = useState("");

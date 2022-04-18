@@ -3,7 +3,7 @@ import { Quill } from "react-quill";
 import ResizeModule from "@botom/quill-resize-module";
 import axios from "axios";
 import { ImageHandler, VideoHandler, AttachmentHandler } from "quill-upload";
-const config = require('../../config/default.json')
+const config = require("../../config/default.json");
 
 const apiURL = config.apiURL;
 //提供Quill套件image、video改變大小用
@@ -11,7 +11,6 @@ Quill.register("modules/resize", ResizeModule);
 Quill.register("modules/imageHandler", ImageHandler);
 Quill.register("modules/videoHandler", VideoHandler);
 Quill.register("modules/attachmentHandler", AttachmentHandler);
-
 
 // Custom Undo button icon component for Quill editor. You can import it directly
 // from 'quill/assets/icons/undo.svg' but I found that a number of loaders do not
@@ -91,20 +90,19 @@ export const modules = {
     },
     videoHandler: {
         upload: (file) => {
-            // return a Promise that resolves in a link to the uploaded image
             return new Promise((resolve) => {
                 const fd = new FormData();
                 fd.append("video", file);
-                _onUpload(fd, resolve,'video');
+                _onUpload(fd, resolve, "video");
             });
         },
     },
     imageHandler: {
         upload: (file) => {
-            return new Promise((resolve,reject) => {
+            return new Promise((resolve) => {
                 const fd = new FormData();
                 fd.append("image", file);
-                _onUpload(fd, resolve,'image');
+                _onUpload(fd, resolve, "image");
             });
         },
     },
@@ -201,14 +199,14 @@ export const QuillToolbar = () => (
     </div>
 );
 
-const _onUpload = async (fd, resolve,type) => {
-  axios.defaults.withCredentials = true;
-    const result = 
-    await axios.post(
-        `${apiURL}/api/upload/${type}`,fd
-    )
-    .catch(err=>console.log(err));
-    resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
+const _onUpload = async (fd, resolve, type) => {
+    axios.defaults.withCredentials = true;
+    const result = await axios
+        .post(`${apiURL}/api/upload/${type}`, fd)
+        .catch((err) => console.log(err));
+    await setTimeout(() => {
+        resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
+    }, 3000);
 };
 
 export default QuillToolbar;

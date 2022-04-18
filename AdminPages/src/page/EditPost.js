@@ -5,29 +5,38 @@ import "react-quill/dist/quill.snow.css";
 import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
 import {
     FormControl,
+    NativeSelect,
+    Select,
+    MenuItem,
     TextField,
+    Button,
     Stack,
     Alert,
     IconButton,
     Collapse,
-    NativeSelect,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
+import { styled } from "@mui/material/styles";
+import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
+import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 
 import axios from "axios";
 
+import { editPost } from "../axios";
+import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
+const imageURL = config.imageURL;
 const PostID = getQueryVariable("PostID");
 
 function EditPost() {
     var date = new Date();
     const [open, setOpen] = useState(false);
-    const [totalcategory] = useState([]);
+    const [totalcategory, setTotalcategory] = useState([]);
     const [postime, setPostime] = useState(""); //預設時間
 
     //存取表單輸入值
@@ -38,35 +47,39 @@ function EditPost() {
     const [noYear, setNoYear] = useState("");
     const [noMonth, setNoMonth] = useState("");
     const [content, setContent] = useState("");
+    const [cover, setCover] = useState("");
+    const [coverLink, setCoverLink] = useState("");
+    const Input = styled("input")({
+        display: "none",
+    });
 
-    useEffect(() => {
-        axios
-            .all([
-                axios.get(`${apiURL}/api/post/${PostID}`),
-                axios.get(`${apiURL}/api/category`),
-            ])
-            .then(
-                axios.spread((data1, data2) => {
-                    const categoryResult = data2.data.results;
-                    //關聯post.categoryID
-                    categoryResult.forEach((item) => {
-                        totalcategory.push(item);
-                    });
-
-                    setSubject(data1.data.subject);
-                    setContent(data1.data.quillcontent);
-                    setWriter(data1.data.writer);
-                    setPeriodNumber(data1.data.periodNumber);
-                    setCategoryID(data1.data.categoryID);
-                    setNoYear(data1.data.noYear);
-                    setNoMonth(data1.data.noMonth);
-                    setPostime(`${data1.data.noYear}/${data1.data.noMonth}`);
-                })
-            )
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        const response = await editPost(PostID);
+        setSubject(response.data1.data.subject);
+        setContent(response.data1.data.quillcontent);
+        setWriter(response.data1.data.writer);
+        setPeriodNumber(response.data1.data.periodNumber);
+        setCategoryID(response.data1.data.categoryID);
+        setNoYear(response.data1.data.noYear);
+        setNoMonth(response.data1.data.noMonth);
+        setPostime(
+            `${response.data1.data.noYear}/${response.data1.data.noMonth}`
+        );
+        setCover(response.data1.data.cover);
+        setCoverLink(
+            `http://localhost:3090/image/${response.data1.data.cover}`
+        );
+        setTotalcategory(response.categoryResult);
     }, []);
+
+    const _onUpload = async (fd, resolve, type) => {
+        const response = await coverUpload(fd);
+        resolve(
+            `${imageURL}/${response}`,
+            setCover(response),
+            setCoverLink(`${imageURL}/${type}/${response}`)
+        );
+    };
 
     return (
         <>
@@ -161,6 +174,62 @@ function EditPost() {
                             ))}
                         </NativeSelect>
                     </FormControl>
+                    {cover ? (
+                        <>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<InsertPhotoIcon />}
+                                sx={{ marginLeft: "20px" }}
+                                onClick={(e) => {
+                                    window.open(coverLink, "_blank");
+                                }}
+                            >
+                                瀏覽封面"{cover}"
+                            </Button>
+                            <Button
+                                variant="contained"
+                                component="span"
+                                aria-label="upload picture"
+                                color="error"
+                                sx={{ marginLeft: "20px" }}
+                                onClick={() => {
+                                    setCover("");
+                                    setCoverLink("");
+                                }}
+                            >
+                                刪除封面
+                            </Button>
+                        </>
+                    ) : (
+                        <label htmlFor="icon-button-file">
+                            <Input
+                                accept="image/jpeg, image/png"
+                                id="icon-button-file"
+                                type="file"
+                                onChange={(file) => {
+                                    return new Promise((resolve, reject) => {
+                                        const fd = new FormData();
+                                        fd.append(
+                                            "image",
+                                            file.target.files[0]
+                                        );
+                                        _onUpload(fd, resolve, "image");
+                                    });
+                                }}
+                            />
+                            <Button
+                                variant="outlined"
+                                component="span"
+                                aria-label="upload picture"
+                                endIcon={<DriveFolderUploadIcon />}
+                                sx={{ marginLeft: "20px" }}
+                            >
+                                上傳封面
+                            </Button>
+                        </label>
+                    )}
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
@@ -189,6 +258,7 @@ function EditPost() {
                         writer={writer}
                         content={content}
                         subject={subject}
+                        cover={cover}
                     />
                 </Stack>
             </div>

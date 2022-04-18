@@ -1,40 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { DataGrid, } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
-const config = require("../config/default.json");
-
-const apiURL = config.apiURL;
+import { getPostList } from "../axios";
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
-    const [category, setCategory] = useState([]);
     const [pageSize, setPageSize] = React.useState(10);
-    useEffect(() => {
-        axios
-            .all([
-                axios.get(`${apiURL}/api/post?limit=9119453`),
-                axios.get(`${apiURL}/api/category`),
-            ])
-            .then(
-                //關聯post.categoryID
-                axios.spread((data1, data2) => {
-                    const postResult = data1.data.results;
-                    const categoryResult = data2.data.results;
-                    postResult.forEach((item) => {
-                        item.categoryID = categoryResult.find(
-                            (category) => item.categoryID === category.id
-                        ).name;
-                    });
-                    postResult.forEach((item) => {
-                        item.posttime = `${item.noYear}-${item.noMonth}`;
-                    });
-                    setPosts(postResult);
-                    setCategory(categoryResult);
-                })
-            )
-            .catch((err) => {
-                console.log(err);
-            });
+    useEffect(async () => {
+        setPosts(await getPostList());
     }, []);
 
     const columns = [
