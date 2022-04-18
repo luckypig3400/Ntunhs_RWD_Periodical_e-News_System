@@ -1,2 +1,5 @@
 node_modules
-periodical_data
+
+# Move the original data in periodical_data into public/image
+public/image
+public/video
