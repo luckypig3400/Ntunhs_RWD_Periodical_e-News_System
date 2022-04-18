@@ -21,7 +21,7 @@ function blogArticleEntryBlock($in_singleArticle)
       $photoLink =  "<img src=\"../public/assets/img/No-Image.jpg\" class=\"img-fluid\">";
     } else if ($photoLinks[$i] != "") {
       $photoLink = $photoLinks[$i];
-      $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"img-fluid\">";
+      $photoLink =  "<img src=\"../public/image/$photoLink\" class=\"img-fluid\">";
       break; // only show the first photo
     }
   }

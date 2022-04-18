@@ -24,7 +24,7 @@ CREATE TABLE `periodical` (`id` int(11) NOT NULL,`periodNumber` varchar(50) DEFA
 -- 傾印資料表的資料 `periodical`
 --
 -- INSERT INTO `periodical` (`id`, `periodNumber`, `noYear`, `noMonth`, `categoryID`, `subject`, `writer`, `quillcontent`, `cover`, `clicked`, `updateTime`) VALUES
--- (1910, '216', '2021', '10', 'C02', '期刊文章測試', '撰文/學術服務組', '<p class=\"ql-align-center\"><img src=\"../periodical_data/00.7卷800.jpg\" alt=\"\"></p><p><br></p><p>測試</p><p><br></p>', '00.7卷800.jpg,,', 6, '2021-11-09 15:58:52');
+-- (1910, '216', '2021', '10', 'C02', '期刊文章測試', '撰文/學術服務組', '<p class=\"ql-align-center\"><img src=\"../public/image/00.7卷800.jpg\" alt=\"\"></p><p><br></p><p>測試</p><p><br></p>', '00.7卷800.jpg,,', 6, '2021-11-09 15:58:52');
 -- --------------------------------------------------------
 --
 -- 資料表結構 `user`

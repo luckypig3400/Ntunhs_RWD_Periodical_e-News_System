@@ -69,7 +69,7 @@ require_once("./partials/head.php");
                             $pLink =  "../public/assets/img/ntunhs-frontDoor2.png";
                         } else if ($pLinks[$j] != "") {
                             $pLink = $pLinks[$j];
-                            $pLink =  "../periodical_data/$pLink";
+                            $pLink =  "../public/image/$pLink";
                             break; // only show the first photo
                         }
                     }
@@ -139,7 +139,7 @@ require_once("./partials/head.php");
                                     $photoLink =  "<    img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
-                                    $photoLink =  "<img src=\"../periodical_data/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
+                                    $photoLink =  "<img src=\"../public/image/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
                                     break; // only show the first photo
                                 }
                             }
@@ -178,7 +178,7 @@ require_once("./partials/head.php");
                                 $photoLink =  "../public/assets/img/ntunhs-overview.jpg";
                             } else if ($photoLinks[$i] != "") {
                                 $photoLink = $photoLinks[$i];
-                                $photoLink =  "../periodical_data/$photoLink";
+                                $photoLink =  "../public/image/$photoLink";
                                 break; // only show the first photo
                             }
                         }
@@ -208,7 +208,7 @@ require_once("./partials/head.php");
                 <div class="testimonials-carousel swiper">
                     <div class="swiper-wrapper">
                         <div class="testimonial-item swiper-slide">
-                            <img src="../periodical_data/217/headline1-2.png" class="img-fluid" alt="">
+                            <img src="../public/image/217/headline1-2.png" class="img-fluid" alt="">
                             <h3>輪播區塊標題</h3>
                             <h4>輪播區塊副標題</h4>
                             <p>

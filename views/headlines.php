@@ -44,7 +44,7 @@ require_once("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../periodical_data/217/headline1-4.png" alt="" class="img-fluid">
+                <img src="../public/image/217/headline1-4.png" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -76,7 +76,7 @@ require_once("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../periodical_data/217/headline2-1.jpg" alt="" class="img-fluid">
+                <img src="../public/image/217/headline2-1.jpg" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
@@ -109,7 +109,7 @@ require_once("partials/head.php");
 
               <div class="entry-img text-center">
                 <br>
-                <img src="../periodical_data/217/headline3-1.png" alt="" class="img-fluid">
+                <img src="../public/image/217/headline3-1.png" alt="" class="img-fluid">
               </div>
 
               <h2 class="entry-title">
