@@ -63,10 +63,9 @@ function CreatePost() {
         resolve(
             `${imageURL}/${response}`,
             setCover(response),
-            setCoverLink(`${imageURL}/${type}/${response}`)
+            setCoverLink(`${imageURL}/image/${response}`)
         );
     };
-
     return (
         <>
             <div className="headerTitle">新增期刊</div>

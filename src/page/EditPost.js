@@ -22,19 +22,14 @@ import DatePicker from "@mui/lab/DatePicker";
 import { styled } from "@mui/material/styles";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
-
-import axios from "axios";
-
 import { editPost } from "../axios";
 import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
 const imageURL = config.imageURL;
-const PostID = getQueryVariable("PostID");
-
 function EditPost() {
-    var date = new Date();
+    const PostID = getQueryVariable();
     const [open, setOpen] = useState(false);
     const [totalcategory, setTotalcategory] = useState([]);
     const [postime, setPostime] = useState(""); //預設時間
@@ -55,6 +50,7 @@ function EditPost() {
 
     useEffect(async () => {
         const response = await editPost(PostID);
+        console.log(response.data1.data);
         setSubject(response.data1.data.subject);
         setContent(response.data1.data.quillcontent);
         setWriter(response.data1.data.writer);
@@ -66,9 +62,7 @@ function EditPost() {
             `${response.data1.data.noYear}/${response.data1.data.noMonth}`
         );
         setCover(response.data1.data.cover);
-        setCoverLink(
-            `http://localhost:3090/image/${response.data1.data.cover}`
-        );
+        setCoverLink(`${imageURL}/image/${response.data1.data.cover}`);
         setTotalcategory(response.categoryResult);
     }, []);
 
@@ -80,6 +74,7 @@ function EditPost() {
             setCoverLink(`${imageURL}/${type}/${response}`)
         );
     };
+
 
     return (
         <>
@@ -267,16 +262,10 @@ function EditPost() {
 }
 
 //獲取PostID
-function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-        var pair = vars[i].split("=");
-        if (pair[0] === variable) {
-            return pair[1];
-        }
-    }
-    return false;
+function getQueryVariable() {
+    var baseUrl = window.location.href; // You can also use document.URL
+    var koopId = baseUrl.substring(baseUrl.lastIndexOf("=") + 1);
+    return koopId;
 }
 
 export default EditPost;

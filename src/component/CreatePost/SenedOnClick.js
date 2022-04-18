@@ -13,7 +13,7 @@ export default function CreatePostSendOnClick(props) {
     var [renderMessage, setRenderMessage] = useState("");
 
     const SendOnClick = async () => {
-        const response = await putPost(props);
+        const response = await createPost(props);
         setOpen(response.Open);
         SetSeverity(response.Severity);
         setRenderMessage(response.RenderMessage);
