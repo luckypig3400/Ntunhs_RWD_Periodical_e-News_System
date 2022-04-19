@@ -20,7 +20,7 @@ function loginauth(name, password) {
         })
         .then((response) =>
             setTimeout(function () {
-                window.location.href = `/${config.hashRouter}/PostList`;
+                window.location.href = `./${config.hashRouter}/PostList`;
             }, 1000)
         )
         .catch((error) => {
