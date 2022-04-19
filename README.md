@@ -4,21 +4,38 @@
 
 ## How to deploy
 1. Clone or download this repo as Zip
+
 2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
-3. Unzip ```DB/DB_ver5....7z``` and import to MySQL Server
-4. Download [Periodical Data Ver1](http://gg.gg/ntunhsPeriodicalData) then unzip & place in the root of this repo folder
-5. Update ```.ENV``` file config
-6. Run ```npm install``` in project root folder & ```AdminPages/```
-7. In this folder(project root) run ```node server.js```
-8. In ```AdminPages/``` run ```npm start```
-9. Finished! Visit [localhost](http://localhost/Ntunhs_RWD_Periodical_e-News_System/) & [localhost:3080](http://localhost:3080/) to test ~
+
+3. Unzip ```DB/DB_ver8....7z``` and import to MySQL Server
+
+4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
+
+5. Update ```.ENV``` file config [可參考這裡](#about-env)
+
+6. Run ```npm install``` in **Project Root Folder** & ```AdminPages/```
+
+7. **Admin Pages Build method**:
+    
+    1. Inside ```AdminPages/``` folder run ```npm run build``` wait until build finished
+    2. Go to ```AdminPages/build/``` then move all files into ```AdminPages/```
+
+8. **Start Backend Server**:
+    1. In this Project Root Folder run ```node server.js```
+    2. (or you may use ```pm2 start server.js``` if you prefer to)
+
+9. **Finished! & Test** 
+    * **NewsPage:** Visit [localhost/```thisProjectFolderName/```](http://localhost/Ntunhs_RWD_Periodical_e-News_System/)
+    * **Admin Pages:** Visit [localhost/```thisProjectFolderName```/AdminPages/](http://localhost/Ntunhs_RWD_Periodical_e-News_System/AdminPages/)
 
 ---
 
 ## About .ENV
 ### 記得更新裡面的設定
-JWT_SECRECT_KEY=
-這行要記得更新
++ **WEB_ORIGIN_URL=** 這行記得改成Server的Domain Name
+(架在本機端80 port就用http://localhost)
++ **JWT_SECRECT_KEY=**
+這行一定要記得更新
 
 ---
 ## 雲端資料共用
