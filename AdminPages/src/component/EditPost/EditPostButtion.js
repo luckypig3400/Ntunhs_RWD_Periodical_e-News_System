@@ -48,10 +48,10 @@ export default function EditPostSendOnClick(props) {
                     if (message === true) {
                         alert("OK");
                         checkDropAlert(props.PostID);
-                        window.location.href = `/PostList`;
+                        window.location.href = `${config.hashRouter}/PostList`;
                     } else {
                         alert("取消刪除");
-                        window.location.href = `/PostList`;
+                        window.location.href = `${config.hashRouter}/PostList`;
                     }
                 }}
             >

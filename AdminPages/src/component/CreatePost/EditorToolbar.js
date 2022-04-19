@@ -206,7 +206,7 @@ const _onUpload = async (fd, resolve, type) => {
         .catch((err) => console.log(err));
     await setTimeout(() => {
         resolve(`http://localhost:3090/${type}/${result.data.fileName}`);
-    }, 3000);
+    }, 2000);
 };
 
 export default QuillToolbar;

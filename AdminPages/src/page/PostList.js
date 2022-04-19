@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import { getPostList } from "../axios";
+const config = require("../config/default.json");
 
 const PostList = () => {
     const [posts, setPosts] = useState([]);
@@ -46,7 +47,7 @@ const PostList = () => {
                             rowsPerPageOptions={[5, 10, 20]}
                             autoHeight={true}
                             onRowClick={(rowData) => {
-                                window.location.href = `/EditPost?PostID=${rowData.id}`;
+                                window.location.href = `/${config.hashRouter}/EditPost?PostID=${rowData.id}`;
                             }}
                         />
                     </div>

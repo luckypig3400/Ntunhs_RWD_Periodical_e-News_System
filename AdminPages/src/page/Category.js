@@ -213,7 +213,7 @@ function Category() {
                                     checkEditCategory(data.id, data.value);
                                 } else {
                                     alert("取消更新");
-                                    window.location.href = `/Category`;
+                                    window.location.href = `${config.hashRouter}/Category`;
                                 }
                             }}
                         />
