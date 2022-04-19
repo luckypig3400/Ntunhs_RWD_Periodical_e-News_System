@@ -30,6 +30,30 @@
 
 ---
 
+## Deploy於教務處Server上的小筆記
+
+### 避免跨域請求的BUG記得把後端透過Proxy轉到443 port
+
+Proxy設定範例(httpd.conf)
+```
+LoadModule proxy_http_module modules/mod_proxy_http.so
+ProxyPass /Periodical-Backend http://localhost:3090
+ProxyPassReverse /Periodical-Backend http://localhost:3090
+```
+#### [Xampp ReverseProxy啟用教學](https://dotblogs.com.tw/jses88001/2014/04/17/144782)
+
+### 然後記得更改前端config再重新build
+前端設定範例(AdminPages/src/config/default.json)
+```
+{
+    "hashRouter": "#",
+    "apiURL": "https://acadsys.ntunhs.edu.tw/Periodical-Backend/periodical",
+    "imageURL": "https://acadsys.ntunhs.edu.tw/Periodical-Backend/periodical"
+}
+```
+
+---
+
 ## About .ENV
 ### 記得更新裡面的設定
 + **WEB_ORIGIN_URL=** 這行記得改成Server的Domain Name
