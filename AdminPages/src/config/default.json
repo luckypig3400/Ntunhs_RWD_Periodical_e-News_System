@@ -1,3 +1,5 @@
 {
-    "apiURL": "http://localhost:3090/periodical"
+    "hashRouter": "#",
+    "apiURL": "http://localhost:3090/periodical",
+    "imageURL": "http://localhost:3090"
 }

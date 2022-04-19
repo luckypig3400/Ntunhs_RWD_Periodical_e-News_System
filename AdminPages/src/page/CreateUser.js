@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import { createUser } from "../axios/putAxios";
 const config = require("../config/default.json");
@@ -71,15 +72,17 @@ const CreateUser = () => {
                     }}
                 />
                 <div style={{ paddingTop: "20px" }}>
-                    <Button
-                        variant="contained"
-                        sx={{ width: "200px", height: "50px" }}
-                        onClick={() => {
-                            CreateUserPostToServer();
-                        }}
-                    >
-                        註冊新使用者
-                    </Button>
+                    <Link to="/User">
+                        <Button
+                            variant="contained"
+                            sx={{ width: "200px", height: "50px" }}
+                            onClick={() => {
+                                CreateUserPostToServer();
+                            }}
+                        >
+                            註冊新使用者
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </>

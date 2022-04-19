@@ -48,7 +48,6 @@ export const createUser = async (userName, name, password1) => {
             })
             .then((response) => {
                 console.log(response);
-                window.location.href = `/User`;
             })
             .catch((error) => {
                 console.log(error.request);
