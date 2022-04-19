@@ -16,7 +16,7 @@ const AuthVerify=()=>{
             })
             .catch((error) => {
                 console.log(error.response);
-                window.location.href = `/`
+                window.location.href = `./`
             });
     }, []);
     console.log(isLoggedIn);
