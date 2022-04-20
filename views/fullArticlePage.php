@@ -29,15 +29,15 @@ require_once("./partials/head.php");
                         <li><a href="index.php">首頁</a></li>
                         <li>
                             <a <?php
-                                echo "href=\"categoriesSummary.php$linkString\">";
                                 if (gettype($dataRow) == "array") {
+                                    echo "href=\"categoriesSummary.php?category=" . $dataRow[0]["categoryID"] . "\">";
                                     echo fetchCategoryWithID($dataRow[0]["categoryID"]);
                                     $articleSubject = $dataRow[0]["subject"];
                                 } else {
                                     echo "很抱歉您所尋訪的文章分類不存在";
                                     $articleSubject = "沒有文章";
                                 }
-                                ?> </a>
+                                ?></a>
                         </li>
                         <li>
                             <?php
