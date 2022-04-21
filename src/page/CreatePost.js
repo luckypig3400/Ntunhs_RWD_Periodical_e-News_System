@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import ReactQuill from "react-quill";
+import ReactQuill, { Quill } from "react-quill";
 import CreatePostSendOnClick from "../component/CreatePost/SenedOnClick";
 import "react-quill/dist/quill.snow.css";
-import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
+// import EditorToolbar, {
+//     modules,
+//     formats,
+// } from "../component/CreatePost/EditorToolbar";
+import { modules, formats } from "../component/Quill";
 import {
     FormControl,
     InputLabel,
@@ -66,6 +70,8 @@ function CreatePost() {
             setCoverLink(`${imageURL}/image/${response}`)
         );
     };
+
+    console.log(content);
     return (
         <>
             <div className="headerTitle">新增期刊</div>
@@ -223,12 +229,13 @@ function CreatePost() {
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
-                    <EditorToolbar />
+                    {/* <EditorToolbar /> */}
                     <ReactQuill
                         theme="snow"
                         value={content}
                         onChange={setContent}
                         modules={modules}
+                        placeholder="這邊寫入內容"
                     />
                 </div>
 
