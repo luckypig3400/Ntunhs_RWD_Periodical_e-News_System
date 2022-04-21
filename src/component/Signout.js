@@ -12,7 +12,7 @@ const Signout=()=>{
             .then((response) => {
                 console.log(response);
                 clearAllCookie()
-                window.location.href = `/`
+                window.location.href = `./`
             })
             .catch((error) => {
                 console.log(error.response);

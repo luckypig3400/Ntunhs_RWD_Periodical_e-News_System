@@ -20,7 +20,7 @@ function PageLayout() {
             })
             .catch((error) => {
                 console.log(error.response);
-                window.location.href = `/`;
+                window.location.href = `./`;
             });
     }, []);
 
