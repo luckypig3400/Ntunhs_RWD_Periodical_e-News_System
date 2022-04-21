@@ -5,7 +5,7 @@ import ReactQuill, { Quill } from "react-quill";
 //     modules,
 //     formats,
 // } from "../component/CreatePost/EditorToolbar";
-import { modules, formats } from "../component/Quill";
+import UploadButton, { modules, formats } from "../component/Quill";
 import {
     FormControl,
     NativeSelect,
@@ -227,6 +227,7 @@ function EditPost() {
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
+                    <UploadButton />
                     <ReactQuill
                         theme="snow"
                         value={content}

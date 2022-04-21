@@ -6,7 +6,7 @@ import "react-quill/dist/quill.snow.css";
 //     modules,
 //     formats,
 // } from "../component/CreatePost/EditorToolbar";
-import { modules, formats } from "../component/Quill";
+import UploadButton,{ modules, formats } from "../component/Quill";
 import {
     FormControl,
     InputLabel,
@@ -229,6 +229,7 @@ function CreatePost() {
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
+                    <UploadButton />
                     {/* <EditorToolbar /> */}
                     <ReactQuill
                         theme="snow"
