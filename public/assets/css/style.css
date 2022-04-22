@@ -40,6 +40,37 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   object-fit: cover;
 }
 
+/*------Form-Style-From-W3S-----------------------------------------------------*/
+/* https://www.w3schools.com/howto/howto_css_stacked_form.asp */
+/* Style inputs */
+input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+input[type=submit] {
+  width: 100%;
+  background-color: #68A4C4;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+input[type=submit]:hover {
+  background-color: #68a4c4ba;
+}
+/*------Form-Style-From-W3S-----------------------------------------------------*/
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
