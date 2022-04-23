@@ -29,7 +29,7 @@ function simplifyArticleContent($in_articleContent, $max_length)
   $splitedArr = explode("<br>", $simplifiedContent);
   foreach ($splitedArr as $p) {
     // echo "<b>" . strlen($p) . "New:</b>" . $p . "<br>";
-    if (strlen($p) > 199) {
+    if (strlen($p) > $max_length) {
       // https://stackoverflow.com/questions/10934711/truncating-chinese-text
       $simplifiedContent = mb_substr($p, 0, $max_length) . "......";
       break;

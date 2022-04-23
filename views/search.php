@@ -116,6 +116,8 @@ require_once("partials/head.php");
           echo '<div class="center"><h2>符合條件的資料筆數:' . count($searchResult) . "</h2></div>";
 
           if (count($searchResult) > 0) {
+            require_once("../controller/simplifyArticleContent.php");
+
             echo '<div class="center"><h2>搜尋結果</h2></div>';
             echo '<div class="center"><table class="table table-striped">';
             echo '<thead><tr><th>標題</th><th>內文摘要</th><th>期別</th><th>時間</th></tr></thead>';
@@ -124,7 +126,7 @@ require_once("partials/head.php");
             foreach ($searchResult as $result) {
               echo '<tr>';
               echo '<td><a href="fullArticlePage.php?id=' . $result['id'] . '">' . $result['subject'] . '</a></td>';
-              echo '<td>' . $result['quillcontent'] . '</td>';
+              echo '<td>' . simplifyArticleContent($result['quillcontent'], "999999") . '</td>';
               echo '<td>第' . $result['periodNumber'] . '期</td>';
               echo '<td>' . $result['updateTime'] . '</td>';
               echo '</tr>';
