@@ -33,7 +33,7 @@ export const modules = {
     },
     imageResize: {
         parchment: Quill.import("parchment"),
-        modules: ["Resize", "DisplaySize", "Toolbar"],
+        modules: ["Resize", "DisplaySize", ],
         handleStyles: {
             backgroundColor: "black",
             border: "none",
