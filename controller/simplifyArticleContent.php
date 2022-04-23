@@ -45,8 +45,8 @@ function simplifyArticleContent($in_articleContent, $max_length)
     $p = str_replace("<br>", "", $p);
     $p = str_replace("<br/>", "", $p);
     // make all HTML tag invalid
-    $simplifiedContent = str_replace("<", "", $simplifiedContent);
-    $simplifiedContent = str_replace(">", "", $simplifiedContent);
+    $p = str_replace("<", "", $p);
+    $p = str_replace(">", "", $p);
 
     if (strlen($p) + strlen($simplifiedContent) > $max_length) {
       // https://stackoverflow.com/questions/10934711/truncating-chinese-text
