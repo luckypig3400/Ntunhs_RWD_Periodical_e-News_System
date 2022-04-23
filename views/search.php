@@ -111,7 +111,8 @@ require_once("partials/head.php");
         echo "<b>查詢分類:</b>" . $_POST['searchCategory'] . "<br>";
         echo "<b>查詢期別:</b>" . $_POST['searchPeriod'] . "<br>";
 
-        if (removeSpecialCharacters($_POST['searchText']) != "") {
+        $cleanedSearchText = removeSpecialCharacters($_POST['searchText']);
+        if ($cleanedSearchText != "") {
           $searchResult = searchDatabase($_POST['searchText'], $_POST['searchCategory'], $_POST['searchPeriod']);
           echo '<div class="center"><h2>符合條件的資料筆數:' . count($searchResult) . "</h2></div>";
 
@@ -125,8 +126,22 @@ require_once("partials/head.php");
 
             foreach ($searchResult as $result) {
               echo '<tr>';
-              echo '<td><a href="fullArticlePage.php?id=' . $result['id'] . '">' . $result['subject'] . '</a></td>';
-              echo '<td>' . simplifyArticleContent($result['quillcontent'], "999999") . '</td>';
+              $hightlightedTitle = str_replace($cleanedSearchText, "<mark>$cleanedSearchText</mark>", $result['subject']);
+              echo '<td><a href="fullArticlePage.php?id=' . $result['id'] . '">' . $hightlightedTitle . '</a></td>';
+
+              $foundContent = simplifyArticleContent($result['quillcontent'], "999999999");
+              $firstFoundPosition = strpos($foundContent, $cleanedSearchText);
+
+              if ($firstFoundPosition != false) {
+                // 只顯示符合搜尋字串的內文的一小段
+                $foundContent = mb_substr($foundContent, $firstFoundPosition - 30, 60);
+                // https://www.php.net/manual/en/function.substr.php
+                $foundContent = str_replace($cleanedSearchText, "<mark>$cleanedSearchText</mark>", $foundContent);
+              } else {
+                $foundContent = mb_substr($foundContent, 0, 30);
+              }
+
+              echo '<td>' . $foundContent . '</td>';
               echo '<td>第' . $result['periodNumber'] . '期</td>';
               echo '<td>' . $result['updateTime'] . '</td>';
               echo '</tr>';
