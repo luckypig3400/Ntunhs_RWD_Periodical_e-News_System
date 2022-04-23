@@ -1,17 +1,10 @@
-import React, { useState } from "react";
 import { Quill } from "react-quill";
 import ImageResize from "quill-image-resize-module-react";
 import axios from "axios";
-import { Button, Input } from "@mui/material";
-import { styled } from "@mui/material/styles";
-//import { ImageHandler, VideoHandler, AttachmentHandler } from "quill-upload";
 const config = require("../config/default.json");
 const apiURL = config.apiURL;
 
 Quill.register("modules/imageResize", ImageResize);
-// Quill.register("modules/imageHandler", ImageHandler);
-// Quill.register("modules/videoHandler", VideoHandler);
-// Quill.register("modules/attachmentHandler", AttachmentHandler);
 
 var Image = Quill.import("formats/image");
 Image.className = "custom-class-to-image";
@@ -54,27 +47,9 @@ export const modules = {
             border: "none",
         },
     },
-    // videoHandler: {
-    //     upload: (file) => {
-    //         return new Promise((resolve) => {
-    //             const fd = new FormData();
-    //             fd.append("video", file);
-    //             _onUpload(fd, resolve, "video");
-    //         });
-    //     },
-    // },
-    // imageHandler: {
-    //     upload: (file) => {
-    //         return new Promise((resolve) => {
-    //             const fd = new FormData();
-    //             fd.append("image", file);
-    //             _onUpload(fd, resolve, "image");
-    //         });
-    //     },
-    // },
 };
 
-export const formats = [
+const formats = [
     "header",
     "bold",
     "italic",
@@ -90,94 +65,69 @@ export const formats = [
 ];
 
 function imageHandler() {
-    var range = this.quill.getSelection();
-    var value = prompt("please copy paste the image url here.");
-    if (value) {
-        this.quill.insertEmbed(range.index, "image", value, Quill.sources.USER);
-    }
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.click();
+
+    // Listen upload local image and save to server
+    input.onchange = async () => {
+        var range = this.quill.getSelection();
+        const file = input.files[0];
+        // file type is only image.
+        if (/^image\//.test(file.type)) {
+            var result = await _onUpload(file, "image");
+            console.log(result);
+            this.quill.insertEmbed(
+                range.index,
+                "image",
+                result,
+                Quill.sources.USER
+            );
+        } else {
+            console.warn("You could only upload images.");
+        }
+    };
 }
 
 function videoHandler() {
-    var range = this.quill.getSelection();
-    var value = prompt("please copy paste the video url here.");
-    if (value) {
-        this.quill.insertEmbed(range.index, "video", value, Quill.sources.USER);
-    }
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.click();
+    // Listen upload local image and save to server
+    input.onchange = async () => {
+        var range = this.quill.getSelection();
+        const file = input.files[0];
+        // file type is only image.
+        if (/^video\//.test(file.type)) {
+            var result = await _onUpload(file, "video");
+            console.log(result);
+            this.quill.insertEmbed(
+                range.index,
+                "video",
+                result,
+                Quill.sources.USER
+            );
+        } else {
+            console.warn("You could only upload images." + file.type);
+        }
+    };
 }
 
-const UploadButton = () => {
-    const Input = styled("input")({
-        display: "none",
-    });
-    return (
-        <>
-            <label htmlFor="tempImage">
-                <Input
-                    accept="image/jpeg, image/png"
-                    id="tempImage"
-                    type="file"
-                    onChange={(file) => {
-                        return new Promise((resolve, reject) => {
-                            const fd = new FormData();
-                            fd.append("image", file.target.files[0]);
-                            _onUpload(fd, resolve, "image");
-                        });
-                    }}
-                />
-                <Button
-                    variant="outlined"
-                    component="span"
-                    aria-label="upload picture"
-                >
-                    上傳圖片
-                </Button>
-            </label>
-            <label htmlFor="tempVideo">
-                <Input
-                    accept="video/*"
-                    id="tempVideo"
-                    type="file"
-                    onChange={(file) => {
-                        return new Promise((resolve, reject) => {
-                            const fd = new FormData();
-                            fd.append("image", file.target.files[0]);
-                            _onUpload(fd, resolve, "image");
-                        });
-                    }}
-                />
-                <Button
-                    variant="outlined"
-                    component="span"
-                    aria-label="upload picture"
-                >
-                    上傳影片
-                </Button>
-            </label>
-        </>
-    );
-};
-
-const _onUpload = async (fd, resolve, type) => {
+const _onUpload = async (file, type) => {
     axios.defaults.withCredentials = true;
-    const result = await axios({
-        method: "post",
-        url: `${apiURL}/api/upload/${type}`,
-        data: fd,
-    })
-        .then((response) => {
-            return response.data.fileName;
-        })
-        .catch((e) => {
+    const fd = new FormData();
+    fd.append(type, file);
+    return new Promise((resolve, reject) => {
+        try {
+            const axiosRes = axios
+                .post(`${apiURL}/api/upload/${type}`, fd)
+                .then((response) => {
+                    console.log(response.data);
+                    return `http://localhost:3090/${type}/${response.data.fileName}`;
+                });
+            resolve(axiosRes);
+        } catch (e) {
             console.log(e);
-        });
-    console.log(result);
-    await setTimeout(() => {
-        console.log(`http://localhost:3090/${type}/${result}`);
-        navigator.clipboard.writeText(
-            `http://localhost:3090/${type}/${result}`
-        );
-        resolve(`http://localhost:3090/${type}/${result}`);
-    }, 1000);
+        }
+    });
 };
-
-export default UploadButton;
