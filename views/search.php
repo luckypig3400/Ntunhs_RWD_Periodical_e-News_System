@@ -93,24 +93,35 @@ require_once("partials/head.php");
             <input type="submit" value="送出查詢">
           </form>
 
-        </div><!-- 搜尋欄區塊 -->
-
-      </div>
-
-      <div class="container" data-aos="fade-up">
-        <div class="col-lg-12 entries">
-          <div class="section-title">
-            <h2>搜尋結果</h2>
-          </div>
-
-          <?php
-          require_once("../model/searchDatabase.php");
-
-          searchDatabase($_POST['searchText'], $_POST['searchCategory'], $_POST['searchPeriod']);
-          ?>
-
         </div>
-      </div>
+      </div><!-- 搜尋欄區塊結尾 -->
+
+      <!-- 搜尋結果區塊 -->
+      <?php
+      require_once("../model/searchDatabase.php");
+
+      if (isset($_POST['searchText']) && isset($_POST['searchCategory']) && isset($_POST['searchPeriod'])) {
+        // 送出查詢才會產生查詢結果區塊
+        echo '
+            <div class="container" data-aos="fade-up">
+              <div class="sidebar col-lg-12 entries">
+                <div class="section-title"><h2>搜尋結果</h2></div>';
+
+        echo "<b>查詢關鍵字:</b>" . $_POST['searchText'] . "<br>";
+        echo "<b>查詢分類:</b>" . $_POST['searchCategory'] . "<br>";
+        echo "<b>查詢期別:</b>" . $_POST['searchPeriod'] . "<br>";
+
+        if (removeSpecialCharacters($_POST['searchText']) != "") {
+          $searchResult = searchDatabase($_POST['searchText'], $_POST['searchCategory'], $_POST['searchPeriod']);
+          echo "<h2>符合條件的資料筆數:" . count($searchResult) . "</h2>";
+        } else {
+          echo '<div class="center"><h2>請輸入搜尋文字</h2><b>請注意:標點符號等特殊字元會自動被移除</b></div>';
+        }
+
+        echo '</div></div>';
+      }
+      ?>
+      <!-- 搜尋結果區塊結尾 -->
 
     </section><!-- End Blog Section -->
 
