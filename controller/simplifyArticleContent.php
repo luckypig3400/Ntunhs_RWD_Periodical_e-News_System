@@ -25,14 +25,30 @@ function simplifyArticleContent($in_articleContent, $max_length)
   // remove <p> tags
   $simplifiedContent = str_replace("<p>", "", $simplifiedContent);
   $simplifiedContent = str_replace("</p>", "", $simplifiedContent);
+  // remove Table tags
+  preg_match_all("/<table.*>/", $simplifiedContent, $matches);
+  foreach ($matches as $match) {
+    $simplifiedContent = str_replace($match, "", $simplifiedContent);
+  }
+  $simplifiedContent = str_replace("</table>", "", $simplifiedContent);
+  $simplifiedContent = str_replace("<tr>", "", $simplifiedContent);
+  $simplifiedContent = str_replace("</tr>", "", $simplifiedContent);
+  $simplifiedContent = str_replace("<td>", "", $simplifiedContent);
+  $simplifiedContent = str_replace("</td>", "", $simplifiedContent);
   // now we can use <br> to check if the content is long enough to be a paragraph
   $splitedArr = explode("<br>", $simplifiedContent);
+
+  $simplifiedContent = ""; // reset to count the length
   foreach ($splitedArr as $p) {
-    // echo "<b>" . strlen($p) . "New:</b>" . $p . "<br>";
-    if (strlen($p) > $max_length) {
+    // After explode with <br>, remove the redundant <br> tags
+    $p = str_replace("<br>", "", $p);
+
+    if (strlen($p) + strlen($simplifiedContent) > $max_length) {
       // https://stackoverflow.com/questions/10934711/truncating-chinese-text
       $simplifiedContent = mb_substr($p, 0, $max_length) . "......";
       break;
+    } else {
+      $simplifiedContent .= mb_substr($p, 0, $max_length);
     }
   }
 
