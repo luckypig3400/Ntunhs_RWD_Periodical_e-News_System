@@ -9,6 +9,8 @@ require_once("partials/head.php");
 
   <?php
   require_once("partials/header.php");
+  require_once("../model/fetchCategories.php");
+  require_once("../model/fetchPeriodNumbers.php");
   ?>
 
   <main id="main">
@@ -48,32 +50,42 @@ require_once("partials/head.php");
             <h3 class="blog-title">選擇文章分類</h3>
             <!-- https://codepen.io/sora_12/pen/YzrBNog -->
             <div class="radio_container">
-              <input type="radio" name="radio" id="allCategory" checked>
+              <input type="radio" name="searchCategory" id="allCategory" value="all" checked>
               <label for="allCategory">全部分類</label>
-              <input type="radio" name="radio" id="C01">
-              <label for="C01">頭條新聞</label>
-              <input type="radio" name="radio" id="C02">
-              <label for="C02">特別報導</label>
-              <input type="radio" name="radio" id="C03">
-              <label for="C03">每月一書</label>
-              <input type="radio" name="radio" id="C04">
-              <label for="C04">學術特區</label>
-              <input type="radio" name="radio" id="C05">
-              <label for="C05">校園尚青</label>
-              <input type="radio" name="radio" id="C06">
-              <label for="C06">心靈立可白</label>
-              <input type="radio" name="radio" id="C07">
-              <label for="C07">業務報導</label>
+
+              <?php
+              $categories = fetchCategories();
+              foreach ($categories as $category) {
+                $id = $category["id"];
+                echo '<input type="radio" name="searchCategory" id="' . $id . '" value="' . $id . '">';
+                echo '<label for="' . $id . '">' . $category['name'] . '</label>';
+              }
+              ?>
+
+              <!-- <input type="radio" name="searchCategory" id="C03" value="C03">
+              <label for="C03">每月一書</label> -->
             </div>
             <br>
             <hr><br>
 
             <h3 class="blog-title">選擇文章期別</h3>
-            <select id="country" name="country">
+            <select id="searchPeriodSelectBox" name="searchPeriod">
               <option value="all">在所有期別內搜索</option>
-              <option value="219">第219期</option>
-              <option value="218">第218期</option>
-              <option value="217">第217期</option>
+
+              <?php
+              $periodNumbersString = fetchPeriodNumbers();
+              $periodNumbers = array();
+              foreach ($periodNumbersString as $pn) {
+                array_push($periodNumbers, (int)$pn['periodNumber']);
+              }
+
+              sort($periodNumbers);
+              for ($i = count($periodNumbers) - 1; $i >= 0; $i--) {
+                echo '<option value="' . $periodNumbers[$i] . '">第' . $periodNumbers[$i] . '期</option>';
+              }
+              ?>
+
+              <!-- <option value="219">第219期</option> -->
             </select>
 
             <br><br><br>
