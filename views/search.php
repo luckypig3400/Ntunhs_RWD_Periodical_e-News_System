@@ -32,6 +32,7 @@ require_once("partials/head.php");
 
     <!-- ======= Blog Section ======= -->
     <section id="blog" class="blog">
+
       <!-- 搜尋欄區塊 -->
       <div class="container" data-aos="fade-up">
 
@@ -42,7 +43,7 @@ require_once("partials/head.php");
           </div>
 
           <!-- https://www.w3schools.com/howto/howto_css_stacked_form.asp -->
-          <form class="searchForm" action="">
+          <form class="searchForm" action="" method="POST">
             <h3 class="blog-title">輸入搜索文字</h3>
             <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，將為您於指定範圍內搜索符合的內文或標題"></textarea>
             <hr><br>
@@ -94,6 +95,21 @@ require_once("partials/head.php");
 
         </div><!-- 搜尋欄區塊 -->
 
+      </div>
+
+      <div class="container" data-aos="fade-up">
+        <div class="col-lg-12 entries">
+          <div class="section-title">
+            <h2>搜尋結果</h2>
+          </div>
+
+          <?php
+          require_once("../model/searchDatabase.php");
+
+          searchDatabase($_POST['searchText'], $_POST['searchCategory'], $_POST['searchPeriod']);
+          ?>
+
+        </div>
       </div>
 
     </section><!-- End Blog Section -->
