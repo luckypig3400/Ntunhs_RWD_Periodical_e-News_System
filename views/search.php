@@ -36,9 +36,9 @@ require_once("partials/head.php");
         <div class="sidebar col-lg-12 entries">
 
           <!-- https://www.w3schools.com/howto/howto_css_stacked_form.asp -->
-          <form action="">
+          <form class="searchForm" action="">
             <h3 class="blog-title">文字搜尋</h3>
-            <input type="text" id="searchText" name="firstname" placeholder="Your name..">
+            <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，將為您於指定範圍內搜索符合的內文或標題"></textarea>
             <br><br>
             <h3 class="blog-title">文章分類</h3>
             <div class="sidebar-title categories tags">
