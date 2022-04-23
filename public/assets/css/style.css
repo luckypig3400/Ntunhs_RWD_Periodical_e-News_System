@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
-  background-color: lightgoldenrodyellow;
+  background-color: rgba(250, 250, 210, 0.369);
 }
 
 /* Style the submit button */
@@ -77,13 +77,13 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #cecece;
+  background-color: rgba(250, 250, 210, 0.69);
   width: 100%;
-  height: auto;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  border-radius: 9999px;
+  height:max-content;
+  border-radius: 6px;
   box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .searchForm input[type="radio"] {
@@ -101,14 +101,15 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   width: 100%;
   height: 100%;
   text-align: center;
-  border-radius: 9999px;
+  border-radius: 6px;
   overflow: hidden;
   transition: linear 0.3s;
   color: #6e6e6e;
+  padding: 15px;
 }
 
 input[type="radio"]:checked + label {
-  background-color: #1e90ff;
+  background-color: #68A4C4;
   color: #f1f3f5;
   font-weight: 900;
   transition: 0.3s;

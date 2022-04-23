@@ -35,13 +35,17 @@ require_once("partials/head.php");
 
         <div class="sidebar col-lg-12 entries">
 
+          <div class="section-title">
+            <h2>搜尋文章內容</h2>
+          </div>
+
           <!-- https://www.w3schools.com/howto/howto_css_stacked_form.asp -->
           <form class="searchForm" action="">
-            <h3 class="blog-title">文字搜尋</h3>
+            <h3 class="blog-title">輸入搜索文字</h3>
             <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，將為您於指定範圍內搜索符合的內文或標題"></textarea>
-            <br><br>
-            <h3 class="blog-title">文章分類</h3>
+            <hr><br>
 
+            <h3 class="blog-title">選擇文章分類</h3>
             <!-- https://codepen.io/sora_12/pen/YzrBNog -->
             <div class="radio_container">
               <input type="radio" name="radio" id="allCategory" checked>
@@ -61,9 +65,10 @@ require_once("partials/head.php");
               <input type="radio" name="radio" id="C07">
               <label for="C07">業務報導</label>
             </div>
-
             <br>
-            <h3 class="blog-title">選擇期別</h3>
+            <hr><br>
+
+            <h3 class="blog-title">選擇文章期別</h3>
             <select id="country" name="country">
               <option value="all">在所有期別內搜索</option>
               <option value="219">第219期</option>
@@ -71,20 +76,9 @@ require_once("partials/head.php");
               <option value="217">第217期</option>
             </select>
 
+            <br><br><br>
             <input type="submit" value="送出查詢">
           </form>
-
-          <h3 class="blog-title">選擇期別</h3>
-          <div class="sidebar-item tags">
-            <ul>
-              <li><a href="#">217</a></li>
-              <li><a href="#">216</a></li>
-              <li><a href="#">215</a></li>
-              <li><a href="#">214</a></li>
-              <li><a href="#">213</a></li>
-              <li><a href="#">212</a></li>
-            </ul>
-          </div><!-- End sidebar tags-->
 
         </div><!-- 搜尋欄區塊 -->
 
