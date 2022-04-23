@@ -41,15 +41,27 @@ require_once("partials/head.php");
             <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，將為您於指定範圍內搜索符合的內文或標題"></textarea>
             <br><br>
             <h3 class="blog-title">文章分類</h3>
-            <div class="sidebar-title categories tags">
-              <ul>
-                <li><a href="#">頭條新聞</a></li>
-                <li><a href="#">特別報導</a></li>
-                <li><a href="#">校園尚青</a></li>
-                <li><a href="#">心靈立可白</a></li>
-                <li><a href="#">業務報導</a></li>
-              </ul>
-            </div><!-- End sidebar categories-->
+
+            <!-- https://codepen.io/sora_12/pen/YzrBNog -->
+            <div class="radio_container">
+              <input type="radio" name="radio" id="allCategory" checked>
+              <label for="allCategory">全部分類</label>
+              <input type="radio" name="radio" id="C01">
+              <label for="C01">頭條新聞</label>
+              <input type="radio" name="radio" id="C02">
+              <label for="C02">特別報導</label>
+              <input type="radio" name="radio" id="C03">
+              <label for="C03">每月一書</label>
+              <input type="radio" name="radio" id="C04">
+              <label for="C04">學術特區</label>
+              <input type="radio" name="radio" id="C05">
+              <label for="C05">校園尚青</label>
+              <input type="radio" name="radio" id="C06">
+              <label for="C06">心靈立可白</label>
+              <input type="radio" name="radio" id="C07">
+              <label for="C07">業務報導</label>
+            </div>
+
             <br>
             <h3 class="blog-title">選擇期別</h3>
             <select id="country" name="country">

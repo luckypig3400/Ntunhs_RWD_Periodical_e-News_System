@@ -51,6 +51,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border: 1px solid #ccc;
   border-radius: 6px;
   box-sizing: border-box;
+  background-color: lightgoldenrodyellow;
 }
 
 /* Style the submit button */
@@ -70,6 +71,49 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   background-color: #68a4c4ba;
 }
 /*------Form-Style-From-W3S-----------------------------------------------------*/
+
+/* https://codepen.io/sora_12/pen/YzrBNog */
+.radio_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #cecece;
+  width: 100%;
+  height: auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  border-radius: 9999px;
+  box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+}
+
+.searchForm input[type="radio"] {
+  appearance: none;
+  display: none;
+}
+
+.radio_container label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 9999px;
+  overflow: hidden;
+  transition: linear 0.3s;
+  color: #6e6e6e;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #1e90ff;
+  color: #f1f3f5;
+  font-weight: 900;
+  transition: 0.3s;
+}
+
 
 /*--------------------------------------------------------------
 # Back to top button
