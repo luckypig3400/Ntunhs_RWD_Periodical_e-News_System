@@ -33,12 +33,93 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   font-family: "Roboto", sans-serif;
 }
 
+.center{
+  text-align: center;
+  align-items: center;
+}
+
 .cropImg{
   /* https://www.w3schools.com/css/css_rwd_images.asp */
   width: 100%;
   max-height: 569px;
   object-fit: cover;
 }
+
+/*------Form-Style-From-W3S-----------------------------------------------------*/
+/* https://www.w3schools.com/howto/howto_css_stacked_form.asp */
+/* Style inputs */
+.searchForm input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  background-color: rgba(250, 250, 210, 0.369);
+}
+
+/* Style the submit button */
+.searchForm input[type=submit] {
+  width: 100%;
+  background-color: #68A4C4;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Add a background color to the submit button on mouse-over */
+.searchForm input[type=submit]:hover {
+  background-color: #68a4c4ba;
+}
+/*------Form-Style-From-W3S-----------------------------------------------------*/
+
+/* https://codepen.io/sora_12/pen/YzrBNog */
+.radio_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgba(250, 250, 210, 0.69);
+  width: 100%;
+  height:max-content;
+  border-radius: 6px;
+  box-shadow: inset 0.5px 0.5px 2px 0 rgba(0, 0, 0, 0.15);
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.searchForm input[type="radio"] {
+  appearance: none;
+  display: none;
+}
+
+.radio_container label {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: inherit;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: linear 0.3s;
+  color: #6e6e6e;
+  padding: 15px;
+}
+
+input[type="radio"]:checked + label {
+  background-color: #68A4C4;
+  color: #f1f3f5;
+  font-weight: 900;
+  transition: 0.3s;
+}
+
 
 /*--------------------------------------------------------------
 # Back to top button
