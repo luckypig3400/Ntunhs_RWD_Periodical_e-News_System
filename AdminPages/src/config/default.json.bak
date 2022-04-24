@@ -1,0 +1,6 @@
+{
+    "hashRouter": "#",
+    "apiURL": "http://localhost:3090/periodical",
+    "imageURL": "http://localhost:3090",
+	"noteForBuild": "請根據Server環境設定，要解決跨域請求被阻擋可以使用ReverseProxy把後端.ENV設定的port(預設3090)反向代理至80port或是與前端相同的port"
+}
