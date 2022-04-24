@@ -34,7 +34,6 @@ export default function EditPostSendOnClick(props) {
                 endIcon={<SendIcon />}
                 onClick={() => {
                     SendOnClick();
-                    console.log(renderMessage);
                 }}
             >
                 Send

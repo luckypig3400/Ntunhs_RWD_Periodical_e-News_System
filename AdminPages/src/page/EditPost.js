@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import EditPostButtion from "../component/EditPost/EditPostButtion";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
-import EditorToolbar, { modules } from "../component/CreatePost/EditorToolbar";
+import ReactQuill, { Quill } from "react-quill";
+// import EditorToolbar, {
+//     modules,
+//     formats,
+// } from "../component/CreatePost/EditorToolbar";
+import { modules } from "../component/Quill";
 import {
     FormControl,
     NativeSelect,
-    Select,
-    MenuItem,
     TextField,
     Button,
     Stack,
@@ -28,6 +29,7 @@ const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
 const imageURL = config.imageURL;
+
 function EditPost() {
     const PostID = getQueryVariable();
     const [open, setOpen] = useState(false);
@@ -47,12 +49,9 @@ function EditPost() {
     const Input = styled("input")({
         display: "none",
     });
-
     useEffect(async () => {
         const response = await editPost(PostID);
-        console.log(response.data1.data);
         setSubject(response.data1.data.subject);
-        setContent(response.data1.data.quillcontent);
         setWriter(response.data1.data.writer);
         setPeriodNumber(response.data1.data.periodNumber);
         setCategoryID(response.data1.data.categoryID);
@@ -64,6 +63,7 @@ function EditPost() {
         setCover(response.data1.data.cover);
         setCoverLink(`${imageURL}/image/${response.data1.data.cover}`);
         setTotalcategory(response.categoryResult);
+        setContent(response.data1.data.quillcontent);
     }, []);
 
     const _onUpload = async (fd, resolve, type) => {
@@ -74,8 +74,6 @@ function EditPost() {
             setCoverLink(`${imageURL}/${type}/${response}`)
         );
     };
-
-
     return (
         <>
             <div className="headerTitle">編輯期刊-{PostID}</div>
@@ -229,12 +227,12 @@ function EditPost() {
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
-                    <EditorToolbar />
                     <ReactQuill
                         theme="snow"
                         value={content}
                         onChange={setContent}
                         modules={modules}
+                        placeholder="這邊寫入內容"
                     />
                 </div>
 
