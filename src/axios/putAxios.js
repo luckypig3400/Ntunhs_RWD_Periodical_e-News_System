@@ -144,3 +144,26 @@ export const deletePost = async (props) => {
         console.log(error);
     }
 };
+
+export const createBulletin = async (text) => {
+    try {
+        axios
+            .post(`${apiURL}/api/announcement`, {
+                text,
+            })
+            .then((response) => {
+                console.log(response);
+                window.location.reload();
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteBulletin = async (announcementID) => {
+    axios
+        .delete(`${apiURL}/api/announcement/${announcementID}`, announcementID)
+        .then((response) => {
+            window.location.reload();
+        });
+};

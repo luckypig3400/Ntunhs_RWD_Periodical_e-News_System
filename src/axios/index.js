@@ -98,3 +98,12 @@ export const editPost = async (PostID) => {
         console.log(error);
     }
 };
+
+export const getBulletin = async () => {
+    try {
+        const response = await axios.get(`${apiURL}/api/announcement`);
+        return response.data.results;
+    } catch (error) {
+        console.error(error);
+    }
+};

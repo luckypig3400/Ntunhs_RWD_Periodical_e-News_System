@@ -44,16 +44,6 @@ const Menu = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/StartPosts">
-                        <span className="icon">
-                            <div className="icons">
-                                <AiFillSound />
-                            </div>
-                        </span>
-                        <span className="title">熱門文章管理</span>
-                    </Link>
-                </li>
-                <li>
                     <Link to="/Bulletin">
                         <span className="icon">
                             <div className="icons">
