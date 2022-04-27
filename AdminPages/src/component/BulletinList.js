@@ -6,8 +6,15 @@ import ListItemText from "@mui/material/ListItemText";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 import IconButton from "@mui/material/IconButton";
+import { getBulletin } from "../axios/index.js";
+import {deleteBulletin} from "../axios/putAxios";
 
-const BulletinList = ({ setBulletin, bulletin }) => {
+const BulletinList = () => {
+    const [bulletin, setBulletin] = useState([]);
+    useEffect(async () => {
+        setBulletin(await getBulletin());
+    }, []);
+
     return (
         <Box>
             <List
@@ -16,26 +23,21 @@ const BulletinList = ({ setBulletin, bulletin }) => {
                     bgcolor: "background.paper",
                 }}
             >
-                {bulletin.map((value,index) => (
+                {bulletin.map((value) => (
                     <ListItem
-                        key={index}
+                        key={value.id}
                         disableGutters
                         secondaryAction={
                             <IconButton
                                 onClick={() => {
-                                    const newValue = (prev) =>
-                                        prev.filter(
-                                            (p) => p.value !== value.value
-                                        );
-                                    setBulletin(newValue);
+                                    deleteBulletin(value.id)
                                 }}
                             >
                                 <DeleteIcon />
                             </IconButton>
                         }
                     >
-                        <ListItemText primary={value.value} />
-                        {value.time}
+                        <ListItemText primary={value.text} />
                     </ListItem>
                 ))}
             </List>

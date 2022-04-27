@@ -15,11 +15,9 @@ function PageLayout() {
         axios
             .post(`${apiURL}/auth/verify`)
             .then((response) => {
-                console.log(response);
                 setIsLoggedIn(true);
             })
             .catch((error) => {
-                console.log(error.response);
                 window.location.href = `./`;
             });
     }, []);

@@ -58,7 +58,6 @@ export const createUser = async (userName, name, password1) => {
 };
 
 export const createPost = async (props) => {
-    const content = props.content.replace("class", "className");
     try {
         const response = await axios
             .post(`${config.apiURL}/api/post/`, {
@@ -67,7 +66,7 @@ export const createPost = async (props) => {
                 noMonth: props.noMonth,
                 categoryID: props.categoryID,
                 writer: props.writer,
-                content: content,
+                content: props.content,
                 subject: props.subject,
                 cover: props.cover,
             })
@@ -92,7 +91,6 @@ export const createPost = async (props) => {
 };
 
 export const editPost = async (props) => {
-    const content = props.content.replace("class", "className");
     try {
         const response = await axios
             .patch(`${apiURL}/api/post/${props.PostID}`, {
@@ -101,7 +99,7 @@ export const editPost = async (props) => {
                 noMonth: props.noMonth,
                 categoryID: props.categoryID,
                 writer: props.writer,
-                content: content,
+                content: props.content,
                 subject: props.subject,
                 cover: props.cover,
             })
@@ -143,4 +141,27 @@ export const deletePost = async (props) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const createBulletin = async (text) => {
+    try {
+        axios
+            .post(`${apiURL}/api/announcement`, {
+                text,
+            })
+            .then((response) => {
+                console.log(response);
+                window.location.reload();
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deleteBulletin = async (announcementID) => {
+    axios
+        .delete(`${apiURL}/api/announcement/${announcementID}`, announcementID)
+        .then((response) => {
+            window.location.reload();
+        });
 };

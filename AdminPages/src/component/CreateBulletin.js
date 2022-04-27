@@ -2,9 +2,15 @@ import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import { createBulletin } from "../axios/putAxios.js";
 
-const CreateBulletin = ({ setBulletin, bulletin }) => {
-    const [newBulletin, setNewBulletin] = useState({ value: "", time: "" });
+const CreateBulletin = () => {
+    const [newBulletin, setNewBulletin] = useState("");
+
+    const handleClick = () => {
+        createBulletin(newBulletin);
+    };
+
     return (
         <Box
             component="form"
@@ -22,10 +28,7 @@ const CreateBulletin = ({ setBulletin, bulletin }) => {
                 label="內容"
                 value={newBulletin.value}
                 onChange={(event) => {
-                    const time = new Date().toLocaleString("zh-TW", {
-                        timeZone: "Asia/Taipei",
-                    });
-                    setNewBulletin({ value: event.target.value, time: time });
+                    setNewBulletin(event.target.value);
                 }}
                 variant="outlined"
                 sx={{ width: "80%", marginRight: "2%" }}
@@ -35,8 +38,9 @@ const CreateBulletin = ({ setBulletin, bulletin }) => {
                 color="success"
                 sx={{ height: "100%", width: "18%" }}
                 onClick={() => {
-                    setBulletin((bulletin) => [...bulletin, newBulletin]);
-                    setNewBulletin({ value: "", time: "" });
+                    handleClick();
+                    // setBulletin((bulletin) => [...bulletin, newBulletin]);
+                    // setNewBulletin({ value: "", time: "" });
                 }}
             >
                 新增
