@@ -48,7 +48,7 @@ ProxyPassReverse /Periodical-Backend http://localhost:3090
 {
     "hashRouter": "#",
     "apiURL": "https://acadsys.ntunhs.edu.tw/Periodical-Backend/periodical",
-    "imageURL": "https://acadsys.ntunhs.edu.tw/Periodical-Backend/periodical"
+    "imageURL": "https://acadsys.ntunhs.edu.tw/Periodical-Backend"
 }
 ```
 
