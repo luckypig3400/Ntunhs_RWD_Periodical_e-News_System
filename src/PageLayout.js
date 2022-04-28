@@ -27,7 +27,7 @@ function PageLayout() {
             <Grid item xs={2}>
                 <Menu />
             </Grid>
-            <Grid item xs={9} style={{ paddingTop: "40px" }}>
+            <Grid item xs={10} style={{ paddingRight: "20px" }}>
                 <Outlet />
             </Grid>
         </Grid>
