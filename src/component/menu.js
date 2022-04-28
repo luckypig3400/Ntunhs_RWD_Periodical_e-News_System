@@ -1,5 +1,6 @@
-import { FiFilePlus, FiCopy, FiGrid, FiPower } from "react-icons/fi";
-import { AiOutlineUsergroupAdd,AiFillSound } from "react-icons/ai";
+import { FiFilePlus, FiCopy, FiGrid, FiPower,FiDatabase } from "react-icons/fi";
+import { AiOutlineUsergroupAdd, AiFillSound } from "react-icons/ai";
+import { BiNews } from "react-icons/bi";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -9,8 +10,9 @@ const Menu = () => {
             <ul>
                 <li>
                     <Link to="#">
-                        {/*<span className="icon"><div className="icons"><FiLayers/></div></span>*/}
-                        <span className="title">北護期刊後台管理</span>
+                        <span className="icon"><div className="icons"><BiNews/></div></span>
+                        <span className="logo">北護期刊後台管理</span>
+                        {/* <img className="logo" src={require("../img/Logo.png")} ></img> */}
                     </Link>
                 </li>
                 <li>

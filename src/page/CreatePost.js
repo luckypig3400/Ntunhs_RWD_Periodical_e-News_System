@@ -98,7 +98,7 @@ function CreatePost() {
                 <div style={{ paddingTop: "10px" }}>
                     <h3>輸入標題</h3>
                     <TextField
-                        sx={{ top: 10 }}
+                        sx={{ margin: "10px" }}
                         required
                         id="subject"
                         label="標題"
@@ -111,7 +111,7 @@ function CreatePost() {
                 <div style={{ paddingTop: "20px" }}>
                     <h3>輸入發文單位 / 期數 / 日期</h3>
                     <TextField
-                        sx={{ top: 10 }}
+                        sx={{ margin: "10px" }}
                         required
                         id="writer"
                         label="單位"
@@ -120,7 +120,7 @@ function CreatePost() {
                     />
                     <TextField
                         id="time"
-                        sx={{ top: 10, left: 10 }}
+                        sx={{ margin: "10px" }}
                         label="期數"
                         value={periodNumber}
                         onChange={(e) => {
@@ -140,7 +140,7 @@ function CreatePost() {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    sx={{ top: 10, left: 20 }}
+                                    sx={{ margin: "10px" }}
                                 />
                             )}
                         />
@@ -152,7 +152,7 @@ function CreatePost() {
                     <FormControl
                         required
                         variant="standard"
-                        sx={{ minWidth: 200 }}
+                        sx={{ minWidth: 200, margin: "10px" }}
                     >
                         <InputLabel id="postsperiodNumber">分類</InputLabel>
                         <Select
@@ -175,7 +175,7 @@ function CreatePost() {
                                 component="span"
                                 aria-label="upload picture"
                                 endIcon={<InsertPhotoIcon />}
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ margin: "10px" }}
                                 onClick={(e) => {
                                     window.open(coverLink, "_blank");
                                 }}
@@ -187,7 +187,7 @@ function CreatePost() {
                                 component="span"
                                 aria-label="upload picture"
                                 color="error"
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ margin: "10px" }}
                                 onClick={() => {
                                     setCover("");
                                     setCoverLink("");
@@ -218,7 +218,7 @@ function CreatePost() {
                                 component="span"
                                 aria-label="upload picture"
                                 endIcon={<DriveFolderUploadIcon />}
-                                sx={{ marginLeft: "20px", marginTop: "10px" }}
+                                sx={{ margin: "10px" }}
                             >
                                 上傳封面
                             </Button>
@@ -229,6 +229,7 @@ function CreatePost() {
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
                     <ReactQuill
+                        style={{ margin: "10px" }}
                         theme="snow"
                         value={content}
                         onChange={setContent}
