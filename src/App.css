@@ -39,8 +39,8 @@ body {
     height: 100%;
     background-color: var(--blue);
     border-left: 10px solid var(--blue);
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
     transition: 0.5s;
     overflow: hidden;
     box-shadow: 1px 3px 5px 3px #cccccc;

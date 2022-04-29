@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useCallback } from "react";
 import { Box, Button, Modal } from "@mui/material";
 import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
 import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { styled } from "@mui/material/styles";
+import Cropper from "react-easy-crop";
 
 import { coverUpload } from "../axios/onUpload";
 const config = require("../config/default.json");
@@ -13,7 +14,8 @@ const style = {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: "80%",
+    height: "80%",
     bgcolor: "background.paper",
     borderRadius: "10px",
     boxShadow: 24,
@@ -21,6 +23,12 @@ const style = {
 };
 
 const UploadCover = (props) => {
+    const [crop, setCrop] = useState({ x: 0, y: 0 });
+    const [zoom, setZoom] = useState(1);
+    const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+        console.log(croppedArea, croppedAreaPixels);
+    }, []);
+
     const Input = styled("input")({
         display: "none",
     });
@@ -37,6 +45,7 @@ const UploadCover = (props) => {
             props.setCoverLink(`${imageURL}/image/${response}`)
         );
     };
+
     return (
         <>
             {props.cover ? (
@@ -64,7 +73,7 @@ const UploadCover = (props) => {
                             props.setCoverLink("");
                         }}
                     >
-                        刪除封面
+                        變更封面
                     </Button>
                 </>
             ) : (
@@ -77,7 +86,16 @@ const UploadCover = (props) => {
                         aria-describedby="modal-modal-description"
                     >
                         <Box sx={style}>
-                            <label htmlFor="icon-button-file">
+                            <Cropper
+                                image={`https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp`}
+                                crop={crop}
+                                zoom={zoom}
+                                aspect={1 / 1}
+                                onCropChange={setCrop}
+                                onCropComplete={onCropComplete}
+                                onZoomChange={setZoom}
+                            />
+                            {/* <label htmlFor="icon-button-file">
                                 <Input
                                     accept="image/jpeg, image/png"
                                     id="icon-button-file"
@@ -104,7 +122,7 @@ const UploadCover = (props) => {
                                 >
                                     上傳封面
                                 </Button>
-                            </label>
+                            </label> */}
                         </Box>
                     </Modal>
                 </>
