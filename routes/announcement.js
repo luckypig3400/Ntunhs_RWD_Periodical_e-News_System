@@ -15,9 +15,10 @@ router
     })
     .post(async (req, res) => {
         try {
-            const { text } = req.body
-            const result = await ANNOUNCEMENT.create({ text })
-            return res.status(201).json({ id: result.insertId, text })
+            const { text,dateTime } = req.body
+            console.log(dateTime);
+            const result = await ANNOUNCEMENT.create({ text,dateTime })
+            return res.status(201).json({ id: result.insertId, text,dateTime })
         } catch (error) {
             return res.status(500).json({ error: error.message })
         }
