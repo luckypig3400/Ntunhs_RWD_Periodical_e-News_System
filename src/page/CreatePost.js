@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ReactQuill, { Quill } from "react-quill";
+import ReactQuill from "react-quill";
 import CreatePostSendOnClick from "../component/CreatePost/SenedOnClick";
 import "react-quill/dist/quill.snow.css";
 import { modules } from "../component/Quill";
@@ -19,14 +19,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import { styled } from "@mui/material/styles";
-import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { createPost } from "../axios";
-import { coverUpload } from "../axios/onUpload";
 import UploadCover from "../component/UploadCover";
-const config = require("../config/default.json");
-const imageURL = config.imageURL;
 
 function CreatePost() {
     var date = new Date();
