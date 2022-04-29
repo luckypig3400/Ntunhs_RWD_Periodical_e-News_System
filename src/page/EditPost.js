@@ -15,7 +15,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import { styled } from "@mui/material/styles";
 import { editPost } from "../axios";
 import UploadCover from "../component/UploadCover";
 const config = require("../config/default.json");
@@ -39,9 +38,6 @@ function EditPost() {
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
     const [coverLink, setCoverLink] = useState("");
-    const Input = styled("input")({
-        display: "none",
-    });
     useEffect(async () => {
         const response = await editPost(PostID);
         setSubject(response.data1.data.subject);
