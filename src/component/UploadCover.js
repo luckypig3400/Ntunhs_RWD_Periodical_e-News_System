@@ -78,24 +78,7 @@ const UploadCover = (props) => {
                 </>
             ) : (
                 <>
-                    <Button onClick={handleOpen}>Open Modal</Button>
-                    <Modal
-                        open={open}
-                        onClose={handleClose}
-                        aria-labelledby="modal-modal-title"
-                        aria-describedby="modal-modal-description"
-                    >
-                        <Box sx={style}>
-                            <Cropper
-                                image={`https://i.insider.com/5484d9d1eab8ea3017b17e29?width=600&format=jpeg&auto=webp`}
-                                crop={crop}
-                                zoom={zoom}
-                                aspect={1 / 1}
-                                onCropChange={setCrop}
-                                onCropComplete={onCropComplete}
-                                onZoomChange={setZoom}
-                            />
-                            {/* <label htmlFor="icon-button-file">
+                    <label htmlFor="icon-button-file">
                                 <Input
                                     accept="image/jpeg, image/png"
                                     id="icon-button-file"
@@ -122,9 +105,7 @@ const UploadCover = (props) => {
                                 >
                                     上傳封面
                                 </Button>
-                            </label> */}
-                        </Box>
-                    </Modal>
+                            </label>
                 </>
             )}
         </>
