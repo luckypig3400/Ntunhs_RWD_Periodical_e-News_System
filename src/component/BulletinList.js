@@ -7,7 +7,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 
 import IconButton from "@mui/material/IconButton";
 import { getBulletin } from "../axios/index.js";
-import {deleteBulletin} from "../axios/putAxios";
+import { deleteBulletin } from "../axios/putAxios";
 
 const BulletinList = () => {
     const [bulletin, setBulletin] = useState([]);
@@ -30,7 +30,7 @@ const BulletinList = () => {
                         secondaryAction={
                             <IconButton
                                 onClick={() => {
-                                    deleteBulletin(value.id)
+                                    deleteBulletin(value.id);
                                 }}
                             >
                                 <DeleteIcon />
@@ -38,6 +38,7 @@ const BulletinList = () => {
                         }
                     >
                         <ListItemText primary={value.text} />
+                        {value.dateTime}
                     </ListItem>
                 ))}
             </List>
