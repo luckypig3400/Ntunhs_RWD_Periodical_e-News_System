@@ -9,8 +9,8 @@ module.exports = {
         const result = await query(selectSQL)
         return announcementID ? result[0] : result
     },
-    create: async ({ text }) => {
-        const postSQL = mysql.format('insert into announcement set ? ', { text })
+    create: async ({ text,dateTime }) => {
+        const postSQL = mysql.format('insert into announcement set ? ', { text ,dateTime})
         return await query(postSQL)
     },
     delete: async ({ announcementID }) => {
