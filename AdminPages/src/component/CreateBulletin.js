@@ -39,8 +39,6 @@ const CreateBulletin = () => {
                 sx={{ height: "100%", width: "18%" }}
                 onClick={() => {
                     handleClick();
-                    // setBulletin((bulletin) => [...bulletin, newBulletin]);
-                    // setNewBulletin({ value: "", time: "" });
                 }}
             >
                 新增

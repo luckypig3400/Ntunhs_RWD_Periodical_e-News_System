@@ -148,9 +148,9 @@ export const createBulletin = async (text) => {
         axios
             .post(`${apiURL}/api/announcement`, {
                 text,
+                dateTime: new Date().toLocaleString('ch-TW'),
             })
             .then((response) => {
-                console.log(response);
                 window.location.reload();
             });
     } catch (error) {

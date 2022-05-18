@@ -3,6 +3,7 @@ import ImageResize from "quill-image-resize-module-react";
 import axios from "axios";
 const config = require("../config/default.json");
 const apiURL = config.apiURL;
+const imageURL = config.imageURL;
 
 Quill.register("modules/imageResize", ImageResize);
 
@@ -33,7 +34,7 @@ export const modules = {
     },
     imageResize: {
         parchment: Quill.import("parchment"),
-        modules: ["Resize", "DisplaySize", ],
+        modules: ["Resize", "DisplaySize"],
         handleStyles: {
             backgroundColor: "black",
             border: "none",
@@ -123,7 +124,7 @@ const _onUpload = async (file, type) => {
                 .post(`${apiURL}/api/upload/${type}`, fd)
                 .then((response) => {
                     console.log(response.data);
-                    return `http://localhost:3090/${type}/${response.data.fileName}`;
+                    return `${imageURL}/${type}/${response.data.fileName}`;
                 });
             resolve(axiosRes);
         } catch (e) {

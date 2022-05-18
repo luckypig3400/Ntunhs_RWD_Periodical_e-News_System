@@ -1,16 +1,11 @@
 import React, { useState, useEffect } from "react";
 import EditPostButtion from "../component/EditPost/EditPostButtion";
-import ReactQuill, { Quill } from "react-quill";
-// import EditorToolbar, {
-//     modules,
-//     formats,
-// } from "../component/CreatePost/EditorToolbar";
+import ReactQuill from "react-quill";
 import { modules } from "../component/Quill";
 import {
     FormControl,
     NativeSelect,
     TextField,
-    Button,
     Stack,
     Alert,
     IconButton,
@@ -20,11 +15,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-import { styled } from "@mui/material/styles";
-import DriveFolderUploadIcon from "@mui/icons-material/DriveFolderUpload";
-import InsertPhotoIcon from "@mui/icons-material/InsertPhoto";
 import { editPost } from "../axios";
-import { coverUpload } from "../axios/onUpload";
+import UploadCover from "../component/UploadCover";
 const config = require("../config/default.json");
 
 const apiURL = config.apiURL;
@@ -46,9 +38,6 @@ function EditPost() {
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("");
     const [coverLink, setCoverLink] = useState("");
-    const Input = styled("input")({
-        display: "none",
-    });
     useEffect(async () => {
         const response = await editPost(PostID);
         setSubject(response.data1.data.subject);
@@ -65,15 +54,6 @@ function EditPost() {
         setTotalcategory(response.categoryResult);
         setContent(response.data1.data.quillcontent);
     }, []);
-
-    const _onUpload = async (fd, resolve, type) => {
-        const response = await coverUpload(fd);
-        resolve(
-            `${imageURL}/${response}`,
-            setCover(response),
-            setCoverLink(`${imageURL}/${type}/${response}`)
-        );
-    };
     return (
         <>
             <div className="headerTitle">編輯期刊-{PostID}</div>
@@ -101,7 +81,7 @@ function EditPost() {
                 <div style={{ paddingTop: "10px" }}>
                     <h3>輸入標題</h3>
                     <TextField
-                        sx={{ top: 10 }}
+                        sx={{ margin: "10px" }}
                         required
                         id="subject"
                         label="標題"
@@ -114,7 +94,7 @@ function EditPost() {
                 <div style={{ paddingTop: "20px" }}>
                     <h3>輸入發文單位 / 期數 / 日期</h3>
                     <TextField
-                        sx={{ top: 10 }}
+                        sx={{ margin: "10px" }}
                         required
                         id="writer"
                         label="單位"
@@ -123,7 +103,7 @@ function EditPost() {
                     />
                     <TextField
                         id="time"
-                        sx={{ top: 10, left: 10 }}
+                        sx={{ margin: "10px" }}
                         label="期數"
                         value={periodNumber}
                         onChange={(e) => {
@@ -144,7 +124,7 @@ function EditPost() {
                             renderInput={(params) => (
                                 <TextField
                                     {...params}
-                                    sx={{ top: 10, left: 20 }}
+                                    sx={{ margin: "10px" }}
                                 />
                             )}
                         />
@@ -153,7 +133,10 @@ function EditPost() {
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3>選取分類</h3>
-                    <FormControl variant="standard" sx={{ minWidth: 200 }}>
+                    <FormControl
+                        variant="standard"
+                        sx={{ minWidth: 200, margin: "10px" }}
+                    >
                         <NativeSelect
                             id="category"
                             label="category"
@@ -167,67 +150,18 @@ function EditPost() {
                             ))}
                         </NativeSelect>
                     </FormControl>
-                    {cover ? (
-                        <>
-                            <Button
-                                variant="contained"
-                                component="span"
-                                aria-label="upload picture"
-                                endIcon={<InsertPhotoIcon />}
-                                sx={{ marginLeft: "20px" }}
-                                onClick={(e) => {
-                                    window.open(coverLink, "_blank");
-                                }}
-                            >
-                                瀏覽封面"{cover}"
-                            </Button>
-                            <Button
-                                variant="contained"
-                                component="span"
-                                aria-label="upload picture"
-                                color="error"
-                                sx={{ marginLeft: "20px" }}
-                                onClick={() => {
-                                    setCover("");
-                                    setCoverLink("");
-                                }}
-                            >
-                                刪除封面
-                            </Button>
-                        </>
-                    ) : (
-                        <label htmlFor="icon-button-file">
-                            <Input
-                                accept="image/jpeg, image/png"
-                                id="icon-button-file"
-                                type="file"
-                                onChange={(file) => {
-                                    return new Promise((resolve, reject) => {
-                                        const fd = new FormData();
-                                        fd.append(
-                                            "image",
-                                            file.target.files[0]
-                                        );
-                                        _onUpload(fd, resolve, "image");
-                                    });
-                                }}
-                            />
-                            <Button
-                                variant="outlined"
-                                component="span"
-                                aria-label="upload picture"
-                                endIcon={<DriveFolderUploadIcon />}
-                                sx={{ marginLeft: "20px" }}
-                            >
-                                上傳封面
-                            </Button>
-                        </label>
-                    )}
+                    <UploadCover
+                        cover={cover}
+                        setCover={setCover}
+                        coverLink={coverLink}
+                        setCoverLink={setCoverLink}
+                    />
                 </div>
 
                 <div style={{ paddingTop: "20px" }}>
                     <h3 style={{ paddingBottom: "10px" }}>輸入內容</h3>
                     <ReactQuill
+                        style={{ margin: "10px" }}
                         theme="snow"
                         value={content}
                         onChange={setContent}
