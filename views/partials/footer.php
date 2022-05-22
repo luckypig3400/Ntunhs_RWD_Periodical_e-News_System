@@ -4,7 +4,9 @@
     <div class="footer-newsletter">
         <div class="container">
             <div class="row" style="text-align: center;">
-                <h4 id="articleInfoTitle" hidden> 北護校訊電子期刊 第 period 期 year 年 month 月<br><br><hr></h4>
+                <h4 id="articleInfoTitle" hidden> 北護校訊電子期刊 第 period 期 year 年 month 月<br><br>
+                    <hr>
+                </h4>
             </div>
             <div class="row">
                 <div class="col-lg-6">
@@ -26,15 +28,16 @@
                 <div class="col-lg-6 col-md-6 footer-contact">
                     <h4>聯繫我們</h4>
                     <p>
-                        <strong>校本部地址:</strong>112303 臺北市北投區明德路365號<br>
-                        <strong>城區部地址:</strong>108306 臺北市萬華區內江街89號<br>
-                        <strong>電話代表號:</strong>02‐28227101<br>
-                        <strong>投稿Email:</strong><a href="mailto:ntcnjohs@ntunhs.edu.tw" style="color: #6FF;">ntcnjohs@ntunhs.edu.tw</a><br>
+                        <strong>期刊編輯部：</strong><a href="https://academic.ntunhs.edu.tw/files/11-1001-103.php" target="_blank" style="color: #6FF;">學術服務組</a><br>
+                        <strong>電話代表號：</strong>02‐28227101<br>
+                        <strong>投稿Email：</strong><a href="mailto:ntcnjohs@ntunhs.edu.tw" style="color: #6FF;">ntcnjohs@ntunhs.edu.tw</a><br>
+                        <strong>校本部地址：</strong>112303 臺北市北投區明德路365號<br>
+                        <strong>城區部地址：</strong>108306 臺北市萬華區內江街89號<br>
                     </p>
                     <div class="social-links mt-3">
                         <a href="https://www.ntunhs.edu.tw" class="twitter" target="_blank"><i class="bx bx-home"></i></a>
-                        <a href="https://www.facebook.com/國立臺北護理健康大學學生會-250036891683408/" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-                        <a href="https://www.instagram.com/explore/locations/187742564588211/" class="instagram" target="_blank"><i class="bx bxl-instagram"></i></a>
+                        <a href="https://www.facebook.com/pages/國立臺北護理健康大學/146622128699569" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
+                        <a href="https://www.google.com/search?q=國立台北護理健康大學&oq=國北護" class="google" target="_blank"><i class="bx bxl-google"></i></a>
                     </div>
                 </div>
 
@@ -57,7 +60,7 @@
             <!-- You can delete the links only if you purchased the pro version. -->
             <!-- Licensing information: https://bootstrapmade.com/license/ -->
             <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/free-bootstrap-template-corporate-moderna/ -->
-            Power by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+            Power by <a href="https://bootstrapmade.com/" target="_blank">BootstrapMade</a>
         </div>
     </div>
 </footer><!-- End Footer -->
