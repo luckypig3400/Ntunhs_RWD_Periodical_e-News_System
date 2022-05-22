@@ -56,7 +56,7 @@ require_once("./partials/head.php");
                 <div id="editor">
                     <?php
                     if (gettype($dataRow) == "array") {
-                        echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";
+                        echo "<h1 class=\"ql-align-center\"><strong>" . $dataRow[0]["subject"] . "</strong></h1><br>";
 
                         echo $dataRow[0]["writer"] . "<br><br>";
                         echo $dataRow[0]["quillcontent"];
