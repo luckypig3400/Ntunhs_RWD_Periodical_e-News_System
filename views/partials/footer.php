@@ -12,8 +12,8 @@
                     <p>有關於北護的新鮮事要投稿嗎? 歡迎透過Email投稿您撰寫的精采文章!</p>
                 </div>
                 <div class="col-lg-6">
-                    <form action="mailto:yuting@ntunhs.edu.tw" method="post">
-                        <input type="email" name="email" placeholder="寄信給:yuting@ntunhs.edu.tw" disabled><input type="submit" value="點我立即前往投稿">
+                    <form action="mailto:ntcnjohs@ntunhs.edu.tw" method="post">
+                        <input type="email" name="email" placeholder="寄信給:ntcnjohs@ntunhs.edu.tw" disabled><input type="submit" value="點我立即前往投稿">
                     </form>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                         <strong>校本部地址:</strong>112303 臺北市北投區明德路365號<br>
                         <strong>城區部地址:</strong>108306 臺北市萬華區內江街89號<br>
                         <strong>電話代表號:</strong>02‐28227101<br>
-                        <strong>投稿Email:</strong><a href="mailto:yuting@ntunhs.edu.tw" style="color: #6FF;">ntcnjohs@ntunhs.edu.tw</a><br>
+                        <strong>投稿Email:</strong><a href="mailto:ntcnjohs@ntunhs.edu.tw" style="color: #6FF;">ntcnjohs@ntunhs.edu.tw</a><br>
                     </p>
                     <div class="social-links mt-3">
                         <a href="https://www.ntunhs.edu.tw" class="twitter" target="_blank"><i class="bx bx-home"></i></a>
