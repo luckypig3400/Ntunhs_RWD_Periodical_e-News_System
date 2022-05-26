@@ -13,9 +13,39 @@ if (articleDiv != null) {
   articleTitle.removeAttribute('hidden');
 }
 
-let currentFontLevel = 0;
+/* https://www.w3schools.com/js/js_cookies.asp */
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+/* https://www.w3schools.com/js/js_cookies.asp */
+
+if(getCookie("fontLevel") == "") {
+  console.log("尚未設定字體大小，將為您設定使用預設值");
+  setCookie("fontLevel", "0", 69);
+}
+
 function increaseAllfontSize() {
-  if (currentFontLevel < 6) {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+
+  if (currentFontLevel < 12) {
     let allelements = document.getElementsByTagName('*');
 
     for (var i = 0; i < allelements.length; i++) {
@@ -25,11 +55,15 @@ function increaseAllfontSize() {
       allelements[i].style.fontSize = (fontSize + 1) + 'px';
     }
     currentFontLevel++;
+
+    setCookie("fontLevel", currentFontLevel, 69);
   }
 }
 
 function decreaseAllfontSize() {
-  if (currentFontLevel > -6) {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+
+  if (currentFontLevel > -9) {
     let allelements = document.getElementsByTagName('*');
 
     for (var i = 0; i < allelements.length; i++) {
@@ -38,8 +72,11 @@ function decreaseAllfontSize() {
       var fontSize = parseFloat(style);
       allelements[i].style.fontSize = (fontSize - 1) + 'px';
     }
+
+    currentFontLevel--;
+
+    setCookie("fontLevel", currentFontLevel, 69);
   }
-  currentFontLevel--;
 }
 
 function resetAllfontSize() {
@@ -48,8 +85,27 @@ function resetAllfontSize() {
     allelements[i].style.fontSize = '';
   }
   currentFontLevel = 0;
+  setCookie("fontLevel", "0", 69);
 }
 
+function loadCurrentfontSize() {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+  console.log("currentFontLevel: " + currentFontLevel);
+
+  // reset all font size before loading current font size
+  let allelements = document.getElementsByTagName('*');
+  for (var i = 0; i < allelements.length; i++) {
+    allelements[i].style.fontSize = '';
+  }
+
+  for (var i = 0; i < allelements.length; i++) {
+    var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+    var fontSize = parseInt(style);
+    console.log("fontSize: " + fontSize);
+    allelements[i].style.fontSize = (fontSize + currentFontLevel) + 'px';
+    console.log("newFontSize: " + allelements[i].style.fontSize);
+  }
+}
 
 function changeHeaderLinksActive() {
   var url_string = window.location.href;
@@ -380,3 +436,6 @@ if (document.addEventListener)
   document.addEventListener('click', callback, false);
 else
   document.attachEvent('onclick', callback);
+
+// https://stackoverflow.com/questions/807878/how-to-make-javascript-execute-after-page-load
+window.onload = loadCurrentfontSize();
