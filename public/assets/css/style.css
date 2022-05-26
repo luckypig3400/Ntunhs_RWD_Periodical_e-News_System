@@ -170,7 +170,7 @@ input[type="radio"]:checked + label {
   height: auto;
 }
 #header .logo h1 {
-  font-size: 30px;
+  font-size: 26px;
   margin: 0;
   padding: 4px 0;
   line-height: 1;
@@ -187,7 +187,7 @@ input[type="radio"]:checked + label {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 30px;
 }
 
 #main {
@@ -222,7 +222,7 @@ input[type="radio"]:checked + label {
   justify-content: space-between;
   padding: 10px 0 10px 30px;
   font-family: "Open Sans", sans-serif;
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
   white-space: nowrap;
   transition: 0.3s;
