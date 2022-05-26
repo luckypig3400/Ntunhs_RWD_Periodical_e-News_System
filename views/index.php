@@ -100,6 +100,10 @@ require_once("./partials/head.php");
         </div>
     </section><!-- 首頁頭條報導輪播區 -->
 
+    <div>
+        <p>Hi Hi 我是測試文字</p>
+    </div>
+
     <main id="main">
 
         <!-- ======= 首頁橫幅大區塊 ======= -->
