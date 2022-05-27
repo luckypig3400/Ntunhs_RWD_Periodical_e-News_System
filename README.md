@@ -9,6 +9,17 @@
 
 3. Unzip ```DB/DB_ver8....7z``` and import to MySQL Server
 
+    <mark>Important:</mark> Version above 1.2.6 please use [```DB_ver9....7z```](https://drive.google.com/file/d/1pssaNHwMz22A3kRDO7V3WzGuNzRa6gVl/view?usp=sharing) ,or just simply run the sql commands below after you import the ```DB_ver8``` to make Announcement function work properly !
+
+    ```=sql
+    CREATE TABLE `announcement` (
+      `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+      `text` varchar(100) DEFAULT NULL,
+      `dateTime` datetime DEFAULT current_timestamp()
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+    -- https://www.w3schools.com/sql/sql_autoincrement.asp
+    ```
+
 4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
 
 5. Update ```.ENV``` file config [可參考這裡](#about-env)
