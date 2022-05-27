@@ -1,5 +1,6 @@
 {
     "hashRouter": "#",
     "apiURL": "http://localhost:3090/periodical",
-    "imageURL": "http://localhost:3090"
+    "imageURL": "http://localhost:3090",
+    "loginImgUrl":"https://www.overseas.edu.tw/wp-content/uploads/2020/10/學校照片_NTUNHS_03-1035x580.jpg"
 }
