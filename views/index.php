@@ -100,8 +100,8 @@ require_once("./partials/head.php");
         </div>
     </section><!-- 首頁頭條報導輪播區 -->
 
-    <div>
-        <p>Hi Hi 我是測試文字</p>
+    <div class="announcement">
+        <p class="center" id="annoucementText">Hi Hi ~ 我是最新公告訊息測試文字(完整功能仍在努力建置中...)</p>
     </div>
 
     <main id="main">
