@@ -4,7 +4,9 @@ import ReactQuill from "react-quill";
 import { modules } from "../component/Quill";
 import {
     FormControl,
-    NativeSelect,
+    InputLabel,
+    Select,
+    MenuItem,
     TextField,
     Stack,
     Alert,
@@ -137,18 +139,19 @@ function EditPost() {
                         variant="standard"
                         sx={{ minWidth: 200, margin: "10px" }}
                     >
-                        <NativeSelect
+                        <InputLabel id="postsperiodNumber">分類</InputLabel>
+                        <Select
                             id="category"
                             label="category"
                             value={categoryID}
                             onChange={(e) => setCategoryID(e.target.value)}
                         >
                             {totalcategory.map((name) => (
-                                <option key={name.id} value={name.id}>
+                                <MenuItem key={name.id} value={name.id}>
                                     {name.name}
-                                </option>
+                                </MenuItem>
                             ))}
-                        </NativeSelect>
+                        </Select>
                     </FormControl>
                     <UploadCover
                         cover={cover}
