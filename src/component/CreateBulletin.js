@@ -11,7 +11,7 @@ const CreateBulletin = () => {
         if(newBulletin.trim()){
             createBulletin(newBulletin);
         }else{
-            alert("請輸入公告內容");
+            alert("請輸入公告內容！");
         }
     };
 
