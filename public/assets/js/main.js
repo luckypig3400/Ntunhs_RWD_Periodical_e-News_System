@@ -13,43 +13,128 @@ if (articleDiv != null) {
   articleTitle.removeAttribute('hidden');
 }
 
-let currentFontLevel = 0;
+/* https://www.w3schools.com/js/js_cookies.asp */
+function setCookie(cname, cvalue, exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let ca = document.cookie.split(';');
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+/* https://www.w3schools.com/js/js_cookies.asp */
+
+var fontSizeArray = [];
+
+if (getCookie("fontLevel") == "") {
+  console.log("尚未設定字體大小，將為您設定使用預設值");
+  setCookie("fontLevel", "0", 69);
+}
+
+if (getCookie("fontSizeArrayCookie") == "") {
+  console.log("尚未設定字體大小，將為您紀錄字體預設值");
+  resetAllfontSize();
+}
+
 function increaseAllfontSize() {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
+
   if (currentFontLevel < 6) {
     let allelements = document.getElementsByTagName('*');
 
     for (var i = 0; i < allelements.length; i++) {
       // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
       var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
-      var fontSize = parseFloat(style);
-      allelements[i].style.fontSize = (fontSize + 1) + 'px';
+      var fontSize = parseInt(style);
+
+      fontSizeArray[i]++;
+      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
     }
     currentFontLevel++;
+
+    console.log("fontSizeArray: " + fontSizeArray);
+
+    setCookie("fontLevel", currentFontLevel, 69);
+    setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   }
 }
 
 function decreaseAllfontSize() {
-  if (currentFontLevel > -6) {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
+
+  if (currentFontLevel > -9) {
     let allelements = document.getElementsByTagName('*');
 
     for (var i = 0; i < allelements.length; i++) {
       // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
       var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
-      var fontSize = parseFloat(style);
-      allelements[i].style.fontSize = (fontSize - 1) + 'px';
+      var fontSize = parseInt(style);
+
+      fontSizeArray[i]--;
+      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
     }
+    currentFontLevel--;
+
+    setCookie("fontLevel", currentFontLevel, 69);
+    setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   }
-  currentFontLevel--;
 }
 
 function resetAllfontSize() {
+  fontSizeArray = [];
+
   let allelements = document.getElementsByTagName('*');
   for (var i = 0; i < allelements.length; i++) {
     allelements[i].style.fontSize = '';
   }
-  currentFontLevel = 0;
+
+  for (var i = 0; i < allelements.length; i++) {
+    var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+    var fontSize = parseInt(style);
+
+    fontSizeArray.push(fontSize);
+    // console.log("defaultFontSize: " + fontSize);
+  }
+
+  setCookie("fontLevel", "0", 69);
+  setCookie("fontSizeArrayCookie", fontSizeArray, 69);
+  // console.log("fontSizeArrayCookie: " + getCookie("fontSizeArrayCookie"));
 }
 
+function loadCurrentfontSize() {
+  let currentFontLevel = parseInt(getCookie("fontLevel"));
+
+  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
+  console.log("fontSizeArrayCookie: " + fontSizeArray);
+
+  let allelements = document.getElementsByTagName('*');
+
+  if (currentFontLevel == 0) {
+    resetAllfontSize();
+    // 記憶該頁面的每個字體大小，不同頁面之間的標籤元素不同
+    // 所以當有設定字體大小時，切換到其他頁面會有問題
+  } else {
+    for (var i = 0; i < allelements.length; i++) {
+      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
+      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
+    }
+  }
+}
 
 function changeHeaderLinksActive() {
   var url_string = window.location.href;
@@ -205,7 +290,7 @@ function changeIndexBGimage(currentSlideRealIndex = 0) {
     this.classList.toggle('bi-x')
 
     var otherCategoriesDL = document.getElementById('otherCategoriesDropdownList');
-    if(otherCategoriesDL != null){
+    if (otherCategoriesDL != null) {
       otherCategoriesDL.classList.toggle('dropdown-active');
     }
   })
@@ -380,3 +465,6 @@ if (document.addEventListener)
   document.addEventListener('click', callback, false);
 else
   document.attachEvent('onclick', callback);
+
+// https://stackoverflow.com/questions/807878/how-to-make-javascript-execute-after-page-load
+window.onload = loadCurrentfontSize();

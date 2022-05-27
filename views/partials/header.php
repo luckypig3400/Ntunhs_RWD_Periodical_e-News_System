@@ -35,15 +35,24 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                     <ul id="otherCategoriesDropdownList">
                         <?php
                         require_once("../model/fetchCategories.php");
+                        require_once("../model/fetchPeriodNumbers.php");
 
                         $categories = fetchCategories();
                         // print_r($categories);
                         foreach ($categories as $row) {
                             if ($row["id"] != "C01" && $row["id"] != "C02") {
                                 if ($period_GET != "") {
-                                    echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $period_GET . "\">" . $row["name"] . "</a></li>";
+                                    if ((int)$period_GET >= 219 && $row["id"] == "C03") {
+                                        echo ""; // 在219以後隱藏每月一書
+                                    } else {
+                                        echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row["id"] . "&period=" . $period_GET . "\">" . $row["name"] . "</a></li>";
+                                    }
                                 } else {
-                                    echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
+                                    if ((int)fetchLatestPeriodNumbers() >= 219 && $row["id"] == "C03") {
+                                        echo ""; // 在219以後隱藏每月一書
+                                    } else {
+                                        echo "<li><a id=\"" . $row["id"] . "Link\" href=\"categoriesSummary.php?category=" . $row['id'] . "\">" . $row['name'] . "</a></li>";
+                                    }
                                 }
                             }
                         }

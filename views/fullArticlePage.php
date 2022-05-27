@@ -56,14 +56,14 @@ require_once("./partials/head.php");
                 <div id="editor">
                     <?php
                     if (gettype($dataRow) == "array") {
-                        echo "<h1 class=\"ql-align-center\"><strong><em>" . $dataRow[0]["subject"] . "</em></strong></h1><br>";
+                        echo "<h1 class=\"ql-align-center\"><strong>" . $dataRow[0]["subject"] . "</strong></h1><br>";
 
-                        echo $dataRow[0]["writer"] . "<br><br>";
+                        echo "<p class=\"ql-align-right\">" . $dataRow[0]["writer"] . "<br></p>";
                         echo $dataRow[0]["quillcontent"];
 
-                        echo "<br>更新日期:" . $dataRow[0]["updateTime"];
+                        echo "<br><strong>更新日期:</strong>" . $dataRow[0]["updateTime"];
 
-                        echo "<br>點閱次數:" . $dataRow[0]["clicked"];
+                        echo "<br><strong>點閱次數:</strong>" . $dataRow[0]["clicked"];
                     } else {
                         echo $dataRow;
                     }
