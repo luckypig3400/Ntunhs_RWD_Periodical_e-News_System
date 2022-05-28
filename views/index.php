@@ -100,8 +100,16 @@ require_once("./partials/head.php");
         </div>
     </section><!-- 首頁頭條報導輪播區 -->
 
-    <div class="announcement">
-        <p class="center" id="annoucementText">Hi Hi ~ 我是最新公告訊息測試文字(完整功能仍在努力建置中...)</p>
+    <!-- 只在最新期別顯示公告訊息 -->
+    <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
+        <p class="center" id="annoucementText">
+            <?php
+            require("./../model/config.php");
+            $annoucnementText = file_get_contents($apiURL . "announcement");
+            
+            echo $annoucnementText;
+            ?>
+        </p>
     </div>
 
     <main id="main">

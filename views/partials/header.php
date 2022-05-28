@@ -78,11 +78,14 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                             array_push($periodsNumbers, (int)$row["periodNumber"]);
                         }
 
-                        arsort($periodsNumbers); // sort array in descending order
+                        rsort($periodsNumbers); // sort array in descending order 並且會重新排序KEY (原本的arsort()不會改變KEY)
                         // https://www.php.net/manual/en/array.sorting.php
 
-                        foreach ($periodsNumbers as $periodNumber) {
-                            echo "<li><a href=\"index.php?period=" . $periodNumber . "\">第" . $periodNumber . "期校訊</a></li>";
+                        for ($i = 0; $i < sizeof($periodsNumbers); $i++) {
+                            if ($i == 0)
+                                echo "<li><a href=\"index.php\">第" . $periodsNumbers[$i] . "期校訊</a></li>";
+                            else
+                                echo "<li><a href=\"index.php?period=" . $periodsNumbers[$i] . "\">第" . $periodsNumbers[$i] . "期校訊</a></li>";
                         }
                         ?>
                     </ul>
