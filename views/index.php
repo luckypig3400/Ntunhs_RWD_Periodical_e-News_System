@@ -106,8 +106,18 @@ require_once("./partials/head.php");
             <?php
             require("./../model/config.php");
             $annoucnementText = file_get_contents($apiURL . "announcement");
-            
-            echo $annoucnementText;
+
+            $jsonObj = json_decode($annoucnementText, true);
+            // https://www.w3schools.com/php/func_json_decode.asp
+
+            $rows = $jsonObj["results"];
+            foreach ($rows as $row) {
+                $dt = new DateTime($row["dateTime"]);
+                $formattedDate = $dt->format('Y-m-d H:i');
+                // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "<br>";
+            }
             ?>
         </p>
     </div>
