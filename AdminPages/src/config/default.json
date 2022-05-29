@@ -1,6 +1,7 @@
 {
     "hashRouter": "#",
-    "apiURL": "http://localhost/eNewsBackend/periodical",
-    "imageURL": "http://localhost/eNewsBackend",
-	"noteForBuild": "請根據Server環境設定，使用此範例設定檔須設定將後端的3090port反向代理到80port，可參考Readme.md裡面的XAMPP反向代理設置"
+    "apiURL": "http://localhost:3090/periodical",
+    "imageURL": "http://localhost:3090",
+    "loginImgUrl":"https://www.overseas.edu.tw/wp-content/uploads/2020/10/學校照片_NTUNHS_03-1035x580.jpg",
+    "publicURL":"https://academic.ntunhs.edu.tw/bin/home.php"
 }
