@@ -112,7 +112,7 @@ function Copyright(props) {
             {"國立臺北護理健康大學訊息系統 © "}
             <Link
                 color="inherit"
-                href="https://academic.ntunhs.edu.tw/bin/home.php"
+                href={config.publicURL}
             >
                 北護校訊系統網站
             </Link>{" "}
