@@ -1,31 +1,47 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import { 
+import {
     Button,
     TextField,
     FormControl,
     InputLabel,
     Select,
     MenuItem,
+    Modal,
+    Box,
 } from "@mui/material";
-import axios from "axios";
 import { getCategory } from "../axios";
-const config = require("../config/default.json");
-
-const apiURL = config.apiURL;
+import { deleteCategory, putCategoryName } from "../axios/putAxios";
+import CreateCategory from "./CreateCategory";
 
 function Category() {
     const [category, setCategory] = useState([]);
-    const [buttonRender, setButtonRender] = useState(true);
-    const [createRender, setCreateRender] = useState(false);
-    const [deleteRender, setDeleteRender] = useState(false);
-    const [createCategoryID, setCreateCategoryID] = useState("");
-    const [createCategoryName, setCreateCategoryName] = useState("");
-    const [deleteCategoryID, setDeleteCategoryID] = useState("");
+    const [open, setOpen] = React.useState(false);
 
     useEffect(async () => {
         setCategory(await getCategory());
     }, []);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const style = {
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        width: 400,
+        bgcolor: "background.paper",
+        borderRadius: "10px",
+        boxShadow: 24,
+        pt: 2,
+        px: 4,
+        pb: 3,
+    };
 
     const columns = [
         {
@@ -39,162 +55,34 @@ function Category() {
             width: 300,
             editable: true,
         },
+        {
+            field: "action",
+            headerName: "操作",
+            sortable: false,
+            renderCell: (params) => {
+                const onClick = () => {
+                    const api = params.api;
+                    const fields = api
+                        .getAllColumns()
+                        .map((c) => c.field)
+                        .filter((c) => c !== "__check__" && !!c);
+                    const thisRow = {};
+
+                    fields.forEach((f) => {
+                        thisRow[f] = params.getValue(params.id, f);
+                    });
+                    deleteCategory(thisRow.id);
+                    window.location.reload();
+                    return alert(`成功刪除：${thisRow.id}-${thisRow.name}`);
+                };
+                return (
+                    <Button variant="outlined" color="error" onClick={onClick}>
+                        刪除
+                    </Button>
+                );
+            },
+        },
     ];
-
-    function checkEditCategory(id, value) {
-        axios.defaults.withCredentials = true;
-        axios
-            .put(`${apiURL}/api/Category/${id}`, {
-                value: value,
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error.request);
-            });
-    }
-
-    const ButtonDiv = () => {
-        return (
-            <>
-                <Button
-                    variant="contained"
-                    sx={{
-                        marginTop: "20px",
-                        height: "55px",
-                        width: "100px",
-                        marginRight: "20px",
-                    }}
-                    onClick={() => {
-                        setButtonRender(false);
-                        setCreateRender(true);
-                    }}
-                >
-                    新增類別
-                </Button>
-                <Button
-                    variant="outlined"
-                    color="error"
-                    sx={{ marginTop: "20px", height: "55px", width: "100px" }}
-                    onClick={() => {
-                        setButtonRender(false);
-                        setDeleteRender(true);
-                    }}
-                >
-                    刪除類別
-                </Button>
-            </>
-        );
-    };
-
-    const CreateCategoryDiv = () => {
-        return (
-            <div style={{ marginTop: "20px" }}>
-                <TextField
-                    id="outlined-basic"
-                    label="類別代號:C00"
-                    variant="outlined"
-                    value={createCategoryID}
-                    onChange={(event) => {
-                        setCreateCategoryID(event.target.value);
-                    }}
-                    sx={{ marginRight: "20px" }}
-                />
-                <TextField
-                    id="outlined-basic"
-                    label="類別名稱"
-                    variant="outlined"
-                    value={createCategoryName}
-                    onChange={(event) => {
-                        setCreateCategoryName(event.target.value);
-                    }}
-                    sx={{ marginRight: "20px" }}
-                />
-                <Button
-                    variant="contained"
-                    sx={{ height: "55px", width: "100px", marginRight: "20px" }}
-                    onClick={() => {
-                        checkEditCategory(createCategoryID, createCategoryName);
-                        setButtonRender(true);
-                        setCreateRender(false);
-                        alert("新增成功");
-                        window.location.reload();
-                    }}
-                >
-                    新增
-                </Button>
-                <Button
-                    variant="outlined"
-                    color="error"
-                    sx={{ height: "55px", width: "100px" }}
-                    onClick={() => {
-                        setButtonRender(true);
-                        setCreateRender(false);
-                    }}
-                >
-                    取消
-                </Button>
-            </div>
-        );
-    };
-
-    const DeleteCategoryDiv = () => {
-        return (
-            <>
-                <FormControl
-                    required
-                    variant="standard"
-                    sx={{
-                        minWidth: 200,
-                        marginRight: "20px",
-                        marginTop: "20px",
-                    }}
-                >
-                    <InputLabel id="postsperiodNumber">分類</InputLabel>
-                    <Select
-                        id="category"
-                        label="category"
-                        onChange={(e) => setDeleteCategoryID(e.target.value)}
-                    >
-                        {category.map((name) => (
-                            <MenuItem key={name.id} value={name.id}>
-                                {name.name}
-                            </MenuItem>
-                        ))}
-                    </Select>
-                </FormControl>
-                <Button
-                    variant="outlined"
-                    color="error"
-                    sx={{ marginTop: "20px", height: "55px", width: "100px" }}
-                    onClick={() => {
-                        setButtonRender(true);
-                        setDeleteRender(false);
-                        DeleteCategory();
-                        alert(`成功刪除${deleteCategoryID}`);
-                        window.location.reload();
-                    }}
-                >
-                    刪除類別
-                </Button>
-            </>
-        );
-    };
-
-    const DeleteCategory = () => {
-        axios.defaults.withCredentials = true;
-        axios
-            .delete(`${apiURL}/api/Category/${deleteCategoryID}`, {
-                categoryID: deleteCategoryID,
-            })
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error.request);
-            });
-    };
 
     return (
         <>
@@ -210,18 +98,55 @@ function Category() {
                                 var message = window.confirm("確定要修改類別?");
                                 if (message === true) {
                                     alert("OK");
-                                    checkEditCategory(data.id, data.value);
+                                    putCategoryName(data.id, data.value);
+                                    handleClose();
                                 } else {
                                     alert("取消更新");
-                                    window.location.href = `./${config.hashRouter}/Category`;
+                                    window.location.reload();
                                 }
                             }}
                         />
                     </div>
                 </div>
-                {buttonRender ? ButtonDiv() : ""}
-                {createRender ? CreateCategoryDiv() : ""}
-                {deleteRender ? DeleteCategoryDiv() : ""}
+
+                <Modal
+                    open={open}
+                    onClose={handleClose}
+                    aria-labelledby="parent-modal-title"
+                    aria-describedby="parent-modal-description"
+                >
+                    <Box sx={{ ...style, width: 400 }}>
+                        <CreateCategory />
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            sx={{
+                                width: "100%",
+                                height: "50px",
+                                marginTop: "20px",
+                            }}
+                            onClick={() => {
+                                handleClose();
+                            }}
+                        >
+                            取消
+                        </Button>
+                    </Box>
+                </Modal>
+                <Button
+                    variant="contained"
+                    sx={{
+                        marginTop: "20px",
+                        height: "55px",
+                        width: "100px",
+                        marginRight: "20px",
+                    }}
+                    onClick={() => {
+                        handleOpen();
+                    }}
+                >
+                    新增類別
+                </Button>
             </div>
         </>
     );

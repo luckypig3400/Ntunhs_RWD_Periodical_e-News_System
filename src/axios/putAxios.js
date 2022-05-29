@@ -165,3 +165,38 @@ export const deleteBulletin = async (announcementID) => {
             window.location.reload();
         });
 };
+
+
+export const putCategoryName = async (id,value) => {
+    try{
+        axios
+            .put(`${apiURL}/api/Category/${id}`, {
+                value: value,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    }catch(error){
+        console.log(error);
+    }    
+}
+
+export const deleteCategory = async (deleteCategoryID) => {
+    try{
+        axios
+        .delete(`${apiURL}/api/Category/${deleteCategoryID}`, {
+            categoryID: deleteCategoryID,
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            console.log(error.request);
+        });
+    }catch(error){
+        console.log(error);
+    }
+}
