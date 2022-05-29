@@ -23,14 +23,13 @@ const CreateUser = () => {
 
     return (
         <>
-            <div className="headerTitle">新增使用者</div>
-            <div className="pagecontent">
+            <div>
                 <h3 style={{ paddingBottom: "10px" }}>請輸入使用者名稱：</h3>
                 <TextField
                     id="outlined-basic"
                     label="請輸入使用者名稱"
                     variant="outlined"
-                    style={{ paddingBottom: "20px" }}
+                    style={{ paddingBottom: "20px", width: "100%" }}
                     value={name}
                     onChange={(event) => {
                         setName(event.target.value);
@@ -41,7 +40,7 @@ const CreateUser = () => {
                     id="outlined-basic"
                     label="請輸入帳號"
                     variant="outlined"
-                    style={{ paddingBottom: "20px" }}
+                    style={{ paddingBottom: "20px", width: "100%" }}
                     value={userName}
                     onChange={(event) => {
                         setUserName(event.target.value);
@@ -52,6 +51,7 @@ const CreateUser = () => {
                     id="filled-password-input"
                     label="請輸入密碼"
                     type="password"
+                    style={{ width: "100%" }}
                     autoComplete="current-password"
                     variant="filled"
                     value={password1}
@@ -64,6 +64,7 @@ const CreateUser = () => {
                     id="filled-password-input"
                     label="驗證密碼"
                     type="password"
+                    style={{ width: "100%" }}
                     autoComplete="current-password"
                     variant="filled"
                     value={password2}
@@ -72,17 +73,16 @@ const CreateUser = () => {
                     }}
                 />
                 <div style={{ paddingTop: "20px" }}>
-                    <Link to="/User">
-                        <Button
-                            variant="contained"
-                            sx={{ width: "200px", height: "50px" }}
-                            onClick={() => {
-                                CreateUserPostToServer();
-                            }}
-                        >
-                            註冊新使用者
-                        </Button>
-                    </Link>
+                    <Button
+                        variant="contained"
+                        sx={{ width: "100%", height: "50px" }}
+                        onClick={() => {
+                            CreateUserPostToServer();
+                            window.location.reload();
+                        }}
+                    >
+                        註冊新使用者
+                    </Button>
                 </div>
             </div>
         </>

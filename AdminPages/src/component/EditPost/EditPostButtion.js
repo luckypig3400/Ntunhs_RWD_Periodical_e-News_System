@@ -21,10 +21,7 @@ export default function EditPostSendOnClick(props) {
     };
 
     const checkDropAlert = async () => {
-        const response = await deletePost(props);
-        setOpen(response.Open);
-        SetSeverity(response.Severity);
-        setRenderMessage(response.RenderMessage);
+        deletePost(props);
     };
 
     return (
@@ -44,9 +41,9 @@ export default function EditPostSendOnClick(props) {
                 color="error"
                 onClick={() => {
                     var message = window.confirm("確定要刪除貼文?");
-                    if (message === true) {
-                        alert("OK");
+                    if (message) {
                         checkDropAlert(props.PostID);
+                        alert("OK");
                         window.location.href = `./${config.hashRouter}/PostList`;
                     } else {
                         alert("取消刪除");

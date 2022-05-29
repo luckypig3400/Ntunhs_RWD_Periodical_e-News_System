@@ -8,7 +8,11 @@ const CreateBulletin = () => {
     const [newBulletin, setNewBulletin] = useState("");
 
     const handleClick = () => {
-        createBulletin(newBulletin);
+        if(newBulletin.trim()){
+            createBulletin(newBulletin);
+        }else{
+            alert("請輸入公告內容！");
+        }
     };
 
     return (
