@@ -76,11 +76,16 @@ require_once("./partials/head.php");
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-                        "url(\"$pLink\") center center no-repeat;background-size: cover;";
+                        "url(\"$pLink\") bottom center no-repeat, " .
+                        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;" .
+                        "background-size: cover, auto;"; // 疊在上方的圖片大小可以考慮使用contain
+                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
-                        echo "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
+                        // 取消模糊效果，已改用將期刊cover疊圖到校園背景上
+                        echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                 }
             }
             echo '</div>';
