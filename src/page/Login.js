@@ -114,7 +114,7 @@ function Copyright(props) {
                 color="inherit"
                 href="https://academic.ntunhs.edu.tw/bin/home.php"
             >
-                Your Website
+                北護校訊系統網站
             </Link>{" "}
             {new Date().getFullYear()}
             {"."}
