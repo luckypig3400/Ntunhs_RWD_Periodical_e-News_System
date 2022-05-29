@@ -20,6 +20,12 @@
     -- https://www.w3schools.com/sql/sql_autoincrement.asp
     ```
 
+    * **3-2:** Then run this SQL command to fix the default clicked value bug
+
+    ```=sql
+    ALTER TABLE `periodical` CHANGE `clicked` `clicked` INT(11) NULL DEFAULT '0';
+    ```
+
 4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
 
 5. Update ```.ENV``` file config [可參考這裡](#about-env)
