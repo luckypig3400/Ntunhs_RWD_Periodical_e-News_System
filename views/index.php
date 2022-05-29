@@ -210,9 +210,9 @@ require_once("./partials/head.php");
                             }
                         }
 
-                        echo '<div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="article' . $article["id"] . '">';
+                        echo '<div class="col-md-4 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
-                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
+                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="auto" height="369px">';
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
