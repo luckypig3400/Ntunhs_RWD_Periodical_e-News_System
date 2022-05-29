@@ -38,6 +38,9 @@ require_once("./partials/head.php");
                                     // 更新文章點閱數(發送GET請求到nodeJS後端API)
                                     $counter = file_get_contents($apiURL . "post/" . $articleID);
                                     // https://stackoverflow.com/questions/959063/how-to-send-a-get-request-from-php
+
+                                    // echo $_SERVER['REMOTE_ADDR'];
+                                    // echo $_SERVER['HTTP_FORWARDED_FOR'];
                                 } else {
                                     echo "很抱歉您所尋訪的文章分類不存在";
                                     $articleSubject = "沒有文章";

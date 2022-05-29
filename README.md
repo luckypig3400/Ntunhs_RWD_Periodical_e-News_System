@@ -18,6 +18,7 @@
 - [ ] 修正搜尋頁面螢光標註BUG
 - [ ] 首頁輪播圖大標縮小並加上文字框線
 - [ ] 字體縮放功能嘗試只縮放 p 和所有 h1 , h2  ... 標籤的文字大小
+- [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
 
 ---
 
