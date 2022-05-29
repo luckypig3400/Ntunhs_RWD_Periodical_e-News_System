@@ -76,11 +76,16 @@ require_once("./partials/head.php");
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-                        "url(\"$pLink\") center center no-repeat;background-size: cover;";
+                        "url(\"$pLink\") bottom center no-repeat, " .
+                        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;" .
+                        "background-size: cover, auto;"; // 疊在上方的圖片大小可以考慮使用contain
+                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
-                        echo "filter: blur(3px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
+                        // 取消模糊效果，已改用將期刊cover疊圖到校園背景上
+                        echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                 }
             }
             echo '</div>';
@@ -100,8 +105,26 @@ require_once("./partials/head.php");
         </div>
     </section><!-- 首頁頭條報導輪播區 -->
 
-    <div class="announcement">
-        <p class="center" id="annoucementText">Hi Hi ~ 我是最新公告訊息測試文字(完整功能仍在努力建置中...)</p>
+    <!-- 只在最新期別顯示公告訊息 -->
+    <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
+        <p class="center" id="annoucementText">
+            <?php
+            require("./../model/config.php");
+            $annoucnementText = file_get_contents($apiURL . "announcement");
+
+            $jsonObj = json_decode($annoucnementText, true);
+            // https://www.w3schools.com/php/func_json_decode.asp
+
+            $rows = $jsonObj["results"];
+            foreach ($rows as $row) {
+                $dt = new DateTime($row["dateTime"]);
+                $formattedDate = $dt->format('Y-m-d H:i');
+                // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "<br>";
+            }
+            ?>
+        </p>
     </div>
 
     <main id="main">
@@ -187,9 +210,9 @@ require_once("./partials/head.php");
                             }
                         }
 
-                        echo '<div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up" id="article' . $article["id"] . '">';
+                        echo '<div class="col-md-4 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
-                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="600px" height="369px">';
+                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="auto" height="369px">';
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
