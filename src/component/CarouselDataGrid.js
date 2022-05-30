@@ -1,5 +1,6 @@
 import * as React from "react";
 import { DataGrid } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
 
 const columns = [
     { field: "id", headerName: "期數", width: 100 },
@@ -16,7 +17,28 @@ const columns = [
     {
         field: "Edit",
         headerName: "編輯",
-        width: 100,
+        renderCell: (params) => {
+            const onClick = () => {
+                const api = params.api;
+                const fields = api
+                    .getAllColumns()
+                    .map((c) => c.field)
+                    .filter((c) => c !== "__check__" && !!c);
+                const thisRow = {};
+
+                fields.forEach((f) => {
+                    thisRow[f] = params.getValue(params.id, f);
+                });
+                deleteCategory(thisRow.id);
+                window.location.reload();
+                return alert(`成功刪除：${thisRow.id}-${thisRow.name}`);
+            };
+            return (
+                <Button variant="contained" color="info" onClick={onClick}>
+                    編輯
+                </Button>
+            );
+        },
     },
 ];
 
