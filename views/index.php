@@ -79,8 +79,8 @@ require_once("./partials/head.php");
                         "url(\"$pLink\") bottom center no-repeat, " .
                         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;" .
                         "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
-                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
-                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
+                        // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                        // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else

@@ -46,7 +46,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .announcement{
-  background-color: lightyellow;
+  background-color: rgba(229, 34, 123, 0.9);
+  color: lightyellow;
   margin-top: 0px;
   margin-bottom: 9px;
   margin-left: 15px;
@@ -401,7 +402,7 @@ input[type="radio"]:checked + label {
   overflow: hidden;
   position: relative;
 }
-/*
+
 #hero::after {
   content: "";
   position: absolute;
@@ -409,17 +410,17 @@ input[type="radio"]:checked + label {
   top: -3%;
   width: 130%;
   height: 95%;
-  https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
-  https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
+  /* https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript */
+  /* https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin */
   background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
   background-size: cover;
   filter: blur(6px);
-  https://www.casper.tw/development/2020/10/12/frosted-glass/
+  /* https://www.casper.tw/development/2020/10/12/frosted-glass/ */
   z-index: 0;
   border-radius: 0 0 50% 50%;
   transform: translateX(-50%) rotate(0deg);
 }
-*/
+
 #hero::before {
   content: "";
   position: absolute;
