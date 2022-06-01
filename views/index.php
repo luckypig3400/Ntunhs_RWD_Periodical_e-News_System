@@ -55,7 +55,7 @@ require_once("./partials/head.php");
                         str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';
 
                     echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
-                    echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
+                    echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="indexReadmoreButton btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
 
                     // 以下解析該文章的圖片，取第一張圖片放到隱藏的<div>(div要給id)

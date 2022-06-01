@@ -407,14 +407,14 @@ input[type="radio"]:checked + label {
   content: "";
   position: absolute;
   left: 50%;
-  top: -3%;
+  top: 0%;
   width: 130%;
   height: 95%;
   /* https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript */
   /* https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.069)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
   background-size: cover;
-  filter: blur(6px);
+  filter: blur(0px);
   /* https://www.casper.tw/development/2020/10/12/frosted-glass/ */
   z-index: 0;
   border-radius: 0 0 50% 50%;
@@ -450,13 +450,16 @@ input[type="radio"]:checked + label {
   margin-bottom: 30px;
   font-size: 32px;
   font-weight: 700;
+  text-shadow: darkblue 3px 3px 6px;
 }
 #hero p {
   width: 80%;
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
   margin: 0 auto 30px auto;
-  color: #fff;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.36); */
+  text-shadow: black 6px 6px 9px;
 }
 #hero .carousel-control-prev, #hero .carousel-control-next {
   width: 10%;
@@ -469,6 +472,7 @@ input[type="radio"]:checked + label {
   height: auto;
 }
 #hero .btn-get-started {
+  margin-top: 60vh;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -482,7 +486,8 @@ input[type="radio"]:checked + label {
   color: #fff;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
-  border: 2px solid #68A4C4;
+  border: 2px solid #68a4c4;
+  background-color: rgba(104, 164, 196, 0.6);
 }
 #hero .btn-get-started:hover {
   background: #68A4C4;
@@ -515,6 +520,7 @@ input[type="radio"]:checked + label {
 @media (max-width: 575px) {
   #hero h2 {
     font-size: 30px;
+    text-shadow: darkblue 3px 3px 6px;
   }
   #hero::after {
     left: 40%;
@@ -561,6 +567,10 @@ input[type="radio"]:checked + label {
 }
 #hero-no-slider p {
   color: #fff;
+}
+.indexReadmoreButton{
+  margin-top: 6vh !important;
+  /* https://stackoverflow.com/questions/13117126/how-to-overwrite-css-style */
 }
 #hero-no-slider .btn-get-started {
   font-family: "Roboto", sans-serif;
