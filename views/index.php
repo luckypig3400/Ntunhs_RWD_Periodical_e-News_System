@@ -108,22 +108,32 @@ require_once("./partials/head.php");
     <!-- 只在最新期別顯示公告訊息 -->
     <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
         <p class="center" id="annoucementText">
-            <?php
-            require("./../model/config.php");
-            $annoucnementText = file_get_contents($apiURL . "announcement");
+            <b>最新公告：</b>
+            <!-- https://www.wibibi.com/info.php?tid=68 -->
+            <marquee scrollamount="6">
+                <?php
+                require("./../model/config.php");
 
-            $jsonObj = json_decode($annoucnementText, true);
-            // https://www.w3schools.com/php/func_json_decode.asp
+                try {
+                    $annoucnementText = file_get_contents($apiURL . "announcement");
 
-            $rows = $jsonObj["results"];
-            foreach ($rows as $row) {
-                $dt = new DateTime($row["dateTime"]);
-                $formattedDate = $dt->format('Y-m-d H:i');
-                // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+                    $jsonObj = json_decode($annoucnementText, true);
+                    // https://www.w3schools.com/php/func_json_decode.asp
 
-                echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "<br>";
-            }
-            ?>
+                    $rows = $jsonObj["results"];
+                    foreach ($rows as $row) {
+                        $dt = new DateTime($row["dateTime"]);
+                        $formattedDate = $dt->format('Y-m-d H:i');
+                        // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "      ";
+                    }
+                } catch (Exception $e) {
+                    echo "很抱歉後端API Server異常 目前無法取得公告訊息";
+                }
+
+                ?>
+            </marquee>
         </p>
     </div>
 
