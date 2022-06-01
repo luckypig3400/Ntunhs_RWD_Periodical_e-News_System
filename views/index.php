@@ -78,7 +78,7 @@ require_once("./partials/head.php");
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") bottom center no-repeat, " .
                         "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;" .
-                        "background-size: cover, auto;"; // 疊在上方的圖片大小可以考慮使用contain
+                        "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
                     // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
                     // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
