@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CarouselDataGrid from "../component/CarouselDataGrid";
+import CarouselDataGrid from "../component/Carousel/CarouselDataGrid";
 
 const Carousel = () => {
     return (
