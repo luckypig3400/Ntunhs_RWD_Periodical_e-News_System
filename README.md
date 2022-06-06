@@ -26,6 +26,11 @@
     ALTER TABLE `periodical` CHANGE `clicked` `clicked` INT(11) NULL DEFAULT '0';
     ```
 
+    * **3-3:** Version above 1.5.6 must run this sql command to support Carousel Setting function!
+    ```=sql
+    CREATE TABLE IF NOT EXISTS carousel(periodNumber int NOT NULL PRIMARY KEY, postIDArray varchar(100) DEFAULT "");
+    ```
+
 4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
 
 5. Update ```.ENV``` file config [可參考這裡](#about-env)
