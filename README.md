@@ -17,6 +17,7 @@
 - [x] 改善首頁文字顏色對比度(使用shadow)
 - [ ] 修正搜尋頁面螢光標註BUG
 - [ ] 首頁輪播圖大標縮小並加上文字框線
+- [ ] 公告跑馬燈新增底圖淺淺的底紋(雲紋之類的)，比較不會單調，然後跑馬燈字改為棗紅色(#c32136)
 - [ ] 字體縮放功能嘗試只縮放 p 和所有 h1 , h2  ... 標籤的文字大小
 - [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
 
