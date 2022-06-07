@@ -46,15 +46,17 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .announcement{
-  background-color: rgba(229, 34, 123, 0.9);
-  color: lightyellow;
+  background-image: url(../img/ntunhs-frontDoor2.png);
+  color: #c32136;
   margin-top: 0px;
   margin-bottom: 9px;
   margin-left: 15px;
   margin-right: 15px;
   padding: 12px;
   border-radius: 6px;
-  min-height: 9vh;
+  height: 9vh;
+  box-shadow: #111 0px 0px 6px;
+  text-shadow: orange 3px 3px 3px;
 }
 
 /*------Form-Style-From-W3S-----------------------------------------------------*/

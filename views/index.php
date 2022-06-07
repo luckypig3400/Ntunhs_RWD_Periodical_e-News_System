@@ -126,7 +126,7 @@ require_once("./partials/head.php");
                         $formattedDate = $dt->format('Y-m-d H:i');
                         // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
 
-                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "      ";
+                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                     }
                 } catch (Exception $e) {
                     echo "很抱歉後端API Server異常 目前無法取得公告訊息";
