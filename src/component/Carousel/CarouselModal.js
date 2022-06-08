@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
-import { DataGrid } from "@mui/x-data-grid";
+import { Button } from "@mui/material";
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
 import Modal from "@mui/material/Modal";
-import CarouselModalCreateModal from "./CarouselModalCreateModal";
+import { getPostList } from "../../axios";
+import Grid from "@mui/material/Grid";
 
 const style = {
     position: "absolute",
@@ -19,41 +23,35 @@ const style = {
     pb: 3,
 };
 
+
+
 export default function CarouselModal(props) {
     const handleClose = () => props.setModalShow(false);
+    const [postsArray, setPostsArray] = useState([]);
+    useEffect(async () => {
+        setPostsArray(await getPostList());
+    }, []);
 
-    const columns = [
-        {
-            field: "postID",
-            headerName: "文章ID",
-            width: "100",
-            sortable: false,
-            disableColumnMenu: true,
-        },
-        {
-            field: "title",
-            headerName: "標題",
-            width: "400",
-            sortable: false,
-            disableColumnMenu: true,
-        },
-        {
-            field: "edit",
-            headerName: "排序",
-            width: "100",
-            sortable: false,
-            disableColumnMenu: true,
-        },
-        {
-            field: "delete",
-            headerName: "刪除",
-            width: "100",
-            sortable: false,
-            disableColumnMenu: true,
-        },
-    ];
+    function getperiodNumberPostList() {
+        const getPost = postsArray.filter(
+            (post) => post.periodNumber === props.onClickID.toString()
+        );
+        return getPost;
+    }
+    const periodNumberPost = getperiodNumberPostList();
+    console.log(periodNumberPost);
 
-    const rows = [{ id: 1, postID: 5, title: "測試" }];
+    function renderRow(props) {
+        const { index, style } = props;
+      
+        return (
+          <ListItem style={style} key={index} component="div" disablePadding>
+            <ListItemButton>
+              <ListItemText primary={`Item ${index + 1}`} />
+            </ListItemButton>
+          </ListItem>
+        );
+      }
 
     return (
         <div>
@@ -66,15 +64,15 @@ export default function CarouselModal(props) {
                 <Box sx={style}>
                     <h3 style={{ paddingBottom: "10px" }}>
                         期數：{props.onClickID}
-                        <CarouselModalCreateModal periodNumber={props.onClickID}/>
                     </h3>
-                    <DataGrid
-                        rows={rows}
-                        columns={columns}
-                        pageSize={10}
-                        autoHeight={true}
-                        disableSelectionOnClick
-                    />
+                    <Grid container spacing={2}>
+                        <Grid item xs={6}>
+                            a
+                        </Grid>
+                        <Grid item xs={6}>
+                            
+                        </Grid>
+                    </Grid>
                 </Box>
             </Modal>
         </div>

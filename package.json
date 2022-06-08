@@ -49,6 +49,7 @@
         "react-router-dom": "^6.2.2",
         "react-scripts": "5.0.0",
         "react-semantic-ui-datepickers": "^2.15.0",
+        "react-window": "^1.8.7",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^2.1.2",
         "web-vitals": "^2.1.2",
