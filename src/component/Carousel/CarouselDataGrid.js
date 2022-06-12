@@ -2,14 +2,25 @@ import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { Button } from "@mui/material";
 import CarouselModal from "./CarouselModal";
+import { getCarousel } from "../../axios";
 
 const CarouselDataGrid = () => {
     const [pageSize, setPageSize] = useState(10);
     const [modalShow, setModalShow] = useState(false);
     const [onClickID, setOnClickID] = useState("");
+    const [periodList, setPeriodList] = useState([]);
+    const [postIDArray, setPostIDArray] = useState([""]);
+
+    useEffect(async () => {
+        setPeriodList(await getCarousel());
+    }, []);
+
+    useEffect(async () => {
+        //location.reload()
+    },[postIDArray])
 
     const columns = [
-        { field: "periodNumber", headerName: "期數", width: 100 },
+        { field: "id", headerName: "期數", width: 100 },
         {
             field: "sum",
             headerName: "數量",
@@ -18,7 +29,7 @@ const CarouselDataGrid = () => {
             disableColumnMenu: true,
         },
         {
-            field: "CarouselArray",
+            field: "postIDArray",
             headerName: "輪播編號",
             width: 500,
             sortable: false,
@@ -40,8 +51,15 @@ const CarouselDataGrid = () => {
                         thisRow[f] = params.getValue(params.row.id, f);
                     });
                     setModalShow(true);
-                    setOnClickID(thisRow.periodNumber);
-                    return thisRow.periodNumber;
+                    setOnClickID(thisRow.id);
+
+                    periodList.map((period) => {
+                        if (thisRow.id === period.id) {
+                            setPostIDArray(period.postIDArray);
+                        }
+                    });
+
+                    return thisRow.id;
                 };
                 return (
                     <Button variant="contained" color="info" onClick={onClick}>
@@ -54,7 +72,8 @@ const CarouselDataGrid = () => {
         },
     ];
 
-    const rows = [{ id: 1, periodNumber: 219, sum: 5, CarouselArray: "" },{ id: 2, periodNumber: 218, sum: 5, CarouselArray: "" }];
+    const rows = periodList;
+
     return (
         <div style={{ width: "100%" }}>
             <DataGrid
@@ -63,6 +82,11 @@ const CarouselDataGrid = () => {
                 pageSize={pageSize}
                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                 rowsPerPageOptions={[5, 10, 20]}
+                initialState={{
+                    sorting: {
+                        sortModel: [{ field: "id", sort: "desc" }],
+                    },
+                }}
                 autoHeight={true}
                 disableSelectionOnClick
             />
@@ -70,6 +94,8 @@ const CarouselDataGrid = () => {
                 onClickID={onClickID}
                 setModalShow={setModalShow}
                 modalShow={modalShow}
+                postIDArray={postIDArray}
+                setPostsIDArray={setPostIDArray}
             />
         </div>
     );

@@ -200,3 +200,21 @@ export const deleteCategory = async (deleteCategoryID) => {
         console.log(error);
     }
 }
+
+export const putCarousel=async (id,postIDArray) => {
+    const newPostIDArray=postIDArray.join(',')
+    try{
+        axios
+            .put(`${apiURL}/api/carousel/${id}`, {
+                postIDArray: newPostIDArray,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    }catch(error){
+        console.log(error);
+    }    
+}

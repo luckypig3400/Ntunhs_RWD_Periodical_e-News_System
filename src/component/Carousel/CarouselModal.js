@@ -7,6 +7,7 @@ import { Button } from "@mui/material";
 import SouthIcon from "@mui/icons-material/South";
 import NorthIcon from "@mui/icons-material/North";
 import IconButton from "@mui/material/IconButton";
+import {putCarousel} from "../../axios/putAxios";
 
 const styleModal = {
     position: "absolute",
@@ -27,20 +28,15 @@ export default function CarouselModal(props) {
     const pageSize = 10;
     const handleClose = () => props.setModalShow(false);
     const [postsArray, setPostsArray] = useState([]);
-    const [postIDArray, setPostsIDArray] = useState([1941, 1939, 1945]);
-    useEffect(async () => {
-        setPostsArray(await getPostList());
-    }, []);
-    // useEffect(() => {
-    //     console.log(postIDArray);
-    // }, [postIDArray]);
 
-    function getperiodNumberPostList() {
-        const getPost = postsArray.filter(
+    useEffect(async () => {
+        const totalPostList = await getPostList();
+        const getPost = totalPostList.filter(
             (post) => post.periodNumber === props.onClickID.toString()
         );
         getPost.map((post) => {
-            const Arrayaddress = postIDArray.indexOf(post.id) + 1;
+            const Arrayaddress =
+                props.postIDArray.indexOf(post.id.toString()) + 1;
             if (Arrayaddress === 0) {
                 post.sort = 6;
             } else {
@@ -48,16 +44,14 @@ export default function CarouselModal(props) {
             }
             return post;
         });
-
-        return getPost;
-    }
+        setPostsArray(getPost);
+    }, [props.postIDArray]);
 
     //限制Array的長度
-    if (postIDArray[5]) {
-        postIDArray.splice(5);
+    if (props.postIDArray[5]) {
+        props.postIDArray.splice(5);
     }
 
-    const periodNumberPost = getperiodNumberPostList();
     const columns = [
         {
             field: "sort",
@@ -74,7 +68,7 @@ export default function CarouselModal(props) {
             field: "Edit",
             headerName: "編輯",
             renderCell: (params) => {
-                //向下排序
+                //向上排序
                 const onClickNorth = () => {
                     const api = params.api;
                     const fields = api
@@ -87,7 +81,7 @@ export default function CarouselModal(props) {
                         thisRow[f] = params.getValue(params.row.id, f);
                     });
                     //判斷排序是否已經滿了
-                    if (postIDArray.length < 5) {
+                    if (props.postIDArray.length < 5) {
                         if (params.row.sort < 5) {
                             //第一筆不能再往上換
                             if (params.row.sort === 1) {
@@ -95,28 +89,28 @@ export default function CarouselModal(props) {
                             } else {
                                 //排序法sort為array.index+1
                                 console.log("have sort~!");
-                                const newPostIDArray = postIDArray;
+                                const newPostIDArray = props.postIDArray;
                                 const temp =
                                     newPostIDArray[params.row.sort - 2];
                                 newPostIDArray[params.row.sort - 2] =
-                                    params.row.id;
+                                    params.row.id.toString();
                                 newPostIDArray[params.row.sort - 1] = temp;
-                                setPostsIDArray([...newPostIDArray]);
+                                props.setPostsIDArray([...newPostIDArray]);
                             }
                         } else {
-                            setPostsIDArray([...postIDArray, params.row.id]);
+                            props.setPostsIDArray([...props.postIDArray, params.row.id.toString()]); 
                         }
-                    } else if (postIDArray.length > 4) {
+                    } else if (props.postIDArray.length > 4) {
                         if (params.row.sort === 1) {
                             //第一筆不能再往上換
                             console.log("sort is 1~!");
                         } else {
                             //排序法sort為array.index+1
-                            const newPostIDArray = postIDArray;
+                            const newPostIDArray = props.postIDArray;
                             const temp = newPostIDArray[params.row.sort - 2];
-                            newPostIDArray[params.row.sort - 2] = params.row.id;
+                            newPostIDArray[params.row.sort - 2] = params.row.id.toString();
                             newPostIDArray[params.row.sort - 1] = temp;
-                            setPostsIDArray([...newPostIDArray]);
+                            props.setPostsIDArray([...newPostIDArray]);
                         }
                     }
 
@@ -137,14 +131,14 @@ export default function CarouselModal(props) {
                     });
 
                     //判斷下一個是否為空
-                    if (postIDArray[params.row.sort]) {
+                    if (props.postIDArray[params.row.sort]) {
                         //排序法sort為array.index+1
-                        const newPostIDArray = postIDArray;
+                        const newPostIDArray = props.postIDArray;
                         const temp = newPostIDArray[params.row.sort];
                         newPostIDArray[params.row.sort] =
                             newPostIDArray[params.row.sort - 1];
                         newPostIDArray[params.row.sort - 1] = temp;
-                        setPostsIDArray([...newPostIDArray]);
+                        props.setPostsIDArray([...newPostIDArray]);
                     } else {
                         console.log("this sort is end~!");
                     }
@@ -210,7 +204,7 @@ export default function CarouselModal(props) {
                         期數：{props.onClickID}
                     </h3>
                     <DataGrid
-                        rows={periodNumberPost}
+                        rows={postsArray}
                         columns={columns}
                         pageSize={pageSize}
                         rowsPerPageOptions={[5, 10, 20]}
@@ -233,7 +227,10 @@ export default function CarouselModal(props) {
                             variant="contained"
                             color="success"
                             onClick={() => {
-                                sentCarouseChange(props.onClickID, postIDArray);
+                                sentCarouseChange(
+                                    props.onClickID,
+                                    props.postIDArray
+                                );
                                 handleClose();
                             }}
                         >
@@ -256,5 +253,6 @@ export default function CarouselModal(props) {
 }
 
 const sentCarouseChange = (id, postIDArray) => {
-    console.log(id, postIDArray);
+    putCarousel(id, postIDArray);
+    location.reload()
 };
