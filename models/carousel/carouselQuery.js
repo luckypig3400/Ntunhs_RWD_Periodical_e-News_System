@@ -10,11 +10,11 @@ module.exports = {
   update: async ({ id, postIDArray }) => {
     const exists = await query(`select exists(select 1 from carousel where id = '${id}') as isExists`);
     if (postIDArray && !exists[0].isExists) {
-      const putSQL = mysql.format("insert into carousel set ? ", { id: id, name: postIDArray });
+      const putSQL = mysql.format("insert into carousel set ? ", { id: id, postIDArray: postIDArray });
       await query(putSQL);
       return "Insert";
     } else {
-      const putSQL = mysql.format("update carousel set name = ? where id = ? ", [postIDArray, id]);
+      const putSQL = mysql.format("update carousel set postIDArray = ? where id = ? ", [postIDArray, id]);
       await query(putSQL);
       return "Update";
     }
