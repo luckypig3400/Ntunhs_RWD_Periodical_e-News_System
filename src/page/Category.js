@@ -71,9 +71,15 @@ function Category() {
                     fields.forEach((f) => {
                         thisRow[f] = params.getValue(params.id, f);
                     });
-                    deleteCategory(thisRow.id);
+                    var message = window.confirm("確定要刪除類別?");
+                    if (message === true) {
+                        deleteCategory(thisRow.id);
+                        alert("已刪除");
+                        handleClose();
+                    } else {
+                        alert("取消刪除");
+                    }
                     window.location.reload();
-                    return alert(`成功刪除：${thisRow.id}-${thisRow.name}`);
                 };
                 return (
                     <Button variant="outlined" color="error" onClick={onClick}>
