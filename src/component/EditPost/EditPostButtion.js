@@ -5,6 +5,8 @@ import SendIcon from "@mui/icons-material/Send";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { editPost, deletePost } from "../../axios/putAxios";
+import { deletePostputCarousel } from "../../axios/putAxios";
+
 const config = require("../../config/default.json");
 
 export default function EditPostSendOnClick(props) {
@@ -40,10 +42,12 @@ export default function EditPostSendOnClick(props) {
                 endIcon={<DeleteIcon />}
                 color="error"
                 onClick={() => {
+                    
                     var message = window.confirm("確定要刪除貼文?");
                     if (message) {
                         checkDropAlert(props.PostID);
                         alert("OK");
+                        deletePostputCarousel(props.PostID, props.periodNumber);
                         window.location.href = `./${config.hashRouter}/PostList`;
                     } else {
                         alert("取消刪除");
