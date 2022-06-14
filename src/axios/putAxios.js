@@ -202,7 +202,6 @@ export const deleteCategory = async (deleteCategoryID) => {
 };
 
 export const putCarousel = async (id, postIDArray) => {
-    console.log(postIDArray);
     const newPostIDArray = postIDArray.join(",");
     try {
         axios
