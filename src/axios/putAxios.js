@@ -1,6 +1,7 @@
 import axios from "axios";
 const config = require("../config/default.json");
 const apiURL = config.apiURL;
+import { getCarousel } from "./index";
 
 axios.defaults.withCredentials = true;
 
@@ -201,6 +202,7 @@ export const deleteCategory = async (deleteCategoryID) => {
 };
 
 export const putCarousel = async (id, postIDArray) => {
+    console.log(postIDArray);
     const newPostIDArray = postIDArray.join(",");
     try {
         axios
@@ -218,11 +220,11 @@ export const putCarousel = async (id, postIDArray) => {
     }
 };
 
-export const createCarousel = async (id) => {
+export const createCarousel = async (id, postIDArray) => {
     try {
         axios
             .put(`${apiURL}/api/carousel/${id}`, {
-                postIDArray: " ",
+                postIDArray: postIDArray,
             })
             .then((response) => {
                 console.log(response);
@@ -233,4 +235,16 @@ export const createCarousel = async (id) => {
     } catch (error) {
         console.log(error);
     }
+};
+
+export const deletePostputCarousel = async (Postid, PeriodNumber) => {
+    getCarousel().then((response) => {
+        response.map((carousel) => {
+            if (carousel.id === parseInt(PeriodNumber)) {
+                var Array = carousel.postIDArray;
+                var NewArray = Array.filter((item) => item !== Postid);
+                putCarousel(PeriodNumber, NewArray);
+            }
+        });
+    });
 };
