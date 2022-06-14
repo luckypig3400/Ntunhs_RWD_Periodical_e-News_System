@@ -151,6 +151,7 @@ export const CreateCarousel = () => {
                 res.map((item) => {
                     createCarousel(item);
                 });
+                location.reload()
             }
         }
     }, [totalCarousel]);
