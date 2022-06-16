@@ -1,3 +1,4 @@
+import { ConstructionOutlined } from "@mui/icons-material";
 import axios from "axios";
 const config = require("../config/default.json");
 
@@ -102,6 +103,20 @@ export const editPost = async (PostID) => {
 export const getBulletin = async () => {
     try {
         const response = await axios.get(`${apiURL}/api/announcement`);
+        return response.data.results;
+    } catch (error) {
+        console.error(error);
+    }
+};
+
+export const getCarousel = async () => {
+    try {
+        const response = await axios.get(`${apiURL}/api/carousel`);
+        response.data.results.map((carousel) => {
+            const words = carousel.postIDArray.split(",");
+            carousel.sum = words.length;
+            carousel.postIDArray = words;
+        });
         return response.data.results;
     } catch (error) {
         console.error(error);

@@ -1,4 +1,4 @@
-import { FiFilePlus, FiCopy, FiGrid, FiPower,FiDatabase } from "react-icons/fi";
+import { FiFilePlus, FiCopy, FiGrid, FiPower,FiDatabase,FiFilm } from "react-icons/fi";
 import { AiOutlineUsergroupAdd, AiFillSound } from "react-icons/ai";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -41,6 +41,16 @@ const Menu = () => {
                             </div>
                         </span>
                         <span className="title">分類管理</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/Carousel">
+                        <span className="icon">
+                            <div className="icons">
+                                <FiFilm />
+                            </div>
+                        </span>
+                        <span className="title">輪播管理</span>
                     </Link>
                 </li>
                 <li>

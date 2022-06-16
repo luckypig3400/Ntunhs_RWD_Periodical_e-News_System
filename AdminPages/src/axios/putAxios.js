@@ -1,6 +1,7 @@
 import axios from "axios";
 const config = require("../config/default.json");
 const apiURL = config.apiURL;
+import { getCarousel } from "./index";
 
 axios.defaults.withCredentials = true;
 
@@ -148,7 +149,7 @@ export const createBulletin = async (text) => {
         axios
             .post(`${apiURL}/api/announcement`, {
                 text,
-                dateTime: new Date().toLocaleString('ch-TW'),
+                dateTime: new Date().toLocaleString("ch-TW"),
             })
             .then((response) => {
                 window.location.reload();
@@ -166,9 +167,8 @@ export const deleteBulletin = async (announcementID) => {
         });
 };
 
-
-export const putCategoryName = async (id,value) => {
-    try{
+export const putCategoryName = async (id, value) => {
+    try {
         axios
             .put(`${apiURL}/api/Category/${id}`, {
                 value: value,
@@ -179,24 +179,71 @@ export const putCategoryName = async (id,value) => {
             .catch((error) => {
                 console.log(error.request);
             });
-    }catch(error){
-        console.log(error);
-    }    
-}
-
-export const deleteCategory = async (deleteCategoryID) => {
-    try{
-        axios
-        .delete(`${apiURL}/api/Category/${deleteCategoryID}`, {
-            categoryID: deleteCategoryID,
-        })
-        .then((response) => {
-            console.log(response);
-        })
-        .catch((error) => {
-            console.log(error.request);
-        });
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
-}
+};
+
+export const deleteCategory = async (deleteCategoryID) => {
+    try {
+        axios
+            .delete(`${apiURL}/api/Category/${deleteCategoryID}`, {
+                categoryID: deleteCategoryID,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const putCarousel = async (id, postIDArray) => {
+    const newPostIDArray = postIDArray.join(",");
+    try {
+        axios
+            .put(`${apiURL}/api/carousel/${id}`, {
+                postIDArray: newPostIDArray,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const createCarousel = async (id, postIDArray) => {
+    try {
+        axios
+            .put(`${apiURL}/api/carousel/${id}`, {
+                postIDArray: postIDArray,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const deletePostputCarousel = async (Postid, PeriodNumber) => {
+    getCarousel().then((response) => {
+        response.map((carousel) => {
+            if (carousel.id === parseInt(PeriodNumber)) {
+                var Array = carousel.postIDArray;
+                var NewArray = Array.filter((item) => item !== Postid);
+                putCarousel(PeriodNumber, NewArray);
+            }
+        });
+    });
+};
