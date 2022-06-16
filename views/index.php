@@ -15,7 +15,7 @@ require_once("./partials/head.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
+        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;background-size: cover;" .
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
     ?>
@@ -43,19 +43,19 @@ require_once("./partials/head.php");
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-                        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;background-size: cover;" .
+                        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;background-size: cover;" .
                         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
                 } else {
                     // https://stackoverflow.com/questions/9393885/how-to-replace-multiple-items-from-a-text-string-in-php
-                    $subjectSplitter = [",", "、", "，", "：", ":", "（", "(", "「", "」", "－", " "];
-                    $replacedWords = [",<br>", "、<br>", "，<br>", "：<br>", ":<br>", "<br>（", "<br>(", "<br>「", "」<br>", "－<br>", "<br>"];
+                    $subjectSplitter = [",", "、", ":", "(", "「", "」", "-", " "];
+                    $replacedWords = [",<br>", "、<br>", ":<br>", "<br>(", "<br>「", "」<br>", "-<br>", "<br>"];
 
                     echo '<h2 class="animate__animated animate__fadeInDown">' .
                         str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';
 
                     echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
-                    echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
+                    echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="indexReadmoreButton btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
 
                     // 以下解析該文章的圖片，取第一張圖片放到隱藏的<div>(div要給id)
@@ -66,7 +66,7 @@ require_once("./partials/head.php");
                     for ($j = 0; $j < count($pLinks); $j++) {
                         if ($pLinks[$j] == "" && $j == count($pLinks) - 1) {
                             // check if the last photo is still empty
-                            $pLink =  "../public/assets/img/ntunhs-frontDoor2.png";
+                            $pLink =  "../public/assets/img/ntunhsPhoenix.jpg";
                         } else if ($pLinks[$j] != "") {
                             $pLink = $pLinks[$j];
                             $pLink =  "../public/image/$pLink";
@@ -75,13 +75,14 @@ require_once("./partials/head.php");
                     }
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
+                        // "background: linear-gradient(#fff, #000)," .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") bottom center no-repeat, " .
-                        "url(\"../public/assets/img/ntunhs-frontDoor2.png\") center center no-repeat;" .
-                        "background-size: cover, auto;"; // 疊在上方的圖片大小可以考慮使用contain
-                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
-                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
-                    if ($pLink == "../public/assets/img/ntunhs-frontDoor2.png")
+                        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;" .
+                        "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
+                        // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                        // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
+                    if ($pLink == "../public/assets/img/ntunhsPhoenix.jpg")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
                         // 取消模糊效果，已改用將期刊cover疊圖到校園背景上
@@ -108,22 +109,32 @@ require_once("./partials/head.php");
     <!-- 只在最新期別顯示公告訊息 -->
     <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
         <p class="center" id="annoucementText">
-            <?php
-            require("./../model/config.php");
-            $annoucnementText = file_get_contents($apiURL . "announcement");
+            <b>最新公告：</b>
+            <!-- https://www.wibibi.com/info.php?tid=68 -->
+            <marquee scrollamount="6">
+                <?php
+                require("./../model/config.php");
 
-            $jsonObj = json_decode($annoucnementText, true);
-            // https://www.w3schools.com/php/func_json_decode.asp
+                try {
+                    $annoucnementText = file_get_contents($apiURL . "announcement");
 
-            $rows = $jsonObj["results"];
-            foreach ($rows as $row) {
-                $dt = new DateTime($row["dateTime"]);
-                $formattedDate = $dt->format('Y-m-d H:i');
-                // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+                    $jsonObj = json_decode($annoucnementText, true);
+                    // https://www.w3schools.com/php/func_json_decode.asp
 
-                echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "<br>";
-            }
-            ?>
+                    $rows = $jsonObj["results"];
+                    foreach ($rows as $row) {
+                        $dt = new DateTime($row["dateTime"]);
+                        $formattedDate = $dt->format('Y-m-d H:i');
+                        // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    }
+                } catch (Exception $e) {
+                    echo "很抱歉後端API Server異常 目前無法取得公告訊息";
+                }
+
+                ?>
+            </marquee>
         </p>
     </div>
 
@@ -212,7 +223,7 @@ require_once("./partials/head.php");
 
                         echo '<div class="col-md-4 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
-                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="auto" height="369px">';
+                        echo '<img class="all-article-images" src="' . $photoLink . '" alt="文章的圖片">';
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';

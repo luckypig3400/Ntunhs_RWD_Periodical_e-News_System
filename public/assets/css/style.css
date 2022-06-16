@@ -46,14 +46,17 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 }
 
 .announcement{
-  background-color: lightyellow;
+  background-image: url(../img/ntunhs-frontDoor2.png);
+  color: #c32136;
   margin-top: 0px;
   margin-bottom: 9px;
   margin-left: 15px;
   margin-right: 15px;
   padding: 12px;
   border-radius: 6px;
-  min-height: 9vh;
+  height: 9vh;
+  box-shadow: #111 0px 0px 6px;
+  text-shadow: orange 3px 3px 3px;
 }
 
 /*------Form-Style-From-W3S-----------------------------------------------------*/
@@ -401,25 +404,25 @@ input[type="radio"]:checked + label {
   overflow: hidden;
   position: relative;
 }
-/*
+
 #hero::after {
   content: "";
   position: absolute;
   left: 50%;
-  top: -3%;
+  top: 0%;
   width: 130%;
   height: 95%;
-  https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript
-  https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.36), rgba(0, 0, 0, 0.69)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
+  /* https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript */
+  /* https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin */
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.069)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
   background-size: cover;
-  filter: blur(6px);
-  https://www.casper.tw/development/2020/10/12/frosted-glass/
+  filter: blur(0px);
+  /* https://www.casper.tw/development/2020/10/12/frosted-glass/ */
   z-index: 0;
   border-radius: 0 0 50% 50%;
   transform: translateX(-50%) rotate(0deg);
 }
-*/
+
 #hero::before {
   content: "";
   position: absolute;
@@ -447,15 +450,18 @@ input[type="radio"]:checked + label {
 #hero h2 {
   color: #fff;
   margin-bottom: 30px;
-  font-size: 48px;
+  font-size: 32px;
   font-weight: 700;
+  text-shadow: darkblue 3px 3px 6px;
 }
 #hero p {
   width: 80%;
   -webkit-animation-delay: 0.4s;
   animation-delay: 0.4s;
   margin: 0 auto 30px auto;
-  color: #fff;
+  color: white;
+  /* background-color: rgba(0, 0, 0, 0.36); */
+  text-shadow: black 6px 6px 9px;
 }
 #hero .carousel-control-prev, #hero .carousel-control-next {
   width: 10%;
@@ -468,6 +474,7 @@ input[type="radio"]:checked + label {
   height: auto;
 }
 #hero .btn-get-started {
+  margin-top: 60vh;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 14px;
@@ -481,7 +488,8 @@ input[type="radio"]:checked + label {
   color: #fff;
   -webkit-animation-delay: 0.8s;
   animation-delay: 0.8s;
-  border: 2px solid #68A4C4;
+  border: 2px solid #68a4c4;
+  background-color: rgba(104, 164, 196, 0.6);
 }
 #hero .btn-get-started:hover {
   background: #68A4C4;
@@ -514,6 +522,7 @@ input[type="radio"]:checked + label {
 @media (max-width: 575px) {
   #hero h2 {
     font-size: 30px;
+    text-shadow: darkblue 3px 3px 6px;
   }
   #hero::after {
     left: 40%;
@@ -560,6 +569,10 @@ input[type="radio"]:checked + label {
 }
 #hero-no-slider p {
   color: #fff;
+}
+.indexReadmoreButton{
+  margin-top: 6vh !important;
+  /* https://stackoverflow.com/questions/13117126/how-to-overwrite-css-style */
 }
 #hero-no-slider .btn-get-started {
   font-family: "Roboto", sans-serif;
@@ -1073,11 +1086,24 @@ section {
 }
 .service-details .card-img {
   width: calc(100% + 60px);
+  height: 369px;
+  background-color: lightblue;
+  box-shadow: darkcyan 3px 3px 6px;
   margin-left: -30px;
   overflow: hidden;
   z-index: 9;
-  border-radius: 0;
+  border-radius: 18px;
 }
+
+.all-article-images{
+  width: 100%;
+  height: 100%;
+  object-fit:contain;
+  /* https://www.w3schools.com/css/css3_object-fit.asp */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .service-details .card-img img {
   max-width: 100%;
   transition: all 0.3s ease-in-out;
