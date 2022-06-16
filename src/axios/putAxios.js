@@ -219,11 +219,11 @@ export const putCarousel = async (id, postIDArray) => {
     }
 };
 
-export const createCarousel = async (id, postIDArray) => {
+export const createCarousel = async (id, postID) => {
     try {
         axios
             .put(`${apiURL}/api/carousel/${id}`, {
-                postIDArray: postIDArray,
+                postIDArray: postID,
             })
             .then((response) => {
                 console.log(response);
