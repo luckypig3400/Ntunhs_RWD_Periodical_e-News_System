@@ -29,6 +29,7 @@
     * **3-3:** Version above 1.5.6 must run this sql command to support Carousel Setting function!
     ```=sql
     CREATE TABLE IF NOT EXISTS carousel(periodNumber int NOT NULL PRIMARY KEY, postIDArray varchar(100) DEFAULT "");
+	ALTER TABLE `carousel` CHANGE `periodNumber` `id` INT(11) NOT NULL;
     ```
 
 4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
