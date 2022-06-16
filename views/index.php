@@ -80,8 +80,8 @@ require_once("./partials/head.php");
                         "url(\"$pLink\") bottom center no-repeat, " .
                         "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;" .
                         "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
-                        // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
-                        // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
+                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhsPhoenix.jpg")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
@@ -108,10 +108,11 @@ require_once("./partials/head.php");
 
     <!-- 只在最新期別顯示公告訊息 -->
     <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
-        <p class="center" id="annoucementText">
-            <b>最新公告：</b>
-            <!-- https://www.wibibi.com/info.php?tid=68 -->
-            <marquee scrollamount="6">
+        <p id="announcementText">
+        <h3 class="center"><strong>最新公告</strong></h3>
+        <!-- https://www.wibibi.com/info.php?tid=68 -->
+        <marquee scrollamount="6">
+            <strong>
                 <?php
                 require("./../model/config.php");
 
@@ -134,7 +135,8 @@ require_once("./partials/head.php");
                 }
 
                 ?>
-            </marquee>
+            </strong>
+        </marquee>
         </p>
     </div>
 
@@ -174,7 +176,7 @@ require_once("./partials/head.php");
                             for ($i = 0; $i < count($photoLinks); $i++) {
                                 if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
                                     // check if the last photo is still empty
-                                    $photoLink =  "<    img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
+                                    $photoLink =  "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
                                     $photoLink =  "<img src=\"../public/image/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
