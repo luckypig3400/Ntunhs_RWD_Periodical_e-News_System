@@ -28,22 +28,18 @@
                 <div class="col-lg-6 col-md-6 footer-contact">
                     <h4>聯繫我們</h4>
                     <p>
-                        <strong>期刊編輯部：</strong><a href="https://academic.ntunhs.edu.tw/files/11-1001-103.php" target="_blank" style="color: #6FF;">學術服務組</a><br>
+                        <strong>報章發行所：</strong><a href="https://www.ntunhs.edu.tw/bin/home.php" target="_blank" style="color: #6FF;">國立臺北護理健康大學</a><br>
+                        <strong>期刊編輯部：</strong><a href="https://service-acad.ntunhs.edu.tw/?Lang=zh-tw" target="_blank" style="color: #6FF;">教務處 學術服務組</a><br>
                         <strong>電話代表號：</strong>02‐28227101<br>
                         <strong>投稿Email：</strong><a href="mailto:ntcnjohs@ntunhs.edu.tw" style="color: #6FF;">ntcnjohs@ntunhs.edu.tw</a><br>
                         <strong>校本部地址：</strong>112303 臺北市北投區明德路365號<br>
                         <strong>城區部地址：</strong>108306 臺北市萬華區內江街89號<br>
                     </p>
-                    <div class="social-links mt-3">
-                        <a href="https://www.ntunhs.edu.tw" class="twitter" target="_blank"><i class="bx bx-home"></i></a>
-                        <a href="https://www.facebook.com/pages/國立臺北護理健康大學/146622128699569" class="facebook" target="_blank"><i class="bx bxl-facebook"></i></a>
-                        <a href="https://www.google.com/search?q=國立台北護理健康大學&oq=國北護" class="google" target="_blank"><i class="bx bxl-google"></i></a>
-                    </div>
                 </div>
 
                 <div class="col-lg-6 col-md-6 footer-info">
                     <h3>關於北護</h3>
-                    <p>本校經歷了逾半世紀的歲月，為臺灣社會培育眾多優秀護理、健康照護與管理人才。經過多年的努力及期盼，於民國九十九年八月一日奉教育部核定改名為「國立臺北護理健康大學」，為台灣技職教育體系中全人健康照護之教育及研究，翻開歷史新頁。以「邁向健康照護與管理特色的優質科技大學」為發展願景，培育優質健康與管理的專業人才。目前，學校下設有護理學院、健康科技學院及人類發展與健康學院等三個學院及通識教育中心，系所規劃從人的喜樂出生、健康生活到終老照護，從生理到心靈的照護、從專業到全人通才的培養均已涵蓋。
+                    <p>本校經歷了逾半世紀的歲月，為臺灣社會培育眾多優秀護理、健康照護與管理人才，也是最早設置護理博士班的技職殿堂。民國99年8月1日奉教育部核定改名為「國立臺北護理健康大學」，目前設有護理學院、健康科技學院、人類發展與健康學院、智慧健康照護跨領域學院等四個學院及通識中心，12系所教學領域涵蓋自出生到終老的健康照護需求，培育優質健康照護與管理專業人才。近年校務經營成果豐碩，國際評比表現亮眼，於109年榮獲QS Star滿級五星級評等；108-110連續三年獲軟科世界一流學科排名（ARWU）護理學科百大之排名；111年QS subject ranking護理類進入全球排名112。
                     </p>
                 </div>
 
@@ -53,6 +49,8 @@
 
     <div class="container">
         <div class="copyright">
+            <a href="http://140.131.87.222/periodical/html/" class="twitter" target="_blank"><i class="bx bx-time"></i></a>
+            <strong>北護校訊創刊於1994年10月</strong><br>
             &copy; Copyright <strong><span>NTUNHS</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
