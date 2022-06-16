@@ -42,26 +42,24 @@ const CarouselDataGrid = () => {
     }, [removeDuplicates]);
 
     //檢查空值
-    // useEffect(() => {
-    //     if (totalCarousel[0] !== undefined) {
-    //         let arr1 = [];
-    //         totalCarousel.map((item) => {
-    //             arr1.push(parseInt(item));
-    //         });
+     useEffect(() => {
+        if (totalCarousel[0] !== undefined) {
+            
+            const arr1 = totalCarousel.map((item) => parseInt(item));
 
-    //         var arr2 = [];
-    //         periodList.map((item) => {
-    //             arr2.push(item.id);
-    //         });
+            var arr2 = [];
+            periodList.map((item) => {
+                arr2.push(item.id);
+            });
 
-    //         var res = arr1.filter((item) => !arr2.includes(item));
-    //         if (res.length > 0) {
-    //             res.map((item) => {
-    //                 CreateCarouselFunction(item);
-    //             });
-    //         }
-    //     }
-    // }, [totalCarousel]);
+            var res = arr1.filter((item) => !arr2.includes(item));
+            if (res.length > 0) {
+                res.map((item) => {
+                    CreateCarouselFunction(item);
+                });
+            }
+        }
+    }, [totalCarousel]);
 
     const columns = [
         { field: "id", headerName: "期數", width: 100 },
