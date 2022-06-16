@@ -9,6 +9,7 @@ const categoryRouter = require('./category')
 const searchRouter = require('./search')
 const announcementRouter = require('./announcement')
 const uploadRouter = require('./upload')
+const carouselRouter = require('./carousel')
 
 router.use(verifyToken)
 
@@ -18,5 +19,6 @@ router.use('/category', categoryRouter)
 router.use('/search', searchRouter)
 router.use('/announcement', announcementRouter)
 router.use('/upload', uploadRouter)
+router.use('/carousel',	carouselRouter)
 
 module.exports = router
