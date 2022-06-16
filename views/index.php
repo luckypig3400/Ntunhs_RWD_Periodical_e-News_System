@@ -75,6 +75,7 @@ require_once("./partials/head.php");
                     }
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
+                        // "background: linear-gradient(#fff, #000)," .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") bottom center no-repeat, " .
                         "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;" .
@@ -222,7 +223,7 @@ require_once("./partials/head.php");
 
                         echo '<div class="col-md-4 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
-                        echo '<img src="' . $photoLink . '" alt="文章的圖片" width="auto" height="369px">';
+                        echo '<img class="all-article-images" src="' . $photoLink . '" alt="文章的圖片">';
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';

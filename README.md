@@ -19,7 +19,7 @@
 - [x] 首頁輪播圖大標縮小並加上文字框線
 - [x] 公告跑馬燈新增底圖淺淺的底紋(雲紋之類的)，比較不會單調，然後跑馬燈字改為棗紅色(#c32136)
 - [ ] 字體縮放功能嘗試只縮放 p 和所有 h1 , h2  ... 標籤的文字大小
-- [ ] 首頁蓋覽圖顯示優化
+- [x] 首頁蓋覽圖顯示優化
 - [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
 
 ---
@@ -68,8 +68,8 @@
 - [x] 首頁提示往下滑的標誌(改為把閱讀更多顯示得更顯眼)
 - [x] 首頁公告區塊增加預設文字 “最新公告：”
 - [x] 標題斷行設定（統一全形的標點符號不要斷，半形的標點符號作為斷行表示）
-- [ ] 管理頁面直接快速跳選頁碼
-- [ ] 管理頁面row per page 50筆資料
+- [x] 管理頁面直接快速跳選頁碼
+- [x] 管理頁面row per page 50筆資料
 
 ---
 ## 雲端資料共用
