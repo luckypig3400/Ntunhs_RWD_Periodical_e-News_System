@@ -14,6 +14,7 @@ const CarouselDataGrid = () => {
     const [onClickID, setOnClickID] = useState(""); //編輯ID
     const [periodList, setPeriodList] = useState([]);
     const [postIDArray, setPostIDArray] = useState([""]); //給props用
+    const [pageSize, setPageSize] = useState(10);
 
     useEffect(async () => {
         setPostList(await getPostList());
@@ -43,7 +44,7 @@ const CarouselDataGrid = () => {
     //檢查空值
     //  useEffect(() => {
     //     if (totalCarousel[0] !== undefined) {
-            
+
     //         const arr1 = totalCarousel.map((item) => parseInt(item));
 
     //         var arr2 = [];
@@ -113,7 +114,7 @@ const CarouselDataGrid = () => {
         },
     ];
 
-   //查看是否有新增的periodNumber，若新增則新增一筆資料
+    //查看是否有新增的periodNumber，若新增則新增一筆資料
     const CreateCarouselFunction = (periodNumberID) => {
         const array = [];
         postList.forEach((item) => {
@@ -123,7 +124,7 @@ const CarouselDataGrid = () => {
         });
         const newArray = array.slice(0, 5);
         console.log(newArray);
-        createCarousel(periodNumberID,newArray.join().trim())
+        createCarousel(periodNumberID, newArray.join().trim());
     };
 
     return (
@@ -131,7 +132,7 @@ const CarouselDataGrid = () => {
             <DataGrid
                 rows={periodList}
                 columns={columns}
-                pageSize={10}
+                pageSize={pageSize}
                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                 rowsPerPageOptions={[5, 10, 20]}
                 initialState={{
