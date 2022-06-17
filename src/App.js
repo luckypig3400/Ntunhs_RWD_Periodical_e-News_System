@@ -12,6 +12,7 @@ import User from "./page/User";
 import CreateUser from "./page/CreateUser";
 import Bulletin from "./page/Bulletin";
 import Carousel from "./page/Carousel";
+import MailCanva from "./page/MailCanva";
 
 function App() {
     return (
@@ -26,7 +27,9 @@ function App() {
                 <Route path="/User" element={<User />} />
                 <Route path="/Carousel" element={<Carousel />} />
                 <Route path="/Bulletin" element={<Bulletin />} />
+                <Route path="/MailCanva" element={<MailCanva />} />
                 <Route path="/Signout" element={<Signout />} />
+
             </Route>
 
             <Route path="*" element={<Login />} />

@@ -1,5 +1,12 @@
-import { FiFilePlus, FiCopy, FiGrid, FiPower,FiDatabase,FiFilm } from "react-icons/fi";
-import { AiOutlineUsergroupAdd, AiFillSound } from "react-icons/ai";
+import {
+    FiFilePlus,
+    FiCopy,
+    FiGrid,
+    FiPower,
+    FiDatabase,
+    FiFilm,
+} from "react-icons/fi";
+import { AiOutlineUsergroupAdd, AiFillSound,AiOutlineMail } from "react-icons/ai";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -61,6 +68,16 @@ const Menu = () => {
                             </div>
                         </span>
                         <span className="title">公告設定</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/MailCanva">
+                        <span className="icon">
+                            <div className="icons">
+                                <AiOutlineMail />
+                            </div>
+                        </span>
+                        <span className="title">海報管理</span>
                     </Link>
                 </li>
                 <li>
