@@ -1094,6 +1094,7 @@ section {
   background: linear-gradient(152deg, rgba(212,235,255,0.6) 0%, rgba(0,86,213,0.69) 100%);
   /* background: rgb(254,250,219);
   background: radial-gradient(circle, rgba(254,250,219,1) 0%, rgba(226,239,255,1) 100%); */
+  /* https://cssgradient.io/ */
   box-shadow: darkgray 3px 3px 6px;
   margin-left: -30px;
   overflow: hidden;
