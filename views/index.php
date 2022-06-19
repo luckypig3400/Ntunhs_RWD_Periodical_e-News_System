@@ -233,7 +233,14 @@ require_once("./partials/head.php");
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
 
-                        echo '<i class="bi bi-arrow-right"></i>前往查看同類別報導</a></div></div></div></div>';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期';
+                        foreach($categories as $category) {
+                            if ($category["id"] == $article["categoryID"]) {
+                                echo $category["name"];
+                                break;
+                            }
+                        }
+                        echo '文章</a></div></div></div></div>';
                     }
                     ?>
                 </div>
