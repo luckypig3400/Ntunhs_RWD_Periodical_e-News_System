@@ -116,22 +116,25 @@ require_once("./partials/head.php");
                 <?php
                 require("./../model/config.php");
 
-                try {
-                    $annoucnementText = file_get_contents($apiURL . "announcement");
+                $annoucnementText = file_get_contents($apiURL . "announcement");
 
-                    $jsonObj = json_decode($annoucnementText, true);
-                    // https://www.w3schools.com/php/func_json_decode.asp
+                if ($annoucnementText === false) {
+                    //https://stackoverflow.com/questions/272361/how-can-i-handle-the-warning-of-file-get-contents-function-in-php
+                    $annoucnementText = '{"results":[{"id":1,"text":"很抱歉後端API Server異常 目前無法取得公告訊息","dateTime":"1969-06-09T00:00:00.000Z"}]}';
+                } else if ($annoucnementText == '{"results":[]}') {
+                    $annoucnementText = '{"results":[{"id":1,"text":"目前尚未有公告訊息","dateTime":"1999-09-09T00:00:00.000Z"}]}';
+                }
 
-                    $rows = $jsonObj["results"];
-                    foreach ($rows as $row) {
-                        $dt = new DateTime($row["dateTime"]);
-                        $formattedDate = $dt->format('Y-m-d H:i');
-                        // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+                $jsonObj = json_decode($annoucnementText, true);
+                // https://www.w3schools.com/php/func_json_decode.asp
 
-                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    }
-                } catch (Exception $e) {
-                    echo "很抱歉後端API Server異常 目前無法取得公告訊息";
+                $rows = $jsonObj["results"];
+                foreach ($rows as $row) {
+                    $dt = new DateTime($row["dateTime"]);
+                    $formattedDate = $dt->format('Y-m-d H:i');
+                    // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
 
                 ?>
@@ -229,6 +232,7 @@ require_once("./partials/head.php");
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
+
                         echo '<i class="bi bi-arrow-right"></i>前往查看同類別報導</a></div></div></div></div>';
                     }
                     ?>
