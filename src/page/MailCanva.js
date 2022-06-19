@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 
 import { getPostList } from "../axios";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
+const config = require("../config/default.json");
 
 const MailCanva = () => {
     const [postList, setPostList] = useState([]);
@@ -65,30 +67,21 @@ const MailCanva = () => {
             disableColumnMenu: true,
             renderCell: (params) => {
                 const onClick = () => {
-                    const api = params.api;
-                    const fields = api
-                        .getAllColumns()
-                        .map((c) => c.field)
-                        .filter((c) => c !== "__check__" && !!c);
-                    const thisRow = {};
-
-                    fields.forEach((f) => {
-                        thisRow[f] = params.getValue(params.id, f);
-                    });
-                    var message = window.confirm("確定要刪除類別?");
-                    if (message === true) {
-                        deleteCategory(thisRow.id);
-                        alert("已刪除");
-                        handleClose();
-                    } else {
-                        alert("取消刪除");
-                    }
-                    window.location.reload();
+                    window.open(
+                        `./${config.hashRouter}/MailCanvaPrint?periodNumber=${params.id}`,
+                        '_blank' // <- This is what makes it open in a new window.
+                      );
                 };
                 return (
-                    <IconButton aria-label="delete" color="primary">
+                    // <a href={`/printPoster/${params.id}`}>
+                    <IconButton
+                        aria-label="delete"
+                        color="primary"
+                        onClick={() => onClick()}
+                    >
                         <LocalPrintshopIcon />
                     </IconButton>
+                    //</a>
                 );
             },
         },

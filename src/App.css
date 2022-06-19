@@ -120,8 +120,8 @@ body {
     line-height: 60px;
     text-align: start;
     white-space: nowrap;
-    font-size:17px;
-    font-weight:bold;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 
@@ -273,4 +273,20 @@ body {
     .navigation {
         width: 80px;
     }
+}
+
+.node-content {
+    position: relative;
+    color: white;
+}
+
+.Loding {
+    position: absolute;
+    top: 0;
+    background-color: #FFFFFF;
+    padding: 10px;
+    opacity: 0.8;
+    align-Items: center;
+    justify-Content: center;
+    display: flex
 }

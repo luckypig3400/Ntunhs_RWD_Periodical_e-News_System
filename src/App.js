@@ -9,16 +9,16 @@ import { Routes, Route } from "react-router-dom";
 import PageLayout from "./PageLayout";
 import Signout from "./component/Signout";
 import User from "./page/User";
-import CreateUser from "./page/CreateUser";
 import Bulletin from "./page/Bulletin";
 import Carousel from "./page/Carousel";
 import MailCanva from "./page/MailCanva";
+import MailCanvaPrint from "./page/MailCanvaPrint";
 
 function App() {
     return (
         <Routes>
             <Route index element={<Login />} />
-
+            <Route path="/MailCanvaPrint" element={<MailCanvaPrint />} />
             <Route path="/" element={<PageLayout />}>
                 <Route path="/CreatePost" element={<CreatePost />} />
                 <Route path="/PostList" element={<PostList />} />
@@ -29,7 +29,6 @@ function App() {
                 <Route path="/Bulletin" element={<Bulletin />} />
                 <Route path="/MailCanva" element={<MailCanva />} />
                 <Route path="/Signout" element={<Signout />} />
-
             </Route>
 
             <Route path="*" element={<Login />} />
