@@ -45,9 +45,11 @@ function fetchCategoryWithID($in_id)
         echo "MySQL Connection failed: " . $e->getMessage();
     }
 
-    if(sizeof($result) == 1) {
+    if (sizeof($result) == 1) {
         return $result[0]["name"];
-    }else{
+    } else if ($id == "") {
+        return "所有文章";
+    } else {
         return "找不到您所指定的文章類別";
     }
 }

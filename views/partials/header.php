@@ -56,6 +56,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                                 }
                             }
                         }
+                        echo "<li><a href=\"categoriesSummary.php?period=" . $period_GET . "\">本期所有文章</a></li>";
                         ?>
                     </ul>
                 </li>

@@ -19,7 +19,11 @@ require_once("partials/head.php");
         <div class="d-flex justify-content-between align-items-center">
           <?php
           $currentCategory = fetchCategoryWithID(getCategoryParam());
-          echo "<h2>$currentCategory</h2>";
+          if (getPeriodParam() != "") {
+            $currentPeriod = getPeriodParam();
+            echo "<h2>第" . $currentPeriod . "期$currentCategory</h2>";
+          } else
+            echo "<h2>$currentCategory</h2>";
           ?>
 
           <ol>
