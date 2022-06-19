@@ -147,11 +147,11 @@ require_once("./partials/head.php");
             <div class="container">
                 <div class="row">
                     <?php
-                    $latestArticle =  fetchLatestArticleInCurrentPeriod(getPeriodParam());
+                    $latestArticle =  fetchLatestHeadlineArticleInCurrentPeriod(getPeriodParam());
                     ?>
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
-                        <h2>最新消息</h2><br>
+                        <h2>頭條報導</h2><br>
 
                         <?php
                         if (gettype($latestArticle) == "string") {

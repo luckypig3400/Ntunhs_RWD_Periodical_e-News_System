@@ -89,7 +89,7 @@ function fetchArticleList($in_period, $in_category)
     }
 }
 
-function fetchLatestArticleInCurrentPeriod($in_period)
+function fetchLatestHeadlineArticleInCurrentPeriod($in_period)
 {
     require("config.php");
     $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
@@ -103,7 +103,7 @@ function fetchLatestArticleInCurrentPeriod($in_period)
             $period = fetchLatestPeriodNumbers();
         }
 
-        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' ORDER BY updateTime DESC LIMIT 1";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = 'C01' ORDER BY updateTime DESC LIMIT 1";
 
         $stmt = $conn->prepare($sql);
         $stmt->execute();
