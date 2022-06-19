@@ -1090,8 +1090,11 @@ section {
 .service-details .card-img {
   width: calc(100% + 60px);
   height: 369px;
-  background-color: lightblue;
-  box-shadow: darkcyan 3px 3px 6px;
+  background: rgb(212,235,255);
+  background: linear-gradient(152deg, rgba(212,235,255,0.6) 0%, rgba(0,86,213,0.69) 100%);
+  /* background: rgb(254,250,219);
+  background: radial-gradient(circle, rgba(254,250,219,1) 0%, rgba(226,239,255,1) 100%); */
+  box-shadow: darkgray 3px 3px 6px;
   margin-left: -30px;
   overflow: hidden;
   z-index: 9;
@@ -1134,14 +1137,14 @@ section {
   color: #5e5e5e;
 }
 .service-details .read-more a {
-  color: #777777;
+  color: #FF8686;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
   transition: 0.3s;
 }
 .service-details .read-more a:hover {
-  color: #68A4C4;
+  color: #ff3636;
 }
 .service-details .card:hover img {
   transform: scale(1.1);
