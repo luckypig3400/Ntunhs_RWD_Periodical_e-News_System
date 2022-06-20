@@ -3,7 +3,9 @@ import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { getPostList } from "../axios";
 import { Button, CircularProgress } from "@mui/material";
-import MailCanvaPrintPostList from "../component/MailCanvaPrintPostList";
+
+import MailCanvaPrintPostList1 from "../component/MailCanvaPrintPostList/MailCanvaPrintPostList1";
+import MailCanvaPrintPostList2 from "../component/MailCanvaPrintPostList/MailCanvaPrintPostList2";
 
 function filter(node) {
     return node.tagName !== "i";
@@ -29,7 +31,23 @@ const MailCanvaPrint = () => {
     }, [postList]);
 
     const newPostList = periodNumberPostList.map((item) => {
-        return <MailCanvaPrintPostList PostList={item} key={item.id} />;
+        if (item.id % 2 === 1) {
+            return (
+                <MailCanvaPrintPostList2
+                    PostList={item}
+                    key={item.id}
+                    style={{ margin: 0 }}
+                />
+            );
+        } else {
+            return (
+                <MailCanvaPrintPostList1
+                    PostList={item}
+                    key={item.id}
+                    style={{ margin: 0 }}
+                />
+            );
+        }
     });
     const getImg = () => {
         const node = document.getElementById("node");
@@ -110,7 +128,7 @@ const MailCanvaPrint = () => {
                     className="action"
                     sx={{ margin: "10px" }}
                 >
-                   儲存圖片
+                    儲存圖片
                 </Button>
                 {/* <Button
                     variant="contained"
