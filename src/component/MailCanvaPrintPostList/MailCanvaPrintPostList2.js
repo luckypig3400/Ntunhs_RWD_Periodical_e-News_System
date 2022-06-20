@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import NTUNHS from "../NTUNHS1.jpg";
+import NTUNHS from "../NTUNHS2.jpg";
 
 const config = require("../../config/default.json");
 const imageURL = config.imageURL;
