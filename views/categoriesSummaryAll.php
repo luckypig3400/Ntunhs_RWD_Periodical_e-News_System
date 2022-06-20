@@ -19,21 +19,13 @@ require_once("partials/head.php");
         <div class="d-flex justify-content-between align-items-center">
           <?php
           $currentCategory = fetchCategoryWithID(getCategoryParam());
-          if (getPeriodParam() != "") {
-            $currentPeriod = getPeriodParam();
-            echo "<h2>第" . $currentPeriod . "期$currentCategory</h2>";
-          } else
-            echo "<h2>$currentCategory</h2>";
+          echo "<h2>歷期$currentCategory</h2>";
           ?>
 
           <ol>
             <li><a href="index.php">首頁</a></li>
             <?php
-            if (getPeriodParam() != "") {
-              $currentPeriod = getPeriodParam();
-              echo "<li>第" . $currentPeriod . "期$currentCategory</li>";
-            } else
-              echo "<li>$currentCategory</li>";
+            echo "<li>歷期$currentCategory</li>";
             ?>
           </ol>
         </div>
@@ -50,11 +42,7 @@ require_once("partials/head.php");
 
             <div class="section-title">
               <?php
-              if (getPeriodParam() != "") {
-                $currentPeriod = getPeriodParam();
-                echo "<h2>第" . $currentPeriod . "期$currentCategory</h2>";
-              } else
-                echo "<h2>$currentCategory</h2>";
+              echo "<h2>歷期$currentCategory</h2>";
               ?>
             </div>
 

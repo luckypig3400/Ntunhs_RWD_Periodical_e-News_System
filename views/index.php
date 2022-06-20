@@ -80,8 +80,8 @@ require_once("./partials/head.php");
                         "url(\"$pLink\") bottom center no-repeat, " .
                         "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;" .
                         "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
-                        // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
-                        // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
+                    // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
+                    // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
                     if ($pLink == "../public/assets/img/ntunhsPhoenix.jpg")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
@@ -108,33 +108,38 @@ require_once("./partials/head.php");
 
     <!-- 只在最新期別顯示公告訊息 -->
     <div class="announcement" <?php if (getPeriodParam() != "") echo " hidden"; ?>>
-        <p class="center" id="annoucementText">
-            <b>最新公告：</b>
-            <!-- https://www.wibibi.com/info.php?tid=68 -->
-            <marquee scrollamount="6">
+        <p id="announcementText">
+        <h3 class="center"><strong>最新公告</strong></h3>
+        <!-- https://www.wibibi.com/info.php?tid=68 -->
+        <marquee scrollamount="6">
+            <strong>
                 <?php
                 require("./../model/config.php");
 
-                try {
-                    $annoucnementText = file_get_contents($apiURL . "announcement");
+                $annoucnementText = file_get_contents($apiURL . "announcement");
 
-                    $jsonObj = json_decode($annoucnementText, true);
-                    // https://www.w3schools.com/php/func_json_decode.asp
+                if ($annoucnementText === false) {
+                    //https://stackoverflow.com/questions/272361/how-can-i-handle-the-warning-of-file-get-contents-function-in-php
+                    $annoucnementText = '{"results":[{"id":1,"text":"很抱歉後端API Server異常 目前無法取得公告訊息","dateTime":"1969-06-09T00:00:00.000Z"}]}';
+                } else if ($annoucnementText == '{"results":[]}') {
+                    $annoucnementText = '{"results":[{"id":1,"text":"目前尚未有公告訊息","dateTime":"1999-09-09T00:00:00.000Z"}]}';
+                }
 
-                    $rows = $jsonObj["results"];
-                    foreach ($rows as $row) {
-                        $dt = new DateTime($row["dateTime"]);
-                        $formattedDate = $dt->format('Y-m-d H:i');
-                        // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+                $jsonObj = json_decode($annoucnementText, true);
+                // https://www.w3schools.com/php/func_json_decode.asp
 
-                        echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
-                    }
-                } catch (Exception $e) {
-                    echo "很抱歉後端API Server異常 目前無法取得公告訊息";
+                $rows = $jsonObj["results"];
+                foreach ($rows as $row) {
+                    $dt = new DateTime($row["dateTime"]);
+                    $formattedDate = $dt->format('Y-m-d H:i');
+                    // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
+
+                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
 
                 ?>
-            </marquee>
+            </strong>
+        </marquee>
         </p>
     </div>
 
@@ -145,11 +150,11 @@ require_once("./partials/head.php");
             <div class="container">
                 <div class="row">
                     <?php
-                    $latestArticle =  fetchLatestArticleInCurrentPeriod(getPeriodParam());
+                    $latestArticle =  fetchLatestHeadlineArticleInCurrentPeriod(getPeriodParam());
                     ?>
 
                     <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
-                        <h2>最新消息</h2><br>
+                        <h2>頭條報導</h2><br>
 
                         <?php
                         if (gettype($latestArticle) == "string") {
@@ -174,7 +179,7 @@ require_once("./partials/head.php");
                             for ($i = 0; $i < count($photoLinks); $i++) {
                                 if ($photoLinks[$i] == "" && $i == count($photoLinks) - 1) {
                                     // check if the last photo is still empty
-                                    $photoLink =  "<    img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
+                                    $photoLink =  "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
                                 } else if ($photoLinks[$i] != "") {
                                     $photoLink = $photoLinks[$i];
                                     $photoLink =  "<img src=\"../public/image/$photoLink\" class=\"cropImg\" alt=\"" . $latestArticle[0]["subject"] . "\">";
@@ -226,8 +231,16 @@ require_once("./partials/head.php");
                         echo '<img class="all-article-images" src="' . $photoLink . '" alt="文章的圖片">';
                         echo '</div><div class="card-body">';
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
-                        echo '<div class="read-more"><a href="categoriesSummary.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
-                        echo '<i class="bi bi-arrow-right"></i>前往查看同類別報導</a></div></div></div></div>';
+                        echo '<div class="read-more"><a href="categoriesSummaryAll.php?category=' . $article["categoryID"] . '&period=' . getPeriodParam() . '">';
+
+                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期';
+                        foreach($categories as $category) {
+                            if ($category["id"] == $article["categoryID"]) {
+                                echo $category["name"];
+                                break;
+                            }
+                        }
+                        echo '文章</a></div></div></div></div>';
                     }
                     ?>
                 </div>
