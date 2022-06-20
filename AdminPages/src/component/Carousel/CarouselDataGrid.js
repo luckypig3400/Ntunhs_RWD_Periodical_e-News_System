@@ -14,6 +14,7 @@ const CarouselDataGrid = () => {
     const [onClickID, setOnClickID] = useState(""); //編輯ID
     const [periodList, setPeriodList] = useState([]);
     const [postIDArray, setPostIDArray] = useState([""]); //給props用
+    const [pageSize, setPageSize] = useState(10);
 
     useEffect(async () => {
         setPostList(await getPostList());
@@ -30,37 +31,35 @@ const CarouselDataGrid = () => {
     }, [postList]);
 
     //全部PeriodNumber
-    useEffect(() => {
-        if (removeDuplicates[0] !== undefined) {
-            const totalArray = [];
-            removeDuplicates.map((item) => {
-                totalArray.push(item.periodNumber);
-            });
-            setTotalCarousel(totalArray);
-        }
-    }, [removeDuplicates]);
+    // useEffect(() => {
+    //     if (removeDuplicates[0] !== undefined) {
+    //         const totalArray = [];
+    //         removeDuplicates.map((item) => {
+    //             totalArray.push(item.periodNumber);
+    //         });
+    //         setTotalCarousel(totalArray);
+    //     }
+    // }, [removeDuplicates]);
 
     //檢查空值
-    useEffect(() => {
-        if (totalCarousel[0] !== undefined) {
-            let arr1 = [];
-            totalCarousel.map((item) => {
-                arr1.push(parseInt(item));
-            });
+    //  useEffect(() => {
+    //     if (totalCarousel[0] !== undefined) {
 
-            var arr2 = [];
-            periodList.map((item) => {
-                arr2.push(item.id);
-            });
+    //         const arr1 = totalCarousel.map((item) => parseInt(item));
 
-            var res = arr1.filter((item) => !arr2.includes(item));
-            if (res.length > 0) {
-                res.map((item) => {
-                    CreateCarouselFunction(item);
-                });
-            }
-        }
-    }, [totalCarousel]);
+    //         var arr2 = [];
+    //         periodList.map((item) => {
+    //             arr2.push(item.id);
+    //         });
+
+    //         var res = arr1.filter((item) => !arr2.includes(item));
+    //         if (res.length > 0) {
+    //             res.map((item) => {
+    //                 CreateCarouselFunction(item);
+    //             });
+    //         }
+    //     }
+    // }, [totalCarousel]);
 
     const columns = [
         { field: "id", headerName: "期數", width: 100 },
@@ -115,7 +114,7 @@ const CarouselDataGrid = () => {
         },
     ];
 
-   //查看是否有新增的periodNumber，若新增則新增一筆資料
+    //查看是否有新增的periodNumber，若新增則新增一筆資料
     const CreateCarouselFunction = (periodNumberID) => {
         const array = [];
         postList.forEach((item) => {
@@ -125,7 +124,7 @@ const CarouselDataGrid = () => {
         });
         const newArray = array.slice(0, 5);
         console.log(newArray);
-        createCarousel(periodNumberID,newArray.join().trim())
+        createCarousel(periodNumberID, newArray.join().trim());
     };
 
     return (
@@ -133,7 +132,7 @@ const CarouselDataGrid = () => {
             <DataGrid
                 rows={periodList}
                 columns={columns}
-                pageSize={10}
+                pageSize={pageSize}
                 onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
                 rowsPerPageOptions={[5, 10, 20]}
                 initialState={{
