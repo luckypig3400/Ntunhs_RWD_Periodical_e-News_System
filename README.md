@@ -7,7 +7,7 @@
 
 2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
 
-3. Unzip ```DB/DB_ver8....7z``` and import to MySQL Server
+3. Unzip ```DB/DB_ver8....7z``` and import to MySQL Server **You can use the latest [DB_ver10](https://drive.google.com/file/d/1gZa6PBnFGebU2c-Y6DUgzNRL5I77_kxb/view?usp=sharing) directly and jump to step4!**
 
     <mark>Important:</mark> Version above 1.2.6 please use [```DB_ver9....7z```](https://drive.google.com/file/d/1pssaNHwMz22A3kRDO7V3WzGuNzRa6gVl/view?usp=sharing) ,or just simply run the sql commands below after you import the ```DB_ver8``` to make Announcement function work properly !
 
@@ -32,7 +32,7 @@
 	ALTER TABLE `carousel` CHANGE `periodNumber` `id` INT(11) NOT NULL;
     ```
 
-4. Download [Periodical Data Ver2](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
+4. Download [Periodical Data Ver3](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
 
 5. Update ```.ENV``` file config [可參考這裡](#about-env)
 
