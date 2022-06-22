@@ -7,32 +7,9 @@
 
 2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
 
-3. Unzip ```DB/DB_ver8....7z``` and import to MySQL Server **You can use the latest [DB_ver10](https://drive.google.com/file/d/1gZa6PBnFGebU2c-Y6DUgzNRL5I77_kxb/view?usp=sharing) directly and jump to step4!**
+3. Download [DB_ver11](https://drive.google.com/drive/folders/1PPBx39cU4jF_fkM1AnrEWCcdXnXW873f?usp=sharing) then unzip ```DB_ver11....7z``` and import to MySQL Server.
 
-    <mark>Important:</mark> Version above 1.2.6 please use [```DB_ver9....7z```](https://drive.google.com/file/d/1pssaNHwMz22A3kRDO7V3WzGuNzRa6gVl/view?usp=sharing) ,or just simply run the sql commands below after you import the ```DB_ver8``` to make Announcement function work properly !
-
-    ```=sql
-    CREATE TABLE `announcement` (
-      `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-      `text` varchar(100) DEFAULT NULL,
-      `dateTime` datetime DEFAULT current_timestamp()
-    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-    -- https://www.w3schools.com/sql/sql_autoincrement.asp
-    ```
-
-    * **3-2:** Then run this SQL command to fix the default clicked value bug
-
-    ```=sql
-    ALTER TABLE `periodical` CHANGE `clicked` `clicked` INT(11) NULL DEFAULT '0';
-    ```
-
-    * **3-3:** Version above 1.5.6 must run this sql command to support Carousel Setting function!
-    ```=sql
-    CREATE TABLE IF NOT EXISTS carousel(periodNumber int NOT NULL PRIMARY KEY, postIDArray varchar(100) DEFAULT "");
-	ALTER TABLE `carousel` CHANGE `periodNumber` `id` INT(11) NOT NULL;
-    ```
-
-4. Download [Periodical Data Ver3](http://gg.gg/ntunhsPeriodicalData) then unzip & move the ```public``` folder into the root of this repo folder
+4. Download [Periodical Data Ver4](https://drive.google.com/drive/folders/10eHoKCvKEl7FrbJsVBS_daMXckF6rDxJ?usp=sharing) then unzip & move the ```public``` folder into the root of this repo folder
 
 5. Update ```.ENV``` file config [可參考這裡](#about-env)
 
