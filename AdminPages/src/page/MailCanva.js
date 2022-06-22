@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
 import { IconButton } from "@mui/material";
-import { Link } from "react-router-dom";
 
 import { getPostList } from "../axios";
 import LocalPrintshopIcon from "@mui/icons-material/LocalPrintshop";
