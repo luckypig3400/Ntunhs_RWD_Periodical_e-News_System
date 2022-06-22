@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import NTUNHS from "./NTUNHS1.jpg";
+import NTUNHS from "../NTUNHS2.jpg";
 
-const config = require("../config/default.json");
+const config = require("../../config/default.json");
 const imageURL = config.imageURL;
 
 // 过滤掉所有<i>元素
 
-const MailCanvaPrintPostList = (props) => {
+const MailCanvaPrintPostList1 = (props) => {
     const subject = props.PostList.subject;
     const html = props.PostList.quillcontent;
+    const writer = props.PostList.writer;
     const cover = `${imageURL}/image/${props.PostList.cover}`;
     // 转为png格式的图片
 
@@ -16,8 +17,13 @@ const MailCanvaPrintPostList = (props) => {
         <>
             <div className="dom-to-img">
                 <div>
-                    <div  className="node-content">
-                        <Content subject={subject} html={html} cover={cover} />
+                    <div className="node-content">
+                        <Content
+                            subject={subject}
+                            html={html}
+                            cover={cover}
+                            writer={writer}
+                        />
                     </div>
                 </div>
 
@@ -29,8 +35,8 @@ const MailCanvaPrintPostList = (props) => {
 
 const Content = (props) => {
     var strippedHtml = props.html.replace(/<[^>]+>/g, "");
-    var cleanText = strippedHtml.replace(/&nbsp;/g, "");
-    const newContent = cleanText.substr(0, 200) + "......";
+    var cleanText = strippedHtml.replace(/&nbsp;/g, "").replace("▲", "");
+    const newContent = cleanText.substr(0, 100) + "......";
     const windowWidth = window.innerWidth;
 
     const postCover = (
@@ -67,14 +73,19 @@ const Content = (props) => {
                     width: windowWidth / 2.6,
                     backgroundColor: "#FFF",
                     opacity: 0.8,
+                    borderRadius: "10px",
+                    background: "#FFF",
+                    // boxShadow: "0 0 20px rgba(0,0,0)", //陰影
+                    padding: "10px",
                 }}
             >
                 <p>
                     <b>
                         <font
                             style={{
-                                fontSize: windowWidth / 35 + "px",
-                                fontFamily: "標楷體",
+                                fontSize: windowWidth / 30 + "px",
+                                fontFamily: "Microsoft JhengHei",
+                                marginTop: "10px",
                             }}
                             color="#000000"
                         >
@@ -82,12 +93,26 @@ const Content = (props) => {
                         </font>
                     </b>
                 </p>
-                <p>-</p>
-                <p>
+
+                <p style={{ paddingTop: windowWidth / 70 }}>
+                    <u>
+                        <font
+                            style={{
+                                fontSize: windowWidth / 60 + "px",
+                                fontFamily: "Microsoft JhengHei",
+                            }}
+                            color="#000000"
+                        >
+                            發表單位：{props.writer}
+                        </font>
+                    </u>
+                </p>
+
+                <p style={{ paddingTop: windowWidth / 70 }}>
                     <font
                         style={{
                             fontSize: windowWidth / 50 + "px",
-                            fontFamily: "標楷體",
+                            fontFamily: "Microsoft JhengHei",
                         }}
                         color="#000000"
                     >
@@ -111,4 +136,4 @@ const Content = (props) => {
     );
 };
 
-export default MailCanvaPrintPostList;
+export default MailCanvaPrintPostList1;
