@@ -48,7 +48,7 @@ function blogArticleEntryBlock($in_singleArticle)
           </div>
 
           <h2 class=\"entry-title\">
-            <a href=\"fullArticlePage.php$linkParams&id=$id\">$subject</a>
+            <a href=\"fullArticlePage.php$linkParams$id\">$subject</a>
           </h2>
 
           <div class=\"entry-meta\">
