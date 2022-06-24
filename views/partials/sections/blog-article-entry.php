@@ -34,7 +34,7 @@ function blogArticleEntryBlock($in_singleArticle)
   }
 
   require_once("../controller/simplifyArticleContent.php");
-  $simplifiedContent = simplifyArticleContent($quillcontent, "");
+  $simplifiedContent = simplifyArticleContent($quillcontent, "168");
 
   /*採用函式庫的方式解析HTML但是在解析<p>的過程中會出現嚴重錯誤因此遺棄
   // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
