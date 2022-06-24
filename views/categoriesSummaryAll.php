@@ -49,9 +49,9 @@ require_once("partials/head.php");
             <?php
             require_once("../model/fetchArticle.php");
 
-            $currentPeriod = getPeriodParam();
+            $startID = getIDparam();
             $currentCategoryID = getCategoryParam();
-            $articles = fetchArticleList($currentPeriod, $currentCategoryID);
+            $articles = fetchCategorySummaryArticleList($currentCategoryID, $startID);
 
             if (gettype($articles) == "string") {
               echo "<h3>$articles</h3>";

@@ -89,12 +89,44 @@ function fetchArticleList($in_period, $in_category)
     }
 }
 
-function fetchSpecificCategoryList($in_period, $in_category, $in_id)
+function fetchCategorySummaryArticleList($in_category, $in_id)
 {
     require("config.php");
-    $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
     $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
     $id = str_replace('/[^A-Za-z0-9\-]/', '', $in_id); // Removes all special chars.
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
+
+    if ($category != "" && $id != "") {
+        $sql = "SELECT * FROM periodical WHERE id <= $id AND categoryID = '$category' ORDER BY id DESC LIMIT 6;";
+    }else if($category == "" && $id != ""){
+        $sql = "SELECT * FROM periodical WHERE id <= $id ORDER BY id DESC LIMIT 9;";
+    }else if($category != "" && $id == ""){
+        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' ORDER BY id DESC LIMIT 9;";
+    }else{
+        $sql = "SELECT * FROM periodical WHERE id = 3696969693;";
+    }
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
+
+    if (sizeof($result) == 0) {
+        return "很抱歉`(*>﹏<*)′ 出了點錯誤 (っ °Д °;)っ<br>Oops! Something went wrong.<br>Sorry ＞﹏＜!";
+    } else {
+        return $result;
+    }
 }
 
 function fetchLatestHeadlineArticleInCurrentPeriod($in_period)
