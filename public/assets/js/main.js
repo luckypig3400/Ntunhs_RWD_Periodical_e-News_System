@@ -114,6 +114,8 @@ function resetAllfontSize() {
   setCookie("fontLevel", "0", 69);
   setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   // console.log("fontSizeArrayCookie: " + getCookie("fontSizeArrayCookie"));
+
+  location.reload();// https://www.w3schools.com/jsref/met_loc_reload.asp
 }
 
 function loadCurrentfontSize() {
