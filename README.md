@@ -21,6 +21,7 @@
 - [ ] 字體縮放功能嘗試只縮放 p 和所有 h1 , h2  ... 標籤的文字大小
 - [ ] 輪播圖標題字體調大(要比內文大，目前初判是記憶頁面字體大小的功能有Bug造成顯示異常)
 - [ ] 首頁輪播圖根據資料庫carousel table來撈取
+- [x] 前後台文章顯示順序要相同(以id與類別排序)
 - [x] 首頁蓋覽圖顯示優化
 - [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
 
