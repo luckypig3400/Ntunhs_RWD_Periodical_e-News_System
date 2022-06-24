@@ -76,7 +76,7 @@ try {
     <title>期刊圖片檔案檢查器</title>
 </head>
 
-<body>
+<body id="fontSizeControllableArea">
 
 </body>
 

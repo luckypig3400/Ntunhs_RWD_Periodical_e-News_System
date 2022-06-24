@@ -5,7 +5,7 @@
 require_once("./partials/head.php");
 ?>
 
-<body>
+<body id="fontSizeControllableArea">
     <style id="heroAfterStyle">
     </style>
     <?php
