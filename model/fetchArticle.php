@@ -105,11 +105,11 @@ function fetchCategorySummaryArticleList($in_category, $in_id)
     if ($category != "" && $id != "") {
         $sql = "SELECT * FROM periodical WHERE id <= $id AND categoryID = '$category' ORDER BY id DESC LIMIT 6;";
     }else if($category == "" && $id != ""){
-        $sql = "SELECT * FROM periodical WHERE id <= $id ORDER BY id DESC LIMIT 9;";
+        $sql = "SELECT * FROM periodical WHERE id <= $id ORDER BY id DESC LIMIT 6;";
     }else if($category != "" && $id == ""){
-        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' ORDER BY id DESC LIMIT 9;";
+        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' ORDER BY id DESC LIMIT 6;";
     }else{
-        $sql = "SELECT * FROM periodical WHERE id = 3696969693;";
+        $sql = "SELECT * FROM periodical WHERE id = 369369369;";
     }
 
     try {
