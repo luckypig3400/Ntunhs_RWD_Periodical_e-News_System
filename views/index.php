@@ -226,7 +226,7 @@ require_once("./partials/head.php");
                             }
                         }
 
-                        echo '<div class="col-md-4 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
+                        echo '<div class="col-lg-4 col-md-6 d-flex align-items-stretch center" data-aos="fade-up" id="article' . $article["id"] . '">';
                         echo '<div class="card"><div class="card-img">';
                         echo '<img class="all-article-images" src="' . $photoLink . '" alt="文章的圖片">';
                         echo '</div><div class="card-body">';
