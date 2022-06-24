@@ -56,7 +56,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                                 }
                             }
                         }
-                        if($period_GET != "")
+                        if ($period_GET != "")
                             echo "<li><a href=\"categoriesSummary.php?period=" . $period_GET . "\">本期所有文章</a></li>";
                         else
                             echo "<li><a href=\"categoriesSummary.php\">本期所有文章</a></li>";
@@ -69,6 +69,17 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         <li><a href="#" id="incFontSize" class="scrollto" onclick="increaseAllfontSize()"><span><i class="bi bi-fonts"></i>+</span></a></li>
                         <li><a href="#" id="decFontSize" class="scrollto" onclick="decreaseAllfontSize()"><span><i class="bi bi-fonts"></i>-</span></a></li>
                         <li><a href="#" id="resetFont" class="scrollto" onclick="resetAllfontSize()">重設字體</a></li>
+
+                        <select onchange="fontSizeControll(this);">
+                            <option value="">僅更改內文字體大小</option>
+                            <option value="xx-small">特小</option>
+                            <option value="x-small">更小</option>
+                            <option value="small">略小</option>
+                            <option value="medium">正常</option>
+                            <option value="large">略大</option>
+                            <option value="x-large">更大</option>
+                            <option value="xx-large">特大</option>
+                        </select>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#dontReload"><span>選擇期別</span> <i class="bi bi-chevron-down"></i></a>

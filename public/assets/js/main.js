@@ -136,6 +136,13 @@ function loadCurrentfontSize() {
   }
 }
 
+// https://www.w3schools.com/jsref/prop_style_fontsize.asp
+function fontSizeControll(selectTag) {
+  var listValue = selectTag.options[selectTag.selectedIndex].value;
+  document.getElementById("fontSizeControllableArea").style.fontSize = listValue;
+}
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_fontsize2
+
 function changeHeaderLinksActive() {
   var url_string = window.location.href;
   var url = new URL(url_string);
