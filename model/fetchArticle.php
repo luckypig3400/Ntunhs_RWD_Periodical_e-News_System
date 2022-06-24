@@ -89,6 +89,14 @@ function fetchArticleList($in_period, $in_category)
     }
 }
 
+function fetchSpecificCategoryList($in_period, $in_category, $in_id)
+{
+    require("config.php");
+    $period = str_replace('/[^A-Za-z0-9\-]/', '', $in_period); // Removes all special chars.
+    $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
+    $id = str_replace('/[^A-Za-z0-9\-]/', '', $in_id); // Removes all special chars.
+}
+
 function fetchLatestHeadlineArticleInCurrentPeriod($in_period)
 {
     require("config.php");
