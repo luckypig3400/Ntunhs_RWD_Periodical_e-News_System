@@ -474,4 +474,4 @@ else
   document.attachEvent('onclick', callback);
 
 // https://stackoverflow.com/questions/807878/how-to-make-javascript-execute-after-page-load
-window.onload = loadCurrentfontSize();
+// window.onload = loadCurrentfontSize();
