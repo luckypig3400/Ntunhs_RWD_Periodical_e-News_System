@@ -3,8 +3,12 @@
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
   <title>北護校訊電子期刊 NTUNHS Periodical</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  <meta name="description" content="北護新版校訊電子期刊系統(Responsive Web Design)">
+  <meta name="keywords" content="NTUNHS,e-News,RWD,北護,北護校訓電子期刊,北護教務處,學術服務組">
+  <meta name="author" content="LuckyPig3400">
+  <!-- Frontend News Page Author: luckypig3400 -->
+  <!-- Frontend Admin Page Author: Louis -->
+  <!-- Backend Author: johnny990628 -->
 
   <!-- Favicons -->
   <link href="../public/assets/img/favicon.png" rel="icon">
