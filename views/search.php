@@ -5,7 +5,7 @@
 require_once("partials/head.php");
 ?>
 
-<body>
+<body id="fontSizeControllableArea">
 
   <?php
   require_once("partials/header.php");

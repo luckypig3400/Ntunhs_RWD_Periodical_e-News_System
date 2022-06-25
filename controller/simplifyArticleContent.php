@@ -13,7 +13,7 @@ function simplifyArticleContent($in_articleContent, $max_length)
 
   // 從完整文章解析出第一段文字
   $simplifiedContent = $in_articleContent;
-  $simplifiedContent = str_replace("&nbsp;", "", $simplifiedContent);
+  $simplifiedContent = str_replace("&nbsp;", " ", $simplifiedContent);
   $simplifiedContent = str_replace("<p><br></p>", "", $simplifiedContent);
   // https://stackoverflow.com/questions/10142658/php-find-string-with-regex
   preg_match_all("/<img.*>/", $simplifiedContent, $matches);

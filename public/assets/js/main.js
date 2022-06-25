@@ -114,6 +114,8 @@ function resetAllfontSize() {
   setCookie("fontLevel", "0", 69);
   setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   // console.log("fontSizeArrayCookie: " + getCookie("fontSizeArrayCookie"));
+
+  location.reload();// https://www.w3schools.com/jsref/met_loc_reload.asp
 }
 
 function loadCurrentfontSize() {
@@ -135,6 +137,13 @@ function loadCurrentfontSize() {
     }
   }
 }
+
+// https://www.w3schools.com/jsref/prop_style_fontsize.asp
+function fontSizeControll(selectTag) {
+  var listValue = selectTag.options[selectTag.selectedIndex].value;
+  document.getElementById("fontSizeControllableArea").style.fontSize = listValue;
+}
+// https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_fontsize2
 
 function changeHeaderLinksActive() {
   var url_string = window.location.href;
@@ -467,4 +476,4 @@ else
   document.attachEvent('onclick', callback);
 
 // https://stackoverflow.com/questions/807878/how-to-make-javascript-execute-after-page-load
-window.onload = loadCurrentfontSize();
+// window.onload = loadCurrentfontSize();

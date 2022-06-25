@@ -11,7 +11,7 @@
     ?>
 </head>
 
-<body>
+<body id="fontSizeControllableArea">
 
 </body>
 

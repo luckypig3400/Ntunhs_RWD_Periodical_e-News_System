@@ -44,7 +44,7 @@ function fetchArticleList($in_period, $in_category)
     if ($period != "" && $category != "") {
         $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = '$category'";
     } else if ($period != "") {
-        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' ORDER BY categoryID ASC;";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' ORDER BY categoryID ASC, id DESC;";
     } else if ($category != "" && $getAllCategories == "true") {
         // 同一分類的文章太多，因此只提供該分類全部文章的摘要
         $sql = "SELECT id,subject,cover FROM periodical WHERE categoryID = '$category'";
@@ -69,7 +69,7 @@ function fetchArticleList($in_period, $in_category)
             return "Error occured while fetching latest periodNumber:" . $e->getMessage();
         }
         // default select the latest period articles
-        $sql = "SELECT * FROM periodical WHERE periodNumber = @newestPeriod ORDER BY categoryID ASC;";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = @newestPeriod ORDER BY categoryID ASC, id DESC;";
     }
 
     try {
@@ -84,6 +84,46 @@ function fetchArticleList($in_period, $in_category)
 
     if (sizeof($result) == 0) {
         return "很抱歉`(*>﹏<*)′<br>本期該分類尚未有文章<br>(っ °Д °;)っ<br>Sorry ＞﹏＜!<br>Current period doesn't have any atrticle for this category !";
+    } else {
+        return $result;
+    }
+}
+
+function fetchCategorySummaryArticleList($in_category, $in_id)
+{
+    require("config.php");
+    $category = str_replace('/[^A-Za-z0-9\-]/', '', $in_category); // Removes all special chars.
+    $id = str_replace('/[^A-Za-z0-9\-]/', '', $in_id); // Removes all special chars.
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
+
+    if ($category != "" && $id != "") {
+        $sql = "SELECT * FROM periodical WHERE id <= $id AND categoryID = '$category' ORDER BY id DESC LIMIT 6;";
+    }else if($category == "" && $id != ""){
+        $sql = "SELECT * FROM periodical WHERE id <= $id ORDER BY id DESC LIMIT 6;";
+    }else if($category != "" && $id == ""){
+        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' ORDER BY id DESC LIMIT 6;";
+    }else{
+        $sql = "SELECT * FROM periodical WHERE id = 369369369;";
+    }
+
+    try {
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $stmt->setFetchMode(PDO::FETCH_ASSOC); // set the resulting array to associative
+
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        return "Error Occured while Fetching Article List:" . $e->getMessage();
+    }
+
+    if (sizeof($result) == 0) {
+        return "很抱歉`(*>﹏<*)′ 出了點錯誤 (っ °Д °;)っ<br>Oops! Something went wrong.<br>Sorry ＞﹏＜!";
     } else {
         return $result;
     }

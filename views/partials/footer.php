@@ -51,7 +51,7 @@
         <div class="copyright">
             <a href="http://140.131.87.222/periodical/html/" class="twitter" target="_blank"><i class="bx bx-time"></i></a>
             <strong>北護校訊創刊於1994年10月</strong><br>
-            &copy; Copyright <strong><span>NTUNHS</span></strong>. All Rights Reserved
+            &copy; 2022 <strong><span>NTUNHS Kiwi Team</span></strong>. All Rights Reserved
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->

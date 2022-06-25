@@ -5,7 +5,7 @@
 require_once("partials/head.php");
 ?>
 
-<body>
+<body id="fontSizeControllableArea">
 
   <?php
   require_once("partials/header.php");
@@ -49,16 +49,27 @@ require_once("partials/head.php");
             <?php
             require_once("../model/fetchArticle.php");
 
-            $currentPeriod = getPeriodParam();
+            $startID = getIDparam();
             $currentCategoryID = getCategoryParam();
-            $articles = fetchArticleList($currentPeriod, $currentCategoryID);
+            $articles = fetchCategorySummaryArticleList($currentCategoryID, $startID);
 
             if (gettype($articles) == "string") {
               echo "<h3>$articles</h3>";
             } else {
               require_once("partials/sections/blog-article-entry.php");
-              foreach ($articles as $article) {
-                blogArticleEntryBlock($article);
+              for ($i = 0; $i < sizeof($articles); $i++) {
+                blogArticleEntryBlock($articles[$i]);
+
+                if ($i + 1 == sizeof($articles)) {
+                  echo
+                  '<div class="blog-pagination">
+                    <ul class="justify-content-center">
+                      <li><a href="?category=' . $currentCategoryID . '">歷期' . $currentCategory . '首頁</a></li>
+                      <li class="active"><a href="?category=' . $currentCategoryID . '&id=' . $articles[$i]["id"] - 1 . '">載入更多同類別文章</a></li>
+                    </ul>
+                  </div>';
+                  // echo "<h2>Last Article ID:" . $articles[$i]["id"] . "</h2>";
+                }
               }
             }
             ?>

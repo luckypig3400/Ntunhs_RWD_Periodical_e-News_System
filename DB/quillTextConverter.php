@@ -125,7 +125,7 @@ echo "<h1>Total Table: $totalTable</h1>";
     </style>
 </head>
 
-<body>
+<body id="fontSizeControllableArea">
     <div id="editor">   
         <?php
         // echo $outputQuillText;
