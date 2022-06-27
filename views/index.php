@@ -12,6 +12,7 @@ require_once("./partials/head.php");
     require_once("./partials/header.php");
     require_once("../model/fetchArticle.php");
     require_once("../controller/simplifyArticleContent.php");
+    require_once("../model/fetchCarousel.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
@@ -25,10 +26,30 @@ require_once("./partials/head.php");
         <div id="heroCarousel" class="container index-carousel swiper">
 
             <?php
-            echo '<div class="swiper-wrapper">';
-            $carouselArticles = fetchIndexCarouselArticleList(getPeriodParam());
+            $carouselArticlesID = fetchCarouselWithID(getPeriodParam());
+            // 獲取本期的後臺排序過順序的輪播文章ID
 
-            for ($i = 0; $i < 3; $i++) {
+            if (strcmp($carouselArticlesID, "Error") != 0) {
+                // https://www.php.net/manual/en/function.strcmp.php
+                $carouselArticlesID = explode(",", $carouselArticlesID);
+
+                $carouselArticles = array(); // 使用後台輪播圖表格來依序抓取文章資料
+                foreach ($carouselArticlesID as $id) {
+                    $article = fetchFullArticle_WithID($id);
+                    array_push($carouselArticles, $article[0]);
+                    // 整理多篇文章資料成為和fetchIndexCarouselArticleList()一樣的二維陣列格式
+                }
+
+                $carouselAmount = sizeof($carouselArticles); // 獲取本期後台設定的輪播文章數量
+            } else {
+                $carouselArticles = fetchIndexCarouselArticleList(getPeriodParam());
+                // 用舊版預設抓取3篇頭條與特別報導的方式來抓取輪播文章資料
+                $carouselAmount = 3;
+            }
+
+            echo '<div class="swiper-wrapper">';
+
+            for ($i = 0; $i < $carouselAmount; $i++) {
                 if ($i == 0)
                     echo '<!-- Single Slide --><div class="swiper-slide"><div class="carousel-container">';
                 else
@@ -234,7 +255,7 @@ require_once("./partials/head.php");
                         echo '<div class="read-more"><a href="categoriesSummaryAll.php?category=' . $article["categoryID"] . '&id=' . $article["id"] . '">';
 
                         echo '<i class="bi bi-arrow-right"></i>前往查看歷期';
-                        foreach($categories as $category) {
+                        foreach ($categories as $category) {
                             if ($category["id"] == $article["categoryID"]) {
                                 echo $category["name"];
                                 break;
