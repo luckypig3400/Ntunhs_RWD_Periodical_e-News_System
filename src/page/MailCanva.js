@@ -13,7 +13,6 @@ const MailCanva = () => {
     useEffect(async () => {
         setPostList(await getPostList());
     }, []);
-
     useEffect(() => {
         //取得所有期別
         const set = new Set();
@@ -30,7 +29,7 @@ const MailCanva = () => {
             //將inPeriodNumberPost與數量加入inPeriodNumberPost陣列
             postList.map((post) => {
                 if (post.periodNumber === item.periodNumber) {
-                    inPeriodNumberPost.push(item.id);
+                    inPeriodNumberPost.push(post.id);
                 }
             });
 
