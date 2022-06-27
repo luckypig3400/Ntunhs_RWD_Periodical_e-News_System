@@ -169,7 +169,7 @@ function changeHeaderLinksActive() {
     if (currentLink != null) {
       currentLink.classList.add('active');
 
-      if (category != 'C01' && category != 'C02') {
+      if (category != 'C01' && category != 'C02' && category != 'C04') {
         otherCategories = document.getElementById('otherCategories');
         otherCategories.classList.add('active');
       }

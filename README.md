@@ -20,11 +20,11 @@
 - [x] 公告跑馬燈新增底圖淺淺的底紋(雲紋之類的)，比較不會單調，然後跑馬燈字改為棗紅色(#c32136)
 - [x] 字體縮放功能嘗試只縮放 p 和所有 h1 , h2  ... 標籤的文字大小(提供僅調整內文字體的功能)
 - [x] 輪播圖標題字體調大(要比內文大，目前初判是記憶頁面字體大小的功能有Bug造成顯示異常)
-- [ ] 首頁輪播圖根據資料庫carousel table來撈取
+- [x] 首頁輪播圖根據資料庫carousel table來撈取
 - [x] 前後台文章顯示順序要相同(以id與類別排序)
 - [x] 首頁蓋覽圖顯示優化
 - [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
-- [ ] 頁面上方【學術特區】拉出來、【聯繫我們】刪掉
+- [x] 頁面上方【學術特區】拉出來、【聯繫我們】刪掉
 - [ ] 首頁鳳凰照片風格化
 - [ ] 類別改棗紅字、其他改深藍字 (首頁前往查看...那行字)
 - [ ] 圖片限制上傳改為5MB (無法上傳就知道圖片太大了)
