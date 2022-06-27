@@ -26,7 +26,7 @@
 - [ ] Visitor counter限制使用[IP](https://stackoverflow.com/questions/3003145/how-to-get-the-client-ip-address-in-php)或是[Session](https://stackoverflow.com/questions/43696936/simple-php-page-session-visit-counter-not-working)來限制
 - [x] 頁面上方【學術特區】拉出來、【聯繫我們】刪掉
 - [x] 首頁鳳凰照片風格化
-- [ ] 類別改棗紅字、其他改深藍字 (首頁前往查看...那行字)
+- [x] 類別改棗紅字、其他改深藍字 (首頁前往查看...那行字)
 - [ ] 圖片限制上傳改為5MB (無法上傳就知道圖片太大了)
 
 ---

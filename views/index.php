@@ -254,14 +254,14 @@ require_once("./partials/head.php");
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummaryAll.php?category=' . $article["categoryID"] . '&id=' . $article["id"] . '">';
 
-                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期<font style="color:#FF8686">';
                         foreach ($categories as $category) {
                             if ($category["id"] == $article["categoryID"]) {
                                 echo $category["name"];
                                 break;
                             }
                         }
-                        echo '文章</a></div></div></div></div>';
+                        echo '</font>文章</a></div></div></div></div>';
                     }
                     ?>
                 </div>

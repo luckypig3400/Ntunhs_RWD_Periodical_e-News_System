@@ -1138,14 +1138,14 @@ section {
   color: #5e5e5e;
 }
 .service-details .read-more a {
-  color: #FF8686;
+  color: darkblue;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
   transition: 0.3s;
 }
 .service-details .read-more a:hover {
-  color: #ff3636;
+  color: #68A4C4;
 }
 .service-details .card:hover img {
   transform: scale(1.1);
