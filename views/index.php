@@ -189,7 +189,7 @@ require_once("./partials/head.php");
                         ?>
                     </div>
 
-                    <div class="col-lg-6 text-center">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                         <?php
                         if (gettype($latestArticle) == "string") {
                             echo "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
