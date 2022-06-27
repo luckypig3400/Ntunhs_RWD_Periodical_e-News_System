@@ -49,6 +49,50 @@ if (getCookie("fontSizeArrayCookie") == "") {
   resetAllfontSize();
 }
 
+// https://stackoverflow.com/questions/11790375/how-to-highlight-all-the-occurrence-of-a-particular-string-in-a-div-with-java-sc
+// https://stackoverflow.com/questions/5886858/full-text-search-in-html-ignoring-tags/5887719#5887719
+function doSearch(text) {
+  if (window.find && window.getSelection) {
+    document.designMode = "on";
+    var sel = window.getSelection();
+    sel.collapse(document.body, 0);
+
+    while (window.find(text)) {
+      document.execCommand("HiliteColor", false, "yellow");
+      sel.collapseToEnd();
+    }
+    document.designMode = "off";
+  } else if (document.body.createTextRange) {
+    var textRange = document.body.createTextRange();
+    while (textRange.findText(text)) {
+      textRange.execCommand("BackColor", false, "yellow");
+      textRange.collapse(false);
+    }
+  }
+}
+// https://stackoverflow.com/questions/5886858/full-text-search-in-html-ignoring-tags/5887719#5887719
+
+// https://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
+function findGetParameter(parameterName) {
+  var result = null, tmp = [];
+  location.search
+    .substr(1)
+    .split("&")
+    .forEach(function (item) {
+      tmp = item.split("=");
+      if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    });
+  return result;
+}
+// https://stackoverflow.com/questions/5448545/how-to-retrieve-get-parameters-from-javascript
+
+var searchGETparam = findGetParameter("searchText");
+
+if (searchGETparam !== "" || searchGETparam !== null) {
+  doSearch(searchGETparam);
+  console.log("Search Text params:" + searchGETparam);
+}
+
 function increaseAllfontSize() {
   let currentFontLevel = parseInt(getCookie("fontLevel"));
   fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
