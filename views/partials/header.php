@@ -26,9 +26,11 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                 if ($period_GET != "") {
                     echo "<li><a id=\"C01Link\" href=\"categoriesSummary.php?category=C01&period=" . $period_GET . "\">頭條新聞</a></li>";
                     echo "<li><a id=\"C02Link\" href=\"categoriesSummary.php?category=C02&period=" . $period_GET . "\">特別報導</a></li>";
+                    echo "<li><a id=\"C04Link\" href=\"categoriesSummary.php?category=C04&period=" . $period_GET . "\">學術特區</a></li>";
                 } else {
                     echo "<li><a id=\"C01Link\" href=\"categoriesSummary.php?category=C01\">頭條新聞</a></li>";
                     echo "<li><a id=\"C02Link\" href=\"categoriesSummary.php?category=C02\">特別報導</a></li>";
+                    echo "<li><a id=\"C04Link\" href=\"categoriesSummary.php?category=C04\">學術特區</a></li>";
                 }
                 ?>
                 <li class="dropdown"><a id="otherCategories" href="#"><span>其他分類</span><i class="bi bi-chevron-down"></i></a>
@@ -40,7 +42,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         $categories = fetchCategories();
                         // print_r($categories);
                         foreach ($categories as $row) {
-                            if ($row["id"] != "C01" && $row["id"] != "C02") {
+                            if ($row["id"] != "C01" && $row["id"] != "C02" && $row["id"] != "C04") {
                                 if ($period_GET != "") {
                                     if ((int)$period_GET >= 219 && $row["id"] == "C03") {
                                         echo ""; // 在219以後隱藏每月一書
@@ -105,7 +107,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         ?>
                     </ul>
                 </li>
-                <li><a href="#footer" class="scrollto">聯繫我們</a></li>
+                <!-- <li><a href="#footer" class="scrollto">聯繫我們</a></li> -->
                 <li><a id="searchLink" href="search.php">搜尋<i class="bi bi-search"></i></a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>

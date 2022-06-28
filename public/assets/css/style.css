@@ -41,8 +41,26 @@ h1, h2, h3, h4, h5, h6, .font-primary {
 .cropImg{
   /* https://www.w3schools.com/css/css_rwd_images.asp */
   width: 100%;
-  max-height: 569px;
+  max-height: 96%;
   object-fit: cover;
+  align-items: center;
+  align-content: center;
+  align-self: center;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 69px;
+  border-bottom-left-radius: 0px;
+  box-shadow: 0px 0px 9px #68A4C4;
+}
+
+.cropImg:hover{
+  border-top-left-radius: 0px;
+  border-top-right-radius: 36px;
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 69px;
+  /* transform: scaleX(-1); */
+  /* https://www.w3schools.com/css/css3_images.asp */
+  transition-duration: 690ms;
 }
 
 .announcement{
@@ -417,7 +435,7 @@ input[type="radio"]:checked + label {
   height: 95%;
   /* https://stackoverflow.com/questions/29260296/modify-pseudo-select-after-in-javascript */
   /* https://stackoverflow.com/questions/5041494/selecting-and-manipulating-css-pseudo-elements-such-as-before-and-after-usin */
-  background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.069)), url("../img/ntunhs-frontDoor2.png") center center no-repeat;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.069)), url("../img/stylizedPhoenix.jpg") center center no-repeat;
   background-size: cover;
   filter: blur(0px);
   /* https://www.casper.tw/development/2020/10/12/frosted-glass/ */
@@ -1138,14 +1156,14 @@ section {
   color: #5e5e5e;
 }
 .service-details .read-more a {
-  color: #FF8686;
+  color: darkblue;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 15px;
   transition: 0.3s;
 }
 .service-details .read-more a:hover {
-  color: #ff3636;
+  color: #68A4C4;
 }
 .service-details .card:hover img {
   transform: scale(1.1);

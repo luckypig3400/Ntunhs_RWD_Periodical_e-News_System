@@ -16,7 +16,7 @@ require_once("./partials/head.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;background-size: cover;" .
+        "url(\"../public/assets/img/stylizedPhoenix.jpg\") center center no-repeat;background-size: cover;" .
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
     ?>
@@ -64,7 +64,7 @@ require_once("./partials/head.php");
                     echo "<div hidden id=\"carouselStyle$i\">";
                     echo "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-                        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;background-size: cover;" .
+                        "url(\"../public/assets/img/stylizedPhoenix.jpg\") center center no-repeat;background-size: cover;" .
                         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     break;
                 } else {
@@ -87,7 +87,7 @@ require_once("./partials/head.php");
                     for ($j = 0; $j < count($pLinks); $j++) {
                         if ($pLinks[$j] == "" && $j == count($pLinks) - 1) {
                             // check if the last photo is still empty
-                            $pLink =  "../public/assets/img/ntunhsPhoenix.jpg";
+                            $pLink =  "../public/assets/img/stylizedPhoenix.jpg";
                         } else if ($pLinks[$j] != "") {
                             $pLink = $pLinks[$j];
                             $pLink =  "../public/image/$pLink";
@@ -99,11 +99,11 @@ require_once("./partials/head.php");
                         // "background: linear-gradient(#fff, #000)," .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") bottom center no-repeat, " .
-                        "url(\"../public/assets/img/ntunhsPhoenix.jpg\") center center no-repeat;" .
+                        "url(\"../public/assets/img/stylizedPhoenix.jpg\") center center no-repeat;" .
                         "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
                     // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
                     // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
-                    if ($pLink == "../public/assets/img/ntunhsPhoenix.jpg")
+                    if ($pLink == "../public/assets/img/stylizedPhoenix.jpg")
                         echo "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}</div>";
                     else
                         // 取消模糊效果，已改用將期刊cover疊圖到校園背景上
@@ -189,7 +189,7 @@ require_once("./partials/head.php");
                         ?>
                     </div>
 
-                    <div class="col-lg-6 text-center">
+                    <div class="col-lg-6 d-flex flex-column justify-content-center p-5">
                         <?php
                         if (gettype($latestArticle) == "string") {
                             echo "<img src=\"../public/assets/img/ntunhs-overview.jpg\" class=\"img-fluid\" alt=\"北護校本部空中鳥瞰圖\">";
@@ -254,14 +254,14 @@ require_once("./partials/head.php");
                         echo '<h5 class="card-title"><a href="fullArticlePage.php?id=' . $article["id"] . '">' . $article["subject"] . '</a></h5>';
                         echo '<div class="read-more"><a href="categoriesSummaryAll.php?category=' . $article["categoryID"] . '&id=' . $article["id"] . '">';
 
-                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期';
+                        echo '<i class="bi bi-arrow-right"></i>前往查看歷期<font style="color:#FF8686">';
                         foreach ($categories as $category) {
                             if ($category["id"] == $article["categoryID"]) {
                                 echo $category["name"];
                                 break;
                             }
                         }
-                        echo '文章</a></div></div></div></div>';
+                        echo '</font>文章</a></div></div></div></div>';
                     }
                     ?>
                 </div>
