@@ -192,7 +192,10 @@ function fontSizeControll(selectTag) {
 if(window.location.href.search("fullArticlePage.php") != -1) {
   // 於完整文章頁面時，載入字體正常大小設定
   var selection = document.getElementById("contentFontSizeSelection");
-  selection.innerHTML = '<option value="medium">正常</option>';
+  
+  selection.value = "medium";
+  // https://thewebdev.info/2022/04/22/how-to-change-the-selected-option-of-an-html-select-element-with-javascript/
+
   fontSizeControll(selection);
 }
 
