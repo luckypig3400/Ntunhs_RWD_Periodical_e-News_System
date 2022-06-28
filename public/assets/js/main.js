@@ -189,6 +189,13 @@ function fontSizeControll(selectTag) {
 }
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_fontsize2
 
+if(window.location.href.search("fullArticlePage.php") != -1) {
+  // 於完整文章頁面時，載入字體正常大小設定
+  var selection = document.getElementById("contentFontSizeSelection");
+  selection.innerHTML = '<option value="medium">正常</option>';
+  fontSizeControll(selection);
+}
+
 function changeHeaderLinksActive() {
   var url_string = window.location.href;
   var url = new URL(url_string);
