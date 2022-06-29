@@ -21,6 +21,10 @@ body {
     background-color: rgb(209, 238, 255);
 }
 
+.ql-editor {
+    white-space: normal !important;
+}
+
 .pagecontent {
     background-color: #FFF;
     border-radius: 10px;
