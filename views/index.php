@@ -75,7 +75,7 @@ require_once("./partials/head.php");
                     break;
                 } else {
                     // https://stackoverflow.com/questions/9393885/how-to-replace-multiple-items-from-a-text-string-in-php
-                    $subjectSplitter = [" "];
+                    $subjectSplitter = ["　"];
                     $replacedWords = ["<br>"];
 
                     echo '<h2 class="animate__animated animate__fadeInDown">' .
