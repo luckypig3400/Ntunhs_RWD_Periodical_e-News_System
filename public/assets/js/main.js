@@ -96,7 +96,7 @@ function increaseAllfontSize() {
       // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
       var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
       var fontSize = parseInt(style);
-      fontSize ++;
+      fontSize++;
 
       allelements[i].style.fontSize = fontSize + 'px';
     }
@@ -177,6 +177,17 @@ if (window.location.href.search("fullArticlePage.php") != -1) {
   // https://thewebdev.info/2022/04/22/how-to-change-the-selected-option-of-an-html-select-element-with-javascript/
 
   fontSizeControll(selection);
+}
+
+function fullArticleRowLengthControl(selectTag) {
+  var listValue = selectTag.options[selectTag.selectedIndex].value;
+
+  var fullArticleDiv = document.getElementById("fullArticleDiv");
+  if (fullArticleDiv != null) {
+    fullArticleDiv.classList.remove("col-8", "col-6", "col-4");
+    // https://stackoverflow.com/questions/11115998/is-there-a-way-to-add-remove-several-classes-in-one-single-instruction-with-clas
+    fullArticleDiv.classList.add(listValue);
+  }
 }
 
 function changeHeaderLinksActive() {
