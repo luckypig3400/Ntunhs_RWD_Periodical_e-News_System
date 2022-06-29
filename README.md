@@ -8,6 +8,11 @@
 2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
 
 3. Download [DB_ver11](https://drive.google.com/drive/folders/1PPBx39cU4jF_fkM1AnrEWCcdXnXW873f?usp=sharing) then unzip ```DB_ver11....7z``` and import to MySQL Server.
+    1. <mark>Important!</mark> Then please execute the SQL command below to update to the latest Database version!
+    ```
+    ALTER TABLE `announcement` CHANGE `dateTime` `dateTime` VARCHAR(168) NULL;
+    ```
+    ![](https://i.imgur.com/mxckG5G.png)
 
 4. Download [Periodical Data Ver4](https://drive.google.com/drive/folders/10eHoKCvKEl7FrbJsVBS_daMXckF6rDxJ?usp=sharing) then unzip & move the ```public``` folder into the root of this repo folder
 
