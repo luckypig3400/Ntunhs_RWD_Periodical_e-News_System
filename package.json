@@ -1,6 +1,6 @@
 {
     "name": "ntunhs_rwd_periodical_e-news_system",
-    "version": "2.5.5",
+    "version": "2.6.7",
     "description": "Ntunhs_RWD_Periodical_e-News_System\r  北護RWD校刊系統\r  (前後端放置於不同分支，各分支獨立不干擾彼此)\r  測試或實際部署系統時，切換分支並複製該分支內的所有資料\r  另外放置於其他沒有git的資料夾內即可運行",
     "main": "index.js",
     "scripts": {
