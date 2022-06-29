@@ -37,16 +37,9 @@ function getCookie(cname) {
 }
 /* https://www.w3schools.com/js/js_cookies.asp */
 
-var fontSizeArray = [];
-
 if (getCookie("fontLevel") == "") {
   console.log("尚未設定字體大小，將為您設定使用預設值");
   setCookie("fontLevel", "0", 69);
-}
-
-if (getCookie("fontSizeArrayCookie") == "") {
-  console.log("尚未設定字體大小，將為您紀錄字體預設值");
-  resetAllfontSize();
 }
 
 // https://stackoverflow.com/questions/11790375/how-to-highlight-all-the-occurrence-of-a-particular-string-in-a-div-with-java-sc
@@ -95,7 +88,6 @@ if (searchGETparam !== "" || searchGETparam !== null) {
 
 function increaseAllfontSize() {
   let currentFontLevel = parseInt(getCookie("fontLevel"));
-  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
 
   if (currentFontLevel < 6) {
     let allelements = document.getElementsByTagName('*');
@@ -104,22 +96,20 @@ function increaseAllfontSize() {
       // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
       var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
       var fontSize = parseInt(style);
+      fontSize ++;
 
-      fontSizeArray[i]++;
-      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
+      allelements[i].style.fontSize = fontSize + 'px';
     }
     currentFontLevel++;
 
-    console.log("fontSizeArray: " + fontSizeArray);
+    console.log("currentFontLevel: " + currentFontLevel);
 
     setCookie("fontLevel", currentFontLevel, 69);
-    setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   }
 }
 
 function decreaseAllfontSize() {
   let currentFontLevel = parseInt(getCookie("fontLevel"));
-  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
 
   if (currentFontLevel > -9) {
     let allelements = document.getElementsByTagName('*');
@@ -128,36 +118,26 @@ function decreaseAllfontSize() {
       // https://stackoverflow.com/questions/15195209/how-to-get-font-size-in-html
       var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
       var fontSize = parseInt(style);
+      fontSize--;
 
-      fontSizeArray[i]--;
-      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
+      allelements[i].style.fontSize = fontSize + 'px';
     }
     currentFontLevel--;
 
+    console.log("currentFontLevel: " + currentFontLevel);
+
     setCookie("fontLevel", currentFontLevel, 69);
-    setCookie("fontSizeArrayCookie", fontSizeArray, 69);
   }
 }
 
 function resetAllfontSize() {
-  fontSizeArray = [];
 
   let allelements = document.getElementsByTagName('*');
   for (var i = 0; i < allelements.length; i++) {
     allelements[i].style.fontSize = '';
   }
 
-  for (var i = 0; i < allelements.length; i++) {
-    var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
-    var fontSize = parseInt(style);
-
-    fontSizeArray.push(fontSize);
-    // console.log("defaultFontSize: " + fontSize);
-  }
-
   setCookie("fontLevel", "0", 69);
-  setCookie("fontSizeArrayCookie", fontSizeArray, 69);
-  // console.log("fontSizeArrayCookie: " + getCookie("fontSizeArrayCookie"));
 
   location.reload();// https://www.w3schools.com/jsref/met_loc_reload.asp
 }
@@ -165,19 +145,19 @@ function resetAllfontSize() {
 function loadCurrentfontSize() {
   let currentFontLevel = parseInt(getCookie("fontLevel"));
 
-  fontSizeArray = getCookie("fontSizeArrayCookie").split(',');
-  console.log("fontSizeArrayCookie: " + fontSizeArray);
-
   let allelements = document.getElementsByTagName('*');
 
   if (currentFontLevel == 0) {
     resetAllfontSize();
     // 記憶該頁面的每個字體大小，不同頁面之間的標籤元素不同
     // 所以當有設定字體大小時，切換到其他頁面會有問題
+  } else if (currentFontLevel > 0) {
+    for (var i = 0; i < currentFontLevel; i++) {
+      increaseAllfontSize();
+    }
   } else {
-    for (var i = 0; i < allelements.length; i++) {
-      var style = window.getComputedStyle(allelements[i], null).getPropertyValue('font-size');
-      allelements[i].style.fontSize = fontSizeArray[i] + 'px';
+    for (var i = 0; i < -currentFontLevel; i++) {
+      decreaseAllfontSize();
     }
   }
 }
@@ -189,10 +169,10 @@ function fontSizeControll(selectTag) {
 }
 // https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_style_fontsize2
 
-if(window.location.href.search("fullArticlePage.php") != -1) {
+if (window.location.href.search("fullArticlePage.php") != -1) {
   // 於完整文章頁面時，載入字體正常大小設定
   var selection = document.getElementById("contentFontSizeSelection");
-  
+
   selection.value = "medium";
   // https://thewebdev.info/2022/04/22/how-to-change-the-selected-option-of-an-html-select-element-with-javascript/
 
