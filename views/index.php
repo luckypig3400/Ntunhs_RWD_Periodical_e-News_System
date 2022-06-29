@@ -157,11 +157,7 @@ require_once("./partials/head.php");
 
                 $rows = $jsonObj["results"];
                 foreach ($rows as $row) {
-                    $dt = new DateTime($row["dateTime"]);
-                    $formattedDate = $dt->format('Y-m-d H:i');
-                    // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
-
-                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $row["dateTime"] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
 
                 ?>
