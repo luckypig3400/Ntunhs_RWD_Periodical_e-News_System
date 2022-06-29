@@ -156,7 +156,8 @@ require_once("./partials/head.php");
                 // https://www.w3schools.com/php/func_json_decode.asp
 
                 $rows = $jsonObj["results"];
-                foreach ($rows as $row) {
+                foreach (array_reverse($rows) as $row) {
+                    // https://stackoverflow.com/questions/10777597/reverse-order-of-foreach-list-items
                     echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $row["dateTime"] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
 
