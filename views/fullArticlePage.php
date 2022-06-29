@@ -59,7 +59,7 @@ require_once("./partials/head.php");
         </section><!-- 麵包屑區塊 -->
 
         <section class="blog">
-            <div class="container" data-aos="fade-up">
+            <div id="fullArticleDiv" class="container" data-aos="fade-up">
 
                 <!-- Create the editor container -->
                 <div id="editor">

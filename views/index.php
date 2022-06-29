@@ -2,6 +2,9 @@
 <html lang="zh-Hant">
 
 <?php
+
+use function PHPSTORM_META\type;
+
 require_once("./partials/head.php");
 ?>
 
@@ -36,7 +39,10 @@ require_once("./partials/head.php");
                 $carouselArticles = array(); // 使用後台輪播圖表格來依序抓取文章資料
                 foreach ($carouselArticlesID as $id) {
                     $article = fetchFullArticle_WithID($id);
-                    array_push($carouselArticles, $article[0]);
+                    if (gettype($article) == "array") {
+                        // 檢查撈取到的是否為文章或是錯誤訊息
+                        array_push($carouselArticles, $article[0]);
+                    }
                     // 整理多篇文章資料成為和fetchIndexCarouselArticleList()一樣的二維陣列格式
                 }
 
@@ -55,7 +61,7 @@ require_once("./partials/head.php");
                 else
                     echo '<!-- Single Slide --><div class="swiper-slide"><div class="carousel-container">';
 
-                if ($i >= sizeof($carouselArticles)) {
+                if ($i >= $carouselAmount) {
                     echo '<h2 class="animate__animated animate__fadeInDown">敬請期待本期更多精采文章</h2>';
                     echo '<p class="animate__animated animate__fadeInUp">更多優質報導正在撰寫中......</p>';
                     echo '<a href="#" class="btn-get-started animate__animated animate__fadeInUp">我很期待</a>';
@@ -69,8 +75,8 @@ require_once("./partials/head.php");
                     break;
                 } else {
                     // https://stackoverflow.com/questions/9393885/how-to-replace-multiple-items-from-a-text-string-in-php
-                    $subjectSplitter = [",", "、", ":", "(", "「", "」", "-", " "];
-                    $replacedWords = [",<br>", "、<br>", ":<br>", "<br>(", "<br>「", "」<br>", "-<br>", "<br>"];
+                    $subjectSplitter = ["　"];
+                    $replacedWords = ["<br>"];
 
                     echo '<h2 class="animate__animated animate__fadeInDown">' .
                         str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';

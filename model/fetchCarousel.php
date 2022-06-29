@@ -37,7 +37,10 @@ function fetchCarouselWithID($in_id)
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         if ($id == "") {
-            $sql = "SELECT * FROM carousel ORDER BY id DESC LIMIT 1";
+            $stmt = $conn->prepare("SET @newestPeriod=(SELECT periodNumber FROM periodical ORDER BY updateTime DESC LIMIT 1);");
+            $stmt->execute();// 利用上方SQL取得最新文章期別
+
+            $sql = "SELECT * FROM carousel WHERE id = @newestPeriod;";
             // if id is empty, fetch the last one
         } else {
             $sql = "SELECT * FROM carousel WHERE id = $id";

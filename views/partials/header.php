@@ -72,7 +72,7 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                         <li><a href="#" id="decFontSize" class="scrollto" onclick="decreaseAllfontSize()"><span><i class="bi bi-fonts"></i>-</span></a></li>
                         <li><a href="#" id="resetFont" class="scrollto" onclick="resetAllfontSize()">重設字體</a></li>
 
-                        <select onchange="fontSizeControll(this);">
+                        <select id="contentFontSizeSelection" onchange="fontSizeControll(this);">
                             <option value="">僅更改內文字體大小</option>
                             <option value="xx-small">特小</option>
                             <option value="x-small">更小</option>
@@ -81,6 +81,14 @@ if (basename($_SERVER['PHP_SELF']) == "index.php") echo "header-transparent";
                             <option value="large">略大</option>
                             <option value="x-large">更大</option>
                             <option value="xx-large">特大</option>
+                        </select>
+
+                        <select id="fullArticleRowLengthSelection" onchange="fullArticleRowLengthControl(this);">
+                            <option value="">選擇每行字數(完整文章頁面專用)</option>
+                            <option value="col-8">略少</option>
+                            <option value="col-6">更少</option>
+                            <option value="col-4">最少</option>
+                            <option value="">預設值</option>
                         </select>
                     </ul>
                 </li>
