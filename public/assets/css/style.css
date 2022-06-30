@@ -67,7 +67,7 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   background-image: url(../img/cloud.png);
   background-repeat: no-repeat;
   background-size: cover;
-  color: #FF8686;
+  color: #880015;
   margin-top: 3vh;
   margin-bottom: 0px;
   margin-left: 15px;
@@ -76,7 +76,6 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   border-radius: 6px;
   height: fit-content;
   box-shadow: #111 0px 0px 6px;
-  text-shadow: black 0px 0px 9px;
   font-size: larger;
 }
 
