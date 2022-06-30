@@ -170,7 +170,7 @@ require_once("./partials/head.php");
     <main id="main">
 
         <!-- ======= 首頁橫幅大區塊 ======= -->
-        <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+        <div class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
             <div class="container">
                 <div class="row">
                     <?php
@@ -217,20 +217,15 @@ require_once("./partials/head.php");
                 </div>
 
             </div>
-        </section><!-- 首頁橫幅區塊 -->
+        </div><!-- 首頁橫幅區塊 -->
 
-        <!-- ======= 首頁各區塊標題 ======= -->
-        <section class="features">
+        <!-- ======= 本期所有文章概覽區塊 ======= -->
+        <section class="service-details section-bg">
             <div class="container">
+
                 <div class="section-title">
                     <h2>本期所有文章概覽</h2>
                 </div>
-            </div>
-        </section><!-- 首頁各區塊標題 -->
-
-        <!-- ======= Service Details Section ======= -->
-        <section class="service-details">
-            <div class="container">
 
                 <div class="row">
                     <?php
@@ -270,7 +265,7 @@ require_once("./partials/head.php");
                 </div>
 
             </div>
-        </section><!-- End Service Details Section -->
+        </section><!-- End 本期所有文章概覽區塊 -->
 
         <!-- ======= 輪播區 =======
         <section class="testimonials" data-aos="fade-up">
