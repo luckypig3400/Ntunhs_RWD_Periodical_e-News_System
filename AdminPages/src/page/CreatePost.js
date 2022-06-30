@@ -38,8 +38,8 @@ function CreatePost() {
     const [noYear, setNoYear] = useState(date.getFullYear());
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
-    const [cover, setCover] = useState("");
-    const [coverLink, setCoverLink] = useState("");
+    const [cover, setCover] = useState("預設封面preset.jpg");
+    const [coverLink, setCoverLink] = useState("http://localhost:3090/image/預設封面preset.jpg");
 
     useEffect(async () => {
         //關聯post.categoryID
