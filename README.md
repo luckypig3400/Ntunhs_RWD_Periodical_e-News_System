@@ -36,6 +36,8 @@
 ![上方兩項需求詳細說明](https://i.imgur.com/y30a8C7.png)
 - [x] 跑馬燈公告時間請嘉翔幫忙修正(已用SQL更新announcement table)
 - [x] 新加入跑馬燈要跑到最前面，舊跑馬燈跑在後面
+- [x] 底下【北護期刊】改成【北護校訊電子期刊】
+![](https://i.imgur.com/0Ivhq8K.png)
 
 ---
 

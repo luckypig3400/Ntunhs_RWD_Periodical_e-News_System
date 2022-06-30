@@ -87,7 +87,7 @@ require_once("./partials/head.php");
     <?php
     if (gettype($dataRow) == "array") {
         echo "<div id=\"articleInfoDiv\" hidden>
-            北護期刊 第" . $dataRow[0]["periodNumber"] . "期 "
+        北護校訊電子期刊 第" . $dataRow[0]["periodNumber"] . "期 "
             . $dataRow[0]["noYear"] . " 年 "
             . $dataRow[0]["noMonth"] . " 月<br><br><hr></div>";
     }
