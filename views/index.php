@@ -156,12 +156,9 @@ require_once("./partials/head.php");
                 // https://www.w3schools.com/php/func_json_decode.asp
 
                 $rows = $jsonObj["results"];
-                foreach ($rows as $row) {
-                    $dt = new DateTime($row["dateTime"]);
-                    $formattedDate = $dt->format('Y-m-d H:i');
-                    // https://stackoverflow.com/questions/10569053/convert-datetime-to-string-php
-
-                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $formattedDate . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+                foreach (array_reverse($rows) as $row) {
+                    // https://stackoverflow.com/questions/10777597/reverse-order-of-foreach-list-items
+                    echo $row["text"] . " — <i class=\"bx bx-time\"></i>" . $row["dateTime"] . "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
                 }
 
                 ?>
@@ -173,7 +170,7 @@ require_once("./partials/head.php");
     <main id="main">
 
         <!-- ======= 首頁橫幅大區塊 ======= -->
-        <section class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
+        <div class="why-us section-bg" data-aos="fade-up" date-aos-delay="200">
             <div class="container">
                 <div class="row">
                     <?php
@@ -220,20 +217,15 @@ require_once("./partials/head.php");
                 </div>
 
             </div>
-        </section><!-- 首頁橫幅區塊 -->
+        </div><!-- 首頁橫幅區塊 -->
 
-        <!-- ======= 首頁各區塊標題 ======= -->
-        <section class="features">
+        <!-- ======= 本期所有文章概覽區塊 ======= -->
+        <section class="service-details section-bg">
             <div class="container">
+
                 <div class="section-title">
                     <h2>本期所有文章概覽</h2>
                 </div>
-            </div>
-        </section><!-- 首頁各區塊標題 -->
-
-        <!-- ======= Service Details Section ======= -->
-        <section class="service-details">
-            <div class="container">
 
                 <div class="row">
                     <?php
@@ -273,7 +265,7 @@ require_once("./partials/head.php");
                 </div>
 
             </div>
-        </section><!-- End Service Details Section -->
+        </section><!-- End 本期所有文章概覽區塊 -->
 
         <!-- ======= 輪播區 =======
         <section class="testimonials" data-aos="fade-up">
