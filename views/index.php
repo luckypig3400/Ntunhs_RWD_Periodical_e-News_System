@@ -19,7 +19,7 @@ require_once("./partials/head.php");
 
     $indexBGstyle = "#hero::after {content: \"\";position: absolute;left: 50%;top: -3%;width: 130%;height: 95%;" .
         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
-        "url(\"../public/assets/img/stylizedPhoenix.jpg\") center center no-repeat;background-size: cover;" .
+        "url(\"../public/assets/img/stylizedPhoenixVer2.jpg\") center center no-repeat;background-size: cover;" .
         "filter: blur(0px);z-index: 0;border-radius: 0 0 50% 50%;transform: translateX(-50%) rotate(0deg);}";
     // echo "<style>" . $indexBGstyle . "</style>";
     ?>
@@ -105,7 +105,7 @@ require_once("./partials/head.php");
                         // "background: linear-gradient(#fff, #000)," .
                         "background: linear-gradient(to right, rgba(0, 0, 0, 0.03), rgba(0, 0, 0, 0.18)), " .
                         "url(\"$pLink\") bottom center no-repeat, " .
-                        "url(\"../public/assets/img/stylizedPhoenix.jpg\") center center no-repeat;" .
+                        "url(\"../public/assets/img/stylizedPhoenixVer2.jpg\") center center no-repeat;" .
                         "background-size: cover, contain;"; // 疊在上方的圖片大小可以考慮使用contain
                     // 疊圖參考:https://www.w3schools.com/css/css3_backgrounds.asp
                     // 背景圖大小調整:https://www.w3schools.com/cssref/css3_pr_background-size.asp
