@@ -70,8 +70,7 @@ require_once("./partials/head.php");
                         echo "<p class=\"ql-align-right\">" . $dataRow[0]["writer"] . "<br></p>";
                         
                         // 修正文章起始空白字元無法順利顯示
-                        $articleFullContnet = str_replace("\n", "<br>", $dataRow[0]["quillcontent"]);
-                        $articleFullContnet = str_replace(" ", "&nbsp", $articleFullContnet);
+                        $articleFullContnet = str_replace("<p> ", "<p>&nbsp", $dataRow[0]["quillcontent"]);
                         echo $articleFullContnet;
 
                         echo "<br><strong>更新日期:</strong>" . $dataRow[0]["updateTime"];
