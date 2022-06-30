@@ -167,6 +167,7 @@ function EditPost() {
                         style={{ margin: "10px" }}
                         theme="snow"
                         value={content}
+                        preserveWhitespace={true}
                         onChange={setContent}
                         modules={modules}
                         placeholder="這邊寫入內容"
