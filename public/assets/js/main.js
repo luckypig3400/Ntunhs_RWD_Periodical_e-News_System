@@ -323,12 +323,21 @@ function changeIndexBGimage(currentSlideRealIndex = 0) {
    * Back to top button
    */
   let backtotop = select('.back-to-top')
+  let header = window.document.querySelector('#header')
   if (backtotop) {
     const toggleBacktotop = () => {
       if (window.scrollY > 100) {
         backtotop.classList.add('active')
       } else {
         backtotop.classList.remove('active')
+      }
+
+      if (window.pageYOffset > (window.innerHeight) * .8 && header.classList.contains('header-transparent')) {
+        header.classList.remove('header-transparent')
+        header.classList.add('header-normal')
+      } else if (window.pageYOffset < (window.innerHeight) * .8 && header.classList.contains('header-normal')) {
+        header.classList.remove('header-normal')
+        header.classList.add('header-transparent')
       }
     }
     window.addEventListener('load', toggleBacktotop)
