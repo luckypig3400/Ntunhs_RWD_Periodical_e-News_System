@@ -207,15 +207,15 @@ input[type="radio"]:checked + label {
   height: auto;  
   z-index: 997;
   background: #1e4356;
-  transition: all 0.8s;
-  opacity: 1;
+  transition: all 0.9s;
 }
 
+/* https://stackoverflow.com/questions/27900053/css-transition-with-visibility-not-working */
 .header-transparent {
-  visibility: hidden;
+  opacity: 0;
 }
 .header-normal {
-  visibility: visible;
+  opacity: 1;
 }
 
 #header.header-scrolled {
