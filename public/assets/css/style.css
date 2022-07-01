@@ -486,7 +486,8 @@ input[type="radio"]:checked + label {
 #hero h2 {
   color: #fff;
   margin-bottom: 30px;
-  font-size: 36px;
+  font-size: 5vh;
+  /* https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container */
   font-weight: 700;
   text-shadow: darkblue 3px 3px 6px;
 }
