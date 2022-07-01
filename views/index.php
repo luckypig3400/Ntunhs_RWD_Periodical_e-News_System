@@ -63,7 +63,7 @@ require_once("./partials/head.php");
 
                 if ($i >= $carouselAmount) {
                     echo '<h2 class="animate__animated animate__fadeInDown">敬請期待本期更多精采文章</h2>';
-                    echo '<p class="animate__animated animate__fadeInUp">更多優質報導正在撰寫中......</p>';
+                    // echo '<p class="animate__animated animate__fadeInUp">更多優質報導正在撰寫中......</p>';
                     echo '<a href="#" class="btn-get-started animate__animated animate__fadeInUp">我很期待</a>';
                     echo '</div></div>';
 
@@ -81,7 +81,7 @@ require_once("./partials/head.php");
                     echo '<h2 class="animate__animated animate__fadeInDown">' .
                         str_replace($subjectSplitter, $replacedWords, $carouselArticles[$i]["subject"]) . '</h2>';
 
-                    echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
+                    // echo '<p class="animate__animated animate__fadeInUp">' . simplifyArticleContent($carouselArticles[$i]["quillcontent"], 36) . '</p>';
                     echo '<a href="#article' . $carouselArticles[$i]["id"] . '" class="indexReadmoreButton btn-get-started animate__animated animate__fadeInUp">閱讀更多</a>';
                     echo '</div></div>';
 
