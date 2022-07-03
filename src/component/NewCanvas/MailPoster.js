@@ -7,11 +7,12 @@ const CatMeme = (props) => {
 
     const [image, setImage] = useState(null);
     const [cover, setCover] = useState(null);
-    const canvas = useRef(null);
+    //const canvas = useRef(null);
     const [topText, setTopText] = useState("");
     const [bottomText, setBottomText] = useState("");
     const [writer, setWriter] = useState("");
 
+    const canvas = document.getElementById(props.PostList.id);
     useEffect(() => {
         const title = props.PostList.subject;
         const textA = props.PostList.quillcontent;
@@ -51,7 +52,7 @@ const CatMeme = (props) => {
 
     useEffect(() => {
         if (image && cover && canvas) {
-            const ctx = canvas.current.getContext("2d");
+            const ctx = canvas.getContext("2d");
             //背景
             ctx.drawImage(image, 0, 0, 1600, 800);
 
@@ -97,7 +98,6 @@ const CatMeme = (props) => {
             for (var i = 0; i < lines.length; i++) {
                 ctx.fillText(lines[i], 840, 350 + i * lineheight);
             }
-
             //ctx.fillText(bottomText);
         }
     }, [image, canvas, cover, topText, bottomText]);
@@ -135,7 +135,7 @@ const CatMeme = (props) => {
                 </p>
             </div>
             <div>
-                <canvas ref={canvas} width={1600} height={800} id={props.PostList.id} />
+                <canvas width={1600} height={800} id={props.PostList.id} />
             </div>
             <br />
         </div>
