@@ -33,29 +33,9 @@ const MailCanvaPrint = () => {
         return <MailPoster PostList={item} key={item.id} />;
     });
 
-    const onButtonClick = () => {
-    };
-
     const WindowHeight = window.innerHeight;
     return (
         <div width="100%">
-            <div
-                className="my-actions"
-                style={{
-                    alignItems: "center",
-                    justifyContent: "center",
-                    display: "flex",
-                }}
-            >
-                <Button
-                    variant="contained"
-                    className="action"
-                    onClick={onButtonClick}
-                    sx={{ margin: "10px" }}
-                >
-                    儲存圖片
-                </Button>
-            </div>
             <div id="node">{newPostList}</div>
             {lodingPrint && (
                 <div
