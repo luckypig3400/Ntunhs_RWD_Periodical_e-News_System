@@ -135,7 +135,7 @@ const CatMeme = (props) => {
                 </p>
             </div>
             <div>
-                <canvas ref={canvas} width={1600} height={800} id="canvas" />
+                <canvas ref={canvas} width={1600} height={800} id={props.PostList.id} />
             </div>
             <br />
         </div>
