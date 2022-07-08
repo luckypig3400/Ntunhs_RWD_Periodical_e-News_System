@@ -33,8 +33,14 @@ function blogArticleEntryBlock($in_singleArticle)
     $id = "?id=" . $id;
   }
 
-  require_once("../controller/simplifyArticleContent.php");
-  $simplifiedContent = simplifyArticleContent($quillcontent, "168");
+  require_once("../controller/parseGETparams.php");
+  if (getCategoryParam() == "") {
+    require_once("../controller/simplifyArticleContent.php");
+    $simplifiedContent = simplifyArticleContent($quillcontent, "168");
+  }else{
+    $simplifiedContent = "";
+    // 在各類別報導摘要區隱藏內文摘要，僅在"本期所有文章"中提供文章內文的摘要
+  }
 
   /*採用函式庫的方式解析HTML但是在解析<p>的過程中會出現嚴重錯誤因此遺棄
   // https://stackoverflow.com/questions/6083076/php-way-of-parsing-html-string
