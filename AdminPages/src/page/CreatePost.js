@@ -21,6 +21,7 @@ import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import { createPost } from "../axios";
 import UploadCover from "../component/UploadCover";
+import config from "../config/default.json";
 
 function CreatePost() {
     var date = new Date();
@@ -39,7 +40,9 @@ function CreatePost() {
     const [noMonth, setNoMonth] = useState(date.getMonth() + 1);
     const [content, setContent] = useState("");
     const [cover, setCover] = useState("預設封面preset.jpg");
-    const [coverLink, setCoverLink] = useState("http://localhost:3090/image/預設封面preset.jpg");
+    const [coverLink, setCoverLink] = useState(
+        `${config.imageURL}/image/預設封面preset.jpg`
+    );
 
     useEffect(async () => {
         //關聯post.categoryID

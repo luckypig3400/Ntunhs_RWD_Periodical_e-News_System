@@ -13,12 +13,15 @@ import Bulletin from "./page/Bulletin";
 import Carousel from "./page/Carousel";
 import MailCanva from "./page/MailCanva";
 import MailCanvaPrint from "./page/MailCanvaPrint";
+import MailPosterPrint from "./page/MailPosterPrint"
+import MailPoster from "./component/NewCanvas/MailPoster.js";
 
 function App() {
     return (
         <Routes>
             <Route index element={<Login />} />
             <Route path="/MailCanvaPrint" element={<MailCanvaPrint />} />
+            <Route path="/MailPoster" element={<MailPosterPrint />} />
             <Route path="/" element={<PageLayout />}>
                 <Route path="/CreatePost" element={<CreatePost />} />
                 <Route path="/PostList" element={<PostList />} />
