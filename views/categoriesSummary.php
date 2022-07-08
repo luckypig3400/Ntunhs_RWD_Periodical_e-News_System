@@ -69,7 +69,7 @@ require_once("partials/head.php");
               echo "<h3>$articles</h3>";
             } else {
               require_once("partials/sections/blog-article-entry.php");
-              foreach (array_reverse($articles) as $article) {
+              foreach ($articles as $article) {
                 blogArticleEntryBlock($article);
               }
             }

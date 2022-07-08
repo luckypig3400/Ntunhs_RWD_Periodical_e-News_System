@@ -42,7 +42,7 @@ function fetchArticleList($in_period, $in_category)
     }
 
     if ($period != "" && $category != "") {
-        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = '$category'";
+        $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' AND categoryID = '$category' ORDER BY categoryID ASC, id DESC;";
     } else if ($period != "") {
         $sql = "SELECT * FROM periodical WHERE periodNumber = '$period' ORDER BY categoryID ASC, id DESC;";
     } else if ($category != "" && $getAllCategories == "true") {

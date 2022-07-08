@@ -13,53 +13,36 @@ function simplifyArticleContent($in_articleContent, $max_length)
 
   // 從完整文章解析出第一段文字
   $simplifiedContent = $in_articleContent;
-  $simplifiedContent = str_replace("&nbsp;", " ", $simplifiedContent);
-  $simplifiedContent = str_replace("<p><br></p>", "", $simplifiedContent);
-  // https://stackoverflow.com/questions/10142658/php-find-string-with-regex
+  $simplifiedContent = str_replace("&nbsp;", "", $simplifiedContent);
+  // 使用傳統換行符號來解決後臺管理系統quill套件儲存時壓縮資料為單行導致解析出空值
+  $simplifiedContent = str_replace("<br>", "\n", $simplifiedContent);
+  $simplifiedContent = str_replace("<p>", "\n", $simplifiedContent);
+  $simplifiedContent = str_replace("</p>", "\n", $simplifiedContent);
+
   preg_match_all("/<img.*>/", $simplifiedContent, $matches);
   // https://www.w3schools.com/php/func_regex_preg_match_all.asp
   // https://stackoverflow.com/questions/2912894/how-to-match-any-character-in-regular-expression
   foreach ($matches as $match) {
     $simplifiedContent = str_replace($match, "", $simplifiedContent);
   }
-  // remove <p> tags
-  $simplifiedContent = str_replace('<p class="ql-align-center">', "", $simplifiedContent);
-  $simplifiedContent = str_replace("<p>", "", $simplifiedContent);
-  $simplifiedContent = str_replace("</p>", "", $simplifiedContent);
-  // remove Table tags
-  preg_match_all("/<table.*>/", $simplifiedContent, $matches);
+
+  // remove all HTML tags
+  preg_match_all("/<.*>/", $simplifiedContent, $matches);
   foreach ($matches as $match) {
     $simplifiedContent = str_replace($match, "", $simplifiedContent);
   }
-  $simplifiedContent = str_replace("</table>", "", $simplifiedContent);
-  $simplifiedContent = str_replace("<tr>", "", $simplifiedContent);
-  $simplifiedContent = str_replace("</tr>", "", $simplifiedContent);
-  $simplifiedContent = str_replace("<td>", "", $simplifiedContent);
-  $simplifiedContent = str_replace("</td>", "", $simplifiedContent);
-  // now we can use <br> to check if the content is long enough to be a paragraph
-  $splitedArr = explode("<br>", $simplifiedContent);
+  // remove all HTML tags finished !
+  // 移除完所有HTML標籤後再移除傳統換行符號
+  $simplifiedContent = str_replace("\n", "", $simplifiedContent);
 
-  $simplifiedContent = ""; // reset to count the length
-  foreach ($splitedArr as $p) {
-    // After explode with <br>, remove the redundant <br> tags
-    $p = str_replace("<br>", "", $p);
-    $p = str_replace("<br/>", "", $p);
-    
-    // remove all HTML tags
-    preg_match_all("/<.*>/", $p, $matches);
-    foreach ($matches as $match) {
-      $p = str_replace($match, "", $p);
-    }
-    // remove all HTML tags finished !
-
-    if (strlen($p) + strlen($simplifiedContent) > $max_length) {
-      // https://stackoverflow.com/questions/10934711/truncating-chinese-text
-      $simplifiedContent = mb_substr($p, 0, $max_length) . "......";
-      break;
-    } else {
-      $simplifiedContent .= mb_substr($p, 0, $max_length);
-    }
+  $limitLengthContent = "";
+  if (strlen($limitLengthContent) + strlen($simplifiedContent) > $max_length) {
+    // https://stackoverflow.com/questions/10934711/truncating-chinese-text
+    $limitLengthContent = mb_substr($simplifiedContent, 0, $max_length) . "......";
+  } else {
+    $limitLengthContent .= mb_substr($simplifiedContent, 0, $max_length);
   }
 
-  return $simplifiedContent;
+  // echo "<script>console.log('簡化過的文字:$limitLengthContent');</script>";
+  return $limitLengthContent;
 }
