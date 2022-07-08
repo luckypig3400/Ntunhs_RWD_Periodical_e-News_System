@@ -57,7 +57,7 @@ function fetchArticleList($in_period, $in_category)
         } catch (PDOException $e) {
             return "Error occured while fetching latest periodNumber:" . $e->getMessage();
         }
-        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' AND periodNumber = @newestPeriod;";
+        $sql = "SELECT * FROM periodical WHERE categoryID = '$category' AND periodNumber = @newestPeriod ORDER BY id DESC;";
     } else {
         try {
             // 利用SQL取得最新文章期別
