@@ -47,6 +47,8 @@
 - [ ] 每一個專區目錄文章皆顯示一致：封面、標題、作者、不要內文
 - [ ] 頁尾「關於北護」後台內容更新功能
 - [ ] 手機翻轉後標題會跑到上面，再看看如何解決bug
+- [ ] 嘗試Docker化此專案(docker compose)
+    + 可參考:https://joshhu.gitbooks.io/dockercommands/content/
 
 ---
 
