@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+const config = require("../../config/default.json");
+const imageURL = config.imageURL;
+import NTUNHS from "../NTUNHS2.jpg";
 
 const CatMeme = (props) => {
-    const CoverUrl = `http://localhost:3090/image/${props.PostList.cover}`;
-    const backgroundImage =
-        "http://localhost:3090/image/BackgroundImage_Canvas.jpg";
+    const CoverUrl = `${imageURL}/image/${props.PostList.cover}`;
+    const backgroundImage = NTUNHS;
 
     const [image, setImage] = useState(null);
     const [cover, setCover] = useState(null);
