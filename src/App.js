@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import CreatePost from "./page/CreatePost";
 import Category from "./page/Category";
@@ -15,7 +15,6 @@ import MailCanva from "./page/MailCanva";
 import MailCanvaPrint from "./page/MailCanvaPrint";
 import MailPosterPrint from "./page/MailPosterPrint";
 import Setting from "./page/Setting";
-import MailPoster from "./component/NewCanvas/MailPoster.js";
 
 function App() {
     return (

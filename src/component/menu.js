@@ -66,16 +66,6 @@ const Menu = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/Bulletin">
-                        <span className="icon">
-                            <div className="icons">
-                                <AiFillSound />
-                            </div>
-                        </span>
-                        <span className="title">公告設定</span>
-                    </Link>
-                </li>
-                <li>
                     <Link to="/MailCanva">
                         <span className="icon">
                             <div className="icons">
@@ -83,16 +73,6 @@ const Menu = () => {
                             </div>
                         </span>
                         <span className="title">海報管理</span>
-                    </Link>
-                </li>
-                <li>
-                    <Link to="/User">
-                        <span className="icon">
-                            <div className="icons">
-                                <AiOutlineUsergroupAdd />
-                            </div>
-                        </span>
-                        <span className="title">成員管理</span>
                     </Link>
                 </li>
                 <li>
