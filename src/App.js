@@ -13,7 +13,8 @@ import Bulletin from "./page/Bulletin";
 import Carousel from "./page/Carousel";
 import MailCanva from "./page/MailCanva";
 import MailCanvaPrint from "./page/MailCanvaPrint";
-import MailPosterPrint from "./page/MailPosterPrint"
+import MailPosterPrint from "./page/MailPosterPrint";
+import Setting from "./page/Setting";
 import MailPoster from "./component/NewCanvas/MailPoster.js";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route path="/Carousel" element={<Carousel />} />
                 <Route path="/Bulletin" element={<Bulletin />} />
                 <Route path="/MailCanva" element={<MailCanva />} />
+                <Route path="/Setting" element={<Setting />} />
                 <Route path="/Signout" element={<Signout />} />
             </Route>
 

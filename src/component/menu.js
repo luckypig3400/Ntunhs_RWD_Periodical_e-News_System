@@ -6,7 +6,12 @@ import {
     FiDatabase,
     FiFilm,
 } from "react-icons/fi";
-import { AiOutlineUsergroupAdd, AiFillSound,AiOutlineMail } from "react-icons/ai";
+import SettingsIcon from "@mui/icons-material/Settings";
+import {
+    AiOutlineUsergroupAdd,
+    AiFillSound,
+    AiOutlineMail,
+} from "react-icons/ai";
 import React from "react";
 import { Link } from "react-router-dom";
 
@@ -88,6 +93,16 @@ const Menu = () => {
                             </div>
                         </span>
                         <span className="title">成員管理</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="/Setting">
+                        <span className="icon">
+                            <div className="icons">
+                                <SettingsIcon />
+                            </div>
+                        </span>
+                        <span className="title">進階設定</span>
                     </Link>
                 </li>
                 <li>
