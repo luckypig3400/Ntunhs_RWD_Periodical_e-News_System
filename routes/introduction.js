@@ -27,7 +27,6 @@ router
         try {
             const { introductionID } = req.params;
             const { value } = req.body;
-            console.log(introductionID, value);
             const result = await INTRODUCTION.update({ introductionID, value });
             return res.status(201).json({ message: `${result} successfully` });
         } catch (error) {
