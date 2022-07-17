@@ -83,32 +83,7 @@ const MailCanva = () => {
                 );
             },
         },
-        {
-            field: "MailPoster",
-            headerName: "Mail海報",
-            width: 100,
-            sortable: false,
-            disableColumnMenu: true,
-            renderCell: (params) => {
-                const onClick = () => {
-                    window.open(
-                        `./${config.hashRouter}/MailPoster?periodNumber=${params.id}`,
-                        '_blank' // <- This is what makes it open in a new window.
-                      );
-                };
-                return (
-                    // <a href={`/printPoster/${params.id}`}>
-                    <IconButton
-                        aria-label="delete"
-                        color="primary"
-                        onClick={() => onClick()}
-                    >
-                        <LocalPrintshopIcon />
-                    </IconButton>
-                    //</a>
-                );
-            },
-        },
+       
         {
             field: "inPeriodNumberPost",
             headerName: "期刊編號",
