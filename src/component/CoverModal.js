@@ -1,11 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
-
-//import HTMLtoDOCX from "html-to-docx";
-import { saveAs } from "file-saver";
+import { getgetCategory } from "../axios";
 
 const style = {
     position: "absolute",
@@ -23,21 +19,13 @@ const style = {
 
 const CoverModal = (props) => {
     const handleClose = () => location.reload();
-
-    function copyToClipboard(e) {
-        var div = document.getElementById("contentpage");
-    }
-
     const BoxContent = () => {
         if (props.imageArray[0]) {
             return (
                 <>
-                    {
-                        //<Button onClick={copyToClipboard}>5</Button>
-                    }
                     <div id="contentpage">
-                        {props.imageArray.map((item) => {
-                            return props.periodNumberPostList.map((item2) => {
+                        {props.periodNumberPostList.map((item2) => {
+                            return props.imageArray.map((item) => {
                                 if (
                                     item.id.toString() === item2.id.toString()
                                 ) {
