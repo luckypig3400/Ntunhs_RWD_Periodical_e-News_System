@@ -3,8 +3,9 @@ import domtoimage from "dom-to-image";
 import { saveAs } from "file-saver";
 import { getPostList } from "../axios";
 import { Button, CircularProgress } from "@mui/material";
-
 import MailPoster from "../component/NewCanvas/MailPoster";
+const config = require("../config/default.json");
+const publicURL = config.publicURL;
 
 function filter(node) {
     return node.tagName !== "i";
@@ -36,7 +37,12 @@ const MailCanvaPrint = () => {
     const WindowHeight = window.innerHeight;
     return (
         <div width="100%">
-            <div id="node">{newPostList}</div>
+            <div id="node">
+                <iframe src={publicURL} width="100%" height="700px" frameborder="0" scrolling="no" >
+                    你的瀏覽器不支援 iframe
+                </iframe>
+                {newPostList}
+            </div>
             {lodingPrint && (
                 <div
                     className="Loding"
