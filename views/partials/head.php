@@ -2,7 +2,17 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>北護校訊電子期刊 NTUNHS Periodical</title>
+  <?php
+  require_once("../model/config.php");
+
+  echo "<title>北護校訊電子期刊 NTUNHS Periodical</title>";
+
+  // OG tag for LINE link preview image
+  echo '<meta property="og:image" content="' . $imageFolder . '../assets/img/stylizedPhoenix.jpg' . '">';
+  // https://www.tpisoftware.com/tpu/articleDetails/1989 -->
+
+  ?>
+
   <meta name="description" content="北護新版校訊電子期刊系統(Responsive Web Design)">
   <meta name="keywords" content="NTUNHS,e-News,RWD,北護,北護校訓電子期刊,北護教務處,學術服務組">
   <meta name="author" content="LuckyPig3400">
