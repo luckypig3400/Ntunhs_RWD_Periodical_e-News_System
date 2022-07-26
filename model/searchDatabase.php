@@ -12,7 +12,7 @@ function searchDatabase($searchKeyword, $searchCategory, $searchPeriod)
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        $sql = "SELECT * FROM `periodical` WHERE (`quillcontent` LIKE '%" . $searchKeyword . "%' OR `subject` LIKE '%" . $searchKeyword . "%')";
+        $sql = "SELECT * FROM `periodical` WHERE (`quillcontent` LIKE '%" . $searchKeyword . "%' OR `subject` LIKE '%" . $searchKeyword . "%' OR `writer` LIKE '%" . $searchKeyword . "%' )";
         if ($searchCategory != "all" && $searchCategory != "") {
             $sql .= " AND `categoryID` = '" . $searchCategory . "'";
         }
