@@ -7,7 +7,7 @@
 
 2. Unzip and move the whole folder in ```Your Xampp installed directory```/htdocs/
 
-3. Download [DB_ver11](https://drive.google.com/drive/folders/1PPBx39cU4jF_fkM1AnrEWCcdXnXW873f?usp=sharing) then unzip ```DB_ver11....7z``` and import to MySQL Server.
+3. Download [DB_ver12](https://drive.google.com/file/d/1r0Pwue3MmSekcn4Mm0BSt1HQxHi6l5-B/view?usp=sharing) then unzip ```DB_ver12....7z``` and import to MySQL Server.
     1. <mark>Important!</mark> Then please execute the SQL command below to update to the latest Database version!
     ```
     ALTER TABLE `announcement` CHANGE `dateTime` `dateTime` VARCHAR(168) NULL;
