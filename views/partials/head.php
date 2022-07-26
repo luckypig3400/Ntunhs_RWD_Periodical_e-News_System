@@ -4,12 +4,29 @@
 
   <?php
   require_once("../model/config.php");
+  require_once("../controller/parseGETparams.php");
+  require_once("../model/fetchArticle.php");
+  $titleGenerated = false;
 
-  echo "<title>北護校訊電子期刊 NTUNHS Periodical</title>";
+  if (str_contains($_SERVER['REQUEST_URI'], "fullArticlePage.php")) { // 判別是否為瀏覽全文的頁面
+    if (getIDparam() != "") { // 檢查文章id的參數是否存在
+      $article = fetchFullArticle_WithID(getIDparam());
 
-  // OG tag for LINE link preview image
-  echo '<meta property="og:image" content="' . $imageFolder . '../assets/img/stylizedPhoenix.jpg' . '">';
-  // https://www.tpisoftware.com/tpu/articleDetails/1989 -->
+      if (gettype($article) != "string") { // 檢查資料庫中是否有編號為該id的文章資料
+        echo "<title>" . $article[0]['subject'] . "--北護校訊電子期刊</title>";
+        echo '<meta property="og:image" content="' . $imageFolder . $article[0]['cover'] . '">';
+        $titleGenerated = true;
+      }
+    }
+  }
+
+  if (!$titleGenerated) {// 若未能順利抓取文章標題或是圖片，輸出預設的網頁標題與預覽圖片
+    echo "<title>北護校訊電子期刊 NTUNHS Periodical</title>";
+
+    // OG tag for LINE link preview image
+    echo '<meta property="og:image" content="' . $imageFolder . '../assets/img/stylizedPhoenix.jpg' . '">';
+    // https://www.tpisoftware.com/tpu/articleDetails/1989 -->
+  }
 
   ?>
 
