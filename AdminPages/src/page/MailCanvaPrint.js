@@ -1,117 +1,91 @@
 import React, { useState, useEffect } from "react";
 import domtoimage from "dom-to-image";
-import { saveAs } from "file-saver";
-import { getPostList } from "../axios";
+import { getPostList, getCategory } from "../axios";
 import { Button, CircularProgress } from "@mui/material";
 
 import MailCanvaPrintPostList1 from "../component/MailCanvaPrintPostList/MailCanvaPrintPostList1";
-import MailCanvaPrintPostList2 from "../component/MailCanvaPrintPostList/MailCanvaPrintPostList2";
+import CoverModal from "../component/CoverModal";
 
-function filter(node) {
-    return node.tagName !== "i";
-}
 const MailCanvaPrint = () => {
     const [postList, setPostList] = useState([]);
     const [periodNumberPostList, setPeriodNumberPostList] = useState([]);
     const [lodingPrint, setLodingPrint] = useState(false);
+    const [imageArray, setImageArray] = useState([]);
+    const [buttonDisplay, setButtonDisplay] = useState(false);
+    const [nodeDivDisplay, setNodeDivDisplay] = useState(true);
+    const [category, setCategory] = useState([]);
     const PostID = getQueryVariable();
+
     useEffect(async () => {
         setPostList(await getPostList());
+        setCategory(await getCategory());
     }, []);
 
     useEffect(() => {
+        const sortedPostList = [];
         postList.map((item) => {
             if (item.periodNumber === PostID) {
-                setPeriodNumberPostList((periodNumberPostList) => [
-                    ...periodNumberPostList,
-                    item,
-                ]);
+                sortedPostList.push(item);
             }
         });
-    }, [postList]);
+        addPostListToPeriodNumberPostList(sortedPostList);
+    }, [postList, category]);
 
-    const newPostList = periodNumberPostList.map((item) => {
-        if (item.id % 2 === 1) {
-            return (
-                <MailCanvaPrintPostList2
-                    PostList={item}
-                    key={item.id}
-                    style={{ margin: 0 }}
-                />
-            );
-        } else {
-            return (
-                <MailCanvaPrintPostList1
-                    PostList={item}
-                    key={item.id}
-                    style={{ margin: 0 }}
-                />
-            );
-        }
-    });
-    const getImg = () => {
-        const node = document.getElementById("node");
+    //依照欸別重新排序
+    const addPostListToPeriodNumberPostList = (sortedPostList) => {
+        category.map((category) => {
+            sortedPostList.map((item) => {
+                if (item.categoryID === category.name) {
+                    setPeriodNumberPostList((periodNumberPostList) => [
+                        ...periodNumberPostList,
+                        item,
+                    ]);
+                }
+            });
+        });
+    };
 
+    // 生成图片自动下载为png格式（将dom转为二进制再编译下载）
+    const getBlobPng = (postID) => {
+        const node = document.getElementById(postID);
         domtoimage
             .toPng(node)
-            .then((defaultUrl) => {
-                const img = new Image();
-                img.src = defaultUrl;
-                img.setAttribute("className", "pngImg"); // 方便设置样式
-                // 将生成的png图片插入到当前页面
-                document.getElementById("export-img").appendChild(img);
-                // 手动点击图片下载 自动下载调用saveAs(defaultUrl, '自动保存.png')
-                img.addEventListener("click", () => {
-                    var link = document.createElement("a");
-                    link.download = "古诗词.png";
-                    link.href = defaultUrl;
-                    link.click();
-                });
+            .then(function (dataUrl) {
+                var img = new Image();
+                img.src = dataUrl;
+                img.id = postID;
+                setImageArray((imageArray) => [...imageArray, img]);
+                //document.body.appendChild(img);
             })
-            .catch(() => {
-                console.log("error");
+            .catch(function (error) {
+                console.error("oops, something went wrong!", error);
             });
     };
-    // 生成图片自动下载为png格式（将dom转为二进制再编译下载）
-    const getBlobPng = () => {
-        setLodingPrint(true);
-        const node = document.getElementById("node");
-        domtoimage.toBlob(node).then((blob) => {
-            // 调用file-save方法 直接保存图片
-            saveAs(blob, PostID);
-            setLodingPrint(false);
-        });
-    };
+
+    const newPostList = periodNumberPostList.map((item) => {
+        return (
+            <>
+                <div id={item.id} key={item.id}>
+                    <MailCanvaPrintPostList1
+                        PostList={item}
+                        key={item.id}
+                        style={{ margin: 0 }}
+                    />
+                </div>
+            </>
+        );
+    });
     // 转为Jpeg图片  --- 手动下载（自动下载调用saveAs(defaultUrl, '自动保存.png'))
-    const getJpeg = () => {
-        const node = document.getElementById("node");
-        domtoimage.toJpeg(node, { quality: 0.95 }).then((defaultUrl) => {
-            var link = document.createElement("a");
-            link.download = "下载jpeg.jpeg";
-            link.href = defaultUrl;
-            link.click();
-        });
-        setLodingPrint(false);
-    };
-    // 转为SVG图片---手动下载 （自动下载调用saveAs(defaultUrl, '自动保存.png'))
-    const getSVG = () => {
-        setLodingPrint(true);
-        const node = document.getElementById("node");
-        domtoimage.toSvg(node, { filter: filter }).then((defaultUrl) => {
-            const img = new Image();
-            img.src = defaultUrl;
-            img.setAttribute("className", "svgImg");
-            document.getElementById("export-img").appendChild(img);
-            img.addEventListener("click", () => {
-                var link = document.createElement("a");
-                link.download = "SVG";
-                link.href = defaultUrl;
-                link.click();
-            });
-        });
-        setLodingPrint(false);
-    };
+
     const WindowHeight = window.innerHeight;
+
+    const capture = () => {
+        periodNumberPostList.map(async (item) => {
+            await getBlobPng(item.id);
+        });
+        setButtonDisplay(true);
+    };
+
     return (
         <div width="100%">
             <div
@@ -122,40 +96,23 @@ const MailCanvaPrint = () => {
                     display: "flex",
                 }}
             >
+                <CoverModal
+                    imageArray={imageArray}
+                    buttonDisplay={buttonDisplay}
+                    setButtonDisplay={setButtonDisplay}
+                    periodNumberPostList={periodNumberPostList}
+                    setNodeDivDisplay={setNodeDivDisplay}
+                />
                 <Button
                     variant="contained"
-                    onClick={getBlobPng}
+                    onClick={() => capture()}
                     className="action"
                     sx={{ margin: "10px" }}
                 >
-                    儲存圖片
+                    產出文件
                 </Button>
-                {/* <Button
-                    variant="contained"
-                    color="success"
-                    onClick={() => {
-                        setLodingPrint(true);
-                        getJpeg();
-                    }}
-                    className="action"
-                    sx={{ margin: "10px" }}
-                >
-                    jpeg圖片
-                </Button>
-                <Button
-                    variant="contained"
-                    color="secondary"
-                    onClick={() => {
-                        setLodingPrint(true);
-                        getSVG();
-                    }}
-                    className="action"
-                    sx={{ margin: "10px" }}
-                >
-                    svg圖片
-                </Button>*/}
             </div>
-            <div id="node">{newPostList}</div>
+            {nodeDivDisplay ? <div id="node">{newPostList}</div> : ""}
             {lodingPrint && (
                 <div
                     className="Loding"

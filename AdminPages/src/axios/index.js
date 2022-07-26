@@ -122,3 +122,12 @@ export const getCarousel = async () => {
         console.error(error);
     }
 };
+
+export const getIntroduction = async () => {
+    try {
+        const response = await axios.get(`${apiURL}/api/introduction`);
+        return response.data.results;
+    } catch (error) {
+        console.error(error);
+    }
+};

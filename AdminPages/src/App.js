@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import "./App.css";
 import CreatePost from "./page/CreatePost";
 import Category from "./page/Category";
@@ -13,15 +13,13 @@ import Bulletin from "./page/Bulletin";
 import Carousel from "./page/Carousel";
 import MailCanva from "./page/MailCanva";
 import MailCanvaPrint from "./page/MailCanvaPrint";
-import MailPosterPrint from "./page/MailPosterPrint"
-import MailPoster from "./component/NewCanvas/MailPoster.js";
+import Setting from "./page/Setting";
 
 function App() {
     return (
         <Routes>
             <Route index element={<Login />} />
             <Route path="/MailCanvaPrint" element={<MailCanvaPrint />} />
-            <Route path="/MailPoster" element={<MailPosterPrint />} />
             <Route path="/" element={<PageLayout />}>
                 <Route path="/CreatePost" element={<CreatePost />} />
                 <Route path="/PostList" element={<PostList />} />
@@ -31,6 +29,7 @@ function App() {
                 <Route path="/Carousel" element={<Carousel />} />
                 <Route path="/Bulletin" element={<Bulletin />} />
                 <Route path="/MailCanva" element={<MailCanva />} />
+                <Route path="/Setting" element={<Setting />} />
                 <Route path="/Signout" element={<Signout />} />
             </Route>
 

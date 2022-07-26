@@ -138,8 +138,6 @@ const User = () => {
 
     return (
         <>
-            <div className="headerTitle">成員管理</div>
-            <div className="pagecontent">
                 <div style={{ display: "flex", height: "100%" }}>
                     <div style={{ flexGrow: 1 }}>
                         <DataGrid
@@ -186,7 +184,6 @@ const User = () => {
                         </Button>
                     </Box>
                 </Modal>
-            </div>
         </>
     );
 };

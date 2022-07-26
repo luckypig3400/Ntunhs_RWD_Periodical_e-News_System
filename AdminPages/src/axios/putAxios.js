@@ -247,3 +247,20 @@ export const deletePostputCarousel = async (Postid, PeriodNumber) => {
         });
     });
 };
+
+export const putIntroduction = async (id, value) => {
+    try {
+        axios
+            .put(`${apiURL}/api/Introduction/${id}`, {
+                value: value,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error.request);
+            });
+    } catch (error) {
+        console.log(error);
+    }
+};
