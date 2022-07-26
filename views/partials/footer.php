@@ -39,7 +39,30 @@
 
                 <div class="col-lg-6 col-md-6 footer-info">
                     <h3>關於北護</h3>
-                    <p>本校經歷了逾半世紀的歲月，為臺灣社會培育眾多優秀護理、健康照護與管理人才，也是最早設置護理博士班的技職殿堂。民國99年8月1日奉教育部核定改名為「國立臺北護理健康大學」，目前設有護理學院、健康科技學院、人類發展與健康學院、智慧健康照護跨領域學院等四個學院及通識中心，12系所教學領域涵蓋自出生到終老的健康照護需求，培育優質健康照護與管理專業人才。近年校務經營成果豐碩，國際評比表現亮眼，於109年榮獲QS Star滿級五星級評等；108-110連續三年獲軟科世界一流學科排名（ARWU）護理學科百大之排名；111年QS subject ranking護理類進入全球排名112。
+                    <p>
+                        <?php
+                        require_once("../model/config.php");
+
+                        try {
+                            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+                            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                            $sql = "SELECT * FROM `introduction` LIMIT 1";
+
+                            $stmt = $conn->prepare($sql);
+                            $stmt->execute();
+                            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+                            $result = $stmt->fetchAll();
+
+                            if (sizeof($result) != 0)
+                                print_r($result[0]['value']);
+                            else
+                                echo "本校經歷了逾半世紀的歲月，為臺灣社會培育眾多優秀護理、健康照護與管理人才，也是最早設置護理博士班的技職殿堂。民國99年8月1日奉教育部核定改名為「國立臺北護理健康大學」，目前設有護理學院、健康科技學院、人類發展與健康學院、智慧健康照護跨領域學院等四個學院及通識中心，12系所教學領域涵蓋自出生到終老的健康照護需求，培育優質健康照護與管理專業人才。近年校務經營成果豐碩，國際評比表現亮眼，於109年榮獲QS Star滿級五星級評等；108-110連續三年獲軟科世界一流學科排名（ARWU）護理學科百大之排名；111年QS subject ranking護理類進入全球排名112。";
+                        } catch (PDOException $e) {
+                            echo "Error happened while fetching Database, Full error log:" . $e->getMessage();
+                        }
+                        ?>
                     </p>
                 </div>
 

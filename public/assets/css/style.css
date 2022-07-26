@@ -210,10 +210,10 @@ input[type="radio"]:checked + label {
   transition: all 0.9s;
 }
 
-/* https://stackoverflow.com/questions/27900053/css-transition-with-visibility-not-working */
-.header-transparent {
-  opacity: 0;
+#header.header-transparent {
+  background: none;
 }
+
 .header-normal {
   opacity: 1;
 }
@@ -490,12 +490,13 @@ input[type="radio"]:checked + label {
 }
 #hero h2 {
   color: #fff;
-  margin-bottom: 30px;
-  font-size: 5vh;
+  margin-top: 30vh;
+  margin-bottom:15vh;
+  font-size: 6vh;
   /* https://stackoverflow.com/questions/16056591/font-scaling-based-on-width-of-container */
   font-weight: 700;
   text-shadow: darkblue 3px 3px 6px;
-  min-height: 50vh;
+  min-height: 6vh;
 }
 #hero h2:hover{
   color: transparent;
@@ -569,7 +570,7 @@ input[type="radio"]:checked + label {
 }
 @media (max-width: 575px) {
   #hero h2 {
-    font-size: 32px;
+    font-size: 5vh;
     text-shadow: darkblue 3px 3px 6px;
   }
   #hero::after {

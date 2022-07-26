@@ -39,13 +39,13 @@ require_once("partials/head.php");
         <div class="sidebar col-lg-12 entries">
 
           <div class="section-title">
-            <h2>搜尋文章內容</h2>
+            <h2>搜尋文章</h2>
           </div>
 
           <!-- https://www.w3schools.com/howto/howto_css_stacked_form.asp -->
           <form class="searchForm" action="" method="POST">
             <h3 class="blog-title">輸入搜索文字</h3>
-            <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，將為您於指定範圍內搜索符合的內文或標題"></textarea>
+            <textarea id="searchTextInput" name="searchText" placeholder="請輸入想搜尋的關鍵字或句子，若想搜尋文章作者也可於此輸入，將為您於指定範圍內搜索符合條件的文章"></textarea>
             <hr><br>
 
             <h3 class="blog-title">選擇文章分類</h3>
